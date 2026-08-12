@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper: is the requesting user authenticated as this uid?
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    // Profiles — only owner can read/write
+    match /profiles/{uid} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Certificates — only owner
+    match /certificates/{certId} {
+      allow read, write: if request.auth != null &&
+        request.auth.uid == resource.data.uid;
+      allow create: if request.auth != null;
+    }
+
+    // Job scores — only owner
+    match /jobScores/{uid} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Career recommendations — only owner
+    match /careerRecommendations/{uid} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Skill gap reports — only owner
+    match /skillGapReports/{uid} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Learning progress — only owner
+    match /learningProgress/{uid} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Chat history — only owner
+    match /chatHistory/{uid}/conversations/{convId} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Notifications — only owner
+    match /notifications/{uid}/items/{itemId} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

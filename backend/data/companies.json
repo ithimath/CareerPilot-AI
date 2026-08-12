@@ -1,0 +1,81 @@
+[
+  {
+    "id": "google",
+    "name": "Google",
+    "difficulty": "Hard (Tier 1)",
+    "logo_color": "bg-red-600",
+    "culture": "Engineering-driven culture focusing on massive scalability, clean algorithmic efficiency, robust automated testing, and collaborative problem solving.",
+    "roles": ["Software Engineer (L3/L4)", "Frontend Engineer", "Backend Specialist", "Machine Learning Engineer"],
+    "rounds": [
+      "Round 1: Online Technical Assessment (2 Coding Problems, 90 mins)",
+      "Round 2: Technical Phone Screening (Algorithms & Data Structures)",
+      "Round 3-6: Onsite Interviews (3 DSA Rounds + 1 System Architecture + 1 Googliness & Leadership)"
+    ],
+    "top_topics": ["Graph Algorithms (BFS/DFS)", "Dynamic Programming", "System Architecture & Caching", "Trie & Binary Search"],
+    "sample_questions": [
+      "Given a 2D grid of obstacle cell costs, find the shortest path from start to target in minimum weighted time.",
+      "Design a distributed rate limiter capable of enforcing 100,000 requests/sec across worldwide edge clusters.",
+      "Implement an LRU (Least Recently Used) cache with O(1) time complexity for get and put operations.",
+      "Tell me about a time you encountered ambiguity in a technical project spec and how you resolved it."
+    ]
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "difficulty": "Medium-Hard",
+    "logo_color": "bg-blue-600",
+    "culture": "Emphasizes a growth mindset, customer-centric feature delivery, code quality, and cloud-native integration with Azure microservices.",
+    "roles": ["Software Development Engineer (SDE-1)", "Cloud Solutions Engineer", "Frontend Developer"],
+    "rounds": [
+      "Round 1: Online Coding Test (Codility - 3 questions)",
+      "Round 2: Technical Interview 1 (Trees & String Manipulation)",
+      "Round 3: Technical Interview 2 (System Architecture & API Design)",
+      "Round 4: AA (As-Appropriate) Final Round (Leadership & Culture Fit)"
+    ],
+    "top_topics": ["Binary Tree Traversal", "Linked List & Pointers", "OOP Design & Microservices", "SQL Indexing & Joins"],
+    "sample_questions": [
+      "Reverse a linked list in groups of size K.",
+      "Design a real-time collaborative document editor like Microsoft Word Online.",
+      "Explain how B-Tree index structures accelerate SQL database search execution times."
+    ]
+  },
+  {
+    "id": "amazon",
+    "name": "Amazon",
+    "difficulty": "Medium-Hard",
+    "logo_color": "bg-amber-600",
+    "culture": "Heavy focus on 16 Leadership Principles (Customer Obsession, Ownership, Invent & Simplify, Bias for Action). Expect behavioral questions tied to STAR methodology in every round.",
+    "roles": ["Software Development Engineer I (SDE-1)", "Frontend Engineer", "AWS Systems Engineer"],
+    "rounds": [
+      "Round 1: Online Assessment (OA1 Debugging + OA2 Coding + Work Simulation)",
+      "Round 2-5: Onsite Loop (4 Technical Interviews, each including 20-30 mins of Leadership Principles STAR questions + 45 mins Coding/System Design)"
+    ],
+    "top_topics": ["Binary Trees & Graphs", "Priority Queues & Heaps", "Object-Oriented Design", "Amazon Leadership Principles"],
+    "sample_questions": [
+      "Design an e-commerce shopping cart and inventory locking service handling Flash Sales.",
+      "Given an array of product review strings, find top K most frequent keywords.",
+      "Tell me about a time when you had to make a fast decision with incomplete data."
+    ]
+  },
+  {
+    "id": "meta",
+    "name": "Meta",
+    "difficulty": "Hard (Tier 1)",
+    "logo_color": "bg-[#174A3A]",
+    "culture": "Fast-paced execution ('Move Fast'), product impact at multi-billion user scale, strong focus on bug-free speed during coding interviews.",
+    "roles": ["Software Engineer (Rotational)", "Frontend Specialist", "Production Engineer"],
+    "rounds": [
+      "Round 1: Technical Screening (2 Coding Questions in 45 mins)",
+      "Round 2: Onsite Coding Round 1 (2 Questions, 45 mins)",
+      "Round 3: Onsite Coding Round 2 (2 Questions, 45 mins)",
+      "Round 4: Product Architecture & System Design (45 mins)",
+      "Round 5: Behavioral & Cultural Alignment (45 mins)"
+    ],
+    "top_topics": ["Sliding Window & Two Pointers", "BFS/DFS Grid Traversal", "Product Architecture", "Binary Search"],
+    "sample_questions": [
+      "Write a function to return the lowest common ancestor of two nodes in a binary tree.",
+      "Design Facebook Newsfeed timeline architecture for 2 billion active daily users.",
+      "Find all valid palindrome substrings in a given string."
+    ]
+  }
+]

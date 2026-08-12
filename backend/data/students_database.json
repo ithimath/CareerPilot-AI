@@ -1,0 +1,7133 @@
+[
+  {
+    "id": "std_001",
+    "name": "Iorgo Hakonsen",
+    "email": "ihakonsen0@instagram.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_002",
+    "name": "Emmery Duffyn",
+    "email": "eduffyn1@dailymotion.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_003",
+    "name": "Susanetta Wards",
+    "email": "swards2@digg.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_004",
+    "name": "Amanda Gussin",
+    "email": "agussin3@webs.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_005",
+    "name": "Carlina Beaven",
+    "email": "cbeaven4@timesonline.co.uk",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_006",
+    "name": "Shelley Kelshaw",
+    "email": "skelshaw5@twitpic.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_007",
+    "name": "Abe Babst",
+    "email": "ababst6@ft.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_008",
+    "name": "Augusto Hutchason",
+    "email": "ahutchason7@drupal.org",
+    "academic_year": "1st Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_009",
+    "name": "Danny Garr",
+    "email": "dgarr8@fotki.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_010",
+    "name": "Jere Basilone",
+    "email": "jbasilone9@patch.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_011",
+    "name": "Misty Tolputt",
+    "email": "mtolputta@squidoo.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_012",
+    "name": "Blisse Baillie",
+    "email": "bbaillieb@psu.edu",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_013",
+    "name": "Wye Putnam",
+    "email": "wputnamc@ameblo.jp",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_014",
+    "name": "Tory Sextie",
+    "email": "tsextied@123-reg.co.uk",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_015",
+    "name": "Patrice Sinnatt",
+    "email": "psinnatte@umich.edu",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_016",
+    "name": "Harlie Walsom",
+    "email": "hwalsomf@ovh.net",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_017",
+    "name": "Kain Thurgood",
+    "email": "kthurgoodg@sogou.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_018",
+    "name": "Olwen Moth",
+    "email": "omothh@wufoo.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_019",
+    "name": "Austin Corbould",
+    "email": "acorbouldi@cbc.ca",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_020",
+    "name": "Samson Proom",
+    "email": "sproomj@istockphoto.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_021",
+    "name": "Harlen Van Der Vlies",
+    "email": "hvank@telegraph.co.uk",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_022",
+    "name": "Ash Skaife",
+    "email": "askaifel@hubpages.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_023",
+    "name": "Anet Brunesco",
+    "email": "abrunescom@indiatimes.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_024",
+    "name": "Kilian Durnill",
+    "email": "kdurnilln@shop-pro.jp",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_025",
+    "name": "Bard Exelby",
+    "email": "bexelbyo@seesaa.net",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_026",
+    "name": "Pieter Sweeten",
+    "email": "psweetenp@elegantthemes.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_027",
+    "name": "Georgeanne Belderfield",
+    "email": "gbelderfieldq@guardian.co.uk",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_028",
+    "name": "Ellissa Semeradova",
+    "email": "esemeradovar@ustream.tv",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_029",
+    "name": "Lilyan Brychan",
+    "email": "lbrychans@icq.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_030",
+    "name": "Dennis Loddon",
+    "email": "dloddont@spotify.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_031",
+    "name": "Delly Dinnington",
+    "email": "ddinningtonu@about.me",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_032",
+    "name": "Lothaire Gaffer",
+    "email": "lgafferv@clickbank.net",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_033",
+    "name": "Faythe Franc",
+    "email": "ffrancw@virginia.edu",
+    "academic_year": "2nd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_034",
+    "name": "Ax Filgate",
+    "email": "afilgatex@google.co.uk",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_035",
+    "name": "Catharina Woan",
+    "email": "cwoany@cornell.edu",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_036",
+    "name": "Amelita Corselles",
+    "email": "acorsellesz@walmart.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_037",
+    "name": "Archy Ambrois",
+    "email": "aambrois10@go.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_038",
+    "name": "Conan Vyel",
+    "email": "cvyel11@1und1.de",
+    "academic_year": "2nd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_039",
+    "name": "Candide Rodden",
+    "email": "crodden12@devhub.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_040",
+    "name": "Sidonia Merrin",
+    "email": "smerrin13@posterous.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_041",
+    "name": "Valaree Lawfull",
+    "email": "vlawfull14@va.gov",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_042",
+    "name": "Heindrick Michele",
+    "email": "hmichele15@prlog.org",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_043",
+    "name": "Mischa Portigall",
+    "email": "mportigall16@ycombinator.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_044",
+    "name": "Homere Worling",
+    "email": "hworling17@patch.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_045",
+    "name": "Lorena Ackwood",
+    "email": "lackwood18@addtoany.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_046",
+    "name": "Norby Larraway",
+    "email": "nlarraway19@gnu.org",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_047",
+    "name": "Terrie Burkart",
+    "email": "tburkart1a@webnode.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_048",
+    "name": "Marchall Goard",
+    "email": "mgoard1b@themeforest.net",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_049",
+    "name": "Laure Haythorn",
+    "email": "lhaythorn1c@blogspot.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_050",
+    "name": "Glenine Cannam",
+    "email": "gcannam1d@photobucket.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_051",
+    "name": "Eal Paulig",
+    "email": "epaulig1e@ucoz.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_052",
+    "name": "Durant Crampsey",
+    "email": "dcrampsey1f@istockphoto.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_053",
+    "name": "Gertrud Syphas",
+    "email": "gsyphas1g@twitpic.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_054",
+    "name": "Teodorico Tattoo",
+    "email": "ttattoo1h@cdc.gov",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_055",
+    "name": "Bordy Heaslip",
+    "email": "bheaslip1i@angelfire.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_056",
+    "name": "Baillie Loudian",
+    "email": "bloudian1j@dot.gov",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_057",
+    "name": "Francesca Presley",
+    "email": "fpresley1k@facebook.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_058",
+    "name": "Tami Goozee",
+    "email": "tgoozee1l@eepurl.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_059",
+    "name": "Rees Cushe",
+    "email": "rcushe1m@wp.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_060",
+    "name": "Lavina Fisbey",
+    "email": "lfisbey1n@shinystat.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_061",
+    "name": "Allie Ratlee",
+    "email": "aratlee1o@yahoo.co.jp",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_062",
+    "name": "Therine Collman",
+    "email": "tcollman1p@time.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_063",
+    "name": "Rozanne Petyakov",
+    "email": "rpetyakov1q@webmd.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_064",
+    "name": "Minette Tofanini",
+    "email": "mtofanini1r@epa.gov",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_065",
+    "name": "Maisie Wescott",
+    "email": "mwescott1s@nymag.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_066",
+    "name": "Dalton Anthoine",
+    "email": "danthoine1t@theatlantic.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_067",
+    "name": "Berri Ream",
+    "email": "bream1u@xing.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_068",
+    "name": "Dayna MacCumiskey",
+    "email": "dmaccumiskey1v@amazonaws.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_069",
+    "name": "Cart Playhill",
+    "email": "cplayhill1w@unicef.org",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_070",
+    "name": "Deva Housaman",
+    "email": "dhousaman1x@npr.org",
+    "academic_year": "1st Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_071",
+    "name": "Mordy Sultana",
+    "email": "msultana1y@nps.gov",
+    "academic_year": "3rd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_072",
+    "name": "Shep Blundin",
+    "email": "sblundin1z@over-blog.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_073",
+    "name": "Dyanne Bezarra",
+    "email": "dbezarra20@free.fr",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_074",
+    "name": "Odell Shreeve",
+    "email": "oshreeve21@gmpg.org",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_075",
+    "name": "Dorry Feacham",
+    "email": "dfeacham22@ft.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_076",
+    "name": "Cam Norbury",
+    "email": "cnorbury23@paypal.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_077",
+    "name": "Abram Holbury",
+    "email": "aholbury24@bbc.co.uk",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_078",
+    "name": "Kathi Sigars",
+    "email": "ksigars25@msu.edu",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_079",
+    "name": "Justino MacGillespie",
+    "email": "jmacgillespie26@ameblo.jp",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_080",
+    "name": "Garry Revie",
+    "email": "grevie27@stanford.edu",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_081",
+    "name": "Ashley Greiser",
+    "email": "agreiser28@tinyurl.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_082",
+    "name": "Gaven Jackson",
+    "email": "gjackson29@infoseek.co.jp",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_083",
+    "name": "Jarid Tabor",
+    "email": "jtabor2a@people.com.cn",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_084",
+    "name": "Yard Peasey",
+    "email": "ypeasey2b@europa.eu",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_085",
+    "name": "Arnie Croysdale",
+    "email": "acroysdale2c@nasa.gov",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_086",
+    "name": "Del Hullins",
+    "email": "dhullins2d@geocities.jp",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_087",
+    "name": "Pansie Flynn",
+    "email": "pflynn2e@disqus.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_088",
+    "name": "Hershel Crowd",
+    "email": "hcrowd2f@google.de",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_089",
+    "name": "Ashlen Dowd",
+    "email": "adowd2g@msn.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_090",
+    "name": "Berky Cockshot",
+    "email": "bcockshot2h@vkontakte.ru",
+    "academic_year": "2nd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_091",
+    "name": "Charles Le Cornu",
+    "email": "cle2i@newsvine.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_092",
+    "name": "Onfre Pfleger",
+    "email": "opfleger2j@cpanel.net",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_093",
+    "name": "Annie Kynder",
+    "email": "akynder2k@house.gov",
+    "academic_year": "2nd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_094",
+    "name": "Suzie Kisar",
+    "email": "skisar2l@google.nl",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_095",
+    "name": "Andres Matterdace",
+    "email": "amatterdace2m@dell.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_096",
+    "name": "Dallas Henderson",
+    "email": "dhenderson2n@quantcast.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_097",
+    "name": "Eula Pendlenton",
+    "email": "ependlenton2o@booking.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_098",
+    "name": "Syd Scapelhorn",
+    "email": "sscapelhorn2p@youtu.be",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_099",
+    "name": "Frederica O'Gaven",
+    "email": "fogaven2q@desdev.cn",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_100",
+    "name": "Norah Baldini",
+    "email": "nbaldini2r@51.la",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_101",
+    "name": "Wanids Shaxby",
+    "email": "wshaxby2s@phoca.cz",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_102",
+    "name": "Emalee Lythgoe",
+    "email": "elythgoe2t@com.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_103",
+    "name": "Rayna Dandie",
+    "email": "rdandie2u@delicious.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_104",
+    "name": "Odette Zanotti",
+    "email": "ozanotti2v@pen.io",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_105",
+    "name": "Kiri Greedier",
+    "email": "kgreedier2w@ehow.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_106",
+    "name": "Darya Clint",
+    "email": "dclint2x@unc.edu",
+    "academic_year": "1st Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_107",
+    "name": "Mathew Clemmow",
+    "email": "mclemmow2y@mysql.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_108",
+    "name": "Vina Tupie",
+    "email": "vtupie2z@globo.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_109",
+    "name": "Dill Walkey",
+    "email": "dwalkey30@disqus.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_110",
+    "name": "Janaya Balint",
+    "email": "jbalint31@ehow.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_111",
+    "name": "Oliviero Soitoux",
+    "email": "osoitoux32@uol.com.br",
+    "academic_year": "2nd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_112",
+    "name": "Jaime Tuxwell",
+    "email": "jtuxwell33@msn.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_113",
+    "name": "Westbrooke Graalman",
+    "email": "wgraalman34@themeforest.net",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_114",
+    "name": "Kingsley Lesser",
+    "email": "klesser35@accuweather.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_115",
+    "name": "Prudi Sterman",
+    "email": "psterman36@ebay.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_116",
+    "name": "Bobbie Gosenell",
+    "email": "bgosenell37@admin.ch",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_117",
+    "name": "Dorothee Pople",
+    "email": "dpople38@blogger.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_118",
+    "name": "Gregoire Ivchenko",
+    "email": "givchenko39@yandex.ru",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_119",
+    "name": "Alisun Geipel",
+    "email": "ageipel3a@mit.edu",
+    "academic_year": "3rd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_120",
+    "name": "Dietrich Bumphries",
+    "email": "dbumphries3b@bloomberg.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_121",
+    "name": "Katha Trenouth",
+    "email": "ktrenouth3c@elegantthemes.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_122",
+    "name": "Amanda Bourner",
+    "email": "abourner3d@usda.gov",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_123",
+    "name": "Julian Fetteplace",
+    "email": "jfetteplace3e@nymag.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_124",
+    "name": "Jeremias Node",
+    "email": "jnode3f@live.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_125",
+    "name": "Randa Pressman",
+    "email": "rpressman3g@google.com.br",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_126",
+    "name": "Madelon Poyntz",
+    "email": "mpoyntz3h@cbsnews.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_127",
+    "name": "Ira Doram",
+    "email": "idoram3i@arstechnica.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_128",
+    "name": "Ferdinanda Birth",
+    "email": "fbirth3j@wikimedia.org",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_129",
+    "name": "Ingar Lilburn",
+    "email": "ililburn3k@youku.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_130",
+    "name": "Nelie Audiss",
+    "email": "naudiss3l@devhub.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_131",
+    "name": "Harri Rodder",
+    "email": "hrodder3m@house.gov",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_132",
+    "name": "Cindelyn O'Henery",
+    "email": "cohenery3n@shinystat.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_133",
+    "name": "Letisha Rabjohns",
+    "email": "lrabjohns3o@yelp.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_134",
+    "name": "Samson Buckby",
+    "email": "sbuckby3p@photobucket.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_135",
+    "name": "Barbra Tindle",
+    "email": "btindle3q@mapquest.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_136",
+    "name": "Ellis Spracklin",
+    "email": "espracklin3r@hao123.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_137",
+    "name": "Valeria Watford",
+    "email": "vwatford3s@kickstarter.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_138",
+    "name": "Eileen Stephenson",
+    "email": "estephenson3t@webnode.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_139",
+    "name": "Suzy Hatry",
+    "email": "shatry3u@squidoo.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_140",
+    "name": "Lelia Beange",
+    "email": "lbeange3v@yandex.ru",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_141",
+    "name": "Atlanta Fyfe",
+    "email": "afyfe3w@china.com.cn",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_142",
+    "name": "Janella Codlin",
+    "email": "jcodlin3x@apache.org",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_143",
+    "name": "Keeley Crosse",
+    "email": "kcrosse3y@auda.org.au",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_144",
+    "name": "Jada Bidder",
+    "email": "jbidder3z@marketwatch.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_145",
+    "name": "Bari Meaney",
+    "email": "bmeaney40@example.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_146",
+    "name": "Monika Porritt",
+    "email": "mporritt41@cornell.edu",
+    "academic_year": "1st Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_147",
+    "name": "Korney Simonian",
+    "email": "ksimonian42@bloglovin.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_148",
+    "name": "Shelden Thrussell",
+    "email": "sthrussell43@tinypic.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_149",
+    "name": "Sonnie Linnell",
+    "email": "slinnell44@nyu.edu",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_150",
+    "name": "Maribelle Pinnington",
+    "email": "mpinnington45@hugedomains.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_151",
+    "name": "Nadean Mandifield",
+    "email": "nmandifield46@tripadvisor.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_152",
+    "name": "Thaddus Starrs",
+    "email": "tstarrs47@cbc.ca",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_153",
+    "name": "Kelli Edlington",
+    "email": "kedlington48@twitter.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_154",
+    "name": "Vinny Raithbie",
+    "email": "vraithbie49@tinypic.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_155",
+    "name": "Crosby Whittingham",
+    "email": "cwhittingham4a@java.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_156",
+    "name": "Mendel Owens",
+    "email": "mowens4b@ft.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_157",
+    "name": "Stefania Rosen",
+    "email": "srosen4c@gmpg.org",
+    "academic_year": "3rd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_158",
+    "name": "Jacynth McNally",
+    "email": "jmcnally4d@exblog.jp",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_159",
+    "name": "Britta Minthorpe",
+    "email": "bminthorpe4e@4shared.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_160",
+    "name": "Janela Janota",
+    "email": "jjanota4f@hubpages.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_161",
+    "name": "Kean Simpole",
+    "email": "ksimpole4g@washington.edu",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_162",
+    "name": "Charis Chiverton",
+    "email": "cchiverton4h@usda.gov",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_163",
+    "name": "Lammond Antonovic",
+    "email": "lantonovic4i@artisteer.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_164",
+    "name": "Brantley Timlett",
+    "email": "btimlett4j@liveinternet.ru",
+    "academic_year": "2nd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_165",
+    "name": "Doll Claypole",
+    "email": "dclaypole4k@themeforest.net",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_166",
+    "name": "Wandis Spybey",
+    "email": "wspybey4l@toplist.cz",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_167",
+    "name": "Lindsey McShane",
+    "email": "lmcshane4m@4shared.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_168",
+    "name": "Jarad Tortis",
+    "email": "jtortis4n@linkedin.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_169",
+    "name": "Nevins McCardle",
+    "email": "nmccardle4o@biglobe.ne.jp",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_170",
+    "name": "Shaun Offin",
+    "email": "soffin4p@si.edu",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_171",
+    "name": "Roseline Claypoole",
+    "email": "rclaypoole4q@imageshack.us",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_172",
+    "name": "Prudence Peret",
+    "email": "pperet4r@is.gd",
+    "academic_year": "1st Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_173",
+    "name": "Scottie Rebeiro",
+    "email": "srebeiro4s@dailymail.co.uk",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_174",
+    "name": "Hadley Kildale",
+    "email": "hkildale4t@arstechnica.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_175",
+    "name": "Dagny Pady",
+    "email": "dpady4u@hostgator.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_176",
+    "name": "Pancho Pfeifer",
+    "email": "ppfeifer4v@squarespace.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_177",
+    "name": "Aldin Haglinton",
+    "email": "ahaglinton4w@yellowpages.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_178",
+    "name": "Alexandra Sartain",
+    "email": "asartain4x@kickstarter.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_179",
+    "name": "Darius Medlicott",
+    "email": "dmedlicott4y@businessweek.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_180",
+    "name": "Adel Cockman",
+    "email": "acockman4z@oaic.gov.au",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_181",
+    "name": "Midge Joly",
+    "email": "mjoly50@japanpost.jp",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_182",
+    "name": "Mylo Stockill",
+    "email": "mstockill51@cdbaby.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_183",
+    "name": "Sigrid Stiff",
+    "email": "sstiff52@imgur.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_184",
+    "name": "Shaun Cunniffe",
+    "email": "scunniffe53@sogou.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_185",
+    "name": "Tommi Roscoe",
+    "email": "troscoe54@cam.ac.uk",
+    "academic_year": "1st Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_186",
+    "name": "Fanchon Dungate",
+    "email": "fdungate55@moonfruit.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_187",
+    "name": "Lawton Terbruggen",
+    "email": "lterbruggen56@sakura.ne.jp",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_188",
+    "name": "Brit Claussen",
+    "email": "bclaussen57@yahoo.co.jp",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_189",
+    "name": "Molli Wickey",
+    "email": "mwickey58@tumblr.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_190",
+    "name": "Edna Dobrowlski",
+    "email": "edobrowlski59@yellowbook.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_191",
+    "name": "Ian Tewnion",
+    "email": "itewnion5a@globo.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_192",
+    "name": "Paule Robertelli",
+    "email": "probertelli5b@squidoo.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_193",
+    "name": "Theobald Witcherley",
+    "email": "twitcherley5c@moonfruit.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_194",
+    "name": "Cindelyn Storrar",
+    "email": "cstorrar5d@wiley.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_195",
+    "name": "Barbee Flook",
+    "email": "bflook5e@last.fm",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_196",
+    "name": "Arline McNutt",
+    "email": "amcnutt5f@biblegateway.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_197",
+    "name": "Kirby Brettle",
+    "email": "kbrettle5g@dmoz.org",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_198",
+    "name": "Kenton Ladon",
+    "email": "kladon5h@shop-pro.jp",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_199",
+    "name": "Delmor Scutcheon",
+    "email": "dscutcheon5i@time.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_200",
+    "name": "Conny McVeagh",
+    "email": "cmcveagh5j@odnoklassniki.ru",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_201",
+    "name": "Maurine Hoxey",
+    "email": "mhoxey5k@theglobeandmail.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_202",
+    "name": "Gratia Wolfarth",
+    "email": "gwolfarth5l@alibaba.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_203",
+    "name": "Saleem Frome",
+    "email": "sfrome5m@whitehouse.gov",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_204",
+    "name": "Alair Acedo",
+    "email": "aacedo5n@hubpages.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_205",
+    "name": "Yolanda Maylour",
+    "email": "ymaylour5o@feedburner.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_206",
+    "name": "Matelda Pumfrey",
+    "email": "mpumfrey5p@mac.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_207",
+    "name": "Harv Elijahu",
+    "email": "helijahu5q@ft.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_208",
+    "name": "Kylila Waud",
+    "email": "kwaud5r@va.gov",
+    "academic_year": "1st Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_209",
+    "name": "Ruy Threadgall",
+    "email": "rthreadgall5s@chronoengine.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_210",
+    "name": "Evered Standidge",
+    "email": "estandidge5t@elpais.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_211",
+    "name": "Bev Baszkiewicz",
+    "email": "bbaszkiewicz5u@time.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_212",
+    "name": "Sigismund Axelbee",
+    "email": "saxelbee5v@sogou.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_213",
+    "name": "Quent Portsmouth",
+    "email": "qportsmouth5w@ucla.edu",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_214",
+    "name": "Nester Claringbold",
+    "email": "nclaringbold5x@themeforest.net",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_215",
+    "name": "Nicol Balnave",
+    "email": "nbalnave5y@ning.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_216",
+    "name": "Shawna Rainville",
+    "email": "srainville5z@tmall.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_217",
+    "name": "Aurthur Verny",
+    "email": "averny60@uiuc.edu",
+    "academic_year": "2nd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_218",
+    "name": "Hakeem Bernot",
+    "email": "hbernot61@opera.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_219",
+    "name": "Olivie Brake",
+    "email": "obrake62@rakuten.co.jp",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_220",
+    "name": "Normand Claydon",
+    "email": "nclaydon63@fda.gov",
+    "academic_year": "2nd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_221",
+    "name": "Jeff D'Agostini",
+    "email": "jdagostini64@linkedin.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_222",
+    "name": "Lynea Palatini",
+    "email": "lpalatini65@domainmarket.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_223",
+    "name": "Ruperta Skewis",
+    "email": "rskewis66@freewebs.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_224",
+    "name": "Godwin Kohneke",
+    "email": "gkohneke67@usa.gov",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_225",
+    "name": "Alayne Drew",
+    "email": "adrew68@mozilla.org",
+    "academic_year": "1st Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_226",
+    "name": "Renelle Midlane",
+    "email": "rmidlane69@istockphoto.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_227",
+    "name": "Marc Pinxton",
+    "email": "mpinxton6a@spiegel.de",
+    "academic_year": "3rd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_228",
+    "name": "Krishna Massard",
+    "email": "kmassard6b@cam.ac.uk",
+    "academic_year": "2nd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_229",
+    "name": "Stavro Havercroft",
+    "email": "shavercroft6c@netvibes.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_230",
+    "name": "Thekla McCarrick",
+    "email": "tmccarrick6d@house.gov",
+    "academic_year": "2nd Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_231",
+    "name": "Leonanie Noseworthy",
+    "email": "lnoseworthy6e@ed.gov",
+    "academic_year": "1st Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_232",
+    "name": "Worthington Attreed",
+    "email": "wattreed6f@nbcnews.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_233",
+    "name": "Hubert Hachette",
+    "email": "hhachette6g@indiegogo.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_234",
+    "name": "Miguel Hinrichs",
+    "email": "mhinrichs6h@chicagotribune.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_235",
+    "name": "Morse Thurston",
+    "email": "mthurston6i@4shared.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_236",
+    "name": "Mollie Donner",
+    "email": "mdonner6j@mozilla.org",
+    "academic_year": "2nd Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_237",
+    "name": "Farrand Fardy",
+    "email": "ffardy6k@webeden.co.uk",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_238",
+    "name": "Theo Ashwell",
+    "email": "tashwell6l@xinhuanet.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_239",
+    "name": "Elsey Crebbin",
+    "email": "ecrebbin6m@scientificamerican.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_240",
+    "name": "Benni Harbison",
+    "email": "bharbison6n@friendfeed.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_241",
+    "name": "Dud Aitchinson",
+    "email": "daitchinson6o@eepurl.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_242",
+    "name": "Benedicta Charnick",
+    "email": "bcharnick6p@slashdot.org",
+    "academic_year": "2nd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_243",
+    "name": "Pauletta Olsson",
+    "email": "polsson6q@globo.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_244",
+    "name": "Lonnie Dansken",
+    "email": "ldansken6r@hostgator.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_245",
+    "name": "Xaviera Romanin",
+    "email": "xromanin6s@github.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_246",
+    "name": "Genvieve Gurry",
+    "email": "ggurry6t@cnet.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_247",
+    "name": "Christopher Fansy",
+    "email": "cfansy6u@canalblog.com",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_248",
+    "name": "Chantalle Doche",
+    "email": "cdoche6v@webmd.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_249",
+    "name": "Lowell Tydd",
+    "email": "ltydd6w@seesaa.net",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_250",
+    "name": "Rufe Stanislaw",
+    "email": "rstanislaw6x@symantec.com",
+    "academic_year": "Final Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_251",
+    "name": "Linzy Ord",
+    "email": "lord6y@washingtonpost.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_252",
+    "name": "Bern Bagworth",
+    "email": "bbagworth6z@mysql.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "BBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_253",
+    "name": "Jasper Grabham",
+    "email": "jgrabham70@redcross.org",
+    "academic_year": "3rd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_254",
+    "name": "Renelle Finney",
+    "email": "rfinney71@t-online.de",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_255",
+    "name": "Pepita Rahl",
+    "email": "prahl72@yandex.ru",
+    "academic_year": "Final Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 5,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_256",
+    "name": "Florrie Kubiak",
+    "email": "fkubiak73@adobe.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 1,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_257",
+    "name": "Ibby Frid",
+    "email": "ifrid74@guardian.co.uk",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 2,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_258",
+    "name": "Link Grout",
+    "email": "lgrout75@devhub.com",
+    "academic_year": "1st Year",
+    "enrolled_course": "MBA",
+    "technical_skills": [
+      "Communication",
+      "Project Management",
+      "Business Strategy",
+      "Leadership"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Business Analyst",
+    "projects_completed": "No",
+    "readiness_rating": 3,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_259",
+    "name": "Agnes Fasham",
+    "email": "afasham76@clickbank.net",
+    "academic_year": "1st Year",
+    "enrolled_course": "B.Sc Data Science",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "Yes",
+    "readiness_rating": 4,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_260",
+    "name": "Veronique Spritt",
+    "email": "vspritt77@woothemes.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 5,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_261",
+    "name": "Cyndie Hill",
+    "email": "chill78@msu.edu",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech CSE",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Full Stack Engineer",
+    "projects_completed": "Yes",
+    "readiness_rating": 1,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Self-study"
+  },
+  {
+    "id": "std_262",
+    "name": "Jammie Linay",
+    "email": "jlinay79@sourceforge.net",
+    "academic_year": "2nd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "No",
+    "readiness_rating": 2,
+    "primary_challenge": "Interview anxiety",
+    "preferred_support": "Technical skill training",
+    "learning_method": "College curriculum"
+  },
+  {
+    "id": "std_263",
+    "name": "Vivie Bruneau",
+    "email": "vbruneau7a@theatlantic.com",
+    "academic_year": "3rd Year",
+    "enrolled_course": "B.Tech IT",
+    "technical_skills": [
+      "Python",
+      "JavaScript",
+      "React",
+      "SQL",
+      "FastAPI",
+      "Git"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Software Developer",
+    "projects_completed": "Yes",
+    "readiness_rating": 3,
+    "primary_challenge": "Lack of experience",
+    "preferred_support": "Mentorship programs",
+    "learning_method": "Bootcamp"
+  },
+  {
+    "id": "std_264",
+    "name": "Stefan Dellenbrok",
+    "email": "sdellenbrok7b@npr.org",
+    "academic_year": "1st Year",
+    "enrolled_course": "M.Tech AI",
+    "technical_skills": [
+      "Data Analysis",
+      "Python",
+      "SQL",
+      "Excel",
+      "R"
+    ],
+    "soft_skills": [
+      "Communication",
+      "Problem-Solving",
+      "Adaptability",
+      "Teamwork",
+      "Leadership"
+    ],
+    "target_career": "Data Scientist",
+    "projects_completed": "No",
+    "readiness_rating": 4,
+    "primary_challenge": "No networking opportunities",
+    "preferred_support": "Technical skill training",
+    "learning_method": "Self-study"
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "technical": [
+    {
+      "id": "t1",
+      "role": "Software Engineer",
+      "question": "Explain how asynchronous event loops work in Python (asyncio) or JavaScript (Node.js/Vite). How do non-blocking I/O operations prevent server thread starvation?",
+      "keywords": ["event loop", "non-blocking", "async/await", "callbacks", "single thread", "concurrency"],
+      "model_answer": "Asynchronous event loops decouple thread execution from I/O operations by registering callbacks/promises with OS event notification mechanisms (like epoll or kqueue). When a network or disk read starts, the main thread yields control back to the loop to process other tasks rather than blocking, achieving high concurrent throughput."
+    },
+    {
+      "id": "t2",
+      "role": "Full Stack Engineer",
+      "question": "How do you optimize state management and prevent unnecessary re-renders in a modern React + TypeScript application?",
+      "keywords": ["useMemo", "useCallback", "React.memo", "state lifting", "context API", "immutability"],
+      "model_answer": "Optimization involves keeping state local where possible, memoizing expensive calculations with useMemo, passing stable callback references using useCallback, and wrapping pure components with React.memo. Additionally, utilizing atomic state managers or selective context selectors avoids global tree re-rendering."
+    },
+    {
+      "id": "t3",
+      "role": "Backend Engineer",
+      "question": "How do database indexes (such as B-Trees and Hash Indexes) improve read query performance, and what trade-offs do they introduce for write operations?",
+      "keywords": ["b-tree", "index", "binary search", "write overhead", "page split", "query execution plan"],
+      "model_answer": "Database indexes create auxiliary balanced search trees that allow O(log N) lookup times instead of full table scans O(N). However, every INSERT, UPDATE, or DELETE operation requires updating all associated indexes, increasing disk write overhead and index maintenance fragmentation."
+    }
+  ],
+  "behavioral": [
+    {
+      "id": "b1",
+      "role": "General",
+      "question": "Describe a technical conflict you faced with a teammate regarding architectural design choices. How did you handle it to reach a consensus?",
+      "keywords": ["STAR", "situation", "task", "action", "result", "trade-offs", "benchmarking", "compromise"],
+      "model_answer": "Using the STAR method: In a previous team project (Situation), we disagreed on whether to use REST or GraphQL (Task). I proposed setting up a benchmark prototype testing latency and payload size for our specific use cases (Action). The empirical data showed REST was 30% faster for our simple CRUD endpoints, leading to a unanimous decision (Result)."
+    },
+    {
+      "id": "b2",
+      "role": "General",
+      "question": "Tell me about a critical production bug or build failure you encountered close to deadline. What steps did you take to mitigate and resolve it?",
+      "keywords": ["debugging", "root cause", "rollback", "post-mortem", "communication", "triage"],
+      "model_answer": "I immediately triaged the incident by inspecting error tracebacks to isolate the failing component, communicated status updates to stakeholders, deployed an emergency patch/rollback, and subsequently authored a post-mortem to prevent regression."
+    }
+  ],
+  "system_design": [
+    {
+      "id": "s1",
+      "role": "Software Architect",
+      "question": "How would you design a rate-limiting middleware service to protect API endpoints from DDoS attacks and abuse while guaranteeing low latency?",
+      "keywords": ["token bucket", "leaky bucket", "redis", "sliding window", "distributed cache", "latency"],
+      "model_answer": "Use a sliding window or Token Bucket algorithm stored in an in-memory Redis cluster. On incoming HTTP requests, the API gateway queries Redis atomically via Lua scripts. If request counts exceed threshold within the window, HTTP 429 Too Many Requests is returned."
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "full-stack-engineer",
+    "title": "Full Stack Engineer",
+    "category": "Software Engineering",
+    "salary_range": "$85,000 - $135,000 / year",
+    "market_demand": "Very High",
+    "description": "Designs, builds, and maintains both client-side user interfaces and server-side APIs and database architectures.",
+    "required_skills": ["React", "TypeScript", "Python", "FastAPI", "REST APIs", "SQL", "PostgreSQL", "Git", "Docker"],
+    "keywords": ["Web Development", "Frontend", "Backend", "Full Stack", "System Architecture"]
+  },
+  {
+    "id": "frontend-developer",
+    "title": "Frontend Developer",
+    "category": "Software Engineering",
+    "salary_range": "$80,000 - $125,000 / year",
+    "market_demand": "High",
+    "description": "Specializes in crafting responsive, high-performance web and web app user interfaces with modern JavaScript frameworks.",
+    "required_skills": ["React", "TypeScript", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Next.js", "State Management", "Git"],
+    "keywords": ["UI/UX", "Frontend", "React", "Design Systems", "Web Performance"]
+  },
+  {
+    "id": "backend-engineer",
+    "title": "Backend Engineer",
+    "category": "Software Engineering",
+    "salary_range": "$90,000 - $140,000 / year",
+    "market_demand": "High",
+    "description": "Architects server-side logic, database schemas, asynchronous queues, microservices, and high-concurrency API integrations.",
+    "required_skills": ["Python", "FastAPI", "Node.js", "SQL", "PostgreSQL", "Redis", "Docker", "REST APIs", "Microservices", "Git"],
+    "keywords": ["Backend", "Databases", "APIs", "Server Architecture", "Distributed Systems"]
+  },
+  {
+    "id": "ai-ml-engineer",
+    "title": "AI / Machine Learning Engineer",
+    "category": "Artificial Intelligence",
+    "salary_range": "$105,000 - $165,000 / year",
+    "market_demand": "Very High",
+    "description": "Develops, fine-tunes, and deploys artificial intelligence models, LLM agents, vector embeddings, and predictive analytics pipelines.",
+    "required_skills": ["Python", "PyTorch", "TensorFlow", "Scikit-Learn", "FastAPI", "Vector Databases", "LangChain", "SQL", "Git"],
+    "keywords": ["Artificial Intelligence", "Machine Learning", "Deep Learning", "LLMs", "Data Science"]
+  },
+  {
+    "id": "data-engineer",
+    "title": "Data Engineer",
+    "category": "Data & Analytics",
+    "salary_range": "$95,000 - $145,000 / year",
+    "market_demand": "High",
+    "description": "Builds and maintains robust ETL pipelines, data warehouses, streaming systems, and big data storage architectures.",
+    "required_skills": ["Python", "SQL", "PostgreSQL", "Apache Spark", "Airflow", "Docker", "AWS S3", "Data Warehousing", "Git"],
+    "keywords": ["Big Data", "Data Engineering", "ETL", "Databases", "Cloud Pipelines"]
+  },
+  {
+    "id": "devops-engineer",
+    "title": "DevOps & Cloud Engineer",
+    "category": "Infrastructure",
+    "salary_range": "$95,000 - $150,000 / year",
+    "market_demand": "Very High",
+    "description": "Automates cloud deployment pipelines, infrastructure as code, container orchestration, and system monitoring.",
+    "required_skills": ["Docker", "Kubernetes", "AWS EC2", "Terraform", "CI/CD Pipelines", "Linux", "Bash", "Python", "Git"],
+    "keywords": ["DevOps", "Cloud", "AWS", "Docker", "CI/CD", "Infrastructure"]
+  },
+  {
+    "id": "cybersecurity-analyst",
+    "title": "Cybersecurity Analyst",
+    "category": "Security",
+    "salary_range": "$88,000 - $138,000 / year",
+    "market_demand": "Very High",
+    "description": "Protects IT assets, monitors network security threats, performs penetration testing, and enforces security compliance standards.",
+    "required_skills": ["Network Security", "Ethical Hacking", "Python", "Linux", "SIEM Tools", "Cryptography", "Incident Response"],
+    "keywords": ["Security", "Cybersecurity", "Penetration Testing", "Compliance", "Networking"]
+  },
+  {
+    "id": "mobile-app-developer",
+    "title": "Mobile App Developer",
+    "category": "Software Engineering",
+    "salary_range": "$85,000 - $130,000 / year",
+    "market_demand": "High",
+    "description": "Builds native and cross-platform mobile applications for iOS and Android devices.",
+    "required_skills": ["React Native", "Flutter", "TypeScript", "JavaScript", "REST APIs", "iOS / Swift", "Android / Kotlin", "Git"],
+    "keywords": ["Mobile", "iOS", "Android", "React Native", "Cross-Platform"]
+  }
+]

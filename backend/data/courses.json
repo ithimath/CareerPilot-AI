@@ -1,0 +1,74 @@
+[
+  {
+    "id": "c1",
+    "title": "Complete Modern React & TypeScript Masterclass",
+    "skill": "React",
+    "platform": "Coursera",
+    "difficulty": "medium",
+    "duration": "24 hours",
+    "url": "https://coursera.org"
+  },
+  {
+    "id": "c2",
+    "title": "FastAPI & Python Microservices Architecture",
+    "skill": "FastAPI",
+    "platform": "Udemy",
+    "difficulty": "medium",
+    "duration": "16 hours",
+    "url": "https://udemy.com"
+  },
+  {
+    "id": "c3",
+    "title": "Docker & Containerization for Developers",
+    "skill": "Docker",
+    "platform": "Docker Official Docs",
+    "difficulty": "medium",
+    "duration": "12 hours",
+    "url": "https://docker.com"
+  },
+  {
+    "id": "c4",
+    "title": "Relational Database Design & SQL Query Optimization",
+    "skill": "SQL",
+    "platform": "freeCodeCamp",
+    "difficulty": "easy",
+    "duration": "18 hours",
+    "url": "https://freecodecamp.org"
+  },
+  {
+    "id": "c5",
+    "title": "Generative AI & LLM Application Building with LangChain",
+    "skill": "LangChain",
+    "platform": "DeepLearning.AI",
+    "difficulty": "hard",
+    "duration": "20 hours",
+    "url": "https://deeplearning.ai"
+  },
+  {
+    "id": "c6",
+    "title": "GitHub Actions & Automated CI/CD Pipelines",
+    "skill": "CI/CD Pipelines",
+    "platform": "YouTube Tech",
+    "difficulty": "medium",
+    "duration": "10 hours",
+    "url": "https://youtube.com"
+  },
+  {
+    "id": "c7",
+    "title": "System Design & Distributed Caching Masterclass",
+    "skill": "System Architecture",
+    "platform": "Educative.io",
+    "difficulty": "hard",
+    "duration": "30 hours",
+    "url": "https://educative.io"
+  },
+  {
+    "id": "c8",
+    "title": "AWS Cloud Practitioner & Serverless Architecture",
+    "skill": "AWS EC2",
+    "platform": "AWS Skill Builder",
+    "difficulty": "medium",
+    "duration": "22 hours",
+    "url": "https://aws.amazon.com"
+  }
+]
