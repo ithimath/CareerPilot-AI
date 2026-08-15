@@ -26,7 +26,7 @@ export default function AppLayout() {
       {/* Compact Top Navigation Bar (Mobile only) */}
       <header className="lg:hidden sticky top-0 z-30 bg-surface border-b border-app px-4 py-3 flex items-center justify-between">
         <NavLink to="/dashboard" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-teal-700 text-white flex items-center justify-center">
+          <div className="w-7 h-7 rounded-lg bg-[#1a1f3a] text-white flex items-center justify-center">
             <Compass className="w-3.5 h-3.5 text-white" />
           </div>
           <span className="font-heading text-sm font-bold text-app">CareerPilot AI</span>
@@ -39,7 +39,7 @@ export default function AppLayout() {
               to={item.to}
               className={({ isActive }) =>
                 `px-2.5 py-1 rounded-md ${
-                  isActive ? 'bg-teal-700 text-white' : 'text-secondary'
+                  isActive ? 'bg-[#FF5722] text-white' : 'text-secondary'
                 }`
               }
             >

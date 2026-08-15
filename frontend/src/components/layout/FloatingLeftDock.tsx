@@ -34,12 +34,12 @@ export default function FloatingLeftDock() {
       {/* Top: Brand Header */}
       <div className="space-y-4">
         <NavLink to="/dashboard" className="flex items-center gap-3 px-2 py-1 group">
-          <div className="w-8 h-8 rounded-xl bg-teal-700 dark:bg-teal-600 flex items-center justify-center text-white shadow-xs group-hover:bg-teal-800 transition-colors flex-shrink-0">
-            <Compass className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 rounded-xl bg-[#1a1f3a] dark:bg-[#141936] border border-[#FF5722]/30 flex items-center justify-center text-white shadow-xs group-hover:bg-[#252c50] transition-colors flex-shrink-0">
+            <Compass className="w-4 h-4 text-[#FF5722]" />
           </div>
           <div className="min-w-0">
             <span className="font-heading text-base font-extrabold tracking-tight text-app block leading-none truncate">
-              CareerPilot <span className="text-teal-700 dark:text-teal-400 font-sans text-xs font-black uppercase tracking-wider ml-0.5">AI</span>
+              CareerPilot <span className="text-[#FF5722] dark:text-[#FF7043] font-sans text-xs font-black uppercase tracking-wider ml-0.5">AI</span>
             </span>
             <span className="text-[9px] uppercase tracking-widest font-bold text-secondary block mt-0.5 truncate">Career Dock</span>
           </div>
@@ -58,14 +58,14 @@ export default function FloatingLeftDock() {
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2.5 text-xs font-bold transition-all rounded-xl ${
                     isActive
-                      ? 'bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800 shadow-2xs'
+                      ? 'bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 shadow-2xs'
                       : 'text-secondary hover:bg-subtle hover:text-app'
                   }`
                 }
               >
                 {({ isActive }) => (
                   <>
-                    <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-teal-700 dark:text-teal-400' : 'text-secondary'}`} />
+                    <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-[#FF5722] dark:text-[#FF7043]' : 'text-secondary'}`} />
                     <span className="truncate">{item.label}</span>
                   </>
                 )}
@@ -84,7 +84,7 @@ export default function FloatingLeftDock() {
             className="p-2 text-secondary hover:bg-subtle rounded-xl transition-colors border border-transparent hover:border-app"
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4 text-teal-400" /> : <Moon className="w-4 h-4 text-zinc-700" />}
+            {theme === 'dark' ? <Sun className="w-4 h-4 text-[#FF7043]" /> : <Moon className="w-4 h-4 text-zinc-700" />}
           </button>
 
           <div className="relative">
@@ -94,7 +94,7 @@ export default function FloatingLeftDock() {
               title="Notifications"
             >
               <Bell className="w-4 h-4" />
-              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-teal-600 rounded-full" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#FF5722] rounded-full" />
             </button>
 
             {notifOpen && (
@@ -129,7 +129,7 @@ export default function FloatingLeftDock() {
             className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-subtle transition-colors border border-app"
           >
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-7 h-7 bg-teal-700 dark:bg-teal-600 text-white rounded-lg flex items-center justify-center text-xs font-extrabold shadow-2xs flex-shrink-0">
+              <div className="w-7 h-7 bg-[#1a1f3a] dark:bg-[#141936] text-white rounded-lg flex items-center justify-center text-xs font-extrabold shadow-2xs flex-shrink-0">
                 {user?.displayName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || 'U'}
               </div>
               <div className="min-w-0 text-left">

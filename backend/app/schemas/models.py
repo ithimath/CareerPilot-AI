@@ -2,7 +2,7 @@
 Pydantic schemas — shared data models across the application
 """
 from pydantic import BaseModel, EmailStr, Field, field_validator
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Union
 from datetime import datetime
 from enum import Enum
 
@@ -21,6 +21,21 @@ class LearningStatus(str, Enum):
     NOT_STARTED = "not_started"
     IN_PROGRESS = "in_progress"
     COMPLETED = "completed"
+
+
+# ── Skill with Proficiency ──────────────────────────────────────────────────
+class SkillProficiency(str, Enum):
+    BEGINNER = "Beginner"
+    INTERMEDIATE = "Intermediate"
+    ADVANCED = "Advanced"
+    EXPERT = "Expert"
+
+
+class SkillDetail(BaseModel):
+    name: str
+    level: str = "Intermediate"  # "Beginner" | "Intermediate" | "Advanced" | "Expert"
+    verified: bool = False
+    source: str = "manual"  # "manual" | "certificate" | "assessment"
 
 
 # ── Profile ────────────────────────────────────────────────────────────────────
@@ -52,18 +67,18 @@ class StudentProfile(BaseModel):
     department: str = ""
     current_year: int = 0
     cgpa: float = 0.0
-    skills: List[str] = []
+    skills: List[Union[str, SkillDetail, Dict[str, Any]]] = []
     interests: List[str] = []
     projects: List[ProjectItem] = []
     internships: List[InternshipItem] = []
-    certifications: List[str] = []
+    certifications: List[Union[str, Dict[str, Any]]] = []
     github_url: str = ""
     linkedin_url: str = ""
     portfolio_url: str = ""
     profile_picture_url: str = ""
     target_career: str = ""
-    created_at: Optional[datetime] = None
-    updated_at: Optional[datetime] = None
+    created_at: Optional[Union[datetime, str]] = None
+    updated_at: Optional[Union[datetime, str]] = None
 
     @field_validator("cgpa")
     @classmethod
@@ -80,15 +95,53 @@ class ProfileUpdateRequest(BaseModel):
     department: Optional[str] = None
     current_year: Optional[int] = None
     cgpa: Optional[float] = None
-    skills: Optional[List[str]] = None
+    skills: Optional[List[Union[str, Dict[str, Any]]]] = None
     interests: Optional[List[str]] = None
     projects: Optional[List[ProjectItem]] = None
     internships: Optional[List[InternshipItem]] = None
-    certifications: Optional[List[str]] = None
+    certifications: Optional[List[Union[str, Dict[str, Any]]]] = None
     github_url: Optional[str] = None
     linkedin_url: Optional[str] = None
     portfolio_url: Optional[str] = None
     target_career: Optional[str] = None
+
+
+# ── Activity Records ───────────────────────────────────────────────────────────
+class InterviewSessionRecord(BaseModel):
+    id: str = ""
+    session_id: str = ""
+    role: str = "Software Engineer"
+    category: str = "technical"
+    overall_score: float = 0.0
+    clarity: float = 0.0
+    technical_accuracy: float = 0.0
+    feedback: str = ""
+    questions_count: int = 1
+    timestamp: str = ""
+
+
+class AssessmentRecord(BaseModel):
+    id: str = ""
+    test_id: str = ""
+    test_title: str = ""
+    category: str = "Technical"
+    score: float = 0.0
+    total_questions: int = 0
+    correct_count: int = 0
+    timestamp: str = ""
+
+
+class ResumeAuditRecord(BaseModel):
+    id: str = ""
+    target_role: str = "Software Engineer"
+    ats_score: float = 0.0
+    breakdown: Dict[str, Any] = {}
+    matched_keywords: List[str] = []
+    missing_keywords: List[str] = []
+    strengths: List[str] = []
+    improvements: List[str] = []
+    version: int = 1
+    timestamp: str = ""
 
 
 # ── Certificate ────────────────────────────────────────────────────────────────
@@ -98,7 +151,7 @@ class CertificateMetadata(BaseModel):
     file_name: str
     file_url: str
     storage_path: str
-    upload_date: datetime
+    upload_date: Union[datetime, str]
     status: CertificateStatus = CertificateStatus.UPLOADED
     extracted_text: str = ""
     extracted_skills: Dict[str, List[str]] = {}
@@ -131,24 +184,50 @@ class ExtractedSkills(BaseModel):
     )
 
 
-# ── Job Score ──────────────────────────────────────────────────────────────────
-class ScoreBreakdown(BaseModel):
-    skills_score: float
-    projects_score: float
-    internships_score: float
-    certificates_score: float
-    profile_score: float
+# ── Job Score & Progression ────────────────────────────────────────────────────
+class ScoreHistoryEntry(BaseModel):
+    timestamp: str
     total_score: float
-    confidence_level: str = "High"  # "High Data Precision" | "Moderate Data Grounding" | "Insufficient Data"
+    delta: float = 0.0
+    reason: str = "Score updated"
+    category_breakdown: Dict[str, float] = {}
+
+
+class FactorAnalysis(BaseModel):
+    skills_factor: Dict[str, Any] = {}
+    projects_factor: Dict[str, Any] = {}
+    interviews_factor: Dict[str, Any] = {}
+    resume_factor: Dict[str, Any] = {}
+    assessments_factor: Dict[str, Any] = {}
+    credentials_factor: Dict[str, Any] = {}
+
+
+class ScoreBreakdown(BaseModel):
+    uid: str = ""
+    skills_score: float = 0.0        # Max 25
+    projects_score: float = 0.0      # Max 20
+    interviews_score: float = 0.0    # Max 20
+    resume_score: float = 0.0        # Max 15
+    assessments_score: float = 0.0   # Max 10
+    certificates_score: float = 0.0  # Max 10
+    profile_score: float = 0.0       # (Legacy compatibility mapping)
+    internships_score: float = 0.0   # (Legacy compatibility mapping)
+    total_score: float = 0.0         # Max 100
+    confidence_level: str = "High"   # "High Data Precision" | "Moderate Data Grounding" | "Insufficient Data"
     data_quality_notice: str = ""
     max_scores: Dict[str, int] = {
-        "skills": 35,
-        "projects": 25,
-        "internships": 20,
+        "skills": 25,
+        "projects": 20,
+        "interviews": 20,
+        "resume": 15,
+        "assessments": 10,
         "certificates": 10,
-        "profile": 10,
     }
+    factors_breakdown: Optional[Dict[str, Any]] = None
+    positive_drivers: List[str] = []
     suggestions: List[str] = []
+    history: List[ScoreHistoryEntry] = []
+    updated_at: Optional[str] = None
 
 
 # ── Career ─────────────────────────────────────────────────────────────────────
@@ -222,7 +301,7 @@ class ChatMessage(BaseModel):
 class ChatRequest(BaseModel):
     message: str
     conversation_id: Optional[str] = None
-    uid: str
+    uid: Optional[str] = None
 
 
 class ChatResponse(BaseModel):

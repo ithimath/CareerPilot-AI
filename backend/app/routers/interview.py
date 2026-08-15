@@ -3,7 +3,7 @@ CareerPilot AI — AI Interview Simulator Router
 Real-time evidence-based interview response evaluator.
 """
 from fastapi import APIRouter, Depends, HTTPException, Body
-from app.core.auth import get_current_user_optional
+from app.core.dependencies import get_current_user_optional
 from app.services.gemini_service import call_gemini_json
 import logging
 import re
@@ -180,11 +180,123 @@ async def evaluate_answer(
     - sample_answer (an ideal candidate response using STAR method or industry best practices)
     """
 
+    eval_result = None
     try:
         res = await call_gemini_json(prompt)
         if isinstance(res, dict) and "score" in res:
-            return res
-        return evaluate_realistically_fallback(question, answer, role)
+            eval_result = res
+        else:
+            eval_result = evaluate_realistically_fallback(question, answer, role)
     except Exception as e:
         logger.warning(f"Gemini evaluation unavailable, using realistic fallback evaluator: {e}")
-        return evaluate_realistically_fallback(question, answer, role)
+        eval_result = evaluate_realistically_fallback(question, answer, role)
+
+    # Auto-record session if authenticated
+    uid = user.get("uid") if user else None
+    if uid and eval_result:
+        try:
+            import uuid
+            from datetime import datetime
+            from app.core.firebase import get_firestore
+            from app.services.scoring_service import calculate_job_readiness_score
+
+            db = get_firestore()
+            session_id = payload.get("session_id") or f"sess_{int(datetime.utcnow().timestamp())}"
+            rec = {
+                "id": str(uuid.uuid4()),
+                "session_id": session_id,
+                "role": role,
+                "category": payload.get("category", "technical"),
+                "question": question,
+                "score": eval_result.get("score", 0),
+                "overall_score": eval_result.get("score", 0),
+                "clarity": eval_result.get("clarity", 0),
+                "technical_accuracy": eval_result.get("technical_accuracy", 0),
+                "feedback": eval_result.get("feedback", ""),
+                "timestamp": datetime.utcnow().isoformat(),
+            }
+            db.collection(f"interviews/{uid}/sessions").document(session_id).set(rec)
+
+            # Update score in background
+            profile_doc = db.collection("profiles").document(uid).get()
+            profile = profile_doc.to_dict() if profile_doc.exists else {"uid": uid}
+            profile["uid"] = uid
+            score = calculate_job_readiness_score(profile, action_reason="Completed AI Mock Interview")
+            db.collection("jobScores").document(uid).set({
+                **score.model_dump(),
+                "uid": uid,
+                "updated_at": datetime.utcnow().isoformat(),
+            })
+            eval_result["readiness_score"] = score.total_score
+        except Exception as e:
+            logger.warning(f"Auto-saving interview session failed: {e}")
+
+    return eval_result
+
+
+@router.post("/save-session")
+async def save_interview_session(
+    payload: dict = Body(...),
+    user: dict = Depends(get_current_user_optional)
+):
+    """Explicitly save a completed multi-question interview session."""
+    uid = user.get("uid", "dev-user-id")
+    try:
+        import uuid
+        from datetime import datetime
+        from app.core.firebase import get_firestore
+        from app.services.scoring_service import calculate_job_readiness_score
+
+        db = get_firestore()
+        session_id = payload.get("session_id") or f"sess_{int(datetime.utcnow().timestamp())}"
+        score = float(payload.get("overall_score", payload.get("score", 75.0)))
+        rec = {
+            "id": str(uuid.uuid4()),
+            "session_id": session_id,
+            "role": payload.get("role", "Software Engineer"),
+            "category": payload.get("category", "technical"),
+            "overall_score": score,
+            "score": score,
+            "clarity": float(payload.get("clarity", 80.0)),
+            "technical_accuracy": float(payload.get("technical_accuracy", 80.0)),
+            "feedback": payload.get("feedback", "Session completed."),
+            "questions_count": int(payload.get("questions_count", 3)),
+            "timestamp": datetime.utcnow().isoformat(),
+        }
+        db.collection(f"interviews/{uid}/sessions").document(session_id).set(rec)
+
+        profile_doc = db.collection("profiles").document(uid).get()
+        profile = profile_doc.to_dict() if profile_doc.exists else {"uid": uid}
+        profile["uid"] = uid
+        readiness = calculate_job_readiness_score(profile, action_reason="Completed Mock Interview loop")
+        db.collection("jobScores").document(uid).set({
+            **readiness.model_dump(),
+            "uid": uid,
+            "updated_at": datetime.utcnow().isoformat(),
+        })
+
+        return {
+            "success": True,
+            "session_id": session_id,
+            "readiness_score": readiness.total_score,
+            "message": "Interview session saved and readiness score recalculated."
+        }
+    except Exception as e:
+        logger.error(f"Failed to save interview session: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/history")
+async def get_interview_history(user: dict = Depends(get_current_user_optional)):
+    """Fetch completed interview history for user."""
+    uid = user.get("uid", "dev-user-id")
+    try:
+        from app.core.firebase import get_firestore
+        db = get_firestore()
+        docs = db.collection(f"interviews/{uid}/sessions").stream()
+        results = [d.to_dict() for d in docs if d.to_dict()]
+        return {"uid": uid, "sessions": results}
+    except Exception as e:
+        logger.error(f"Failed to get interview history: {e}")
+        return {"uid": uid, "sessions": []}
+

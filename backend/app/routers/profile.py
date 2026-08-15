@@ -47,9 +47,9 @@ async def update_profile(
         profile_ref = db.collection("profiles").document(uid)
 
         update_data = data.model_dump(exclude_none=True)
-        update_data["updated_at"] = datetime.utcnow()
+        update_data["updated_at"] = datetime.utcnow().isoformat()
 
-        # Serialize nested models
+        # Clean nested lists
         if "projects" in update_data:
             update_data["projects"] = [
                 p.model_dump() if hasattr(p, "model_dump") else p
@@ -61,21 +61,25 @@ async def update_profile(
                 for i in update_data["internships"]
             ]
 
-        profile_ref.update(update_data)
+        # Use set with merge=True for robust document creation/update
+        profile_ref.set(update_data, merge=True)
 
         # Recalculate job readiness score
-        full_profile = profile_ref.get().to_dict()
+        full_profile_doc = profile_ref.get()
+        full_profile = full_profile_doc.to_dict() if full_profile_doc.exists else {"uid": uid, **update_data}
+        full_profile["uid"] = uid
+
         score = calculate_job_readiness_score(full_profile)
         db.collection("jobScores").document(uid).set({
             **score.model_dump(),
             "uid": uid,
-            "updated_at": datetime.utcnow(),
+            "updated_at": datetime.utcnow().isoformat(),
         })
 
         completion = calculate_profile_completion(full_profile)
         return {
             "success": True,
-            "message": "Profile updated",
+            "message": "Candidate Dossier updated successfully",
             "job_score": score.total_score,
             "profile_completion": completion,
         }

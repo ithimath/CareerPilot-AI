@@ -25,7 +25,7 @@ export const SubtlePathsBg = React.memo(function SubtlePathsBg({
   return (
     <div
       className={cn(
-        "absolute inset-0 pointer-events-none overflow-hidden transform-gpu z-0 opacity-40 dark:opacity-30",
+        "absolute inset-0 pointer-events-none overflow-hidden transform-gpu z-0 opacity-85 dark:opacity-45",
         className
       )}
     >

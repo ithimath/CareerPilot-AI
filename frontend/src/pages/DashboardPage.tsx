@@ -107,7 +107,6 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6 text-app">
-
       {/* ── Contextual Horizontal Sub-Navigation for Dashboard Section ─────── */}
       <div className="bg-surface border border-app rounded-md p-1.5 flex items-center gap-1.5 overflow-x-auto">
         {dashboardTabs.map((t) => (
@@ -116,7 +115,7 @@ export default function DashboardPage() {
             onClick={() => setActiveTab(t.id as any)}
             className={`px-4 py-2 text-xs font-bold transition-all rounded-md flex-shrink-0 ${
               activeTab === t.id
-                ? 'bg-teal-50 text-teal-900 border-b-2 border-teal-700 dark:bg-teal-950/50 dark:text-teal-300 dark:border-teal-400 shadow-2xs'
+                ? 'bg-[#FF5722]/10 text-[#FF5722] border-b-2 border-[#FF5722] dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF7043] shadow-2xs'
                 : 'text-secondary hover:bg-subtle hover:text-app'
             }`}
           >
@@ -127,7 +126,7 @@ export default function DashboardPage() {
 
       {/* ── TOP WELCOME BANNER ─────────────────────────────────────────────── */}
       <div className="card p-6 border-app flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-xs relative overflow-hidden">
-        <SubtlePathsBg opacity={0.08} sets={1} />
+        <SubtlePathsBg opacity={0.25} sets={1} />
         <div className="space-y-1.5 max-w-2xl relative z-10">
           <div className="flex items-center gap-2">
             <span className="badge badge-emerald">Active Command Center</span>
@@ -151,7 +150,7 @@ export default function DashboardPage() {
             Recalculate Readiness
           </button>
           <Link to="/practice/interview" className="btn btn-primary text-xs gap-2">
-            <Bot className="w-3.5 h-3.5" /> Launch AI Interview
+            <Bot className="w-3.5 h-3.5 text-white" /> Launch AI Interview
           </Link>
         </div>
       </div>
@@ -162,7 +161,7 @@ export default function DashboardPage() {
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-app">
             <div className="flex items-center gap-5">
               {/* Radial Progress Gauge Simulation */}
-              <div className="relative w-24 h-24 flex items-center justify-center bg-teal-50 dark:bg-teal-950/40 rounded-full border-4 border-teal-600/30 flex-shrink-0">
+              <div className="relative w-24 h-24 flex items-center justify-center bg-[#FF5722]/10 dark:bg-[#FF5722]/15 rounded-full border-4 border-[#FF5722]/40 flex-shrink-0">
                 <div className="text-center">
                   <span className="font-heading text-3xl font-extrabold text-app">{totalScore}</span>
                   <span className="text-[10px] text-secondary font-bold block -mt-1">/ 100</span>
@@ -170,48 +169,151 @@ export default function DashboardPage() {
               </div>
 
               <div>
-                <span className="text-[10px] font-extrabold text-teal-700 dark:text-teal-400 uppercase tracking-wider block mb-0.5">Verified Composite Rating</span>
+                <div className="flex items-center gap-2 mb-0.5">
+                  <span className="text-[10px] font-extrabold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block">
+                    Dynamic Career Readiness Score
+                  </span>
+                  <span className="badge badge-emerald text-[10px]">
+                    {jobScore?.confidence_level || 'Data Precision'}
+                  </span>
+                </div>
                 <h2 className="font-heading text-2xl font-bold text-app">Career Readiness Index</h2>
                 <div className="flex items-center gap-2 mt-1">
-                  <span className="badge badge-emerald">{scoreTier}</span>
-                  <span className="text-xs font-medium text-secondary">Audited across 5 evidence categories</span>
+                  <span className="badge badge-sand font-bold">{scoreTier}</span>
+                  <span className="text-xs font-medium text-secondary">
+                    {totalScore === 0 ? 'Brand new account — complete activities to build your score' : 'Calculated across 6 verified employability dimensions'}
+                  </span>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full md:w-auto">
-              <div className="p-3 bg-subtle border border-app rounded-md text-center">
-                <p className="text-xs font-bold text-secondary uppercase">Skills</p>
-                <p className="font-heading text-xl font-bold text-app mt-0.5">{jobScore?.skills_score || 24} <span className="text-[10px] text-secondary font-semibold">/30</span></p>
+            {/* 6-Factor Breakdown Cards */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 w-full md:w-auto">
+              <div className="p-2.5 bg-subtle border border-app rounded-md text-center">
+                <p className="text-[10px] font-bold text-secondary uppercase">Skills</p>
+                <p className="font-heading text-lg font-bold text-app mt-0.5">
+                  {jobScore?.skills_score ?? 0} <span className="text-[10px] text-secondary font-semibold">/25</span>
+                </p>
               </div>
-              <div className="p-3 bg-subtle border border-app rounded-md text-center">
-                <p className="text-xs font-bold text-secondary uppercase">Projects</p>
-                <p className="font-heading text-xl font-bold text-app mt-0.5">{jobScore?.projects_score || 20} <span className="text-[10px] text-secondary font-semibold">/25</span></p>
+              <div className="p-2.5 bg-subtle border border-app rounded-md text-center">
+                <p className="text-[10px] font-bold text-secondary uppercase">Projects</p>
+                <p className="font-heading text-lg font-bold text-app mt-0.5">
+                  {jobScore?.projects_score ?? 0} <span className="text-[10px] text-secondary font-semibold">/20</span>
+                </p>
               </div>
-              <div className="p-3 bg-subtle border border-app rounded-md text-center">
-                <p className="text-xs font-bold text-secondary uppercase">ATS Match</p>
-                <p className="font-heading text-xl font-bold text-app mt-0.5">{jobScore?.profile_score || 12} <span className="text-[10px] text-secondary font-semibold">/15</span></p>
+              <div className="p-2.5 bg-subtle border border-app rounded-md text-center">
+                <p className="text-[10px] font-bold text-secondary uppercase">Interviews</p>
+                <p className="font-heading text-lg font-bold text-app mt-0.5">
+                  {jobScore?.interviews_score ?? 0} <span className="text-[10px] text-secondary font-semibold">/20</span>
+                </p>
               </div>
-              <div className="p-3 bg-subtle border border-app rounded-md text-center">
-                <p className="text-xs font-bold text-secondary uppercase">Certs</p>
-                <p className="font-heading text-xl font-bold text-app mt-0.5">{jobScore?.certificates_score || 8} <span className="text-[10px] text-secondary font-semibold">/10</span></p>
+              <div className="p-2.5 bg-subtle border border-app rounded-md text-center">
+                <p className="text-[10px] font-bold text-secondary uppercase">Resume ATS</p>
+                <p className="font-heading text-lg font-bold text-app mt-0.5">
+                  {jobScore?.resume_score ?? 0} <span className="text-[10px] text-secondary font-semibold">/15</span>
+                </p>
+              </div>
+              <div className="p-2.5 bg-subtle border border-app rounded-md text-center">
+                <p className="text-[10px] font-bold text-secondary uppercase">Mock Tests</p>
+                <p className="font-heading text-lg font-bold text-app mt-0.5">
+                  {jobScore?.assessments_score ?? 0} <span className="text-[10px] text-secondary font-semibold">/10</span>
+                </p>
+              </div>
+              <div className="p-2.5 bg-subtle border border-app rounded-md text-center">
+                <p className="text-[10px] font-bold text-secondary uppercase">Certs</p>
+                <p className="font-heading text-lg font-bold text-app mt-0.5">
+                  {jobScore?.certificates_score ?? 0} <span className="text-[10px] text-secondary font-semibold">/10</span>
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Readiness Factor Matrix Progress Bar */}
+          {/* Readiness Progression Bar */}
           <div className="space-y-2">
             <div className="flex items-center justify-between text-xs">
               <span className="font-bold text-app">Market Requisition Readiness Progression</span>
-              <span className="font-mono font-bold text-teal-700 dark:text-teal-400">{totalScore}% Employability Index</span>
+              <span className="font-mono font-bold text-[#FF5722] dark:text-[#FF7043]">{totalScore}% Employability Grade</span>
             </div>
             <div className="w-full h-3 bg-subtle border border-app rounded-full overflow-hidden">
               <div
-                className="h-full bg-teal-700 dark:bg-teal-500 transition-all rounded-full"
-                style={{ width: `${totalScore}%` }}
+                className="h-full bg-[#FF5722] transition-all rounded-full"
+                style={{ width: `${Math.max(2, totalScore)}%` }}
               />
             </div>
           </div>
+
+          {/* Positive Drivers & Actionable Insights Section */}
+          <div className="grid md:grid-cols-2 gap-4 pt-2">
+            {/* Positive Score Drivers */}
+            <div className="p-4 bg-subtle border border-app rounded-md space-y-2">
+              <span className="text-[10px] font-extrabold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block">
+                Evidence Drivers &amp; Score Insights
+              </span>
+              <ul className="space-y-1.5 text-xs text-secondary font-medium">
+                {(jobScore?.positive_drivers && jobScore.positive_drivers.length > 0) ? (
+                  jobScore.positive_drivers.map((driver: string, idx: number) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-[#FF5722] dark:text-[#FF7043] font-bold">✓</span>
+                      <span>{driver}</span>
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-secondary italic">Complete profile activities to unlock evidence drivers.</li>
+                )}
+              </ul>
+            </div>
+
+            {/* Actionable Next Steps */}
+            <div className="p-4 bg-subtle border border-app rounded-md space-y-2">
+              <span className="text-[10px] font-extrabold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block">
+                Priority Actions to Elevate Score
+              </span>
+              <ul className="space-y-1.5 text-xs text-secondary font-medium">
+                {(jobScore?.suggestions && jobScore.suggestions.length > 0) ? (
+                  jobScore.suggestions.map((sug: string, idx: number) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-[#FF5722] dark:text-[#FF7043] font-bold">⚡</span>
+                      <span>{sug}</span>
+                    </li>
+                  ))
+                ) : (
+                  <li className="text-secondary">Keep your portfolio up to date with new projects and mock interviews.</li>
+                )}
+              </ul>
+            </div>
+          </div>
+
+          {/* Score History Progression Timeline */}
+          {jobScore?.history && jobScore.history.length > 0 && (
+            <div className="pt-2 border-t border-app space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-extrabold text-app uppercase tracking-wider">
+                  Readiness Progression History Log
+                </span>
+                <span className="text-[10px] text-secondary font-mono">
+                  {jobScore.history.length} audited score changes
+                </span>
+              </div>
+              <div className="space-y-2 max-h-48 overflow-y-auto pr-1">
+                {jobScore.history.slice().reverse().map((entry: any, i: number) => (
+                  <div key={i} className="flex items-center justify-between p-2.5 bg-surface border border-app rounded-md text-xs">
+                    <div className="flex items-center gap-2.5">
+                      <span className={`px-2 py-0.5 rounded text-[10px] font-bold ${entry.delta >= 0 ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400' : 'bg-red-500/15 text-red-600'}`}>
+                        {entry.delta >= 0 ? `+${entry.delta}` : entry.delta} pts
+                      </span>
+                      <span className="font-bold text-app">{entry.reason}</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-heading font-extrabold text-app">{entry.total_score} / 100</span>
+                      <span className="text-[10px] text-secondary font-mono">
+                        {entry.timestamp ? new Date(entry.timestamp).toLocaleDateString() : 'Recent'}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
@@ -230,22 +332,22 @@ export default function DashboardPage() {
                 <Link
                   key={card.id}
                   to={card.to}
-                  className="card p-5 space-y-3 flex flex-col justify-between hover:border-teal-700/50 dark:hover:border-teal-400/50 transition-all group"
+                  className="card p-5 space-y-3 flex flex-col justify-between hover:border-[#FF5722]/50 dark:hover:border-[#FF7043]/50 transition-all group"
                 >
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <div className="w-9 h-9 bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800 rounded-md flex items-center justify-center">
-                        <Icon className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+                      <div className="w-9 h-9 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded-md flex items-center justify-center">
+                        <Icon className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />
                       </div>
                       {card.badge && <span className="badge badge-emerald">{card.badge}</span>}
                     </div>
-                    <h3 className="font-heading text-lg font-bold text-app group-hover:text-teal-700 dark:group-hover:text-teal-400 transition-colors">
+                    <h3 className="font-heading text-lg font-bold text-app group-hover:text-[#FF5722] dark:group-hover:text-[#FF7043] transition-colors">
                       {card.title}
                     </h3>
                     <p className="text-xs text-secondary leading-relaxed">{card.desc}</p>
                   </div>
 
-                  <div className="flex items-center justify-between pt-2 border-t border-app text-xs text-teal-700 dark:text-teal-400 font-bold">
+                  <div className="flex items-center justify-between pt-2 border-t border-app text-xs text-[#FF5722] dark:text-[#FF7043] font-bold">
                     <span>{card.tag}</span>
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -265,7 +367,7 @@ export default function DashboardPage() {
             <div className="card p-6 space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-app">
                 <h3 className="font-heading text-lg font-bold text-app flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-teal-700 dark:text-teal-400" /> Recent Candidate Activity
+                  <Clock className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Recent Candidate Activity
                 </h3>
                 <span className="text-xs font-medium text-secondary">Audited event log</span>
               </div>
@@ -278,8 +380,8 @@ export default function DashboardPage() {
                 ].map((act, i) => (
                   <div key={i} className="flex items-start justify-between p-3.5 bg-subtle border border-app rounded-md text-xs">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 bg-teal-50 text-teal-800 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800 rounded-md flex items-center justify-center flex-shrink-0">
-                        <act.icon className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+                      <div className="w-8 h-8 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded-md flex items-center justify-center flex-shrink-0">
+                        <act.icon className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />
                       </div>
                       <div>
                         <p className="font-bold text-app">{act.title}</p>
@@ -296,9 +398,9 @@ export default function DashboardPage() {
             <div className="card p-6 space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-app">
                 <h3 className="font-heading text-lg font-bold text-app flex items-center gap-2">
-                  <BookOpen className="w-4 h-4 text-teal-700 dark:text-teal-400" /> Upcoming Roadmap Tasks
+                  <BookOpen className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Upcoming Roadmap Tasks
                 </h3>
-                <Link to="/career/roadmap" className="text-xs font-bold text-teal-700 dark:text-teal-400 hover:underline">
+                <Link to="/career/roadmap" className="text-xs font-bold text-[#FF5722] dark:text-[#FF7043] hover:underline">
                   View Full Roadmap →
                 </Link>
               </div>
@@ -324,9 +426,9 @@ export default function DashboardPage() {
 
           {/* Right Column: Personalized AI Insights */}
           <div className="lg:col-span-4 space-y-6">
-            <div className="card p-6 space-y-4 bg-teal-50/40 dark:bg-teal-950/20 border-teal-200 dark:border-teal-900">
-              <div className="flex items-center gap-2 pb-3 border-b border-teal-200 dark:border-teal-900">
-                <Sparkles className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+            <div className="card p-6 space-y-4 bg-[#FF5722]/10 dark:bg-[#FF5722]/15 border-[#FF5722]/30 dark:border-[#FF5722]/40">
+              <div className="flex items-center gap-2 pb-3 border-b border-[#FF5722]/30 dark:border-[#FF5722]/40">
+                <Sparkles className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />
                 <h3 className="font-heading text-lg font-bold text-app">AI Strategist Insights</h3>
               </div>
 
@@ -334,7 +436,7 @@ export default function DashboardPage() {
                 <p>
                   <strong>Target Role Optimization:</strong> Your verified skills in React & TypeScript match <strong className="text-app font-bold">88%</strong> of market requisitions for <em>{targetCareer}</em>.
                 </p>
-                <div className="p-3.5 bg-surface border border-teal-200 dark:border-teal-800 rounded-md space-y-1">
+                <div className="p-3.5 bg-surface border border-[#FF5722]/30 dark:border-[#FF5722]/40 rounded-md space-y-1">
                   <p className="font-bold text-app">Priority Action Recommendation:</p>
                   <p className="text-[11px] text-secondary font-medium">
                     Complete the <strong>SQL Performance & Database Design Drill</strong> to increase overall candidate readiness score to 85%+.

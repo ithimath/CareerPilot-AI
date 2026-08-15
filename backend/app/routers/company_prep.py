@@ -2,7 +2,7 @@
 CareerPilot AI — Company Prep & Insights Router
 """
 from fastapi import APIRouter, Depends, Query
-from app.core.auth import get_current_user_optional
+from app.core.dependencies import get_current_user_optional
 import logging
 
 logger = logging.getLogger(__name__)
@@ -133,15 +133,18 @@ COMPANIES_DATA = [
 
 @router.get("/companies")
 async def get_companies(
+    search: str = Query(None),
     query: str = Query(None),
     user: dict = Depends(get_current_user_optional)
 ):
-    if not query:
+    search_term = search or query
+    if not search_term or not search_term.strip():
         return {"companies": COMPANIES_DATA}
     
+    term_lower = search_term.lower().strip()
     filtered = [
         c for c in COMPANIES_DATA
-        if query.lower() in c["name"].lower() or any(query.lower() in r.lower() for r in c["roles"])
+        if term_lower in c["name"].lower() or any(term_lower in r.lower() for r in c.get("roles", []))
     ]
     return {"companies": filtered}
 

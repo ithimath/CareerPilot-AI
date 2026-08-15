@@ -125,30 +125,72 @@ const mockStore: any = {
     { id: 'conv_1', title: 'Full Stack Engineer Learning Path', created_at: '2026-08-05' },
     { id: 'conv_2', title: 'System Design & Mock Interview Prep', created_at: '2026-08-08' },
   ],
+  conversationMessages: {
+    conv_1: [
+      { role: 'user', content: 'What technical skills should I master for Full-Stack role?' },
+      { role: 'assistant', content: '### Technical Roadmap for Full Stack Engineering\n\nTo excel as a Full-Stack Engineer, focus on:\n\n1. **Core Development**: Master React 19, TypeScript, and FastAPI/Node.js.\n2. **Database & Cache**: PostgreSQL schema design, indexing, and Redis caching.\n3. **DevOps & Cloud**: Docker containerization, CI/CD pipelines, and AWS deployment.\n\n*Actionable Step*: Track and update your acquired skills in the **Profile** tab to dynamically evaluate your readiness score!' }
+    ],
+    conv_2: [
+      { role: 'user', content: 'Prepare me for a system design interview question' },
+      { role: 'assistant', content: '### System Design Interview Strategy\n\nFor technical and architectural interviews:\n\n1. **4-Step Framework**: Scope requirements -> High-Level Architecture -> Deep-dive components & caching -> Identify bottlenecks & scale.\n2. **Coding Practice**: Solve top pattern questions (Graphs, Two Pointers, Dynamic Programming).\n3. **Practice**: Test your real-time responses in our **AI Interview Simulator** tab!' }
+    ]
+  },
   learning: {
+    domain: 'Full Stack & Web Engineering',
+    target_career: 'Full-Stack Engineer',
     progress_percentage: 60,
     completed_items: 6,
     total_items: 10,
     stages: {
       '1': [
-        { id: 'l1', title: 'HTML5 & Modern CSS3 Grid/Flexbox', skill: 'Frontend Basics', platform: 'freeCodeCamp', difficulty: 'easy', status: 'completed', resource_url: 'https://freecodecamp.org' },
-        { id: 'l2', title: 'JavaScript ES6+ & Async/Await', skill: 'JavaScript', platform: 'MDN Web Docs', difficulty: 'easy', status: 'completed', resource_url: 'https://developer.mozilla.org' },
+        {
+          id: 'l1', title: 'Module 1 — HTML5 & Modern CSS3 Grid/Flexbox', description: 'Core web page structure and responsive container layouts.', skill: 'Frontend Basics', platform: 'freeCodeCamp', difficulty: 'beginner', status: 'completed', resource_url: 'https://freecodecamp.org',
+          courses: [{ title: 'Responsive Web Design Certification', platform: 'freeCodeCamp', url: 'https://freecodecamp.org', difficulty: 'beginner', level: 'Beginner Track', duration: '4 weeks', relevance_reason: 'Foundational markup for web interfaces.' }]
+        },
+        {
+          id: 'l2', title: 'Module 1 — JavaScript ES6+ & Async/Await', description: 'Asynchronous event loop, closures, and promises.', skill: 'JavaScript', platform: 'MDN Web Docs', difficulty: 'beginner', status: 'completed', resource_url: 'https://developer.mozilla.org',
+          courses: [{ title: 'The Complete JavaScript Course 2026', platform: 'Udemy', url: 'https://udemy.com', difficulty: 'beginner', level: 'Beginner Track', duration: '8 weeks', relevance_reason: 'Core web programming language.' }]
+        },
       ],
       '2': [
-        { id: 'l3', title: 'React 19 Hooks & Context API', skill: 'React', platform: 'React Docs', difficulty: 'medium', status: 'completed', resource_url: 'https://react.dev' },
-        { id: 'l4', title: 'TypeScript Core Types & Interfaces', skill: 'TypeScript', platform: 'TypeScript Handbook', difficulty: 'medium', status: 'completed', resource_url: 'https://typescriptlang.org' },
-        { id: 'l5', title: 'FastAPI REST API Architecture & Pydantic', skill: 'FastAPI', platform: 'FastAPI Tutorial', difficulty: 'medium', status: 'in_progress', resource_url: 'https://fastapi.tiangolo.com' },
+        {
+          id: 'l3', title: 'Module 2 — React 19 Hooks & Context API', description: 'Component architecture, custom hooks, and virtual DOM.', skill: 'React', platform: 'React Docs', difficulty: 'intermediate', status: 'completed', resource_url: 'https://react.dev',
+          courses: [{ title: 'React 19 & Next.js - Complete Guide', platform: 'Udemy', url: 'https://udemy.com', difficulty: 'intermediate', level: 'Intermediate Specialization', duration: '10 weeks', relevance_reason: 'Primary UI component library for web applications.' }]
+        },
+        {
+          id: 'l4', title: 'Module 2 — TypeScript Core Types & Interfaces', description: 'Static typing, generics, and strict null checks.', skill: 'TypeScript', platform: 'TypeScript Handbook', difficulty: 'intermediate', status: 'completed', resource_url: 'https://typescriptlang.org',
+          courses: [{ title: 'Understanding TypeScript 2026', platform: 'Udemy', url: 'https://udemy.com', difficulty: 'intermediate', level: 'Intermediate Specialization', duration: '5 weeks', relevance_reason: 'Type safety for scaling enterprise software.' }]
+        },
+        {
+          id: 'l5', title: 'Module 2 — FastAPI REST API Architecture', description: 'Asynchronous Python endpoints and Pydantic schemas.', skill: 'FastAPI', platform: 'FastAPI Tutorial', difficulty: 'intermediate', status: 'in_progress', resource_url: 'https://fastapi.tiangolo.com',
+          courses: [{ title: 'FastAPI High-Performance Microservices', platform: 'TestDriven.io', url: 'https://testdriven.io', difficulty: 'intermediate', level: 'Intermediate Specialization', duration: '4 weeks', relevance_reason: 'High throughput API backend framework.' }]
+        },
       ],
       '3': [
-        { id: 'l6', title: 'PostgreSQL Relational Schema & ORM', skill: 'SQL', platform: 'PostgreSQL Docs', difficulty: 'medium', status: 'completed', resource_url: 'https://postgresql.org' },
-        { id: 'l7', title: 'State Management with TanStack Query', skill: 'State Management', platform: 'TanStack Docs', difficulty: 'hard', status: 'in_progress', resource_url: 'https://tanstack.com' },
+        {
+          id: 'l6', title: 'Module 3 — PostgreSQL Relational Schema & ORM', description: 'Database schema normalization, indexing, and SQL queries.', skill: 'SQL', platform: 'PostgreSQL Docs', difficulty: 'intermediate', status: 'completed', resource_url: 'https://postgresql.org',
+          courses: [{ title: 'The Complete SQL Bootcamp', platform: 'Udemy', url: 'https://udemy.com', difficulty: 'beginner', level: 'Beginner Track', duration: '4 weeks', relevance_reason: 'Relational data persistence.' }]
+        },
+        {
+          id: 'l7', title: 'Module 3 — System Architecture & Caching', description: 'Redis caching, load balancing, and rate limiting.', skill: 'System Design', platform: 'Educative.io', difficulty: 'advanced', status: 'in_progress', resource_url: 'https://educative.io',
+          courses: [{ title: 'Grokking Modern System Design', platform: 'Educative.io', url: 'https://educative.io', difficulty: 'advanced', level: 'Advanced Architecture', duration: '6 weeks', relevance_reason: 'High availability scalable design.' }]
+        },
       ],
       '4': [
-        { id: 'l8', title: 'Build Full-Stack Microservice Project', skill: 'Project', platform: 'Self-guided', difficulty: 'hard', status: 'completed', resource_url: '#' },
-        { id: 'l9', title: 'Docker Containerization & Deployment', skill: 'DevOps', platform: 'Docker Labs', difficulty: 'hard', status: 'not_started', resource_url: 'https://docker.com' },
+        {
+          id: 'l8', title: 'Module 4 — Build Full-Stack Microservice Project', description: 'End-to-end full stack application with auth and Docker.', skill: 'Project', platform: 'Self-guided', difficulty: 'advanced', status: 'completed', resource_url: '#',
+          courses: [{ title: 'Full Stack Microservices Architecture', platform: 'CareerPilot AI', url: 'https://github.com', difficulty: 'advanced', level: 'Portfolio Architecture', duration: '3 weeks', relevance_reason: 'Hands-on practical proof of work.' }]
+        },
+        {
+          id: 'l9', title: 'Module 4 — Docker Containerization & CI/CD', description: 'Containerizing services and automating GitHub Actions.', skill: 'Docker', platform: 'Docker Labs', difficulty: 'intermediate', status: 'not_started', resource_url: 'https://docker.com',
+          courses: [{ title: 'Docker & Kubernetes Practical Guide', platform: 'Udemy', url: 'https://udemy.com', difficulty: 'intermediate', level: 'Intermediate Specialization', duration: '4 weeks', relevance_reason: 'Environment parity and DevOps deployment.' }]
+        },
       ],
       '5': [
-        { id: 'l10', title: 'Mock Technical Interview & ATS Resume Optimization', skill: 'Interview', platform: 'CareerPilot AI', difficulty: 'hard', status: 'in_progress', resource_url: '#' },
+        {
+          id: 'l10', title: 'Module 5 — Executive Interview & Coding Prep', description: 'Coding algorithms, system design, and STAR responses.', skill: 'Interview', platform: 'CareerPilot AI', difficulty: 'advanced', status: 'in_progress', resource_url: 'https://leetcode.com',
+          courses: [{ title: 'Grokking Coding Interviews', platform: 'LeetCode', url: 'https://leetcode.com', difficulty: 'advanced', level: 'Executive Preparation', duration: '3 weeks', relevance_reason: 'Technical interview loop readiness.' }]
+        },
       ],
     },
   },
@@ -346,11 +388,20 @@ api.interceptors.response.use(
     if (url.includes('/api/job-score')) {
       const currentUid = localStorage.getItem('cp_active_uid') || 'demo_user'
       const storageKey = `cp_user_score_${currentUid}`
+      const historyKey = `cp_user_history_${currentUid}`
       const savedScore = localStorage.getItem(storageKey)
+
+      if (url.includes('/history')) {
+        const savedHistory = localStorage.getItem(historyKey)
+        return Promise.resolve({ data: { uid: currentUid, history: savedHistory ? JSON.parse(savedHistory) : [] } })
+      }
 
       if (savedScore) {
         try {
-          return Promise.resolve({ data: JSON.parse(savedScore) })
+          const parsed = JSON.parse(savedScore)
+          const savedHistory = localStorage.getItem(historyKey)
+          if (savedHistory) parsed.history = JSON.parse(savedHistory)
+          return Promise.resolve({ data: parsed })
         } catch {}
       }
 
@@ -360,28 +411,140 @@ api.interceptors.response.use(
         total_score: 0.0,
         skills_score: 0.0,
         projects_score: 0.0,
-        internships_score: 0.0,
+        interviews_score: 0.0,
+        resume_score: 0.0,
+        assessments_score: 0.0,
         certificates_score: 0.0,
         profile_score: 0.0,
+        internships_score: 0.0,
+        confidence_level: 'Insufficient Data',
+        data_quality_notice: 'New candidate account. Add technical skills, take mock tests, or run ATS resume diagnostics to compute your score.',
+        positive_drivers: [],
         suggestions: [
-          'Welcome to CareerPilot AI! Complete your candidate profile and add technical skills to calculate your ML Career Readiness Score.',
+          'Welcome to CareerPilot AI! Add 3+ technical skills with proficiency in your profile.',
+          'Execute a resume ATS diagnostic scan to audit keyword compliance.',
+          'Complete a domain-specific AI Mock Interview.',
         ],
+        max_scores: {
+          skills: 25,
+          projects: 20,
+          interviews: 20,
+          resume: 15,
+          assessments: 10,
+          certificates: 10,
+        },
+        factors_breakdown: {
+          skills: { score: 0, max: 25, percentage: 0 },
+          projects: { score: 0, max: 20, percentage: 0 },
+          interviews: { score: 0, max: 20, percentage: 0 },
+          resume: { score: 0, max: 15, percentage: 0 },
+          assessments: { score: 0, max: 10, percentage: 0 },
+          certificates: { score: 0, max: 10, percentage: 0 },
+        },
+        history: [],
+        updated_at: new Date().toISOString(),
       }
       localStorage.setItem(storageKey, JSON.stringify(initialScore))
       return Promise.resolve({ data: initialScore })
     }
 
+    // ── Assessments Endpoints ─────────────────────────────────────────────────
+    if (url.includes('/api/assessments')) {
+      const currentUid = localStorage.getItem('cp_active_uid') || 'demo_user'
+      if (url.includes('/submit') && method === 'post') {
+        const body = JSON.parse(error.config?.data || '{}')
+        const scoreVal = Number(body.score || 80)
+        
+        // Update stored score
+        const storageKey = `cp_user_score_${currentUid}`
+        const historyKey = `cp_user_history_${currentUid}`
+        const raw = localStorage.getItem(storageKey)
+        let currScore = raw ? JSON.parse(raw) : { total_score: 0, skills_score: 0, assessments_score: 0, max_scores: {} }
+        
+        const addedAssessments = Math.min(10, Math.round((scoreVal / 100) * 10))
+        currScore.assessments_score = addedAssessments
+        currScore.total_score = Math.min(100, Math.round((currScore.skills_score || 0) + (currScore.projects_score || 0) + (currScore.interviews_score || 0) + (currScore.resume_score || 0) + addedAssessments + (currScore.certificates_score || 0)))
+        currScore.confidence_level = 'Verified Data Precision'
+        
+        const history = JSON.parse(localStorage.getItem(historyKey) || '[]')
+        history.push({
+          timestamp: new Date().toISOString(),
+          total_score: currScore.total_score,
+          delta: 8.0,
+          reason: `Completed ${body.test_title || 'Mock Test'} (${scoreVal}%)`
+        })
+        localStorage.setItem(storageKey, JSON.stringify(currScore))
+        localStorage.setItem(historyKey, JSON.stringify(history))
+
+        return Promise.resolve({
+          data: {
+            success: true,
+            score: scoreVal,
+            readiness_score: currScore.total_score,
+            message: 'Assessment recorded and Career Readiness Score recalculated.'
+          }
+        })
+      }
+
+      return Promise.resolve({
+        data: {
+          tests: [
+            {
+              id: 'dsa',
+              title: 'Data Structures & Algorithms Core Assessment',
+              category: 'Algorithms',
+              questions_count: 5,
+              time_limit: '20 mins',
+              difficulty: 'Hard',
+              questions: [
+                {
+                  id: 1,
+                  q: 'Which data structure offers average O(1) time complexity for lookup, insert, and delete operations?',
+                  options: ['Binary Search Tree', 'Hash Table / Map', 'Linked List', 'Max Heap'],
+                  correct: 1,
+                  explanation: 'Hash tables leverage a hash function to map keys to bucket indices, yielding O(1) average time complexity.'
+                }
+              ]
+            }
+          ]
+        }
+      })
+    }
+
     // ── Resume ATS Optimizer Endpoint ─────────────────────────────────────────
     if (url.includes('/api/resume/analyze-ats')) {
+      const currentUid = localStorage.getItem('cp_active_uid') || 'demo_user'
       const body = JSON.parse(error.config?.data || '{}')
       const targetRole = body.target_role || 'Software Engineer'
       const textLen = (body.resume_text || '').length
       const score = Math.min(95, Math.max(65, 75 + Math.floor(textLen / 50)))
 
+      // Update stored score
+      const storageKey = `cp_user_score_${currentUid}`
+      const historyKey = `cp_user_history_${currentUid}`
+      const raw = localStorage.getItem(storageKey)
+      let currScore = raw ? JSON.parse(raw) : { total_score: 0, skills_score: 0, max_scores: {} }
+      const addedResume = Math.min(15, Math.round((score / 100) * 15))
+      currScore.resume_score = addedResume
+      currScore.total_score = Math.min(100, Math.round((currScore.skills_score || 0) + (currScore.projects_score || 0) + (currScore.interviews_score || 0) + addedResume + (currScore.assessments_score || 0) + (currScore.certificates_score || 0)))
+      currScore.confidence_level = 'Verified Data Precision'
+
+      const history = JSON.parse(localStorage.getItem(historyKey) || '[]')
+      history.push({
+        timestamp: new Date().toISOString(),
+        total_score: currScore.total_score,
+        delta: 12.0,
+        reason: `Resume ATS Scan Executed (${score} ATS Score)`
+      })
+      localStorage.setItem(storageKey, JSON.stringify(currScore))
+      localStorage.setItem(historyKey, JSON.stringify(history))
+
       return Promise.resolve({
         data: {
           ats_score: score,
+          score,
           target_role: targetRole,
+          readiness_score: currScore.total_score,
           breakdown: {
             keyword_match: Math.min(92, score + 4),
             formatting: 90,
@@ -405,6 +568,39 @@ api.interceptors.response.use(
     }
 
     // ── AI Interview Endpoints ────────────────────────────────────────────────
+    if (url.includes('/api/interview/save-session') && method === 'post') {
+      const currentUid = localStorage.getItem('cp_active_uid') || 'demo_user'
+      const body = JSON.parse(error.config?.data || '{}')
+      const storageKey = `cp_user_score_${currentUid}`
+      const historyKey = `cp_user_history_${currentUid}`
+      const raw = localStorage.getItem(storageKey)
+      let currScore = raw ? JSON.parse(raw) : { total_score: 0, skills_score: 0, max_scores: {} }
+      
+      const sessionScore = Number(body.overall_score || 80)
+      const addedInterview = Math.min(20, Math.round((sessionScore / 100) * 20))
+      currScore.interviews_score = addedInterview
+      currScore.total_score = Math.min(100, Math.round((currScore.skills_score || 0) + (currScore.projects_score || 0) + addedInterview + (currScore.resume_score || 0) + (currScore.assessments_score || 0) + (currScore.certificates_score || 0)))
+      currScore.confidence_level = 'High Data Precision'
+
+      const history = JSON.parse(localStorage.getItem(historyKey) || '[]')
+      history.push({
+        timestamp: new Date().toISOString(),
+        total_score: currScore.total_score,
+        delta: 15.0,
+        reason: `Completed AI Mock Interview (${sessionScore}%)`
+      })
+      localStorage.setItem(storageKey, JSON.stringify(currScore))
+      localStorage.setItem(historyKey, JSON.stringify(history))
+
+      return Promise.resolve({
+        data: {
+          success: true,
+          readiness_score: currScore.total_score,
+          message: 'Interview session saved and Career Readiness Score updated.'
+        }
+      })
+    }
+
     if (url.includes('/api/interview/start')) {
       const body = JSON.parse(error.config?.data || '{}')
       const role = body.role || 'Software Engineer'
@@ -639,26 +835,99 @@ api.interceptors.response.use(
 
     // ── AI Mentor Chat Endpoints ──────────────────────────────────────────────
     if (url.includes('/api/chat/conversations')) {
-      if (method === 'get' && url.includes('/conversations/')) {
+      // 1. Post message to conversation
+      if (url.includes('/message') && method === 'post') {
+        const parts = url.split('/api/chat/conversations/')
+        const convId = (parts[1] || '').split('/message')[0] || 'conv_1'
+        const body = JSON.parse(error.config?.data || '{}')
+        const msg = body.message || ''
+        const msgLower = msg.toLowerCase()
+        const target = mockStore.profile.target_career || 'Full Stack Engineer'
+
+        let reply = `### Career Strategy Insight\n\nGreat question! As an aspiring **${target}**, focusing on practical hands-on projects, solid technical fundamentals, and targeted ATS resume keywords will accelerate your market readiness.`
+
+        if (msgLower.includes('skill') || msgLower.includes('learn') || msgLower.includes('gaps')) {
+          reply = `### Technical Skill Roadmap for ${target}\n\nBased on modern hiring standards, here is the prioritized roadmap:\n\n1. **Core Development**: Master React 19, TypeScript, and FastAPI/Node.js.\n2. **Database & Cache**: PostgreSQL schema design, indexing, and Redis caching.\n3. **DevOps & Cloud**: Docker containerization, CI/CD pipelines, and AWS deployment.\n\n*Actionable Step*: Track and update your acquired skills in the **Profile** tab to dynamically evaluate your readiness score!`
+        } else if (msgLower.includes('interview') || msgLower.includes('system design') || msgLower.includes('prepare')) {
+          reply = `### System Design & Interview Strategy\n\nFor technical and architectural interviews:\n\n1. **4-Step Framework**: Scope requirements -> High-Level Architecture -> Deep-dive components & caching -> Identify bottlenecks & scale.\n2. **Coding Practice**: Solve top pattern questions (Graphs, Two Pointers, Dynamic Programming).\n3. **Practice**: Test your real-time responses in our **AI Interview Simulator** tab!`
+        } else if (msgLower.includes('resume') || msgLower.includes('ats') || msgLower.includes('parser')) {
+          reply = `### Resume ATS Optimization Audit\n\n1. **Structure**: Single-column clean layout with standard sections (Skills, Projects, Experience, Education).\n2. **Target Keywords**: Align exact technical skills with the job description (${mockStore.profile.skills.slice(0, 5).join(', ')}).\n3. **XYZ Formula**: Structure bullet points as "Accomplished [X] measured by [Y] by doing [Z]".\n\n*Tip*: Scan your PDF in the **Resume ATS Optimizer** tab for an instant keyword alignment score!`
+        } else if (msgLower.includes('project') || msgLower.includes('portfolio') || msgLower.includes('open source')) {
+          reply = `### High-Impact Portfolio Recommendations for ${target}\n\n1. **Full-Stack SaaS / Microservice App**: Built with React, FastAPI/Node, and PostgreSQL with authentication and Docker compose.\n2. **Real-Time Collaboration System**: WebSockets + Redis Pub/Sub for real-time messaging or collaborative canvas.\n3. **AI / RAG Document Retrieval**: Vector search with PDF context grounding.\n\n*Pro Tip*: Ensure every GitHub repo has a detailed README with architecture diagrams and live demo links!`
+        } else if (msgLower.includes('readiness') || msgLower.includes('score') || msgLower.includes('matrix')) {
+          reply = `### Career Readiness Score Breakdown\n\nYour current readiness score is **${mockStore.jobScore.total_score}/100**.\n\n- **Skills Score**: ${mockStore.jobScore.skills_score}/35\n- **Projects Score**: ${mockStore.jobScore.projects_score}/25\n- **Internships Score**: ${mockStore.jobScore.internships_score}/20\n- **Certificates**: ${mockStore.jobScore.certificates_score}/10\n- **Profile**: ${mockStore.jobScore.profile_score}/10\n\n**Action Items**:\n${mockStore.jobScore.suggestions.map((s: string) => `• ${s}`).join('\n')}`
+        }
+
+        if (!mockStore.conversationMessages[convId]) {
+          mockStore.conversationMessages[convId] = []
+        }
+
+        const now = new Date().toISOString()
+        const userMsg = { role: 'user', content: msg, timestamp: now }
+        const assistantMsg = { role: 'assistant', content: reply, timestamp: now }
+        mockStore.conversationMessages[convId].push(userMsg, assistantMsg)
+
         return Promise.resolve({
           data: {
-            messages: [
-              { role: 'assistant', content: 'Hello! I am your CareerPilot AI mentor. How can I help guide your career path today?' },
-            ],
+            messages: [...mockStore.conversationMessages[convId]]
+          }
+        })
+      }
+
+      // 2. Create new conversation
+      if (method === 'post') {
+        const body = JSON.parse(error.config?.data || '{}')
+        const newId = 'conv_' + Date.now()
+        const newConv = {
+          id: newId,
+          title: body.title || 'New Strategy Session',
+          created_at: new Date().toISOString(),
+        }
+        mockStore.conversations.unshift(newConv)
+        mockStore.conversationMessages[newId] = []
+        return Promise.resolve({ data: newConv })
+      }
+
+      // 3. Delete conversation
+      if (method === 'delete') {
+        const parts = url.split('/api/chat/conversations/')
+        const delId = (parts[1] || '').split('/')[0]?.split('?')[0]
+        if (delId) {
+          mockStore.conversations = mockStore.conversations.filter((c: any) => c.id !== delId)
+          delete mockStore.conversationMessages[delId]
+        }
+        return Promise.resolve({ data: { success: true } })
+      }
+
+      // 4. Get single conversation
+      if (method === 'get' && url.match(/\/conversations\/[^/?]+/)) {
+        const parts = url.split('/api/chat/conversations/')
+        const convId = (parts[1] || '').split('/')[0]?.split('?')[0]
+        const conv = mockStore.conversations.find((c: any) => c.id === convId) || { id: convId, title: 'Conversation' }
+        const messages = mockStore.conversationMessages[convId] || [
+          { role: 'assistant', content: 'Hello! I am your CareerPilot AI mentor. How can I help guide your career path today?' }
+        ]
+        return Promise.resolve({
+          data: {
+            ...conv,
+            messages,
           },
         })
       }
+
+      // 5. List conversations
       return Promise.resolve({ data: { conversations: mockStore.conversations } })
     }
 
     if (url.includes('/api/chat/send')) {
       const body = JSON.parse(error.config?.data || '{}')
       const msg = (body.message || '').toLowerCase()
+      const target = mockStore.profile.target_career || 'Full Stack Engineer'
 
-      let reply = `Great question! As a ${mockStore.profile.target_career}, focusing on practical hands-on projects, solid technical fundamentals, and targeted ATS resume keywords will accelerate your progress.`
+      let reply = `Great question! As an aspiring ${target}, focusing on practical hands-on projects, solid technical fundamentals, and targeted ATS resume keywords will accelerate your progress.`
 
       if (msg.includes('skill') || msg.includes('learn')) {
-        reply = `To excel as a ${mockStore.profile.target_career}, I recommend mastering:\n1. Core stack: ${mockStore.profile.skills.slice(0, 4).join(', ')}\n2. Cloud & DevOps: Docker, AWS, CI/CD Pipelines\n3. System Design: REST APIs, Caching, and Relational DB optimization.`
+        reply = `To excel as a ${target}, I recommend mastering:\n1. Core stack: ${mockStore.profile.skills.slice(0, 4).join(', ')}\n2. Cloud & DevOps: Docker, AWS, CI/CD Pipelines\n3. System Design: REST APIs, Caching, and Relational DB optimization.`
       } else if (msg.includes('interview') || msg.includes('prepare')) {
         reply = `For interview preparation:\n• Practice technical coding problems on LeetCode / HackerRank\n• Use our AI Interview Simulator tab to practice real-time STAR responses\n• Review top company questions in our Company Prep module!`
       } else if (msg.includes('project') || msg.includes('resume')) {

@@ -5,22 +5,22 @@ import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
   // Base styles — consistent with existing CareerPilot btn system
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-xs font-bold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-xs font-bold transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF5722] focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
         default:
-          "bg-teal-700 text-white shadow hover:bg-teal-800 border border-teal-700 hover:border-teal-800",
+          "bg-[#FF5722] text-white shadow hover:bg-[#E64A19] border border-[#FF5722] hover:border-[#E64A19]",
         destructive:
           "bg-red-600 text-white shadow hover:bg-red-700",
         outline:
           "border border-app bg-surface text-app hover:bg-subtle hover:text-app shadow-xs",
         secondary:
-          "bg-subtle text-app border border-app hover:border-teal-500 hover:text-teal-700 dark:hover:text-teal-400",
+          "bg-subtle text-app border border-app hover:border-[#FF5722] hover:text-[#FF5722] dark:hover:text-[#FF7043]",
         ghost:
           "text-secondary hover:bg-subtle hover:text-app",
         link:
-          "text-teal-700 dark:text-teal-400 underline-offset-4 hover:underline",
+          "text-[#FF5722] dark:text-[#FF7043] underline-offset-4 hover:underline",
         glass:
           "bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 backdrop-blur-sm",
       },

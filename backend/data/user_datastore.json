@@ -1,0 +1,1531 @@
+{
+  "profiles/dev-user-id": {
+    "uid": "dev-user-id",
+    "name": "Ithimath Hussain",
+    "email": "alex.morgan@student.edu",
+    "college": "Rajalakshmi Institute of Technology",
+    "degree": "B.E",
+    "department": "Computer Science & Engineering",
+    "current_year": 4,
+    "cgpa": 8.33,
+    "target_career": "Backend Engineer",
+    "skills": [
+      "React",
+      "TypeScript",
+      "Python",
+      "FastAPI",
+      "Tailwind CSS",
+      "SQL",
+      "Git"
+    ],
+    "interests": [
+      "Artificial Intelligence",
+      "Web Development",
+      "System Architecture"
+    ],
+    "github_url": "https://github.com/alexmorgan",
+    "linkedin_url": "https://linkedin.com/in/alexmorgan",
+    "portfolio_url": "https://alexmorgan.dev",
+    "updated_at": "2026-08-15 15:36:27.407392",
+    "projects": [],
+    "internships": [],
+    "certifications": []
+  },
+  "jobScores/dev-user-id": {
+    "uid": "dev-user-id",
+    "skills_score": 8.79,
+    "projects_score": 0.0,
+    "interviews_score": 2.92,
+    "resume_score": 2.25,
+    "assessments_score": 3.67,
+    "certificates_score": 0.0,
+    "profile_score": 3.3,
+    "internships_score": 2.92,
+    "total_score": 17.6,
+    "confidence_level": "High Data Precision",
+    "data_quality_notice": "Verified multi-signal evidence matched against 2026 corporate hiring benchmarks.",
+    "max_scores": {
+      "skills": 25,
+      "projects": 20,
+      "interviews": 20,
+      "resume": 15,
+      "assessments": 10,
+      "certificates": 10
+    },
+    "factors_breakdown": {
+      "skills": {
+        "score": 8.79,
+        "max": 25.0,
+        "percentage": 35.2,
+        "count": 7,
+        "verified": 0
+      },
+      "projects": {
+        "score": 0.0,
+        "max": 20.0,
+        "percentage": 0.0,
+        "count": 0
+      },
+      "interviews": {
+        "score": 2.92,
+        "max": 20.0,
+        "percentage": 14.6,
+        "count": 2
+      },
+      "resume": {
+        "score": 2.25,
+        "max": 15.0,
+        "percentage": 15.0,
+        "version_count": 8
+      },
+      "assessments": {
+        "score": 3.67,
+        "max": 10.0,
+        "percentage": 36.7,
+        "completed": 1
+      },
+      "certificates": {
+        "score": 0.0,
+        "max": 10.0,
+        "percentage": 0.0,
+        "count": 0
+      }
+    },
+    "positive_drivers": [
+      "Foundational profile created. Add skills and projects to unlock score drivers."
+    ],
+    "suggestions": [
+      "Target Alignment (Backend Engineer): Add key role skills 'Node.js, PostgreSQL, Redis' to boost your score by up to +16.2 pts.",
+      "AI Interview Simulation: Complete a Technical or System Design drill in the AI Interview Simulator (+17.1 pts potential).",
+      "Resume Optimization: Run an ATS Diagnostic scan with measurable project metrics (+12.8 pts potential)."
+    ],
+    "history": [
+      {
+        "timestamp": "2026-08-13T18:45:31.532733",
+        "total_score": 28.1,
+        "delta": 28.1,
+        "reason": "Initial Evaluation",
+        "category_breakdown": {
+          "skills": 16.46,
+          "projects": 0.0,
+          "interviews": 0.0,
+          "resume": 8.0,
+          "assessments": 3.67,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:46:23.977903",
+        "total_score": 22.4,
+        "delta": -5.7,
+        "reason": "Resume ATS Audit Executed",
+        "category_breakdown": {
+          "skills": 16.46,
+          "projects": 0.0,
+          "interviews": 0.0,
+          "resume": 2.25,
+          "assessments": 3.67,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:48:19.469722",
+        "total_score": 25.7,
+        "delta": 3.3,
+        "reason": "Completed AI Mock Interview",
+        "category_breakdown": {
+          "skills": 16.46,
+          "projects": 0.0,
+          "interviews": 3.33,
+          "resume": 2.25,
+          "assessments": 3.67,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-15T12:37:52.798831",
+        "total_score": 18.0,
+        "delta": -7.7,
+        "reason": "Resume ATS Audit Executed",
+        "category_breakdown": {
+          "skills": 8.79,
+          "projects": 0.0,
+          "interviews": 3.33,
+          "resume": 2.25,
+          "assessments": 3.67,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-15T15:07:28.060754",
+        "total_score": 17.6,
+        "delta": -0.4,
+        "reason": "Completed AI Mock Interview",
+        "category_breakdown": {
+          "skills": 8.79,
+          "projects": 0.0,
+          "interviews": 2.92,
+          "resume": 2.25,
+          "assessments": 3.67,
+          "certificates": 0.0
+        }
+      }
+    ],
+    "updated_at": "2026-08-15 15:36:27.946878"
+  },
+  "chatHistory/dev-user-id/conversations/conv_1": {
+    "id": "conv_1",
+    "uid": "dev-user-id",
+    "title": "Full Stack Engineer Learning Path",
+    "created_at": "2026-08-13T18:40:23.423141",
+    "updated_at": "2026-08-13T18:40:23.423156",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What technical skills should I master for Full-Stack role?",
+        "timestamp": "2026-08-13T18:40:23.423163"
+      },
+      {
+        "role": "assistant",
+        "content": "To excel as a Full-Stack Engineer, you should master: React, TypeScript, Python, FastAPI, SQL, and Git.",
+        "timestamp": "2026-08-13T18:40:23.423170"
+      }
+    ]
+  },
+  "readinessHistory/test_student_d4994392": {
+    "uid": "test_student_d4994392",
+    "history": [
+      {
+        "timestamp": "2026-08-13T18:40:23.477266",
+        "total_score": 0.0,
+        "delta": 0.0,
+        "reason": "Initial Evaluation",
+        "category_breakdown": {
+          "skills": 0.0,
+          "projects": 0.0,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 0.0,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:40:23.494971",
+        "total_score": 27.5,
+        "delta": 27.5,
+        "reason": "Profile & Skills Added",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 0.0,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:40:23.504609",
+        "total_score": 34.1,
+        "delta": 6.6,
+        "reason": "Completed DSA Assessment (90%)",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:40:23.521572",
+        "total_score": 49.2,
+        "delta": 15.1,
+        "reason": "Completed 2 Mock Interviews with score growth",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 15.12,
+          "resume": 0.0,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:40:23.530818",
+        "total_score": 61.9,
+        "delta": 12.7,
+        "reason": "Completed Resume ATS Scan",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 15.12,
+          "resume": 12.75,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      }
+    ],
+    "updated_at": "2026-08-13T18:40:23.530900"
+  },
+  "profiles/test_student_d4994392": {
+    "uid": "test_student_d4994392",
+    "name": "Jane Developer",
+    "target_career": "Full-Stack Engineer",
+    "skills": [
+      {
+        "name": "Python",
+        "level": "Advanced",
+        "verified": true
+      },
+      {
+        "name": "FastAPI",
+        "level": "Intermediate",
+        "verified": false
+      },
+      {
+        "name": "React",
+        "level": "Advanced",
+        "verified": true
+      },
+      {
+        "name": "SQL",
+        "level": "Expert",
+        "verified": true
+      },
+      {
+        "name": "Docker",
+        "level": "Intermediate",
+        "verified": false
+      }
+    ],
+    "projects": [
+      {
+        "title": "E-Commerce Microservices",
+        "description": "High-throughput microservices architecture with FastAPI and PostgreSQL",
+        "technologies": [
+          "Python",
+          "FastAPI",
+          "Docker",
+          "PostgreSQL"
+        ],
+        "github_url": "https://github.com/janedev/ecommerce",
+        "live_url": "https://ecommerce.demo"
+      }
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner"
+    ]
+  },
+  "assessments/test_student_d4994392/records/test_dsa_1": {
+    "record_id": "test_dsa_1",
+    "test_id": "dsa",
+    "test_title": "Data Structures & Algorithms Core Assessment",
+    "category": "Algorithms",
+    "score": 90.0,
+    "total_questions": 5,
+    "correct_count": 4,
+    "timestamp": "2026-08-14T10:00:00Z"
+  },
+  "interviews/test_student_d4994392/sessions/sess_1": {
+    "session_id": "sess_1",
+    "role": "Full-Stack Engineer",
+    "category": "technical",
+    "overall_score": 75.0,
+    "score": 75.0,
+    "clarity": 78.0,
+    "technical_accuracy": 76.0,
+    "timestamp": "2026-08-14T11:00:00Z"
+  },
+  "interviews/test_student_d4994392/sessions/sess_2": {
+    "session_id": "sess_2",
+    "role": "Full-Stack Engineer",
+    "category": "technical",
+    "overall_score": 90.0,
+    "score": 90.0,
+    "clarity": 92.0,
+    "technical_accuracy": 88.0,
+    "timestamp": "2026-08-14T12:00:00Z"
+  },
+  "resumes/test_student_d4994392/versions/v_1": {
+    "version_id": "v_1",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 85,
+    "score": 85,
+    "matched_keywords": [
+      "Python",
+      "React",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "missing_keywords": [
+      "AWS",
+      "CI/CD"
+    ],
+    "timestamp": "2026-08-14T13:00:00Z"
+  },
+  "jobScores/test_student_d4994392": {
+    "uid": "test_student_d4994392",
+    "skills_score": 18.95,
+    "projects_score": 5.19,
+    "interviews_score": 15.12,
+    "resume_score": 12.75,
+    "assessments_score": 6.6,
+    "certificates_score": 3.33,
+    "profile_score": 11.8,
+    "internships_score": 15.12,
+    "total_score": 61.9,
+    "confidence_level": "High Data Precision",
+    "data_quality_notice": "Verified multi-signal evidence matched against 2026 corporate hiring benchmarks.",
+    "max_scores": {
+      "skills": 25,
+      "projects": 20,
+      "interviews": 20,
+      "resume": 15,
+      "assessments": 10,
+      "certificates": 10
+    },
+    "factors_breakdown": {
+      "skills": {
+        "score": 18.95,
+        "max": 25.0,
+        "percentage": 75.8,
+        "count": 5,
+        "verified": 3
+      },
+      "projects": {
+        "score": 5.19,
+        "max": 20.0,
+        "percentage": 25.9,
+        "count": 1
+      },
+      "interviews": {
+        "score": 15.12,
+        "max": 20.0,
+        "percentage": 75.6,
+        "count": 2
+      },
+      "resume": {
+        "score": 12.75,
+        "max": 15.0,
+        "percentage": 85.0,
+        "version_count": 1
+      },
+      "assessments": {
+        "score": 6.6,
+        "max": 10.0,
+        "percentage": 66.0,
+        "completed": 1
+      },
+      "certificates": {
+        "score": 3.33,
+        "max": 10.0,
+        "percentage": 33.3,
+        "count": 1
+      }
+    },
+    "positive_drivers": [
+      "+18.95 pts: Strong technical skill alignment with Full Stack Engineer requisitions.",
+      "+15.12 pts: Verified AI Mock Interview performance across 2 sessions.",
+      "+12.75 pts: ATS keyword density and structure compliance audited."
+    ],
+    "suggestions": [
+      "Target Alignment (Full Stack Engineer): Add key role skills 'TypeScript, REST APIs, PostgreSQL' to boost your score by up to +6.1 pts.",
+      "Portfolio Depth: Add detailed project descriptions with GitHub repository links and live demo URLs."
+    ],
+    "history": [
+      {
+        "timestamp": "2026-08-13T18:40:23.477266",
+        "total_score": 0.0,
+        "delta": 0.0,
+        "reason": "Initial Evaluation",
+        "category_breakdown": {
+          "skills": 0.0,
+          "projects": 0.0,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 0.0,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:40:23.494971",
+        "total_score": 27.5,
+        "delta": 27.5,
+        "reason": "Profile & Skills Added",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 0.0,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:40:23.504609",
+        "total_score": 34.1,
+        "delta": 6.6,
+        "reason": "Completed DSA Assessment (90%)",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:40:23.521572",
+        "total_score": 49.2,
+        "delta": 15.1,
+        "reason": "Completed 2 Mock Interviews with score growth",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 15.12,
+          "resume": 0.0,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:40:23.530818",
+        "total_score": 61.9,
+        "delta": 12.7,
+        "reason": "Completed Resume ATS Scan",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 15.12,
+          "resume": 12.75,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      }
+    ],
+    "updated_at": "2026-08-13T18:40:23.530576"
+  },
+  "careerRecommendations/dev-user-id": {
+    "uid": "dev-user-id",
+    "recommendations": [
+      {
+        "title": "Full Stack Engineer",
+        "match_percentage": 63.3,
+        "description": "Designs, builds, and maintains both client-side user interfaces and server-side APIs and database architectures.",
+        "required_skills": [
+          "React",
+          "TypeScript",
+          "Python",
+          "FastAPI",
+          "REST APIs",
+          "SQL",
+          "PostgreSQL",
+          "Git",
+          "Docker"
+        ],
+        "matching_skills": [
+          "React",
+          "TypeScript",
+          "Python",
+          "FastAPI",
+          "SQL",
+          "Git"
+        ],
+        "missing_skills": [
+          "REST APIs",
+          "PostgreSQL",
+          "Docker"
+        ],
+        "market_demand": "Very High",
+        "salary_range": "$85,000 - $135,000 / year",
+        "reason": "Full Stack Engineer is a strong match based on your current skill set and interests.",
+        "category": "Software Engineering"
+      },
+      {
+        "title": "AI / Machine Learning Engineer",
+        "match_percentage": 40.6,
+        "description": "Develops, fine-tunes, and deploys artificial intelligence models, LLM agents, vector embeddings, and predictive analytics pipelines.",
+        "required_skills": [
+          "Python",
+          "PyTorch",
+          "TensorFlow",
+          "Scikit-Learn",
+          "FastAPI",
+          "Vector Databases",
+          "LangChain",
+          "SQL",
+          "Git"
+        ],
+        "matching_skills": [
+          "Python",
+          "FastAPI",
+          "SQL",
+          "Git"
+        ],
+        "missing_skills": [
+          "PyTorch",
+          "TensorFlow",
+          "Scikit-Learn",
+          "Vector Databases",
+          "LangChain"
+        ],
+        "market_demand": "Very High",
+        "salary_range": "$105,000 - $165,000 / year",
+        "reason": "AI / Machine Learning Engineer is a strong match based on your current skill set and interests.",
+        "category": "Artificial Intelligence"
+      },
+      {
+        "title": "Frontend Developer",
+        "match_percentage": 35.6,
+        "description": "Specializes in crafting responsive, high-performance web and web app user interfaces with modern JavaScript frameworks.",
+        "required_skills": [
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "HTML5",
+          "CSS3",
+          "Tailwind CSS",
+          "Next.js",
+          "State Management",
+          "Git"
+        ],
+        "matching_skills": [
+          "React",
+          "TypeScript",
+          "Tailwind CSS",
+          "Git"
+        ],
+        "missing_skills": [
+          "JavaScript",
+          "HTML5",
+          "CSS3",
+          "Next.js",
+          "State Management"
+        ],
+        "market_demand": "High",
+        "salary_range": "$80,000 - $125,000 / year",
+        "reason": "Frontend Developer is a strong match based on your current skill set and interests.",
+        "category": "Software Engineering"
+      },
+      {
+        "title": "Backend Engineer",
+        "match_percentage": 32.0,
+        "description": "Architects server-side logic, database schemas, asynchronous queues, microservices, and high-concurrency API integrations.",
+        "required_skills": [
+          "Python",
+          "FastAPI",
+          "Node.js",
+          "SQL",
+          "PostgreSQL",
+          "Redis",
+          "Docker",
+          "REST APIs",
+          "Microservices",
+          "Git"
+        ],
+        "matching_skills": [
+          "Python",
+          "FastAPI",
+          "SQL",
+          "Git"
+        ],
+        "missing_skills": [
+          "Node.js",
+          "PostgreSQL",
+          "Redis",
+          "Docker",
+          "REST APIs",
+          "Microservices"
+        ],
+        "market_demand": "High",
+        "salary_range": "$90,000 - $140,000 / year",
+        "reason": "Backend Engineer is a strong match based on your current skill set and interests.",
+        "category": "Software Engineering"
+      },
+      {
+        "title": "Data Engineer",
+        "match_percentage": 26.7,
+        "description": "Builds and maintains robust ETL pipelines, data warehouses, streaming systems, and big data storage architectures.",
+        "required_skills": [
+          "Python",
+          "SQL",
+          "PostgreSQL",
+          "Apache Spark",
+          "Airflow",
+          "Docker",
+          "AWS S3",
+          "Data Warehousing",
+          "Git"
+        ],
+        "matching_skills": [
+          "Python",
+          "SQL",
+          "Git"
+        ],
+        "missing_skills": [
+          "PostgreSQL",
+          "Apache Spark",
+          "Airflow",
+          "Docker",
+          "AWS S3",
+          "Data Warehousing"
+        ],
+        "market_demand": "High",
+        "salary_range": "$95,000 - $145,000 / year",
+        "reason": "Data Engineer is a strong match based on your current skill set and interests.",
+        "category": "Data & Analytics"
+      }
+    ],
+    "generated_at": "2026-08-13 18:44:22.484007"
+  },
+  "skillGapReports/dev-user-id": {
+    "target_career": "Backend Engineer",
+    "matching_skills": [
+      "Python",
+      "FastAPI",
+      "SQL",
+      "Git"
+    ],
+    "missing_skills": [
+      {
+        "skill": "Node.js",
+        "importance": "high",
+        "difficulty": "hard",
+        "courses": [],
+        "status": "missing"
+      },
+      {
+        "skill": "PostgreSQL",
+        "importance": "medium",
+        "difficulty": "medium",
+        "courses": [],
+        "status": "missing"
+      },
+      {
+        "skill": "Redis",
+        "importance": "medium",
+        "difficulty": "medium",
+        "courses": [],
+        "status": "missing"
+      },
+      {
+        "skill": "Docker",
+        "importance": "medium",
+        "difficulty": "medium",
+        "courses": [
+          {
+            "id": "c3",
+            "title": "Docker & Containerization for Developers",
+            "skill": "Docker",
+            "platform": "Docker Official Docs",
+            "difficulty": "medium",
+            "duration": "12 hours",
+            "url": "https://docker.com"
+          }
+        ],
+        "status": "missing"
+      },
+      {
+        "skill": "REST APIs",
+        "importance": "low",
+        "difficulty": "medium",
+        "courses": [],
+        "status": "missing"
+      },
+      {
+        "skill": "Microservices",
+        "importance": "low",
+        "difficulty": "medium",
+        "courses": [
+          {
+            "id": "c2",
+            "title": "FastAPI & Python Microservices Architecture",
+            "skill": "FastAPI",
+            "platform": "Udemy",
+            "difficulty": "medium",
+            "duration": "16 hours",
+            "url": "https://udemy.com"
+          }
+        ],
+        "status": "missing"
+      }
+    ],
+    "completion_percentage": 40.0,
+    "total_required": 10,
+    "total_matching": 4,
+    "uid": "dev-user-id",
+    "generated_at": "2026-08-15 13:03:53.615425"
+  },
+  "chatHistory/dev-user-id/conversations/6d7ff089-2814-4143-b185-5863dc36cfad": {
+    "id": "6d7ff089-2814-4143-b185-5863dc36cfad",
+    "uid": "dev-user-id",
+    "title": "Review my current resume ATS parser",
+    "created_at": "2026-08-13 18:44:34.767978",
+    "updated_at": "2026-08-13 18:45:04.000867",
+    "messages": [
+      {
+        "role": "user",
+        "content": "Review my current resume ATS parser alignment",
+        "timestamp": "2026-08-13T18:45:04.000867"
+      },
+      {
+        "role": "assistant",
+        "content": "### Resume ATS Diagnostic Audit\n\nHello Alex Morgan! Here is a strategic review to maximize your ATS (Applicant Tracking System) parser alignment:\n\n1. **Formatting & Structure**:\n   - Use a single-column layout without tables, text boxes, or embedded images in section titles.\n   - Use standardized headers: `Technical Skills`, `Work Experience`, `Projects`, `Education`, `Certifications`.\n\n2. **Keyword Optimization for Full Stack Engineer**:\n   - Explicitly list tech keywords matching target job descriptions (e.g., `React, TypeScript, Python, FastAPI, Tailwind CSS, SQL, Git`).\n   - Avoid generic terms; use exact names (\"TypeScript\", \"PostgreSQL\", \"Docker\", \"REST API\").\n\n3. **Impact-Driven Experience Bullet Points (Google XYZ Method)**:\n   - *Format*: \"Accomplished [X], as measured by [Y], by doing [Z]\".\n   - *Example*: \"Engineered a asynchronous queue processor handling 10k events/sec, reducing API response latency by 35%.\"\n\n**Pro Tip**: Upload your resume to the **Resume & ATS Diagnostic Scanner** tab to get an immediate keyword density match percentage!",
+        "timestamp": "2026-08-13T18:45:04.000867"
+      }
+    ]
+  },
+  "assessments/dev-user-id/records/test_1786626931": {
+    "id": "f3f3ef65-19b7-468c-ae03-8890f7476dac",
+    "record_id": "test_1786626931",
+    "test_id": "react-arch",
+    "test_title": "React.js & Architecture Benchmark",
+    "category": "Frontend",
+    "score": 50.0,
+    "total_questions": 2,
+    "correct_count": 1,
+    "timestamp": "2026-08-13T18:45:31.313727"
+  },
+  "readinessHistory/dev-user-id": {
+    "uid": "dev-user-id",
+    "history": [
+      {
+        "timestamp": "2026-08-13T18:45:31.532733",
+        "total_score": 28.1,
+        "delta": 28.1,
+        "reason": "Initial Evaluation",
+        "category_breakdown": {
+          "skills": 16.46,
+          "projects": 0.0,
+          "interviews": 0.0,
+          "resume": 8.0,
+          "assessments": 3.67,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:46:23.977903",
+        "total_score": 22.4,
+        "delta": -5.7,
+        "reason": "Resume ATS Audit Executed",
+        "category_breakdown": {
+          "skills": 16.46,
+          "projects": 0.0,
+          "interviews": 0.0,
+          "resume": 2.25,
+          "assessments": 3.67,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-13T18:48:19.469722",
+        "total_score": 25.7,
+        "delta": 3.3,
+        "reason": "Completed AI Mock Interview",
+        "category_breakdown": {
+          "skills": 16.46,
+          "projects": 0.0,
+          "interviews": 3.33,
+          "resume": 2.25,
+          "assessments": 3.67,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-15T12:37:52.798831",
+        "total_score": 18.0,
+        "delta": -7.7,
+        "reason": "Resume ATS Audit Executed",
+        "category_breakdown": {
+          "skills": 8.79,
+          "projects": 0.0,
+          "interviews": 3.33,
+          "resume": 2.25,
+          "assessments": 3.67,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-15T15:07:28.060754",
+        "total_score": 17.6,
+        "delta": -0.4,
+        "reason": "Completed AI Mock Interview",
+        "category_breakdown": {
+          "skills": 8.79,
+          "projects": 0.0,
+          "interviews": 2.92,
+          "resume": 2.25,
+          "assessments": 3.67,
+          "certificates": 0.0
+        }
+      }
+    ],
+    "updated_at": "2026-08-15T15:07:28.070020"
+  },
+  "resumes/dev-user-id/versions/v_1786626983": {
+    "id": "f47121a0-bb9e-4fbb-874d-7c98840e4bbd",
+    "version_id": "v_1786626983",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 15,
+    "score": 15,
+    "breakdown": {
+      "formatting": 30,
+      "keywords_match": 10,
+      "action_verbs": 10,
+      "quantifiable_impact": 10
+    },
+    "matched_keywords": [],
+    "missing_keywords": [
+      "Python",
+      "React",
+      "SQL",
+      "Git",
+      "Docker"
+    ],
+    "strengths": [
+      "Document input received"
+    ],
+    "improvements": [
+      "Resume content is too brief for ATS parsing. Please upload a full resume."
+    ],
+    "timestamp": "2026-08-13T18:46:23.910256"
+  },
+  "resumes/dev-user-id/versions/v_1786626996": {
+    "id": "a71bc95f-972a-4295-a483-9978e1864bff",
+    "version_id": "v_1786626996",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 15,
+    "score": 15,
+    "breakdown": {
+      "formatting": 30,
+      "keywords_match": 10,
+      "action_verbs": 10,
+      "quantifiable_impact": 10
+    },
+    "matched_keywords": [],
+    "missing_keywords": [
+      "Python",
+      "React",
+      "SQL",
+      "Git",
+      "Docker"
+    ],
+    "strengths": [
+      "Document input received"
+    ],
+    "improvements": [
+      "Resume content is too brief for ATS parsing. Please upload a full resume."
+    ],
+    "timestamp": "2026-08-13T18:46:36.204905"
+  },
+  "interviews/dev-user-id/sessions/sess_1786627098": {
+    "id": "f952b945-3b4b-4fa3-9ca6-ecc8cdb14d8a",
+    "session_id": "sess_1786627098",
+    "role": "Full-Stack Engineer",
+    "category": "technical",
+    "question": "Explain how you would design a RESTful API for a high-traffic Full-Stack Engineer application.",
+    "score": 25,
+    "overall_score": 25,
+    "clarity": 35,
+    "technical_accuracy": 18,
+    "feedback": "Your response is well-formed grammatically, but lacks core technical keywords (such as http, endpoint, json) expected for a Full-Stack Engineer candidate.",
+    "timestamp": "2026-08-13T18:48:19.001910"
+  },
+  "readinessHistory/test_student_cf032b21": {
+    "uid": "test_student_cf032b21",
+    "history": [
+      {
+        "timestamp": "2026-08-15T12:27:18.996607",
+        "total_score": 0.0,
+        "delta": 0.0,
+        "reason": "Initial Evaluation",
+        "category_breakdown": {
+          "skills": 0.0,
+          "projects": 0.0,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 0.0,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-15T12:27:19.021573",
+        "total_score": 27.5,
+        "delta": 27.5,
+        "reason": "Profile & Skills Added",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 0.0,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-15T12:27:19.034221",
+        "total_score": 34.1,
+        "delta": 6.6,
+        "reason": "Completed DSA Assessment (90%)",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-15T12:27:19.053264",
+        "total_score": 49.2,
+        "delta": 15.1,
+        "reason": "Completed 2 Mock Interviews with score growth",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 15.12,
+          "resume": 0.0,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-15T12:27:19.073352",
+        "total_score": 61.9,
+        "delta": 12.7,
+        "reason": "Completed Resume ATS Scan",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 15.12,
+          "resume": 12.75,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      }
+    ],
+    "updated_at": "2026-08-15T12:27:19.073412"
+  },
+  "profiles/test_student_cf032b21": {
+    "uid": "test_student_cf032b21",
+    "name": "Jane Developer",
+    "target_career": "Full-Stack Engineer",
+    "skills": [
+      {
+        "name": "Python",
+        "level": "Advanced",
+        "verified": true
+      },
+      {
+        "name": "FastAPI",
+        "level": "Intermediate",
+        "verified": false
+      },
+      {
+        "name": "React",
+        "level": "Advanced",
+        "verified": true
+      },
+      {
+        "name": "SQL",
+        "level": "Expert",
+        "verified": true
+      },
+      {
+        "name": "Docker",
+        "level": "Intermediate",
+        "verified": false
+      }
+    ],
+    "projects": [
+      {
+        "title": "E-Commerce Microservices",
+        "description": "High-throughput microservices architecture with FastAPI and PostgreSQL",
+        "technologies": [
+          "Python",
+          "FastAPI",
+          "Docker",
+          "PostgreSQL"
+        ],
+        "github_url": "https://github.com/janedev/ecommerce",
+        "live_url": "https://ecommerce.demo"
+      }
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner"
+    ]
+  },
+  "assessments/test_student_cf032b21/records/test_dsa_1": {
+    "record_id": "test_dsa_1",
+    "test_id": "dsa",
+    "test_title": "Data Structures & Algorithms Core Assessment",
+    "category": "Algorithms",
+    "score": 90.0,
+    "total_questions": 5,
+    "correct_count": 4,
+    "timestamp": "2026-08-14T10:00:00Z"
+  },
+  "interviews/test_student_cf032b21/sessions/sess_1": {
+    "session_id": "sess_1",
+    "role": "Full-Stack Engineer",
+    "category": "technical",
+    "overall_score": 75.0,
+    "score": 75.0,
+    "clarity": 78.0,
+    "technical_accuracy": 76.0,
+    "timestamp": "2026-08-14T11:00:00Z"
+  },
+  "interviews/test_student_cf032b21/sessions/sess_2": {
+    "session_id": "sess_2",
+    "role": "Full-Stack Engineer",
+    "category": "technical",
+    "overall_score": 90.0,
+    "score": 90.0,
+    "clarity": 92.0,
+    "technical_accuracy": 88.0,
+    "timestamp": "2026-08-14T12:00:00Z"
+  },
+  "resumes/test_student_cf032b21/versions/v_1": {
+    "version_id": "v_1",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 85,
+    "score": 85,
+    "matched_keywords": [
+      "Python",
+      "React",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "missing_keywords": [
+      "AWS",
+      "CI/CD"
+    ],
+    "timestamp": "2026-08-14T13:00:00Z"
+  },
+  "jobScores/test_student_cf032b21": {
+    "uid": "test_student_cf032b21",
+    "skills_score": 18.95,
+    "projects_score": 5.19,
+    "interviews_score": 15.12,
+    "resume_score": 12.75,
+    "assessments_score": 6.6,
+    "certificates_score": 3.33,
+    "profile_score": 11.8,
+    "internships_score": 15.12,
+    "total_score": 61.9,
+    "confidence_level": "High Data Precision",
+    "data_quality_notice": "Verified multi-signal evidence matched against 2026 corporate hiring benchmarks.",
+    "max_scores": {
+      "skills": 25,
+      "projects": 20,
+      "interviews": 20,
+      "resume": 15,
+      "assessments": 10,
+      "certificates": 10
+    },
+    "factors_breakdown": {
+      "skills": {
+        "score": 18.95,
+        "max": 25.0,
+        "percentage": 75.8,
+        "count": 5,
+        "verified": 3
+      },
+      "projects": {
+        "score": 5.19,
+        "max": 20.0,
+        "percentage": 25.9,
+        "count": 1
+      },
+      "interviews": {
+        "score": 15.12,
+        "max": 20.0,
+        "percentage": 75.6,
+        "count": 2
+      },
+      "resume": {
+        "score": 12.75,
+        "max": 15.0,
+        "percentage": 85.0,
+        "version_count": 1
+      },
+      "assessments": {
+        "score": 6.6,
+        "max": 10.0,
+        "percentage": 66.0,
+        "completed": 1
+      },
+      "certificates": {
+        "score": 3.33,
+        "max": 10.0,
+        "percentage": 33.3,
+        "count": 1
+      }
+    },
+    "positive_drivers": [
+      "+18.95 pts: Strong technical skill alignment with Full Stack Engineer requisitions.",
+      "+15.12 pts: Verified AI Mock Interview performance across 2 sessions.",
+      "+12.75 pts: ATS keyword density and structure compliance audited."
+    ],
+    "suggestions": [
+      "Target Alignment (Full Stack Engineer): Add key role skills 'TypeScript, REST APIs, PostgreSQL' to boost your score by up to +6.1 pts.",
+      "Portfolio Depth: Add detailed project descriptions with GitHub repository links and live demo URLs."
+    ],
+    "history": [
+      {
+        "timestamp": "2026-08-15T12:27:18.996607",
+        "total_score": 0.0,
+        "delta": 0.0,
+        "reason": "Initial Evaluation",
+        "category_breakdown": {
+          "skills": 0.0,
+          "projects": 0.0,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 0.0,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-15T12:27:19.021573",
+        "total_score": 27.5,
+        "delta": 27.5,
+        "reason": "Profile & Skills Added",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 0.0,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-15T12:27:19.034221",
+        "total_score": 34.1,
+        "delta": 6.6,
+        "reason": "Completed DSA Assessment (90%)",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-15T12:27:19.053264",
+        "total_score": 49.2,
+        "delta": 15.1,
+        "reason": "Completed 2 Mock Interviews with score growth",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 15.12,
+          "resume": 0.0,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      },
+      {
+        "timestamp": "2026-08-15T12:27:19.073352",
+        "total_score": 61.9,
+        "delta": 12.7,
+        "reason": "Completed Resume ATS Scan",
+        "category_breakdown": {
+          "skills": 18.95,
+          "projects": 5.19,
+          "interviews": 15.12,
+          "resume": 12.75,
+          "assessments": 6.6,
+          "certificates": 3.33
+        }
+      }
+    ],
+    "updated_at": "2026-08-15T12:27:19.073157"
+  },
+  "resumes/dev-user-id/versions/v_1786777657": {
+    "id": "acd267db-74c9-417f-b987-6984cc196292",
+    "version_id": "v_1786777657",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 15,
+    "score": 15,
+    "breakdown": {
+      "formatting": 30,
+      "keywords_match": 10,
+      "action_verbs": 10,
+      "quantifiable_impact": 10
+    },
+    "matched_keywords": [],
+    "missing_keywords": [
+      "Python",
+      "React",
+      "SQL",
+      "Git",
+      "Docker"
+    ],
+    "strengths": [
+      "Document input received"
+    ],
+    "improvements": [
+      "Resume content is too brief for ATS parsing. Please upload a full resume."
+    ],
+    "skill_match_details": {
+      "is_perfect_match": false,
+      "match_percentage": 0.0,
+      "exact_count": 0,
+      "total_required": 5,
+      "status_label": "0% Requisition Match"
+    },
+    "timestamp": "2026-08-15T12:37:37.643508"
+  },
+  "resumes/dev-user-id/versions/v_1786777891": {
+    "id": "719f06f2-2191-4015-9947-cf25d58452d5",
+    "version_id": "v_1786777891",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 15,
+    "score": 15,
+    "breakdown": {
+      "formatting": 30,
+      "keywords_match": 10,
+      "action_verbs": 10,
+      "quantifiable_impact": 10
+    },
+    "matched_keywords": [],
+    "missing_keywords": [
+      "Python",
+      "React",
+      "SQL",
+      "Git",
+      "Docker"
+    ],
+    "strengths": [
+      "Document input received"
+    ],
+    "improvements": [
+      "Resume content is too brief for ATS parsing. Please upload a full resume."
+    ],
+    "skill_match_details": {
+      "is_perfect_match": false,
+      "match_percentage": 0.0,
+      "exact_count": 0,
+      "total_required": 5,
+      "status_label": "0% Requisition Match"
+    },
+    "timestamp": "2026-08-15T12:41:31.332015"
+  },
+  "resumes/dev-user-id/versions/v_1786777977": {
+    "id": "cf387510-b1eb-4f1e-bd4a-0459c3a27bdc",
+    "version_id": "v_1786777977",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 15,
+    "score": 15,
+    "breakdown": {
+      "formatting": 30,
+      "keywords_match": 10,
+      "action_verbs": 10,
+      "quantifiable_impact": 10
+    },
+    "matched_keywords": [],
+    "missing_keywords": [
+      "Python",
+      "React",
+      "SQL",
+      "Git",
+      "Docker"
+    ],
+    "strengths": [
+      "Document input received"
+    ],
+    "improvements": [
+      "Resume content is too brief for ATS parsing. Please upload a full resume."
+    ],
+    "skill_match_details": {
+      "is_perfect_match": false,
+      "match_percentage": 0.0,
+      "exact_count": 0,
+      "total_required": 5,
+      "status_label": "0% Requisition Match"
+    },
+    "timestamp": "2026-08-15T12:42:57.517661"
+  },
+  "resumes/dev-user-id/versions/v_1786778001": {
+    "id": "fbfcd099-76c2-407e-a3ac-5e7fc376df0d",
+    "version_id": "v_1786778001",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 15,
+    "score": 15,
+    "breakdown": {
+      "formatting": 30,
+      "keywords_match": 10,
+      "action_verbs": 10,
+      "quantifiable_impact": 10
+    },
+    "matched_keywords": [],
+    "missing_keywords": [
+      "Python",
+      "React",
+      "SQL",
+      "Git",
+      "Docker"
+    ],
+    "strengths": [
+      "Document input received"
+    ],
+    "improvements": [
+      "Resume content is too brief for ATS parsing. Please upload a full resume."
+    ],
+    "skill_match_details": {
+      "is_perfect_match": false,
+      "match_percentage": 0.0,
+      "exact_count": 0,
+      "total_required": 5,
+      "status_label": "0% Requisition Match"
+    },
+    "timestamp": "2026-08-15T12:43:21.130675"
+  },
+  "resumes/dev-user-id/versions/v_1786778030": {
+    "id": "69507cb6-535e-42ee-8d83-f7d34d14599e",
+    "version_id": "v_1786778030",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 15,
+    "score": 15,
+    "breakdown": {
+      "formatting": 30,
+      "keywords_match": 10,
+      "action_verbs": 10,
+      "quantifiable_impact": 10
+    },
+    "matched_keywords": [],
+    "missing_keywords": [
+      "Python",
+      "React",
+      "SQL",
+      "Git",
+      "Docker"
+    ],
+    "strengths": [
+      "Document input received"
+    ],
+    "improvements": [
+      "Resume content is too brief for ATS parsing. Please upload a full resume."
+    ],
+    "skill_match_details": {
+      "is_perfect_match": false,
+      "match_percentage": 0.0,
+      "exact_count": 0,
+      "total_required": 5,
+      "status_label": "0% Requisition Match"
+    },
+    "timestamp": "2026-08-15T12:43:50.747370"
+  },
+  "resumes/dev-user-id/versions/v_1786778524": {
+    "id": "bcf430f3-d1b8-47f2-a320-f60ec0b8a844",
+    "version_id": "v_1786778524",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 15,
+    "score": 15,
+    "breakdown": {
+      "formatting": 30,
+      "keywords_match": 10,
+      "action_verbs": 10,
+      "quantifiable_impact": 10
+    },
+    "matched_keywords": [],
+    "missing_keywords": [
+      "Python",
+      "React",
+      "SQL",
+      "Git",
+      "Docker"
+    ],
+    "strengths": [
+      "Document input received"
+    ],
+    "improvements": [
+      "Resume content is too brief for ATS parsing. Please upload a full resume."
+    ],
+    "skill_match_details": {
+      "is_perfect_match": false,
+      "match_percentage": 0.0,
+      "exact_count": 0,
+      "total_required": 5,
+      "status_label": "0% Requisition Match"
+    },
+    "timestamp": "2026-08-15T12:52:04.030278"
+  },
+  "learningProgress/dev-user-id": {
+    "uid": "dev-user-id",
+    "target_career": "Backend Engineer",
+    "stages": {
+      "1": [],
+      "2": [],
+      "3": [
+        {
+          "id": "69286a5b-f0c6-4ccf-bd91-32cb24671a8f",
+          "title": "Docker & Containerization for Developers",
+          "description": "Master Docker through this comprehensive course",
+          "resource_url": "https://docker.com",
+          "skill": "Docker",
+          "stage": 3,
+          "stage_name": "Advanced Skills",
+          "status": "not_started",
+          "difficulty": "medium",
+          "platform": "Docker Official Docs"
+        }
+      ],
+      "4": [
+        {
+          "id": "56480beb-2a44-4b43-830e-eccc281dd3ec",
+          "title": "FastAPI & Python Microservices Architecture",
+          "description": "Master Microservices through this comprehensive course",
+          "resource_url": "https://udemy.com",
+          "skill": "Microservices",
+          "stage": 4,
+          "stage_name": "Projects & Portfolio",
+          "status": "not_started",
+          "difficulty": "medium",
+          "platform": "Udemy"
+        }
+      ],
+      "5": [
+        {
+          "id": "79a7df18-d90c-47c8-b239-da7b467e4d05",
+          "title": "Mock Interviews for Backend Engineer",
+          "description": "Practice with LeetCode, system design, and behavioral questions",
+          "resource_url": "https://leetcode.com",
+          "skill": "Interview Skills",
+          "stage": 5,
+          "stage_name": "Interview Preparation",
+          "status": "not_started",
+          "difficulty": "hard",
+          "platform": "LeetCode"
+        }
+      ]
+    },
+    "total_items": 3,
+    "completed_items": 0,
+    "in_progress_items": 0,
+    "progress_percentage": 0.0,
+    "generated_at": "2026-08-15 13:08:27.586195"
+  },
+  "interviews/dev-user-id/sessions/sess_1786786647": {
+    "id": "7225b432-fffe-4e5b-9631-316e61d6e62d",
+    "session_id": "sess_1786786647",
+    "role": "Full-Stack Engineer",
+    "category": "technical",
+    "question": "Explain how you would design a RESTful API for a high-traffic Full-Stack Engineer application.",
+    "score": 10,
+    "overall_score": 10,
+    "clarity": 15,
+    "technical_accuracy": 5,
+    "feedback": "Your response is too brief to evaluate candidate technical competency. Please provide a detailed response explaining your technical approach.",
+    "timestamp": "2026-08-15T15:07:27.674203"
+  }
+}

@@ -20,6 +20,11 @@ class Settings(BaseSettings):
     SUPABASE_SERVICE_ROLE_KEY: str = ""
     SUPABASE_JWT_SECRET: str = ""
 
+    # Firebase
+    FIREBASE_SERVICE_ACCOUNT_JSON: str = ""
+    FIREBASE_SERVICE_ACCOUNT_PATH: str = "./firebase-service-account.json"
+    FIREBASE_STORAGE_BUCKET: str = ""
+
     # Tesseract
     TESSERACT_CMD: str = "C:/Program Files/Tesseract-OCR/tesseract.exe"
 
@@ -29,7 +34,7 @@ class Settings(BaseSettings):
     MAX_FILE_SIZE_MB: int = 10
 
     # Datasets
-    DATA_DIR: str = "./data"
+    DATA_DIR: str = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data"))
 
     class Config:
         env_file = ".env"

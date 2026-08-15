@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { FileCode, CheckCircle2, XCircle, Clock, ArrowRight, RefreshCw } from 'lucide-react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { FileCode, CheckCircle2, XCircle, Clock, ArrowRight, RefreshCw, Sparkles } from 'lucide-react'
+import api from '@/lib/api'
 import toast from 'react-hot-toast'
 
 const MOCK_TESTS = [
@@ -78,19 +80,50 @@ const MOCK_TESTS = [
 ]
 
 export default function MockTestsPage() {
+  const queryClient = useQueryClient()
   const [selectedTest, setSelectedTest] = useState<any>(null)
   const [currentQ, setCurrentQ] = useState(0)
   const [answers, setAnswers] = useState<Record<number, number>>({})
   const [submitted, setSubmitted] = useState(false)
+  const [scoreEarned, setScoreEarned] = useState<number | null>(null)
 
   const handleSelectOption = (qIdx: number, optIdx: number) => {
     if (submitted) return
     setAnswers(prev => ({ ...prev, [qIdx]: optIdx }))
   }
 
+  const submitMutation = useMutation({
+    mutationFn: async (testScore: number) => {
+      let correctCount = 0
+      selectedTest.questions.forEach((q: any, idx: number) => {
+        if (answers[idx] === q.correct) correctCount++
+      })
+      const res = await api.post('/api/assessments/submit', {
+        test_id: selectedTest.id,
+        test_title: selectedTest.title,
+        category: selectedTest.category,
+        score: testScore,
+        total_questions: selectedTest.questions.length,
+        correct_count: correctCount,
+      })
+      return res.data
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['jobScore'] })
+      toast.success(`Mock Test Submitted! Career Readiness Score elevated to ${data.readiness_score || 75}%`)
+    }
+  })
+
   const handleSubmit = () => {
+    if (!selectedTest) return
+    let correctCount = 0
+    selectedTest.questions.forEach((q: any, idx: number) => {
+      if (answers[idx] === q.correct) correctCount++
+    })
+    const score = Math.round((correctCount / selectedTest.questions.length) * 100)
+    setScoreEarned(score)
     setSubmitted(true)
-    toast.success('Mock Test Submitted! Performance score calculated.')
+    submitMutation.mutate(score)
   }
 
   const resetTest = () => {
@@ -98,9 +131,11 @@ export default function MockTestsPage() {
     setCurrentQ(0)
     setAnswers({})
     setSubmitted(false)
+    setScoreEarned(null)
   }
 
   const calculateScore = () => {
+    if (scoreEarned !== null) return scoreEarned
     if (!selectedTest) return 0
     let correctCount = 0
     selectedTest.questions.forEach((q: any, idx: number) => {
@@ -114,11 +149,11 @@ export default function MockTestsPage() {
       {/* Header Banner */}
       <div className="card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
         <div>
-          <span className="text-[10px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider block mb-1">Technical Readiness Verification</span>
+          <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Technical Readiness Verification</span>
           <div className="flex items-center gap-3">
             <h2 className="font-heading text-3xl font-extrabold text-app">Technical Mock Test Drills</h2>
             <span className="badge badge-emerald flex items-center gap-1">
-              <FileCode className="w-3 h-3 text-teal-700 dark:text-teal-400" /> Timed Drills
+              <FileCode className="w-3 h-3 text-[#FF5722] dark:text-[#FF7043]" /> Timed Drills
             </span>
           </div>
           <p className="text-secondary text-xs mt-1 font-medium">
@@ -131,7 +166,7 @@ export default function MockTestsPage() {
         /* Test Selection Cards */
         <div className="grid md:grid-cols-3 gap-4">
           {MOCK_TESTS.map((test) => (
-            <div key={test.id} className="card p-5 space-y-4 flex flex-col justify-between hover:border-teal-700/50 transition-all">
+            <div key={test.id} className="card p-5 space-y-4 flex flex-col justify-between hover:border-[#FF5722]/50 transition-all">
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <span className="badge badge-sand text-[10px]">{test.category}</span>
@@ -157,7 +192,7 @@ export default function MockTestsPage() {
         /* Active Test Interface */
         <div className="max-w-3xl mx-auto space-y-4">
           <div className="flex items-center justify-between">
-            <button onClick={resetTest} className="text-xs font-bold text-teal-700 dark:text-teal-400 hover:underline">
+            <button onClick={resetTest} className="text-xs font-bold text-[#FF5722] dark:text-[#FF7043] hover:underline">
               ← Back to Test Catalog
             </button>
             <span className="badge badge-emerald">
@@ -171,7 +206,7 @@ export default function MockTestsPage() {
                 Question {currentQ + 1} of {selectedTest.questions.length}
               </span>
               {submitted && (
-                <span className="font-heading text-lg font-bold text-teal-700 dark:text-teal-400">
+                <span className="font-heading text-lg font-bold text-[#FF5722] dark:text-[#FF7043]">
                   Score: {calculateScore()}%
                 </span>
               )}
@@ -190,10 +225,10 @@ export default function MockTestsPage() {
 
                   let btnStyle = 'border-app bg-surface text-app hover:bg-subtle font-medium'
                   if (submitted) {
-                    if (isCorrect) btnStyle = 'border-teal-600 bg-teal-50 text-teal-950 font-bold dark:bg-teal-950/50 dark:text-teal-200'
+                    if (isCorrect) btnStyle = 'border-[#FF5722] bg-[#FF5722]/10 text-[#FF5722] font-bold dark:bg-[#FF5722]/15 dark:text-[#FF7043]'
                     else if (isSelected && !isCorrect) btnStyle = 'border-red-500 bg-red-50 text-red-950 font-bold dark:bg-red-950/50 dark:text-red-200'
                   } else if (isSelected) {
-                    btnStyle = 'border-teal-700 bg-teal-50 text-teal-950 font-bold dark:bg-teal-950/40 dark:text-teal-200'
+                    btnStyle = 'border-[#FF5722] bg-[#FF5722]/10 text-[#FF5722] font-bold dark:bg-[#FF5722]/15 dark:text-[#FF7043]'
                   }
 
                   return (
@@ -203,7 +238,7 @@ export default function MockTestsPage() {
                       className={`w-full p-3.5 border rounded-md text-left text-xs transition-all flex items-center justify-between ${btnStyle}`}
                     >
                       <span>{opt}</span>
-                      {submitted && isCorrect && <CheckCircle2 className="w-4 h-4 text-teal-600 flex-shrink-0" />}
+                      {submitted && isCorrect && <CheckCircle2 className="w-4 h-4 text-[#FF5722] flex-shrink-0" />}
                       {submitted && isSelected && !isCorrect && <XCircle className="w-4 h-4 text-red-600 flex-shrink-0" />}
                     </button>
                   )

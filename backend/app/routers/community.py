@@ -2,7 +2,7 @@
 CareerPilot AI — Community & Peer Network Router
 """
 from fastapi import APIRouter, Depends, Body, HTTPException
-from app.core.auth import get_current_user_optional
+from app.core.dependencies import get_current_user_optional
 import logging
 
 logger = logging.getLogger(__name__)

@@ -30,19 +30,19 @@ export default function ForgotPasswordPage() {
       <div className="w-full max-w-md animate-fade-in space-y-6 relative z-10">
         {/* Logo Header */}
         <div className="flex items-center justify-center gap-3">
-          <div className="w-9 h-9 bg-teal-700 dark:bg-teal-600 rounded-xl flex items-center justify-center text-white shadow-xs">
-            <Compass className="w-5 h-5 text-white" />
+          <div className="w-9 h-9 bg-[#1a1f3a] dark:bg-[#141936] rounded-xl flex items-center justify-center text-white shadow-xs">
+            <Compass className="w-5 h-5 text-[#FF5722]" />
           </div>
           <div>
             <span className="font-heading text-2xl font-extrabold text-app">CareerPilot AI</span>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-teal-700 dark:text-teal-400 block -mt-1">Candidate Intelligence Platform</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-[#FF5722] dark:text-[#FF7043] block -mt-1">Candidate Intelligence Platform</p>
           </div>
         </div>
 
         <div className="auth-card p-8">
           {sent ? (
             <div className="text-center space-y-4">
-              <div className="w-12 h-12 bg-teal-50 dark:bg-teal-950/40 text-teal-700 dark:text-teal-400 border border-teal-200 dark:border-teal-800 rounded-full flex items-center justify-center mx-auto">
+              <div className="w-12 h-12 bg-[#FF5722]/10 dark:bg-[#FF5722]/15 text-[#FF5722] dark:text-[#FF7043] border border-[#FF5722]/30 dark:border-[#FF5722]/40 rounded-full flex items-center justify-center mx-auto">
                 <Mail className="w-6 h-6" />
               </div>
               <h2 className="font-heading text-2xl font-bold text-app">Check Your Email</h2>

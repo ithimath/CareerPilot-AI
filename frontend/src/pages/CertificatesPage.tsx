@@ -27,10 +27,10 @@ function CertCard({ cert, onDelete, onReprocess }: any) {
     <div className="card p-5">
       <div className="flex items-start gap-4">
         {/* Icon */}
-        <div className="w-10 h-10 bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800 rounded-md flex items-center justify-center flex-shrink-0">
+        <div className="w-10 h-10 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded-md flex items-center justify-center flex-shrink-0">
           {cert.file_name?.endsWith('.pdf')
-            ? <FileText className="w-5 h-5 text-teal-700 dark:text-teal-400" />
-            : <Image className="w-5 h-5 text-teal-700 dark:text-teal-400" />
+            ? <FileText className="w-5 h-5 text-[#FF5722] dark:text-[#FF7043]" />
+            : <Image className="w-5 h-5 text-[#FF5722] dark:text-[#FF7043]" />
           }
         </div>
 
@@ -41,7 +41,7 @@ function CertCard({ cert, onDelete, onReprocess }: any) {
                 {cert.certificate_title || cert.file_name}
               </p>
               {cert.issuing_organization && (
-                <p className="text-xs font-bold text-teal-700 dark:text-teal-400">{cert.issuing_organization}</p>
+                <p className="text-xs font-bold text-[#FF5722] dark:text-[#FF7043]">{cert.issuing_organization}</p>
               )}
               <p className="text-[10px] text-secondary font-medium mt-0.5">
                 Uploaded: {cert.upload_date ? new Date(cert.upload_date).toLocaleDateString() : ''}
@@ -60,7 +60,7 @@ function CertCard({ cert, onDelete, onReprocess }: any) {
             <div className="mt-3">
               <div className="flex flex-wrap gap-1.5">
                 {allSkills.slice(0, expanded ? 100 : 6).map((s: string) => (
-                  <span key={s} className="px-2.5 py-0.5 text-[11px] font-bold bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800 rounded">
+                  <span key={s} className="px-2.5 py-0.5 text-[11px] font-bold bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded">
                     {s}
                   </span>
                 ))}
@@ -94,7 +94,7 @@ function CertCard({ cert, onDelete, onReprocess }: any) {
           {cert.status === 'failed' && (
             <button
               onClick={() => onReprocess(cert.id)}
-              className="p-1.5 text-teal-700 dark:text-teal-400 hover:bg-subtle rounded"
+              className="p-1.5 text-[#FF5722] dark:text-[#FF7043] hover:bg-subtle rounded"
               title="Retry verification"
             >
               <RefreshCw className="w-3.5 h-3.5" />
@@ -119,64 +119,56 @@ export default function CertificatesPage() {
 
   const { data, isLoading } = useQuery({
     queryKey: ['certificates'],
-    queryFn: () => api.get('/api/certificates').then(r => r.data),
-    refetchInterval: (query) => {
-      const certs = query.state.data?.certificates || []
-      const hasProcessing = certs.some((c: any) => ['processing', 'ai_analyzing', 'text_extracted'].includes(c.status))
-      return hasProcessing ? 3000 : false
+    queryFn: () => api.get('/api/certificates').then((r) => r.data),
+  })
+
+  const uploadMutation = useMutation({
+    mutationFn: (file: File) => {
+      const formData = new FormData()
+      formData.append('file', file)
+      return api.post('/api/certificates/upload', formData)
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['certificates'] })
+      queryClient.invalidateQueries({ queryKey: ['profile'] })
+      toast.success('Certificate uploaded! Extracted skills mapped to profile.')
+    },
+    onError: (err: any) => toast.error(err.message || 'Upload failed'),
+    onSettled: () => setUploading(false),
   })
 
   const deleteMutation = useMutation({
     mutationFn: (id: string) => api.delete(`/api/certificates/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['certificates'] })
-      queryClient.invalidateQueries({ queryKey: ['profile'] })
-      queryClient.invalidateQueries({ queryKey: ['jobScore'] })
-      toast.success('Certificate entry removed')
+      toast.success('Certificate deleted')
     },
-    onError: () => toast.error('Delete failed'),
   })
 
   const reprocessMutation = useMutation({
-    mutationFn: (id: string) => api.post(`/api/ocr/reprocess/${id}`),
+    mutationFn: (id: string) => api.post(`/api/certificates/${id}/reprocess`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['certificates'] })
-      toast.success('Reprocessing OCR text extraction')
+      toast.success('Reprocessing triggered')
     },
   })
 
-  const onDrop = useCallback(async (acceptedFiles: File[]) => {
-    for (const file of acceptedFiles) {
-      if (file.size > 10 * 1024 * 1024) {
-        toast.error(`${file.name} exceeds 10MB limit`)
-        continue
-      }
-      const fd = new FormData()
-      fd.append('file', file)
+  const onDrop = useCallback(
+    (files: File[]) => {
+      if (files.length === 0) return
       setUploading(true)
-      try {
-        await api.post('/api/certificates/upload', fd, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        })
-        queryClient.invalidateQueries({ queryKey: ['certificates'] })
-        toast.success(`${file.name} uploaded — AI OCR verification started`)
-      } catch (err: any) {
-        toast.error(`Upload failed: ${err.message}`)
-      } finally {
-        setUploading(false)
-      }
-    }
-  }, [queryClient])
+      files.forEach((f) => uploadMutation.mutate(f))
+    },
+    [uploadMutation]
+  )
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
       'application/pdf': ['.pdf'],
-      'image/png': ['.png'],
-      'image/jpeg': ['.jpg', '.jpeg'],
+      'image/*': ['.png', '.jpg', '.jpeg'],
     },
-    multiple: true,
+    maxSize: 10 * 1024 * 1024,
     disabled: uploading,
   })
 
@@ -185,7 +177,7 @@ export default function CertificatesPage() {
   return (
     <div className="space-y-6 max-w-3xl animate-fade-in text-app">
       <div className="card p-6 shadow-xs">
-        <span className="text-[10px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider block mb-1">OCR Skill Verification Log</span>
+        <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">OCR Skill Verification Log</span>
         <h2 className="font-heading text-3xl font-extrabold text-app">Verified Credentials & Certificates</h2>
         <p className="text-secondary text-xs mt-0.5">Upload academic & industry certificates for automated OCR skill extraction</p>
       </div>
@@ -196,16 +188,16 @@ export default function CertificatesPage() {
         id="cert-upload-zone"
         className={`border-2 border-dashed p-8 rounded-xl text-center cursor-pointer transition-colors ${
           isDragActive
-            ? 'border-teal-700 bg-teal-50/50 dark:bg-teal-950/30'
-            : 'border-app hover:border-teal-700/60 bg-surface'
+            ? 'border-[#FF5722] bg-[#FF5722]/10 dark:bg-[#FF5722]/15'
+            : 'border-app hover:border-[#FF5722]/60 bg-surface'
         }`}
       >
         <input {...getInputProps()} id="cert-file-input" />
         <div className="flex flex-col items-center gap-3">
           {uploading ? (
-            <Loader className="w-8 h-8 text-teal-700 dark:text-teal-400 animate-spin" />
+            <Loader className="w-8 h-8 text-[#FF5722] dark:text-[#FF7043] animate-spin" />
           ) : (
-            <Upload className={`w-8 h-8 ${isDragActive ? 'text-teal-700' : 'text-secondary'}`} />
+            <Upload className={`w-8 h-8 ${isDragActive ? 'text-[#FF5722]' : 'text-secondary'}`} />
           )}
           <div>
             <p className="text-sm font-bold text-app">

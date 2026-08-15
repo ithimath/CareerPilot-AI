@@ -12,6 +12,15 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
+from pydantic import BaseModel
+
+class ConversationCreateRequest(BaseModel):
+    title: str = "New Conversation"
+
+class MessageRequest(BaseModel):
+    message: str
+
+
 @router.post("/send")
 async def send_message(data: ChatRequest, user: dict = Depends(get_current_user)):
     """Send a message to the AI mentor and get a response."""
@@ -95,10 +104,13 @@ async def list_conversations(user: dict = Depends(get_current_user)):
         result = []
         for doc in convs:
             data = doc.to_dict()
-            data["id"] = doc.id
+            if not data:
+                continue
+            item = dict(data)
+            item["id"] = doc.id
             # Don't send all messages in list view
-            data.pop("messages", None)
-            result.append(data)
+            item.pop("messages", None)
+            result.append(item)
         return {"conversations": result}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -152,3 +164,91 @@ async def delete_conversation(conv_id: str, user: dict = Depends(get_current_use
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/conversations")
+async def create_conversation(data: ConversationCreateRequest, user: dict = Depends(get_current_user)):
+    """Create a new conversation session."""
+    try:
+        db = get_firestore()
+        uid = user["uid"]
+        conv_id = str(uuid.uuid4())
+        ref = (
+            db.collection("chatHistory")
+            .document(uid)
+            .collection("conversations")
+            .document(conv_id)
+        )
+        ref.set({
+            "id": conv_id,
+            "uid": uid,
+            "title": data.title,
+            "created_at": datetime.utcnow(),
+            "updated_at": datetime.utcnow(),
+            "messages": [],
+        })
+        return {"id": conv_id, "title": data.title}
+    except Exception as e:
+        logger.error(f"Failed to create conversation: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.post("/conversations/{conv_id}/message")
+async def add_message_to_conversation(
+    conv_id: str,
+    data: MessageRequest,
+    user: dict = Depends(get_current_user)
+):
+    """Add a user message to a conversation and get the AI mentor's response."""
+    try:
+        db = get_firestore()
+        uid = user["uid"]
+        conv_ref = (
+            db.collection("chatHistory")
+            .document(uid)
+            .collection("conversations")
+            .document(conv_id)
+        )
+        doc = conv_ref.get()
+        if not doc.exists:
+            raise HTTPException(status_code=404, detail="Conversation not found")
+        
+        conv_data = doc.to_dict()
+        if conv_data.get("uid") != uid:
+            raise HTTPException(status_code=403, detail="Not authorized")
+            
+        messages = conv_data.get("messages", [])
+        
+        # Get student profile for context
+        profile_doc = db.collection("profiles").document(uid).get()
+        student_profile = profile_doc.to_dict() if profile_doc.exists else None
+        
+        # Get AI response
+        history_for_gemini = [
+            {"role": m["role"], "content": m["content"]}
+            for m in messages[-20:]
+        ]
+        reply = await chat_with_mentor(
+            message=data.message,
+            history=history_for_gemini,
+            student_profile=student_profile,
+        )
+        
+        # Persist messages
+        now = datetime.utcnow()
+        user_msg = {"role": "user", "content": data.message, "timestamp": now.isoformat()}
+        assistant_msg = {"role": "assistant", "content": reply, "timestamp": now.isoformat()}
+        messages.extend([user_msg, assistant_msg])
+        
+        conv_ref.update({
+            "messages": messages,
+            "updated_at": now,
+        })
+        
+        return {"messages": messages}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Failed to add message to conversation: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+

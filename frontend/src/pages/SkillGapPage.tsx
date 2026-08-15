@@ -113,7 +113,7 @@ export default function SkillGapPage() {
       {/* Header Banner */}
       <div className="card p-6 flex items-start justify-between gap-4 flex-wrap shadow-xs">
         <div>
-          <span className="text-[10px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider block mb-1">Market Benchmark Assessment</span>
+          <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Market Benchmark Assessment</span>
           <h2 className="font-heading text-3xl font-extrabold text-app">Skill Gap Analysis Matrix</h2>
           <p className="text-secondary text-xs mt-1">
             Target Role: <strong className="text-app font-bold">{targetCareer}</strong> • Comparison Baseline: <span className="text-app font-semibold">2026 Tech Employability Standard</span>
@@ -127,8 +127,8 @@ export default function SkillGapPage() {
       {/* Summary Cards */}
       <div className="grid md:grid-cols-3 gap-4">
         <div className="card p-5 flex items-center gap-3">
-          <div className="w-10 h-10 bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 rounded-md flex items-center justify-center">
-            <CheckCircle2 className="w-5 h-5 text-teal-700 dark:text-teal-400" />
+          <div className="w-10 h-10 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded-md flex items-center justify-center">
+            <CheckCircle2 className="w-5 h-5 text-[#FF5722] dark:text-[#FF7043]" />
           </div>
           <div>
             <p className="font-heading text-3xl font-bold text-app">{matchingSkills.length}</p>
@@ -148,7 +148,7 @@ export default function SkillGapPage() {
 
         <div className="card p-5 flex items-center gap-3">
           <div className="w-10 h-10 bg-subtle border border-app rounded-md flex items-center justify-center text-app">
-            <Target className="w-5 h-5 text-teal-700 dark:text-teal-400" />
+            <Target className="w-5 h-5 text-[#FF5722] dark:text-[#FF7043]" />
           </div>
           <div>
             <p className="font-heading text-3xl font-bold text-app">
@@ -210,7 +210,7 @@ export default function SkillGapPage() {
                           href={item.courseUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-teal-700 dark:text-teal-400 hover:underline flex-shrink-0"
+                          className="text-[#FF5722] dark:text-[#FF7043] hover:underline flex-shrink-0"
                           title="View resource"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -228,7 +228,7 @@ export default function SkillGapPage() {
       {/* Curriculum Action Guide */}
       <div className="card p-6 space-y-3 bg-subtle">
         <h4 className="font-heading text-lg font-bold text-app flex items-center gap-2">
-          <Layers className="w-4 h-4 text-teal-700 dark:text-teal-400" /> Strategic Learning Recommendation
+          <Layers className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Strategic Learning Recommendation
         </h4>
         <p className="text-xs text-secondary leading-relaxed font-medium">
           Closing your <strong className="text-app">Critical Gaps</strong> in SQL & Database Architecture and Docker containerization will increase your target role employability index from present level to over <strong className="text-app">85%</strong>.

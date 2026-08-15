@@ -12,10 +12,11 @@ import logging
 
 from app.core.config import settings
 from app.core.supabase import init_supabase
+from app.core.firebase import init_firebase
 from app.routers import (
     auth, profile, certificates, ocr, skills,
     job_score, careers, skill_gap, learning, chat, health,
-    resume, interview, company_prep, community, datasets
+    resume, interview, company_prep, community, datasets, assessments
 )
 
 # ── Logging ────────────────────────────────────────────────────────────────────
@@ -53,7 +54,8 @@ app.add_middleware(
 @app.on_event("startup")
 async def startup_event():
     init_supabase()
-    logger.info("Supabase backend initialized successfully")
+    init_firebase()
+    logger.info("Supabase and Firebase backend initialized successfully")
 
 # ── Routers ────────────────────────────────────────────────────────────────────
 app.include_router(health.router,       prefix="/api/health",       tags=["Health"])
@@ -70,6 +72,7 @@ app.include_router(chat.router,         prefix="/api/chat",         tags=["Chat"
 app.include_router(resume.router,       prefix="/api/resume",       tags=["Resume ATS"])
 app.include_router(interview.router,    prefix="/api/interview",    tags=["AI Interview"])
 app.include_router(company_prep.router, prefix="/api/company-prep", tags=["Company Prep"])
+app.include_router(assessments.router,  prefix="/api/assessments",  tags=["Assessments"])
 app.include_router(community.router,    prefix="/api/community",    tags=["Community Board"])
 app.include_router(datasets.router,     prefix="/api/datasets",     tags=["Dataset Manager"])
 

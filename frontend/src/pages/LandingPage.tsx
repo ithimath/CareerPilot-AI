@@ -10,37 +10,37 @@ export default function LandingPage() {
   const [activeTab, setActiveTab] = useState<'alignment' | 'ats' | 'interview'>('alignment')
 
   return (
-    <div className="min-h-screen bg-app text-app font-sans selection:bg-teal-100 selection:text-teal-900">
+    <div className="min-h-screen bg-app text-app font-sans selection:bg-[#FF5722]/20 selection:text-[#FF5722]">
       {/* Navigation Header */}
       <header className="sticky top-0 z-40 bg-surface/90 backdrop-blur-md border-b border-app shadow-2xs">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-xl bg-teal-700 dark:bg-teal-600 flex items-center justify-center flex-shrink-0 text-white shadow-xs">
-              <Compass className="w-4.5 h-4.5 text-white" />
+            <div className="w-8 h-8 rounded-xl bg-[#1a1f3a] dark:bg-[#141936] flex items-center justify-center flex-shrink-0 text-white shadow-xs">
+              <Compass className="w-4.5 h-4.5 text-[#FF5722]" />
             </div>
             <div>
               <span className="font-heading text-lg font-extrabold tracking-tight text-app">
-                CareerPilot <span className="text-teal-700 dark:text-teal-400 font-sans text-xs font-black uppercase tracking-wider ml-0.5">AI</span>
+                CareerPilot <span className="text-[#FF5722] dark:text-[#FF7043] font-sans text-xs font-black uppercase tracking-wider ml-0.5">AI</span>
               </span>
             </div>
           </div>
 
           <nav className="hidden md:flex items-center gap-8 text-xs font-bold text-secondary">
-            <a href="#matrix" className="hover:text-teal-700 dark:hover:text-teal-400 transition-colors">Readiness Matrix</a>
-            <a href="#architecture" className="hover:text-teal-700 dark:hover:text-teal-400 transition-colors">Capabilities</a>
-            <a href="#standards" className="hover:text-teal-700 dark:hover:text-teal-400 transition-colors">Audit Standards</a>
+            <a href="#matrix" className="hover:text-[#FF5722] dark:hover:text-[#FF7043] transition-colors">Readiness Matrix</a>
+            <a href="#architecture" className="hover:text-[#FF5722] dark:hover:text-[#FF7043] transition-colors">Capabilities</a>
+            <a href="#standards" className="hover:text-[#FF5722] dark:hover:text-[#FF7043] transition-colors">Audit Standards</a>
           </nav>
 
           <div className="flex items-center gap-4">
             <Link
               to="/login"
-              className="text-xs font-bold text-secondary hover:text-teal-700 dark:hover:text-teal-400 transition-colors"
+              className="text-xs font-bold text-secondary hover:text-[#FF5722] dark:hover:text-[#FF7043] transition-colors"
             >
               Sign In
             </Link>
             <Link
               to="/signup"
-              className="btn btn-primary text-xs shadow-md shadow-teal-700/20"
+              className="btn btn-primary text-xs shadow-md shadow-[#FF5722]/20"
             >
               Access Platform
             </Link>
@@ -54,8 +54,8 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             {/* Left Column: Asymmetrical Hero Content */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-violet-500/20 text-violet-200 border border-violet-400/30 text-[11px] font-bold tracking-wide rounded-md">
-                <span className="w-2 h-2 rounded-full bg-violet-400 animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#FF5722]/20 text-[#FFAB91] border border-[#FF5722]/40 text-[11px] font-bold tracking-wide rounded-md">
+                <span className="w-2 h-2 rounded-full bg-[#FF5722] animate-pulse" />
                 <span>Verified Candidate Employability Intelligence</span>
               </div>
 
@@ -86,11 +86,11 @@ export default function LandingPage() {
               {/* Horizontal Proof Points */}
               <div className="pt-8 border-t border-white/10 grid grid-cols-3 gap-6">
                 <div>
-                  <p className="font-heading text-2xl font-bold text-white">88<span className="text-violet-300 text-sm font-normal">/100</span></p>
+                  <p className="font-heading text-2xl font-bold text-white">88<span className="text-[#FFAB91] text-sm font-normal">/100</span></p>
                   <p className="text-[11px] font-bold text-white/50 mt-0.5">Audit Benchmark</p>
                 </div>
                 <div className="border-l border-white/10 pl-6">
-                  <p className="font-heading text-2xl font-bold text-white">94<span className="text-violet-300 text-sm font-normal">%</span></p>
+                  <p className="font-heading text-2xl font-bold text-white">94<span className="text-[#FFAB91] text-sm font-normal">%</span></p>
                   <p className="text-[11px] font-bold text-white/50 mt-0.5">Skill Precision</p>
                 </div>
                 <div className="border-l border-white/10 pl-6">
@@ -105,7 +105,7 @@ export default function LandingPage() {
               <div className="card p-6 border-app space-y-5 bg-surface shadow-md">
                 <div className="flex items-center justify-between pb-4 border-b border-app">
                   <div className="flex items-center gap-2">
-                    <div className="w-2.5 h-2.5 rounded-full bg-teal-600" />
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#FF5722]" />
                     <span className="text-xs font-mono text-app font-bold">LIVE AUDIT DEMO</span>
                   </div>
                   <span className="badge badge-emerald">
@@ -122,22 +122,22 @@ export default function LandingPage() {
                   <div className="space-y-1">
                     <div className="flex justify-between text-xs font-medium">
                       <span className="text-secondary">Market Match Score</span>
-                      <span className="text-teal-700 dark:text-teal-400 font-mono font-bold">92%</span>
+                      <span className="text-[#FF5722] dark:text-[#FF7043] font-mono font-bold">92%</span>
                     </div>
                     <div className="w-full h-2 bg-subtle rounded-full overflow-hidden border border-app">
-                      <div className="h-full bg-teal-700 dark:bg-teal-500 rounded-full w-[92%]" />
+                      <div className="h-full bg-[#FF5722] rounded-full w-[92%]" />
                     </div>
                   </div>
                 </div>
 
                 <div className="p-3.5 bg-subtle rounded-lg border border-app space-y-2 text-xs">
-                  <div className="flex items-center gap-2 text-teal-700 dark:text-teal-400 font-bold">
-                    <CheckCircle2 className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+                  <div className="flex items-center gap-2 text-[#FF5722] dark:text-[#FF7043] font-bold">
+                    <CheckCircle2 className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />
                     <span>Verified Skill Badges</span>
                   </div>
                   <div className="flex flex-wrap gap-1.5 pt-1">
                     {['React.js', 'TypeScript', 'Node.js', 'PostgreSQL', 'Vite', 'Docker'].map((s) => (
-                      <span key={s} className="px-2 py-0.5 text-[10px] font-mono font-bold bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800 rounded">
+                      <span key={s} className="px-2 py-0.5 text-[10px] font-mono font-bold bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded">
                         {s}
                       </span>
                     ))}
@@ -145,7 +145,7 @@ export default function LandingPage() {
                 </div>
 
                 <div className="flex items-center justify-between text-[11px] text-secondary font-medium pt-2 border-t border-app">
-                  <span>ATS Diagnostic Status: <strong className="text-teal-700 dark:text-teal-400 font-bold">Pass (88/100)</strong></span>
+                  <span>ATS Diagnostic Status: <strong className="text-[#FF5722] dark:text-[#FF7043] font-bold">Pass (88/100)</strong></span>
                   <ChevronRight className="w-4 h-4 text-secondary" />
                 </div>
               </div>
@@ -160,7 +160,7 @@ export default function LandingPage() {
           {/* Asymmetrical Split Title Header */}
           <div className="grid md:grid-cols-12 gap-6 items-end">
             <div className="md:col-span-7 space-y-2">
-              <span className="text-[11px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider block">Audited Assessment Matrix</span>
+              <span className="text-[11px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block">Audited Assessment Matrix</span>
               <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-app tracking-tight">
                 Explainable Candidate Job Readiness
               </h2>
@@ -180,33 +180,33 @@ export default function LandingPage() {
                 onClick={() => setActiveTab('alignment')}
                 className={`px-5 py-3 text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap rounded-md ${
                   activeTab === 'alignment'
-                    ? 'bg-teal-50 text-teal-900 border-b-2 border-teal-700 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-400'
+                    ? 'bg-[#FF5722]/10 text-[#FF5722] border-b-2 border-[#FF5722] dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF7043]'
                     : 'text-secondary hover:bg-subtle hover:text-app'
                 }`}
               >
-                <Target className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+                <Target className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />
                 <span>1. Tech Stack Alignment</span>
               </button>
               <button
                 onClick={() => setActiveTab('ats')}
                 className={`px-5 py-3 text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap rounded-md ${
                   activeTab === 'ats'
-                    ? 'bg-teal-50 text-teal-900 border-b-2 border-teal-700 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-400'
+                    ? 'bg-[#FF5722]/10 text-[#FF5722] border-b-2 border-[#FF5722] dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF7043]'
                     : 'text-secondary hover:bg-subtle hover:text-app'
                 }`}
               >
-                <FileCheck className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+                <FileCheck className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />
                 <span>2. ATS Parser Compliance</span>
               </button>
               <button
                 onClick={() => setActiveTab('interview')}
                 className={`px-5 py-3 text-xs font-bold transition-all flex items-center gap-2 whitespace-nowrap rounded-md ${
                   activeTab === 'interview'
-                    ? 'bg-teal-50 text-teal-900 border-b-2 border-teal-700 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-400'
+                    ? 'bg-[#FF5722]/10 text-[#FF5722] border-b-2 border-[#FF5722] dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF7043]'
                     : 'text-secondary hover:bg-subtle hover:text-app'
                 }`}
               >
-                <Bot className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+                <Bot className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />
                 <span>3. AI Evidence Interview Matrix</span>
               </button>
             </div>
@@ -238,7 +238,7 @@ export default function LandingPage() {
                     </div>
                     <div className="p-5 bg-subtle border border-app rounded-xl space-y-2">
                       <span className="text-xs font-bold text-secondary uppercase tracking-wide block">Project Repositories</span>
-                      <p className="font-heading text-3xl font-bold text-teal-700 dark:text-teal-400">3 Verified</p>
+                      <p className="font-heading text-3xl font-bold text-[#FF5722] dark:text-[#FF7043]">3 Verified</p>
                       <p className="text-xs text-secondary font-medium">Code structure & commits verified via GitHub</p>
                     </div>
                   </div>
@@ -260,7 +260,7 @@ export default function LandingPage() {
                   <div className="grid md:grid-cols-2 gap-6">
                     <div className="p-5 bg-subtle border border-app rounded-xl space-y-3">
                       <h4 className="font-heading text-sm font-bold text-app flex items-center gap-2">
-                        <Check className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+                        <Check className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />
                         <span>ATS Parsing Pass Items</span>
                       </h4>
                       <ul className="text-xs text-secondary font-medium space-y-1.5 list-disc pl-4">
@@ -299,14 +299,14 @@ export default function LandingPage() {
                     <div className="p-4 bg-subtle border border-app rounded-xl space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-app">Technical Concept Articulation</span>
-                        <span className="text-xs font-mono font-bold text-teal-700 dark:text-teal-400">95% Score</span>
+                        <span className="text-xs font-mono font-bold text-[#FF5722] dark:text-[#FF7043]">95% Score</span>
                       </div>
                       <p className="text-xs text-secondary font-medium">Candidate explained state management choices with precise architectural trade-offs.</p>
                     </div>
                     <div className="p-4 bg-subtle border border-app rounded-xl space-y-2">
                       <div className="flex items-center justify-between">
                         <span className="text-xs font-bold text-app">Behavioral Situation-Action-Result Alignment</span>
-                        <span className="text-xs font-mono font-bold text-teal-700 dark:text-teal-400">90% Score</span>
+                        <span className="text-xs font-mono font-bold text-[#FF5722] dark:text-[#FF7043]">90% Score</span>
                       </div>
                       <p className="text-xs text-secondary font-medium">Responses structured using STAR criteria with clear evidence of individual responsibility.</p>
                     </div>
@@ -322,7 +322,7 @@ export default function LandingPage() {
       <section id="architecture" className="py-20 bg-app border-b border-app">
         <div className="max-w-7xl mx-auto px-6 space-y-16">
           <div className="max-w-2xl space-y-2">
-            <span className="text-[11px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider block">Platform Architecture</span>
+            <span className="text-[11px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block">Platform Architecture</span>
             <h2 className="font-heading text-3xl sm:text-4xl font-extrabold text-app tracking-tight">
               Integrated Employability Platform Engine
             </h2>
@@ -345,7 +345,7 @@ export default function LandingPage() {
                 Traditional career tools rely on self-reported survey data. CareerPilot AI parses documents, audits repositories, and verifies interview responses to create objective candidate dossiers.
               </p>
               <div className="pt-4 border-t border-app text-xs text-secondary font-bold flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-teal-700 dark:text-teal-400" />
+                <CheckCircle2 className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />
                 <span>100% Transparent Methodology</span>
               </div>
             </div>
@@ -355,8 +355,8 @@ export default function LandingPage() {
               {/* Feature Row 1 */}
               <div className="py-8 grid sm:grid-cols-12 gap-4 items-start">
                 <div className="sm:col-span-1">
-                  <div className="w-9 h-9 rounded-md bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 flex items-center justify-center font-bold text-sm">
-                    <Award className="w-4.5 h-4.5 text-teal-700 dark:text-teal-400" />
+                  <div className="w-9 h-9 rounded-md bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] flex items-center justify-center font-bold text-sm">
+                    <Award className="w-4.5 h-4.5 text-[#FF5722] dark:text-[#FF7043]" />
                   </div>
                 </div>
                 <div className="sm:col-span-11 space-y-1.5 pl-2">
@@ -370,8 +370,8 @@ export default function LandingPage() {
               {/* Feature Row 2 */}
               <div className="py-8 grid sm:grid-cols-12 gap-4 items-start">
                 <div className="sm:col-span-1">
-                  <div className="w-9 h-9 rounded-md bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 flex items-center justify-center font-bold text-sm">
-                    <Target className="w-4.5 h-4.5 text-teal-700 dark:text-teal-400" />
+                  <div className="w-9 h-9 rounded-md bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] flex items-center justify-center font-bold text-sm">
+                    <Target className="w-4.5 h-4.5 text-[#FF5722] dark:text-[#FF7043]" />
                   </div>
                 </div>
                 <div className="sm:col-span-11 space-y-1.5 pl-2">
@@ -385,8 +385,8 @@ export default function LandingPage() {
               {/* Feature Row 3 */}
               <div className="py-8 grid sm:grid-cols-12 gap-4 items-start">
                 <div className="sm:col-span-1">
-                  <div className="w-9 h-9 rounded-md bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 flex items-center justify-center font-bold text-sm">
-                    <FileCheck className="w-4.5 h-4.5 text-teal-700 dark:text-teal-400" />
+                  <div className="w-9 h-9 rounded-md bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] flex items-center justify-center font-bold text-sm">
+                    <FileCheck className="w-4.5 h-4.5 text-[#FF5722] dark:text-[#FF7043]" />
                   </div>
                 </div>
                 <div className="sm:col-span-11 space-y-1.5 pl-2">
@@ -400,8 +400,8 @@ export default function LandingPage() {
               {/* Feature Row 4 */}
               <div className="py-8 grid sm:grid-cols-12 gap-4 items-start">
                 <div className="sm:col-span-1">
-                  <div className="w-9 h-9 rounded-md bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 flex items-center justify-center font-bold text-sm">
-                    <Bot className="w-4.5 h-4.5 text-teal-700 dark:text-teal-400" />
+                  <div className="w-9 h-9 rounded-md bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] flex items-center justify-center font-bold text-sm">
+                    <Bot className="w-4.5 h-4.5 text-[#FF5722] dark:text-[#FF7043]" />
                   </div>
                 </div>
                 <div className="sm:col-span-11 space-y-1.5 pl-2">
@@ -420,7 +420,7 @@ export default function LandingPage() {
       <section id="standards" className="py-20 bg-subtle border-b border-app">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <div className="text-center max-w-xl mx-auto space-y-2">
-            <span className="text-[11px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider">Placement Benchmarks</span>
+            <span className="text-[11px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider">Placement Benchmarks</span>
             <h2 className="font-heading text-3xl font-extrabold text-app tracking-tight">
               Designed for Placement Standard Rigor
             </h2>
@@ -433,7 +433,7 @@ export default function LandingPage() {
               <p className="text-xs text-secondary font-medium">From Frontend Engineering to Machine Learning and Product Operations.</p>
             </div>
             <div className="p-6 card space-y-2">
-              <p className="font-heading text-3xl font-extrabold text-teal-700 dark:text-teal-400">&lt; 2s</p>
+              <p className="font-heading text-3xl font-extrabold text-[#FF5722] dark:text-[#FF7043]">&lt; 2s</p>
               <h4 className="font-heading text-sm font-bold text-app">Instant Certificate OCR</h4>
               <p className="text-xs text-secondary font-medium">Fast document processing with automated skill mapping.</p>
             </div>
@@ -443,28 +443,28 @@ export default function LandingPage() {
               <p className="text-xs text-secondary font-medium">Evaluates responses according to Situation, Task, Action, Result criteria.</p>
             </div>
             <div className="p-6 card space-y-2">
-              <p className="font-heading text-3xl font-extrabold text-teal-700 dark:text-teal-400">100%</p>
+              <p className="font-heading text-3xl font-extrabold text-[#FF5722] dark:text-[#FF7043]">100%</p>
               <h4 className="font-heading text-sm font-bold text-app">Transparent Methodology</h4>
               <p className="text-xs text-secondary font-medium">Every score includes explainable evidence and improvement actions.</p>
             </div>
           </div>
 
           {/* Call to Action Box */}
-          <div className="bg-teal-900 text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border border-teal-800 shadow-md">
+          <div className="bg-[#1a1f3a] text-white rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 border border-[#FF5722]/40 shadow-md">
             <div className="space-y-2 max-w-xl text-center md:text-left">
               <h3 className="font-heading text-2xl md:text-3xl font-bold tracking-tight text-white">
                 Ready to Audit Your Candidate Profile?
               </h3>
-              <p className="text-xs md:text-sm text-teal-100 font-medium">
+              <p className="text-xs md:text-sm text-zinc-300 font-medium">
                 Join students and placement candidates creating verified job readiness dossiers.
               </p>
             </div>
             <Link
               to="/signup"
-              className="px-6 py-3.5 text-xs font-bold text-teal-900 bg-white hover:bg-teal-50 transition-all rounded-xl flex items-center gap-2 whitespace-nowrap shadow-xs"
+              className="px-6 py-3.5 text-xs font-bold text-white bg-[#FF5722] hover:bg-[#E64A19] transition-all rounded-xl flex items-center gap-2 whitespace-nowrap shadow-xs"
             >
               <span>Get Started Free</span>
-              <ArrowRight className="w-4 h-4 text-teal-900" />
+              <ArrowRight className="w-4 h-4 text-white" />
             </Link>
           </div>
         </div>
@@ -474,8 +474,8 @@ export default function LandingPage() {
       <footer className="py-12 bg-surface text-secondary border-t border-app">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-lg bg-teal-700 text-white flex items-center justify-center">
-              <Compass className="w-3.5 h-3.5 text-white" />
+            <div className="w-7 h-7 rounded-lg bg-[#1a1f3a] text-white flex items-center justify-center">
+              <Compass className="w-3.5 h-3.5 text-[#FF5722]" />
             </div>
             <span className="font-heading text-base font-bold text-app">CareerPilot AI</span>
           </div>

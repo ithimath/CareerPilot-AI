@@ -47,7 +47,7 @@ function PostCard({ post, onUpvote }: { post: any; onUpvote: (postId: string) =>
       {/* Post Author Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 bg-teal-700 dark:bg-teal-600 text-white rounded-lg flex items-center justify-center text-xs font-extrabold shadow-xs">
+          <div className="w-8 h-8 bg-[#1a1f3a] dark:bg-[#141936] text-white rounded-lg flex items-center justify-center text-xs font-extrabold shadow-xs">
             {post.avatar || post.author?.[0] || 'U'}
           </div>
           <div>
@@ -79,18 +79,18 @@ function PostCard({ post, onUpvote }: { post: any; onUpvote: (postId: string) =>
             onClick={handleLike}
             className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md transition-all ${
               hasLiked
-                ? 'bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800'
-                : 'hover:bg-subtle hover:text-teal-700 dark:hover:text-teal-400'
+                ? 'bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40'
+                : 'hover:bg-subtle hover:text-[#FF5722] dark:hover:text-[#FF7043]'
             }`}
           >
-            <ThumbsUp className={`w-3.5 h-3.5 ${hasLiked ? 'fill-teal-700 text-teal-700 dark:fill-teal-400 dark:text-teal-400' : ''}`} />
+            <ThumbsUp className={`w-3.5 h-3.5 ${hasLiked ? 'fill-[#FF5722] text-[#FF5722] dark:fill-[#FF7043] dark:text-[#FF7043]' : ''}`} />
             <span>{post.upvotes || 0} Upvotes</span>
           </button>
 
           {/* Comments Toggle Button */}
           <button
             onClick={() => setShowComments(!showComments)}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-subtle hover:text-teal-700 dark:hover:text-teal-400 transition-all"
+            className="flex items-center gap-1.5 px-2.5 py-1 rounded-md hover:bg-subtle hover:text-[#FF5722] dark:hover:text-[#FF7043] transition-all"
           >
             <MessageSquare className="w-3.5 h-3.5" />
             <span>{post.comments_count || 0} Comments</span>
@@ -115,7 +115,7 @@ function PostCard({ post, onUpvote }: { post: any; onUpvote: (postId: string) =>
                 <div key={c.id} className="p-3 bg-subtle rounded-xl border border-app text-xs space-y-1">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="w-5 h-5 bg-teal-700 text-white rounded flex items-center justify-center text-[10px] font-bold">
+                      <span className="w-5 h-5 bg-[#1a1f3a] text-white rounded flex items-center justify-center text-[10px] font-bold">
                         {c.avatar || c.author?.[0] || 'C'}
                       </span>
                       <span className="font-bold text-app">{c.author}</span>
@@ -197,11 +197,11 @@ export default function CommunityPage() {
       {/* Header Banner */}
       <div className="card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
         <div>
-          <span className="text-[10px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider block mb-1">Peer & Placement Network</span>
+          <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Peer & Placement Network</span>
           <div className="flex items-center gap-3">
             <h2 className="font-heading text-3xl font-extrabold text-app">Candidate Network Board</h2>
             <span className="badge badge-emerald flex items-center gap-1">
-              <Users className="w-3 h-3 text-teal-700 dark:text-teal-400" /> Verified Peer Network
+              <Users className="w-3 h-3 text-[#FF5722] dark:text-[#FF7043]" /> Verified Peer Network
             </span>
           </div>
           <p className="text-secondary text-xs mt-1 font-medium">

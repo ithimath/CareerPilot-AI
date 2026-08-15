@@ -8,7 +8,7 @@ import {
 import toast from 'react-hot-toast'
 
 function MatchBar({ pct }: { pct: number }) {
-  const color = pct >= 70 ? 'bg-teal-700 dark:bg-teal-500' : pct >= 40 ? 'bg-amber-600' : 'bg-red-600'
+  const color = pct >= 70 ? 'bg-[#FF5722]' : pct >= 40 ? 'bg-amber-600' : 'bg-red-600'
   return (
     <div className="flex items-center gap-3">
       <div className="flex-1 h-1.5 bg-subtle border border-app overflow-hidden rounded-full">
@@ -23,10 +23,10 @@ function CareerCard({ career, isTarget, onSelect }: any) {
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <div className={`card p-5 transition-all ${isTarget ? 'border-2 border-teal-700 dark:border-teal-500 shadow-xs' : ''}`}>
+    <div className={`card p-5 transition-all ${isTarget ? 'border-2 border-[#FF5722] dark:border-[#FF7043] shadow-xs' : ''}`}>
       <div className="flex items-start gap-4">
-        <div className="w-10 h-10 bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 flex items-center justify-center flex-shrink-0 rounded-md">
-          <Briefcase className="w-5 h-5 text-teal-700 dark:text-teal-400" />
+        <div className="w-10 h-10 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 flex items-center justify-center flex-shrink-0 rounded-md">
+          <Briefcase className="w-5 h-5 text-[#FF5722] dark:text-[#FF7043]" />
         </div>
 
         <div className="flex-1 min-w-0">
@@ -40,7 +40,7 @@ function CareerCard({ career, isTarget, onSelect }: any) {
                 )}
               </div>
               {career.salary_range && (
-                <p className="text-xs font-mono font-bold text-teal-700 dark:text-teal-400 mt-0.5">Salary Benchmark: {career.salary_range}</p>
+                <p className="text-xs font-mono font-bold text-[#FF5722] dark:text-[#FF7043] mt-0.5">Salary Benchmark: {career.salary_range}</p>
               )}
             </div>
           </div>
@@ -55,11 +55,11 @@ function CareerCard({ career, isTarget, onSelect }: any) {
           {career.matching_skills?.length > 0 && (
             <div className="mt-3">
               <p className="text-[10px] font-bold uppercase tracking-wider text-secondary mb-1.5 flex items-center gap-1">
-                <CheckCircle className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" /> Verified Matching Skills
+                <CheckCircle className="w-3.5 h-3.5 text-[#FF5722] dark:text-[#FF7043]" /> Verified Matching Skills
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {career.matching_skills.slice(0, 6).map((s: string) => (
-                  <span key={s} className="px-2.5 py-0.5 text-[11px] font-bold bg-teal-50 text-teal-900 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800 rounded">
+                  <span key={s} className="px-2.5 py-0.5 text-[11px] font-bold bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded">
                     {s}
                   </span>
                 ))}
@@ -143,7 +143,7 @@ export default function CareersPage() {
       {/* Header */}
       <div className="card p-6 flex items-start justify-between gap-4 flex-wrap shadow-xs">
         <div>
-          <span className="text-[10px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider block mb-1">Market Track Matching</span>
+          <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Market Track Matching</span>
           <h2 className="font-heading text-3xl font-extrabold text-app">Market Career Tracks</h2>
           <p className="text-secondary text-xs mt-0.5 font-medium">Algorithmic track matching based on verified skill profile and employability requisitions</p>
         </div>
@@ -159,10 +159,10 @@ export default function CareersPage() {
 
       {/* Target Status Callout */}
       {targetCareer && (
-        <div className="card p-4 bg-teal-50/40 dark:bg-teal-950/20 border-teal-200 dark:border-teal-900 flex items-center justify-between text-xs">
+        <div className="card p-4 bg-[#FF5722]/10 dark:bg-[#FF5722]/15 border-[#FF5722]/30 dark:border-[#FF5722]/40 flex items-center justify-between text-xs">
           <div className="flex items-center gap-2">
-            <Target className="w-4 h-4 text-teal-700 dark:text-teal-400 flex-shrink-0" />
-            <span className="font-bold text-app">Active Target Career Track: <strong className="text-teal-700 dark:text-teal-400 font-bold">{targetCareer}</strong></span>
+            <Target className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043] flex-shrink-0" />
+            <span className="font-bold text-app">Active Target Career Track: <strong className="text-[#FF5722] dark:text-[#FF7043] font-bold">{targetCareer}</strong></span>
           </div>
         </div>
       )}

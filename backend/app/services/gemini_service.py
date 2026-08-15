@@ -54,6 +54,14 @@ def _extract_json(text: str) -> dict:
     raise ValueError("Could not extract valid JSON from Gemini response")
 
 
+async def call_gemini_json(prompt: str) -> dict:
+    """Helper to send a prompt to Gemini and return parsed JSON."""
+    if not _model:
+        raise RuntimeError("Gemini API key not configured")
+    response = _model.generate_content(prompt)
+    return _extract_json(response.text)
+
+
 async def extract_skills_from_text(certificate_text: str) -> ExtractedSkills:
     """
     Send certificate text to Gemini and extract structured skills.
@@ -126,37 +134,46 @@ Return ONLY the explanation text, no JSON."""
         return f"{career_title} is a strong match based on your current skill set and interests."
 
 
-def _get_intelligent_fallback_response(message: str, student_profile: Optional[dict] = None) -> str:
+def _get_intelligent_fallback_response(
+    message: str,
+    student_profile: Optional[dict] = None,
+    ml_breakdown: Optional[Any] = None,
+    missing_skills: Optional[list] = None,
+    recommended_courses: Optional[list] = None
+) -> str:
     """Intelligent fallback mentor response generator for quick prompts and general queries."""
     msg_lower = message.lower()
     name = student_profile.get('name', 'Candidate') if student_profile else 'Candidate'
     target = student_profile.get('target_career', 'Full-Stack Engineer') if student_profile else 'Full-Stack Engineer'
     skills = ", ".join(student_profile.get('skills', ['JavaScript', 'Python', 'React', 'SQL'])) if student_profile and student_profile.get('skills') else 'JavaScript, Python, React, SQL'
 
-    # Prompt 1: Full-Stack technical skills
-    if 'technical skills' in msg_lower or 'full-stack' in msg_lower or 'stack role' in msg_lower:
+    # Prompt 1: Full-Stack technical skills / roadmap / gaps
+    if any(k in msg_lower for k in ('technical skills', 'full-stack', 'stack role', 'roadmap', 'gaps', 'skills')):
+        gaps_text = ""
+        if missing_skills:
+            gaps_text = f"\nAccording to your profile, the critical skill gaps you need to master for **{target}** are: **{', '.join(missing_skills[:5])}**.\n"
+        
+        courses_text = ""
+        if recommended_courses:
+            courses_text = "\nHere are targeted courses from our index to help you master these missing skills:\n" + "\n".join(recommended_courses) + "\n"
+
         return f"""### Technical Skill Roadmap for {target}
 
-Hello {name}! Based on modern 2026 hiring standards, here is the prioritized technical stack you should master:
+Hello {name}! Based on modern hiring standards, here is the prioritized technical roadmap for your target track:
+{gaps_text}{courses_text}
+1. **Core Development Layers**:
+   - Master the frontend framework patterns (React / Next.js with TypeScript).
+   - Solidify backend API architectures (FastAPI or Node.js/NestJS).
+   - Ensure clean database integration (PostgreSQL with indexes, Redis cache layers).
 
-1. **Frontend Mastery**:
-   - **Modern Frameworks**: React 18+ / Next.js with Server Components, TypeScript, TailwindCSS.
-   - **State & Data Fetching**: TanStack Query (React Query) and Zustand for clean state architecture.
-   - **Performance**: LCP/INP Core Web Vitals optimization and responsive UI patterns.
+2. **Practical Repository Evidence**:
+   - Deploy multi-tier apps to cloud platforms (AWS, Vercel, Dockerize container targets).
+   - Validate API performance and maintain a comprehensive git commit history.
 
-2. **Backend & Architecture**:
-   - **API Frameworks**: FastAPI (Python) or Node.js (TypeScript/Express/NestJS) for async high-concurrency routes.
-   - **Data Layer**: PostgreSQL for relational transactions, Redis for caching and rate-limiting.
-   - **Authentication & Security**: OAuth2, JWT with refresh tokens, input validation with Pydantic/Zod.
-
-3. **DevOps & Delivery**:
-   - **Containerization**: Docker & Multi-stage builds.
-   - **CI/CD & Cloud**: GitHub Actions workflows and deployment to AWS / Vercel.
-
-**Recommended Action**: Verify your skills in your Career Profile to see your updated Market Skill Gap Diagnosis!"""
+**Actionable Step**: Add any recently acquired skills or upload accredited certifications under the **Profile** or **Certificates** tabs to dynamically re-analyze your gaps!"""
 
     # Prompt 2: Resume ATS alignment
-    if 'resume' in msg_lower or 'ats' in msg_lower or 'parser' in msg_lower:
+    if any(k in msg_lower for k in ('resume', 'ats', 'parser')):
         return f"""### Resume ATS Diagnostic Audit
 
 Hello {name}! Here is a strategic review to maximize your ATS (Applicant Tracking System) parser alignment:
@@ -176,7 +193,7 @@ Hello {name}! Here is a strategic review to maximize your ATS (Applicant Trackin
 **Pro Tip**: Upload your resume to the **Resume & ATS Diagnostic Scanner** tab to get an immediate keyword density match percentage!"""
 
     # Prompt 3: System design interview prep
-    if 'system design' in msg_lower or 'interview question' in msg_lower:
+    if any(k in msg_lower for k in ('system design', 'interview question', 'interview')):
         return f"""### System Design Interview Preparation Guide
 
 Hello {name}! System design interviews evaluate architectural reasoning and trade-off decisions. Use this 4-step framework:
@@ -200,7 +217,7 @@ Hello {name}! System design interviews evaluate architectural reasoning and trad
 **Practice Exercise**: Try designing a real-time Notification System or Rate Limiter in the **AI Interview Simulator**!"""
 
     # Prompt 4: Open source projects for portfolio
-    if 'open source' in msg_lower or 'portfolio' in msg_lower or 'projects' in msg_lower:
+    if any(k in msg_lower for k in ('open source', 'portfolio', 'projects')):
         return f"""### High-Impact Portfolio Project Ideas for {target}
 
 Hello {name}! Recruiters value production-grade projects with live deployments and clean repository documentation:
@@ -219,30 +236,52 @@ Hello {name}! Recruiters value production-grade projects with live deployments a
 
 **Portfolio Rule**: Every project MUST have a clean `README.md` with an architectural diagram, API documentation, and a working live demo link!"""
 
-    # Prompt 5: Audit career readiness matrix
-    if 'readiness' in msg_lower or 'matrix' in msg_lower or 'score' in msg_lower:
-        return f"""### Comprehensive Career Readiness Matrix Audit
+    # Prompt 5: Audit career readiness matrix / score
+    if any(k in msg_lower for k in ('readiness', 'matrix', 'score', 'breakdown')):
+        score_text = ""
+        insights_text = ""
+        if ml_breakdown:
+            suggestions_list = "\n".join([f"- {s}" for s in ml_breakdown.suggestions])
+            score_text = f"""
+Your current ML-calculated **Career Readiness Score** is **{ml_breakdown.total_score}/100** ({ml_breakdown.confidence_level}).
+Here is the factual breakdown:
+- **Technical Skills Alignment**: {ml_breakdown.skills_score}/35.0
+- **Practical Project Fit**: {ml_breakdown.projects_score}/25.0
+- **Internship / Industry Experience**: {ml_breakdown.internships_score}/20.0
+- **Credentials & Certifications**: {ml_breakdown.certificates_score}/10.0
+- **Profile / Academic Completeness**: {ml_breakdown.profile_score}/10.0
+
+*Diagnostic Quality Notice*: {ml_breakdown.data_quality_notice}
+"""
+            if ml_breakdown.suggestions:
+                insights_text = f"\n### Actionable Recommendations:\n{suggestions_list}\n"
+        else:
+            score_text = f"\n- **Technical Stack Alignment (30%)**: Verified skills vs target requisitions for {target}.\n- **Project Portfolio (25%)**: Repo depth & deployment.\n- **Experience (20%)**: Role alignment.\n- **Certifications (10%)**: Document validity.\n- **Profile Completion (10%)**: Academic fields.\n"
+
+        return f"""### Career Readiness Index Audit
 
 Hello {name}! Here is a breakdown of your dynamic Composite Readiness Index:
-
-- **1. Technical Stack Alignment (30% weight)**: Measures verified skills mapped against current market job postings for {target}.
-- **2. Practical Project Portfolio (25% weight)**: Evaluates repository links, commit activity, and deployment complexity.
-- **3. Work Experience & Internships (20% weight)**: Assesses documented roles and professional team exposure.
-- **4. ATS & Resume Compliance (15% weight)**: Audits keyword density against recruiter parsing standards.
-- **5. Verified Credentials (10% weight)**: Validates accredited academic diplomas and industry certifications.
-
+{score_text}{insights_text}
 **Actionable Recommendation**: To boost your score tier:
 1. Upload missing certificate documents in the **Certificates** tab for OCR extraction.
 2. Complete targeted modules in your **Learning Roadmap**!"""
 
     # General / Custom query fallback
+    skills_text = f"Your current skills: `{skills}`."
+    if missing_skills:
+        skills_text += f"\nCritical missing skills for {target}: `{', '.join(missing_skills[:5])}`."
+    
+    courses_text = ""
+    if recommended_courses:
+        courses_text = "\nRecommended next courses:\n" + "\n".join(recommended_courses[:2])
+
     return f"""### Career Strategy Insight
 
 Hello {name}! Thank you for your question regarding **"{message}"**.
 
 As your AI Career Strategist for **{target}**, here are key steps to guide you:
 
-1. **Strategic Priority**: Align your current technical skills (`{skills}`) with industry demand trends.
+1. **Strategic Priority**: {skills_text}{courses_text}
 2. **Execution Focus**: Build hands-on evidence through production code repositories and verified credentials.
 3. **Next Recommended Action**: Explore your **Skill Gap Matrix** or run a practice session in the **AI Interview Simulator**!
 
@@ -259,8 +298,62 @@ async def chat_with_mentor(
     Returns the mentor's response text with topic-specific intelligence.
     """
     profile_context = ""
+    ml_breakdown = None
+    missing_skills = []
+    recommended_courses = []
+
     if student_profile:
-        profile_context = f"""
+        # Load ML Readiness Engine results
+        try:
+            from app.services.ml_scoring_service import get_ml_predictor
+            from app.services.data_service import get_courses_for_skill, get_career_by_title
+            
+            predictor = get_ml_predictor()
+            ml_breakdown = predictor.predict_readiness(student_profile)
+            
+            # Find missing skills based on target career Requisitions
+            target_career = student_profile.get('target_career', '')
+            if target_career:
+                career = get_career_by_title(target_career)
+                if career:
+                    target_skills = career.get("required_skills", [])
+                    cand_skills = {s.strip().lower() for s in student_profile.get("skills", [])}
+                    missing_skills = [s for s in target_skills if s.strip().lower() not in cand_skills]
+            
+            # Retrieve RAG courses for top missing skills
+            for skill in missing_skills[:2]:
+                courses = get_courses_for_skill(skill)
+                for c in courses[:2]:
+                    recommended_courses.append(f"- [{c['title']}]({c.get('url', '#')}) ({c['platform']}) to learn *{skill}*")
+            
+            suggestions_str = "\n".join([f"  * {s}" for s in ml_breakdown.suggestions])
+            courses_str = "\n".join(recommended_courses) if recommended_courses else '  * No matching courses found.'
+            
+            # Build highly detailed context block for Gemini
+            profile_context = f"""
+Student Profile Context:
+- Name: {student_profile.get('name', 'Student')}
+- Degree: {student_profile.get('degree', '')} in {student_profile.get('department', '')}
+- Current Year: {student_profile.get('current_year', '')}
+- Skills: {', '.join(student_profile.get('skills', []))}
+- Target Career: {target_career or 'Not selected'}
+- Interests: {', '.join(student_profile.get('interests', []))}
+
+ML-Calculated Evaluation Metrics:
+- Total Readiness Score: {ml_breakdown.total_score}/100 (Confidence: {ml_breakdown.confidence_level})
+- Breakdown: Skills: {ml_breakdown.skills_score}/35.0, Projects: {ml_breakdown.projects_score}/25.0, Internships: {ml_breakdown.internships_score}/20.0, Credentials: {ml_breakdown.certificates_score}/10.0, Profile: {ml_breakdown.profile_score}/10.0
+- Data Quality Notice: {ml_breakdown.data_quality_notice}
+- Explainable Suggestions:
+{suggestions_str}
+- Critical Gaps Identified: {', '.join(missing_skills[:5]) if missing_skills else 'None'}
+- Top Matching Courses in Local Database (Recommend these specifically):
+{courses_str}
+"""
+        except Exception as e:
+            logger.error(f"Error compiling ML context for mentor: {e}")
+
+        if not profile_context:
+            profile_context = f"""
 Student Profile Context:
 - Name: {student_profile.get('name', 'Student')}
 - Degree: {student_profile.get('degree', '')} in {student_profile.get('department', '')}
@@ -281,6 +374,7 @@ Student Profile Context:
             chat = _chat_model.start_chat(history=gemini_history)
             instruction = (
                 "Provide a direct, detailed, highly specific, and distinct response tailored to the student's question. "
+                "Integrate their ML Readiness scores, explainable suggestions, and recommended RAG courses when appropriate. "
                 "Use markdown formatting with headers, bullet points, and actionable advice. "
                 "Do NOT return generic template text."
             )
@@ -292,5 +386,11 @@ Student Profile Context:
             logger.warning(f"Gemini chat fallback active due to API notice: {e}")
 
     # Return high-quality, topic-specific response
-    return _get_intelligent_fallback_response(message, student_profile)
+    return _get_intelligent_fallback_response(
+        message, 
+        student_profile, 
+        ml_breakdown=ml_breakdown, 
+        missing_skills=missing_skills, 
+        recommended_courses=recommended_courses
+    )
 

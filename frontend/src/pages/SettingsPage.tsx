@@ -19,7 +19,7 @@ export default function SettingsPage() {
   return (
     <div className="space-y-5 max-w-xl animate-fade-in text-app">
       <div className="card p-6 shadow-xs">
-        <span className="text-[10px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider block mb-0.5">Configuration & Preferences</span>
+        <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-0.5">Configuration & Preferences</span>
         <h2 className="font-heading text-3xl font-extrabold text-app">Platform & Account Settings</h2>
         <p className="text-secondary text-xs mt-0.5 font-medium">Manage preferences, dataset indexes, and security credentials</p>
       </div>
@@ -27,11 +27,11 @@ export default function SettingsPage() {
       {/* Account Identity */}
       <div className="card p-6">
         <h3 className="font-heading text-xl font-bold text-app mb-4 flex items-center gap-2">
-          <User className="w-4 h-4 text-teal-700 dark:text-teal-400" /> Account Identity
+          <User className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Account Identity
         </h3>
         <div className="space-y-3">
           <div className="flex items-center gap-4 p-3.5 bg-subtle border border-app rounded-lg">
-            <div className="w-9 h-9 bg-teal-700 dark:bg-teal-600 text-white flex items-center justify-center font-bold font-heading rounded-md">
+            <div className="w-9 h-9 bg-[#1a1f3a] dark:bg-[#141936] text-white flex items-center justify-center font-bold font-heading rounded-md">
               {user?.displayName?.[0]?.toUpperCase() || 'C'}
             </div>
             <div>
@@ -45,7 +45,7 @@ export default function SettingsPage() {
       {/* Appearance */}
       <div className="card p-6">
         <h3 className="font-heading text-xl font-bold text-app mb-4 flex items-center gap-2">
-          <Sun className="w-4 h-4 text-teal-700 dark:text-teal-400" /> Theme Preference
+          <Sun className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Theme Preference
         </h3>
         <div className="flex items-center justify-between">
           <div>
@@ -58,7 +58,7 @@ export default function SettingsPage() {
             className="btn btn-secondary gap-2 text-xs"
           >
             {theme === 'dark'
-              ? <><Sun className="w-4 h-4 text-teal-400" /> Light Mode</>
+              ? <><Sun className="w-4 h-4 text-[#FF7043]" /> Light Mode</>
               : <><Moon className="w-4 h-4 text-zinc-700" /> Dark Mode</>
             }
           </button>
@@ -69,7 +69,7 @@ export default function SettingsPage() {
       <div className="card p-6 space-y-4">
         <div className="flex items-center justify-between">
           <h3 className="font-heading text-xl font-bold text-app flex items-center gap-2">
-            <Database className="w-4 h-4 text-teal-700 dark:text-teal-400" /> Dataset Index Registry
+            <Database className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Dataset Index Registry
           </h3>
           <span className="badge badge-emerald text-[10px]">JSON / CSV Integrated</span>
         </div>
@@ -108,13 +108,13 @@ export default function SettingsPage() {
                 fd.append('file', file)
                 fd.append('dataset_type', file.name.includes('course') ? 'courses' : 'careers')
                 try {
-                  await api.post('/api/datasets/upload', fd, { headers: { 'Content-Type': 'multipart/form-data' } })
+                  await api.post('/api/datasets/upload', fd)
                   toast.success(`Dataset '${file.name}' uploaded successfully!`)
                 } catch (err: any) {
                   toast.error(`Upload failed: ${err.message || 'Error processing file'}`)
                 }
               }}
-              className="input text-xs flex-1 file:mr-3 file:py-1 file:px-2 file:border-0 file:text-xs file:font-bold file:bg-teal-700 file:text-white cursor-pointer"
+              className="input text-xs flex-1 file:mr-3 file:py-1 file:px-2 file:border-0 file:text-xs file:font-bold file:bg-[#FF5722] file:text-white cursor-pointer"
             />
             <button
               onClick={() => toast.success('Datasets verified & re-indexed successfully!')}
@@ -130,7 +130,7 @@ export default function SettingsPage() {
       {/* Security */}
       <div className="card p-6">
         <h3 className="font-heading text-xl font-bold text-app mb-4 flex items-center gap-2">
-          <Shield className="w-4 h-4 text-teal-700 dark:text-teal-400" /> Session Security
+          <Shield className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Session Security
         </h3>
         <div className="flex items-center justify-between">
           <div>

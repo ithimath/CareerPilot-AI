@@ -99,7 +99,7 @@ function CompanyLogo({ id, name, size = 'md' }: { id: string; name: string; size
   }
 
   return (
-    <div className={`${containerDim} bg-teal-50 dark:bg-teal-950/40 text-teal-800 dark:text-teal-300 border border-teal-200 dark:border-teal-800 flex items-center justify-center flex-shrink-0 font-bold font-heading rounded-md`}>
+    <div className={`${containerDim} bg-[#FF5722]/10 dark:bg-[#FF5722]/15 text-[#FF5722] dark:text-[#FF7043] border border-[#FF5722]/30 dark:border-[#FF5722]/40 flex items-center justify-center flex-shrink-0 font-bold font-heading rounded-md`}>
       {name?.[0] || 'C'}
     </div>
   )
@@ -111,12 +111,12 @@ export default function CompanyPrepPage() {
 
   const { data: companiesData } = useQuery({
     queryKey: ['companies', search],
-    queryFn: () => api.get(`/api/company-prep/companies?search=${search}`).then(r => r.data),
+    queryFn: () => api.get(`/api/company-prep/companies?search=${encodeURIComponent(search)}`).then((r) => r.data),
   })
 
   const { data: companyDetail } = useQuery({
     queryKey: ['companyDetail', selectedCompanyId],
-    queryFn: () => api.get(`/api/company-prep/companies/${selectedCompanyId}`).then(r => r.data),
+    queryFn: () => api.get(`/api/company-prep/companies/${selectedCompanyId}`).then((r) => r.data),
     enabled: !!selectedCompanyId,
   })
 
@@ -136,11 +136,11 @@ export default function CompanyPrepPage() {
       {/* Header */}
       <div className="card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
         <div>
-          <span className="text-[10px] font-bold text-teal-700 dark:text-teal-400 uppercase tracking-wider block mb-1">Target Organization Intelligence</span>
+          <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Target Organization Intelligence</span>
           <div className="flex items-center gap-3">
             <h2 className="font-heading text-3xl font-extrabold text-app">Target Company Interview Intelligence</h2>
             <span className="badge badge-emerald flex items-center gap-1">
-              <Building2 className="w-3 h-3 text-teal-700 dark:text-teal-400" /> Recruiter Intel
+              <Building2 className="w-3 h-3 text-[#FF5722] dark:text-[#FF7043]" /> Recruiter Intel
             </span>
           </div>
           <p className="text-secondary text-xs mt-1">
@@ -170,7 +170,7 @@ export default function CompanyPrepPage() {
                 onClick={() => setSelectedCompanyId(comp.id)}
                 className={`w-full p-3.5 border rounded-md text-left transition-all flex items-center gap-3 ${
                   selectedCompanyId === comp.id
-                    ? 'border-teal-700 bg-teal-50 text-teal-900 font-semibold dark:bg-teal-950/40 dark:text-teal-200 dark:border-teal-500 shadow-xs'
+                    ? 'border-[#FF5722] bg-[#FF5722]/10 text-[#FF5722] font-semibold dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF7043] shadow-xs'
                     : 'border-app bg-surface text-secondary hover:bg-subtle'
                 }`}
               >
@@ -202,7 +202,7 @@ export default function CompanyPrepPage() {
               {/* Hiring Rounds */}
               <div>
                 <h4 className="font-heading text-sm font-bold text-app flex items-center gap-2 mb-3">
-                  <Layers className="w-4 h-4 text-teal-700 dark:text-teal-400" /> Standard Technical Interview Loop
+                  <Layers className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Standard Technical Interview Loop
                 </h4>
                 <div className="space-y-2">
                   {companyDetail.rounds?.map((round: string, idx: number) => (
@@ -216,7 +216,7 @@ export default function CompanyPrepPage() {
               {/* Sample Questions */}
               <div>
                 <h4 className="font-heading text-sm font-bold text-app flex items-center gap-2 mb-3">
-                  <HelpCircle className="w-4 h-4 text-teal-700 dark:text-teal-400" /> Frequent Technical Question Prompts
+                  <HelpCircle className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Frequent Technical Question Prompts
                 </h4>
                 <div className="space-y-2">
                   {companyDetail.sample_questions?.map((q: string, idx: number) => (

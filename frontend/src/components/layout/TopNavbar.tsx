@@ -46,7 +46,7 @@ export default function TopNavbar({ onMenuClick }: TopNavbarProps) {
 
       {/* Actions */}
       <div className="flex items-center gap-3">
-        <span className="hidden sm:inline-flex px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-400 dark:border-emerald-800 text-[11px] font-semibold tracking-tight">
+        <span className="hidden sm:inline-flex px-2.5 py-1 rounded bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 text-[11px] font-semibold tracking-tight">
           Target Track: Full-Stack Engineer
         </span>
 
@@ -59,7 +59,7 @@ export default function TopNavbar({ onMenuClick }: TopNavbarProps) {
           title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
         >
           {theme === 'dark'
-            ? <Sun className="w-4 h-4 text-emerald-400" />
+            ? <Sun className="w-4 h-4 text-[#FF7043]" />
             : <Moon className="w-4 h-4 text-zinc-700" />
           }
         </button>

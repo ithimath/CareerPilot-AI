@@ -53,7 +53,7 @@ export default function EntranceAnimation() {
             y1={y1Val}
             x2="300"
             y2={y2Val}
-            className="stroke-emerald-700 dark:stroke-emerald-400 stroke-2 transition-all duration-400 ease-out"
+            className="stroke-[#FF5722] dark:stroke-[#FF7043] stroke-2 transition-all duration-400 ease-out"
           />
 
           {/* Phase 2: 4 Branching Bezier Curves (Career, Interview, Skills, Growth) */}
@@ -62,25 +62,25 @@ export default function EntranceAnimation() {
               {/* Path 1: Top-Left (Career) */}
               <path
                 d="M300 130 C220 110, 140 80, 100 60 C180 120, 240 150, 300 150"
-                className="stroke-emerald-700/60 dark:stroke-emerald-400/70 stroke-[1.5] fill-none animate-pulse"
+                className="stroke-[#FF5722]/60 dark:stroke-[#FF7043]/70 stroke-[1.5] fill-none animate-pulse"
                 strokeDasharray="4 2"
               />
               {/* Path 2: Top-Right (Interview) */}
               <path
                 d="M300 130 C380 110, 460 80, 500 60 C420 120, 360 150, 300 150"
-                className="stroke-emerald-700/60 dark:stroke-emerald-400/70 stroke-[1.5] fill-none animate-pulse"
+                className="stroke-[#FF5722]/60 dark:stroke-[#FF7043]/70 stroke-[1.5] fill-none animate-pulse"
                 strokeDasharray="4 2"
               />
               {/* Path 3: Bottom-Left (Skills) */}
               <path
                 d="M300 190 C220 210, 140 240, 100 260 C180 200, 240 170, 300 170"
-                className="stroke-emerald-700/60 dark:stroke-emerald-400/70 stroke-[1.5] fill-none animate-pulse"
+                className="stroke-[#FF5722]/60 dark:stroke-[#FF7043]/70 stroke-[1.5] fill-none animate-pulse"
                 strokeDasharray="4 2"
               />
               {/* Path 4: Bottom-Right (Growth) */}
               <path
                 d="M300 190 C380 210, 460 240, 500 260 C420 200, 360 170, 300 170"
-                className="stroke-emerald-700/60 dark:stroke-emerald-400/70 stroke-[1.5] fill-none animate-pulse"
+                className="stroke-[#FF5722]/60 dark:stroke-[#FF7043]/70 stroke-[1.5] fill-none animate-pulse"
                 strokeDasharray="4 2"
               />
             </>
@@ -90,16 +90,16 @@ export default function EntranceAnimation() {
         {/* Floating Minimal Domain Path Labels */}
         {phase === 'branch' && (
           <>
-            <span className="absolute top-10 left-16 text-[10px] font-bold tracking-widest text-emerald-800 dark:text-emerald-400 uppercase animate-fade-in">
+            <span className="absolute top-10 left-16 text-[10px] font-bold tracking-widest text-[#FF5722] dark:text-[#FF7043] uppercase animate-fade-in">
               Career
             </span>
-            <span className="absolute top-10 right-16 text-[10px] font-bold tracking-widest text-emerald-800 dark:text-emerald-400 uppercase animate-fade-in">
+            <span className="absolute top-10 right-16 text-[10px] font-bold tracking-widest text-[#FF5722] dark:text-[#FF7043] uppercase animate-fade-in">
               Interview
             </span>
-            <span className="absolute bottom-10 left-16 text-[10px] font-bold tracking-widest text-emerald-800 dark:text-emerald-400 uppercase animate-fade-in">
+            <span className="absolute bottom-10 left-16 text-[10px] font-bold tracking-widest text-[#FF5722] dark:text-[#FF7043] uppercase animate-fade-in">
               Skills
             </span>
-            <span className="absolute bottom-10 right-16 text-[10px] font-bold tracking-widest text-emerald-800 dark:text-emerald-400 uppercase animate-fade-in">
+            <span className="absolute bottom-10 right-16 text-[10px] font-bold tracking-widest text-[#FF5722] dark:text-[#FF7043] uppercase animate-fade-in">
               Growth
             </span>
           </>
@@ -111,11 +111,11 @@ export default function EntranceAnimation() {
             phase === 'converge' || phase === 'morph' ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
           }`}
         >
-          <div className="w-14 h-14 rounded-xl bg-emerald-700 dark:bg-emerald-600 text-white flex items-center justify-center shadow-md mb-3 border border-emerald-500/40">
-            <Compass className="w-7 h-7 text-white animate-spin" style={{ animationDuration: '4s' }} />
+          <div className="w-14 h-14 rounded-xl bg-[#1a1f3a] dark:bg-[#141936] text-white flex items-center justify-center shadow-md mb-3 border border-[#FF5722]/40">
+            <Compass className="w-7 h-7 text-[#FF5722] animate-spin" style={{ animationDuration: '4s' }} />
           </div>
           <span className="font-heading text-2xl font-extrabold tracking-tight text-zinc-900 dark:text-zinc-100">
-            CareerPilot <span className="text-emerald-700 dark:text-emerald-400 font-sans text-xs font-bold uppercase tracking-wider">AI</span>
+            CareerPilot <span className="text-[#FF5722] dark:text-[#FF7043] font-sans text-xs font-bold uppercase tracking-wider">AI</span>
           </span>
           <span className="text-[10px] uppercase tracking-widest font-semibold text-zinc-500 dark:text-zinc-400 mt-1">
             Navigating Candidate Readiness
@@ -124,12 +124,12 @@ export default function EntranceAnimation() {
 
         {/* Phase 4: Wireframe Outline of Top-Nav Dashboard Structure */}
         {phase === 'morph' && (
-          <div className="absolute inset-0 border-t border-b border-emerald-600/30 dark:border-emerald-400/30 animate-pulse flex items-center justify-between px-8">
-            <div className="w-24 h-2 bg-emerald-600/20 rounded" />
+          <div className="absolute inset-0 border-t border-b border-[#FF5722]/30 dark:border-[#FF7043]/30 animate-pulse flex items-center justify-between px-8">
+            <div className="w-24 h-2 bg-[#FF5722]/20 rounded" />
             <div className="flex gap-4">
-              <div className="w-12 h-2 bg-emerald-600/20 rounded" />
-              <div className="w-12 h-2 bg-emerald-600/20 rounded" />
-              <div className="w-12 h-2 bg-emerald-600/20 rounded" />
+              <div className="w-12 h-2 bg-[#FF5722]/20 rounded" />
+              <div className="w-12 h-2 bg-[#FF5722]/20 rounded" />
+              <div className="w-12 h-2 bg-[#FF5722]/20 rounded" />
             </div>
           </div>
         )}

@@ -35,12 +35,12 @@ export default function TopHeader() {
         {/* Left: Brand & Primary Top Nav */}
         <div className="flex items-center gap-8">
           <NavLink to="/dashboard" className="flex items-center gap-2.5 group">
-            <div className="w-8 h-8 rounded-md bg-teal-700 dark:bg-teal-600 flex items-center justify-center text-white shadow-xs group-hover:bg-teal-800 transition-colors">
-              <Compass className="w-4 h-4 text-white" />
+            <div className="w-8 h-8 rounded-md bg-[#1a1f3a] dark:bg-[#141936] flex items-center justify-center text-white shadow-xs group-hover:bg-[#252c50] transition-colors">
+              <Compass className="w-4 h-4 text-[#FF5722]" />
             </div>
             <div>
               <span className="font-heading text-lg font-extrabold tracking-tight text-app block leading-none">
-                CareerPilot <span className="text-teal-700 dark:text-teal-400 font-sans text-xs font-black uppercase tracking-wider ml-0.5">AI</span>
+                CareerPilot <span className="text-[#FF5722] dark:text-[#FF7043] font-sans text-xs font-black uppercase tracking-wider ml-0.5">AI</span>
               </span>
               <span className="text-[9px] uppercase tracking-widest font-bold text-secondary block mt-0.5">Career Intelligence</span>
             </div>
@@ -55,7 +55,7 @@ export default function TopHeader() {
                 className={({ isActive }) =>
                   `px-3.5 py-2 text-xs font-bold transition-all rounded-md flex items-center gap-1.5 ${
                     isActive
-                      ? 'bg-teal-50 text-teal-900 border-b-2 border-teal-700 dark:bg-teal-950/50 dark:text-teal-300 dark:border-teal-400'
+                      ? 'bg-[#FF5722]/10 text-[#FF5722] border-b-2 border-[#FF5722] dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF7043]'
                       : 'text-secondary hover:bg-subtle hover:text-app'
                   }`
                 }
@@ -83,9 +83,9 @@ export default function TopHeader() {
           {/* Quick AI Mentor Link */}
           <NavLink
             to="/chat"
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-teal-900 bg-teal-50 border border-teal-200 dark:bg-teal-950/40 dark:text-teal-300 dark:border-teal-800 rounded-md hover:bg-teal-100 transition-colors"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-[#FF5722] bg-[#FF5722]/10 border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded-md hover:bg-[#FF5722]/20 transition-colors"
           >
-            <Sparkles className="w-3.5 h-3.5 text-teal-700 dark:text-teal-400" />
+            <Sparkles className="w-3.5 h-3.5 text-[#FF5722] dark:text-[#FF7043]" />
             <span>AI Mentor</span>
           </NavLink>
 
@@ -104,7 +104,7 @@ export default function TopHeader() {
             className="p-2 text-secondary hover:bg-subtle rounded-md transition-colors border border-transparent hover:border-app"
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
-            {theme === 'dark' ? <Sun className="w-4 h-4 text-teal-400" /> : <Moon className="w-4 h-4 text-zinc-700" />}
+            {theme === 'dark' ? <Sun className="w-4 h-4 text-[#FF7043]" /> : <Moon className="w-4 h-4 text-zinc-700" />}
           </button>
 
           {/* Notifications Dropdown */}
@@ -115,7 +115,7 @@ export default function TopHeader() {
               title="Notifications"
             >
               <Bell className="w-4 h-4" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-teal-600 rounded-full" />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-[#FF5722] rounded-full" />
             </button>
 
             {notifOpen && (
@@ -144,7 +144,7 @@ export default function TopHeader() {
               onClick={() => setProfileOpen(!profileOpen)}
               className="flex items-center gap-2 pl-2 pr-1.5 py-1 rounded-md hover:bg-subtle transition-colors border border-transparent hover:border-app"
             >
-              <div className="w-7 h-7 bg-teal-700 dark:bg-teal-600 text-white rounded-md flex items-center justify-center text-xs font-extrabold shadow-2xs">
+              <div className="w-7 h-7 bg-[#1a1f3a] dark:bg-[#141936] text-white rounded-md flex items-center justify-center text-xs font-extrabold shadow-2xs">
                 {user?.displayName?.[0]?.toUpperCase() || user?.email?.[0]?.toUpperCase() || 'U'}
               </div>
               <span className="hidden sm:inline text-xs font-bold text-app truncate max-w-[100px]">
@@ -194,7 +194,7 @@ export default function TopHeader() {
             to={item.to}
             className={({ isActive }) =>
               `px-2.5 py-1 rounded ${
-                isActive ? 'bg-teal-700 text-white' : 'text-secondary'
+                isActive ? 'bg-[#FF5722] text-white' : 'text-secondary'
               }`
             }
           >

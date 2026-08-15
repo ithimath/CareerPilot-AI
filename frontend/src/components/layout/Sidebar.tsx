@@ -38,12 +38,12 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
     <div className="flex flex-col h-full bg-surface text-app border-r border-app">
       {/* Brand Header */}
       <div className="flex items-center gap-3 px-5 py-5 border-b border-app">
-        <div className="w-8 h-8 rounded-md bg-emerald-700 dark:bg-emerald-600 flex items-center justify-center flex-shrink-0 text-white shadow-xs">
-          <Compass className="w-4 h-4 text-white" />
+        <div className="w-8 h-8 rounded-md bg-[#1a1f3a] dark:bg-[#141936] flex items-center justify-center flex-shrink-0 text-white shadow-xs">
+          <Compass className="w-4 h-4 text-[#FF5722]" />
         </div>
         <div className="flex-1 min-w-0">
           <span className="font-heading text-base font-bold tracking-tight text-app block">
-            CareerPilot <span className="text-emerald-700 dark:text-emerald-400 font-sans text-[10px] font-bold uppercase tracking-wider ml-0.5">AI</span>
+            CareerPilot <span className="text-[#FF5722] dark:text-[#FF7043] font-sans text-[10px] font-bold uppercase tracking-wider ml-0.5">AI</span>
           </span>
           <span className="text-[10px] uppercase tracking-wider font-medium text-muted block -mt-0.5">Career Intelligence</span>
         </div>
@@ -67,14 +67,14 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
             className={({ isActive }) =>
               `flex items-center gap-3 px-3 py-2 text-xs font-medium transition-all duration-150 rounded-md ${
                 isActive
-                  ? 'bg-emerald-50 text-emerald-900 border-l-2 border-emerald-700 font-semibold dark:bg-emerald-950/50 dark:text-emerald-400 dark:border-emerald-500'
+                  ? 'bg-[#FF5722]/10 text-[#FF5722] border-l-2 border-[#FF5722] font-semibold dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF7043]'
                   : 'text-secondary hover:bg-subtle hover:text-app'
               }`
             }
           >
             {({ isActive }) => (
               <>
-                <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-emerald-700 dark:text-emerald-400' : 'text-muted'}`} />
+                <Icon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-[#FF5722] dark:text-[#FF7043]' : 'text-muted'}`} />
                 <span>{label}</span>
               </>
             )}
@@ -90,14 +90,14 @@ export default function Sidebar({ open, onClose }: SidebarProps) {
           className={({ isActive }) =>
             `flex items-center gap-3 px-3 py-2 text-xs font-medium transition-all duration-150 rounded-md ${
               isActive
-                ? 'bg-emerald-50 text-emerald-900 border-l-2 border-emerald-700 font-semibold dark:bg-emerald-950/50 dark:text-emerald-400 dark:border-emerald-500'
+                ? 'bg-[#FF5722]/10 text-[#FF5722] border-l-2 border-[#FF5722] font-semibold dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF7043]'
                 : 'text-secondary hover:bg-subtle hover:text-app'
             }`
           }
         >
           {({ isActive }) => (
             <>
-              <Settings className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-emerald-700 dark:text-emerald-400' : 'text-muted'}`} />
+              <Settings className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-[#FF5722] dark:text-[#FF7043]' : 'text-muted'}`} />
               <span>Settings</span>
             </>
           )}

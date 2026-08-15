@@ -38,12 +38,12 @@ export default function SignupPage() {
       <div className="w-full max-w-md animate-fade-in space-y-6 relative z-10">
         {/* Logo Header */}
         <div className="flex items-center justify-center gap-3">
-          <div className="w-9 h-9 bg-teal-700 dark:bg-teal-600 rounded-xl flex items-center justify-center text-white shadow-xs">
-            <Compass className="w-5 h-5 text-white" />
+          <div className="w-9 h-9 bg-[#1a1f3a] dark:bg-[#141936] rounded-xl flex items-center justify-center text-white shadow-xs">
+            <Compass className="w-5 h-5 text-[#FF5722]" />
           </div>
           <div>
             <span className="font-heading text-2xl font-extrabold text-app">CareerPilot AI</span>
-            <p className="text-[10px] font-bold uppercase tracking-wider text-teal-700 dark:text-teal-400 block -mt-1">Candidate Intelligence Platform</p>
+            <p className="text-[10px] font-bold uppercase tracking-wider text-[#FF5722] dark:text-[#FF7043] block -mt-1">Candidate Intelligence Platform</p>
           </div>
         </div>
 
@@ -122,7 +122,7 @@ export default function SignupPage() {
 
           <p className="text-center text-xs text-secondary font-medium mt-6">
             Already have an account?{' '}
-            <Link to="/login" className="text-teal-700 dark:text-teal-400 font-bold hover:underline">
+            <Link to="/login" className="text-[#FF5722] dark:text-[#FF7043] font-bold hover:underline">
               Sign in
             </Link>
           </p>
