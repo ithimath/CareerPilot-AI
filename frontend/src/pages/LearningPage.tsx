@@ -173,10 +173,11 @@ export default function LearningPage() {
   const statusMutation = useMutation({
     mutationFn: ({ itemId, status }: { itemId: string; status: string }) =>
       api.put(`/api/learning/item/${itemId}/status`, { status }),
-    onSuccess: (res) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['learning'] })
-      queryClient.invalidateQueries({ queryKey: ['jobScore'] })
-      toast.success('Module status updated! Progress recalculated.')
+      // exact:false ensures Dashboard's ['jobScore', uid] key is also invalidated
+      queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
+      toast.success('Module status updated! Career Readiness Score recalculated.')
     },
     onError: () => toast.error('Failed to update module status'),
   })

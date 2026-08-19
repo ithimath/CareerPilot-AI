@@ -34,11 +34,12 @@ export default function ResumePage() {
     },
     onSuccess: (data) => {
       setAnalysis(data)
-      queryClient.invalidateQueries({ queryKey: ['jobScore'] })
+      // exact:false ensures Dashboard's ['jobScore', uid] key is also invalidated
+      queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
       toast.success(`ATS Audit Complete! Match score: ${data.score || data.ats_score}%`)
     },
     onError: (err: any) => {
-      toast.error(err.message || 'Failed to analyze resume')
+      toast.error(err.response?.data?.detail || err.message || 'Failed to analyze resume')
     }
   })
 

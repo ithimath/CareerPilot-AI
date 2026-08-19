@@ -131,9 +131,11 @@ export default function CertificatesPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['certificates'] })
       queryClient.invalidateQueries({ queryKey: ['profile'] })
-      toast.success('Certificate uploaded! Extracted skills mapped to profile.')
+      // Invalidate score — certificates_score component contributes to readiness
+      queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
+      toast.success('Certificate uploaded! Skills extracted and Career Readiness Score recalculated.')
     },
-    onError: (err: any) => toast.error(err.message || 'Upload failed'),
+    onError: (err: any) => toast.error(err.response?.data?.detail || err.message || 'Upload failed'),
     onSettled: () => setUploading(false),
   })
 
@@ -141,7 +143,9 @@ export default function CertificatesPage() {
     mutationFn: (id: string) => api.delete(`/api/certificates/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['certificates'] })
-      toast.success('Certificate deleted')
+      // Removing a cert affects certificates_score — recalculate
+      queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
+      toast.success('Certificate deleted. Career Readiness Score recalculated.')
     },
   })
 

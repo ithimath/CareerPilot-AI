@@ -77,21 +77,40 @@ export default function ProfilePage() {
     queryFn: () => api.get('/api/profile').then((r) => r.data),
   })
 
+  // Live score query — refetched whenever ['jobScore'] is invalidated
+  const { data: jobScore } = useQuery({
+    queryKey: ['jobScore'],
+    queryFn: () => api.get('/api/job-score').then((r) => r.data),
+  })
+
   const [form, setForm] = useState<any>({})
 
   useEffect(() => {
     if (profile) setForm(profile)
   }, [profile])
 
+  const [lastSavedScore, setLastSavedScore] = useState<number | null>(null)
+
   const updateMutation = useMutation({
     mutationFn: (data: any) => api.put('/api/profile', data),
-    onSuccess: () => {
+    onSuccess: (res) => {
+      const newScore = res?.data?.job_score ?? null
+      setLastSavedScore(newScore)
+      toast.dismiss('skill-save')
+      // Invalidate with exact:false so both ['jobScore'] and ['jobScore', uid] refetch
+      queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
       queryClient.invalidateQueries({ queryKey: ['profile'] })
-      queryClient.invalidateQueries({ queryKey: ['jobScore'] })
-      toast.success('Candidate Dossier updated! Career Readiness Score recalculated.')
+      if (newScore !== null) {
+        toast.success(`Career Readiness Score recalculated! New score: ${newScore.toFixed(1)}/100`)
+      } else {
+        toast.success('Candidate Dossier updated! Career Readiness Score recalculated.')
+      }
       setEditing(false)
     },
-    onError: (err: any) => toast.error(err.message || 'Dossier update failed'),
+    onError: (err: any) => {
+      toast.dismiss('skill-save')
+      toast.error(err.response?.data?.detail || err.message || 'Dossier update failed')
+    },
   })
 
   const handleSave = () => {
@@ -155,12 +174,13 @@ export default function ProfilePage() {
       set('skills', updatedSkills)
       toast.success(`Added ${skillObjsToAdd.length} technical skill(s) to dossier draft.`)
     } else {
-      // Direct auto-save when adding from non-editing view
+      // Direct auto-save: toast fires in onSuccess with actual new score
       updateMutation.mutate({
         ...profile,
         skills: updatedSkills,
       })
-      toast.success(`Added ${skillObjsToAdd.length} technical skill(s) and recalculated score!`)
+      // Brief feedback so the user knows the action is in progress
+      toast.loading('Saving skills and recalculating score...', { id: 'skill-save' })
     }
 
     setNewSkill('')
@@ -261,20 +281,41 @@ export default function ProfilePage() {
           <h2 className="font-heading text-3xl font-extrabold text-app">Candidate Dossier</h2>
           <p className="text-secondary text-xs mt-0.5 font-medium">Maintain verified academic history, portfolio projects, and technical skills for recruiter ATS matching</p>
         </div>
-        {editing ? (
-          <div className="flex gap-2">
-            <button onClick={() => { setEditing(false); setForm(profile) }} className="btn btn-secondary text-xs">Cancel</button>
-            <button onClick={handleSave} disabled={updateMutation.isPending} className="btn btn-primary text-xs gap-2">
-              {updateMutation.isPending && <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />}
-              <Save className="w-4 h-4" />
-              Save Dossier
+        <div className="flex items-center gap-3 flex-wrap">
+          {/* Live Score Badge */}
+          {jobScore?.total_score !== undefined && (
+            <div className="flex flex-col items-center justify-center px-4 py-2 rounded-xl bg-gradient-to-b from-[#FF5722]/10 to-[#FF5722]/5 border border-[#FF5722]/25 min-w-[90px]">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-secondary mb-0.5">Readiness</span>
+              <div className="flex items-end gap-0.5">
+                <span className={`font-heading text-2xl font-extrabold ${
+                  jobScore.total_score >= 75 ? 'text-emerald-500' :
+                  jobScore.total_score >= 50 ? 'text-amber-500' :
+                  'text-[#FF5722]'
+                }`}>
+                  {jobScore.total_score.toFixed(1)}
+                </span>
+                <span className="text-secondary text-[10px] font-semibold pb-0.5">/100</span>
+              </div>
+              {updateMutation.isPending && (
+                <span className="text-[9px] text-[#FF5722] animate-pulse font-medium">recalculating...</span>
+              )}
+            </div>
+          )}
+          {editing ? (
+            <div className="flex gap-2">
+              <button onClick={() => { setEditing(false); setForm(profile) }} className="btn btn-secondary text-xs">Cancel</button>
+              <button onClick={handleSave} disabled={updateMutation.isPending} className="btn btn-primary text-xs gap-2">
+                {updateMutation.isPending && <span className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />}
+                <Save className="w-4 h-4" />
+                Save Dossier
+              </button>
+            </div>
+          ) : (
+            <button onClick={() => setEditing(true)} className="btn btn-primary text-xs gap-2">
+              <Edit3 className="w-4 h-4" /> Edit Dossier
             </button>
-          </div>
-        ) : (
-          <button onClick={() => setEditing(true)} className="btn btn-primary text-xs gap-2">
-            <Edit3 className="w-4 h-4" /> Edit Dossier
-          </button>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Target Role Target Selection */}

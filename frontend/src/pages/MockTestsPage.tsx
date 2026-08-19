@@ -109,8 +109,10 @@ export default function MockTestsPage() {
       return res.data
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['jobScore'] })
-      toast.success(`Mock Test Submitted! Career Readiness Score elevated to ${data.readiness_score || 75}%`)
+      // exact:false ensures Dashboard's ['jobScore', uid] key is also invalidated
+      queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
+      const displayScore = data.readiness_score ?? scoreEarned ?? calculateScore()
+      toast.success(`Mock Test Submitted! Career Readiness Score recalculated to ${displayScore}%`)
     }
   })
 

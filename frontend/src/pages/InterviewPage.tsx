@@ -46,8 +46,9 @@ export default function InterviewPage() {
     onSuccess: (data) => {
       setEvaluation(data)
       setEvaluatedScores(prev => [...prev, data.score || 75])
-      queryClient.invalidateQueries({ queryKey: ['jobScore'] })
-      toast.success(`Prompt evaluated (${data.score || 75}%). Career Readiness Score updated!`)
+      // exact:false ensures Dashboard's ['jobScore', uid] key is also invalidated
+      queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
+      toast.success(`Answer evaluated: ${data.score || 75}/100. Career Readiness Score updated!`)
     }
   })
 
@@ -72,8 +73,9 @@ export default function InterviewPage() {
           questions_count: activeSession.questions.length,
         })
       } catch {}
-      queryClient.invalidateQueries({ queryKey: ['jobScore'] })
-      toast.success('Interview Session Completed! Career Readiness Score elevated.')
+      // exact:false ensures Dashboard's ['jobScore', uid] key is also invalidated
+      queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
+      toast.success(`Interview Session Completed! Avg score: ${avgScore}/100. Career Readiness Score elevated.`)
     }
   }
 
