@@ -3,10 +3,17 @@ CareerPilot AI — AI Interview Simulator Router
 Real-time evidence-based interview response evaluator.
 """
 from fastapi import APIRouter, Depends, HTTPException, Body
-from app.core.dependencies import get_current_user_optional
+from app.core.dependencies import get_current_user, get_current_user_optional
+from app.schemas.models import (
+    InterviewStartRequest,
+    InterviewEvaluateRequest,
+    InterviewSaveSessionRequest,
+)
 from app.services.gemini_service import call_gemini_json
 import logging
 import re
+import uuid
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
@@ -114,11 +121,11 @@ def evaluate_realistically_fallback(question: str, answer: str, role: str) -> di
 
 @router.post("/start")
 async def start_interview(
-    payload: dict = Body(...),
+    payload: InterviewStartRequest,
     user: dict = Depends(get_current_user_optional)
 ):
-    role = payload.get("role", "Software Engineer")
-    category = payload.get("category", "technical")
+    role = payload.role.strip() or "Software Engineer"
+    category = payload.category.strip() or "technical"
     
     questions = {
         "technical": [
@@ -148,14 +155,14 @@ async def start_interview(
 
 @router.post("/evaluate")
 async def evaluate_answer(
-    payload: dict = Body(...),
+    payload: InterviewEvaluateRequest,
     user: dict = Depends(get_current_user_optional)
 ):
-    question = payload.get("question", "")
-    answer = payload.get("answer", "")
-    role = payload.get("role", "Software Engineer")
+    question = payload.question.strip()
+    answer = payload.answer.strip()
+    role = payload.role.strip() or "Software Engineer"
 
-    if not answer or len(answer.strip()) == 0:
+    if not answer or len(answer) == 0:
         return {
             "score": 0,
             "clarity": 0,
@@ -195,18 +202,16 @@ async def evaluate_answer(
     uid = user.get("uid") if user else None
     if uid and eval_result:
         try:
-            import uuid
-            from datetime import datetime
             from app.core.firebase import get_firestore
             from app.services.scoring_service import calculate_job_readiness_score
 
             db = get_firestore()
-            session_id = payload.get("session_id") or f"sess_{int(datetime.utcnow().timestamp())}"
+            session_id = payload.session_id or f"sess_{int(datetime.utcnow().timestamp())}"
             rec = {
                 "id": str(uuid.uuid4()),
                 "session_id": session_id,
                 "role": role,
-                "category": payload.get("category", "technical"),
+                "category": payload.category,
                 "question": question,
                 "score": eval_result.get("score", 0),
                 "overall_score": eval_result.get("score", 0),
@@ -236,31 +241,29 @@ async def evaluate_answer(
 
 @router.post("/save-session")
 async def save_interview_session(
-    payload: dict = Body(...),
-    user: dict = Depends(get_current_user_optional)
+    payload: InterviewSaveSessionRequest,
+    user: dict = Depends(get_current_user)
 ):
-    """Explicitly save a completed multi-question interview session."""
-    uid = user.get("uid", "dev-user-id")
+    """Explicitly save a completed multi-question interview session for authenticated user."""
+    uid = user["uid"]
     try:
-        import uuid
-        from datetime import datetime
         from app.core.firebase import get_firestore
         from app.services.scoring_service import calculate_job_readiness_score
 
         db = get_firestore()
-        session_id = payload.get("session_id") or f"sess_{int(datetime.utcnow().timestamp())}"
-        score = float(payload.get("overall_score", payload.get("score", 75.0)))
+        session_id = payload.session_id or f"sess_{int(datetime.utcnow().timestamp())}"
+        score = float(payload.overall_score if payload.score is None else payload.score)
         rec = {
             "id": str(uuid.uuid4()),
             "session_id": session_id,
-            "role": payload.get("role", "Software Engineer"),
-            "category": payload.get("category", "technical"),
+            "role": payload.role,
+            "category": payload.category,
             "overall_score": score,
             "score": score,
-            "clarity": float(payload.get("clarity", 80.0)),
-            "technical_accuracy": float(payload.get("technical_accuracy", 80.0)),
-            "feedback": payload.get("feedback", "Session completed."),
-            "questions_count": int(payload.get("questions_count", 3)),
+            "clarity": float(payload.clarity),
+            "technical_accuracy": float(payload.technical_accuracy),
+            "feedback": payload.feedback,
+            "questions_count": payload.questions_count,
             "timestamp": datetime.utcnow().isoformat(),
         }
         db.collection(f"interviews/{uid}/sessions").document(session_id).set(rec)
@@ -282,14 +285,14 @@ async def save_interview_session(
             "message": "Interview session saved and readiness score recalculated."
         }
     except Exception as e:
-        logger.error(f"Failed to save interview session: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Failed to save interview session for uid={uid}: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to save interview session.")
 
 
 @router.get("/history")
-async def get_interview_history(user: dict = Depends(get_current_user_optional)):
-    """Fetch completed interview history for user."""
-    uid = user.get("uid", "dev-user-id")
+async def get_interview_history(user: dict = Depends(get_current_user)):
+    """Fetch completed interview history strictly for authenticated user."""
+    uid = user["uid"]
     try:
         from app.core.firebase import get_firestore
         db = get_firestore()
@@ -297,6 +300,7 @@ async def get_interview_history(user: dict = Depends(get_current_user_optional))
         results = [d.to_dict() for d in docs if d.to_dict()]
         return {"uid": uid, "sessions": results}
     except Exception as e:
-        logger.error(f"Failed to get interview history: {e}")
+        logger.error(f"Failed to get interview history for uid={uid}: {e}")
         return {"uid": uid, "sessions": []}
+
 

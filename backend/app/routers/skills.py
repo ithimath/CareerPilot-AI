@@ -2,8 +2,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.core.dependencies import get_current_user
 from app.core.firebase import get_firestore
+from app.schemas.models import SkillAddRequest
 from app.services.scoring_service import calculate_job_readiness_score
 from datetime import datetime
+import html
 import logging
 
 router = APIRouter()
@@ -26,20 +28,21 @@ async def get_skills(user: dict = Depends(get_current_user)):
             return {"skills": []}
         return {"skills": doc.to_dict().get("skills", [])}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail="Failed to fetch skills.")
 
 
 @router.post("/add")
-async def add_skill(skill_data: dict, user: dict = Depends(get_current_user)):
+async def add_skill(skill_data: SkillAddRequest, user: dict = Depends(get_current_user)):
     """Add a skill (with optional proficiency level) to the user's profile."""
-    skill_raw = skill_data.get("skill") or skill_data.get("name", "")
-    level = skill_data.get("level", "Intermediate")
-    verified = bool(skill_data.get("verified", False))
-
-    if not skill_raw or not str(skill_raw).strip():
+    raw_name = skill_data.skill or skill_data.name or ""
+    if not raw_name or not raw_name.strip():
         raise HTTPException(status_code=400, detail="Skill name is required")
-    
-    skill_name = str(skill_raw).strip()
+
+    skill_name = html.escape(raw_name.strip()[:80])
+    level = html.escape(skill_data.level.strip()[:30]) or "Intermediate"
+    verified = bool(skill_data.verified)
+    source = html.escape(skill_data.source.strip()[:30]) or "manual"
+
     try:
         db = get_firestore()
         uid = user["uid"]

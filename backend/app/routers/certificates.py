@@ -9,9 +9,12 @@ from app.services.scoring_service import calculate_job_readiness_score
 from datetime import datetime
 import uuid
 import logging
+import os
+import re
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
+
 
 ALLOWED_CERT_TYPES = {
     "application/pdf": ".pdf",
@@ -158,7 +161,9 @@ async def upload_certificate(
     uid = user["uid"]
     cert_id = str(uuid.uuid4())
     ext = ALLOWED_CERT_TYPES[file.content_type]
-    storage_path = f"certificates/{uid}/{cert_id}/{file.filename}"
+    raw_fname = os.path.basename(file.filename or f"certificate{ext}")
+    clean_fname = re.sub(r'[^a-zA-Z0-9_.-]', '_', raw_fname)
+    storage_path = f"certificates/{uid}/{cert_id}/{clean_fname}"
 
     try:
         # Upload to Firebase Storage
@@ -173,10 +178,11 @@ async def upload_certificate(
         cert_data = {
             "id": cert_id,
             "uid": uid,
-            "file_name": file.filename,
+            "file_name": clean_fname,
             "file_url": file_url,
             "storage_path": storage_path,
             "upload_date": datetime.utcnow(),
+
             "status": CertificateStatus.UPLOADED,
             "extracted_text": "",
             "extracted_skills": {},

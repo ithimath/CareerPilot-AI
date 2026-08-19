@@ -12,13 +12,14 @@ router = APIRouter()
 logger = logging.getLogger(__name__)
 
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 class ConversationCreateRequest(BaseModel):
-    title: str = "New Conversation"
+    title: str = Field("New Conversation", min_length=1, max_length=150)
 
 class MessageRequest(BaseModel):
-    message: str
+    message: str = Field(..., min_length=1, max_length=3000)
+
 
 
 @router.post("/send")

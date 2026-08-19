@@ -28,10 +28,12 @@ class Settings(BaseSettings):
     # Tesseract
     TESSERACT_CMD: str = "C:/Program Files/Tesseract-OCR/tesseract.exe"
 
-    # App
+    # App & Security
     APP_ENV: str = "development"
-    ALLOWED_ORIGINS: Union[List[str], str] = '["http://localhost:5173", "http://localhost:3000"]'
+    ALLOWED_ORIGINS: Union[List[str], str] = '["http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173", "http://127.0.0.1:3000"]'
     MAX_FILE_SIZE_MB: int = 10
+    ENABLE_DOCS_IN_PROD: bool = False
+    ENABLE_HSTS: bool = True
 
     # Datasets
     DATA_DIR: str = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", "data"))
@@ -39,20 +41,33 @@ class Settings(BaseSettings):
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
+        extra = "ignore"
+
+    @property
+    def is_production(self) -> bool:
+        return self.APP_ENV.lower() in ("production", "prod")
 
     @property
     def allowed_origins_list(self) -> List[str]:
         if isinstance(self.ALLOWED_ORIGINS, list):
-            return self.ALLOWED_ORIGINS
-        if isinstance(self.ALLOWED_ORIGINS, str):
+            origins = self.ALLOWED_ORIGINS
+        elif isinstance(self.ALLOWED_ORIGINS, str):
             try:
                 parsed = json.loads(self.ALLOWED_ORIGINS)
                 if isinstance(parsed, list):
-                    return parsed
+                    origins = parsed
+                else:
+                    origins = [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",") if origin.strip()]
             except Exception:
-                pass
-            return [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",") if origin.strip()]
-        return ["*"]
+                origins = [origin.strip() for origin in self.ALLOWED_ORIGINS.split(",") if origin.strip()]
+        else:
+            origins = ["http://localhost:5173", "http://localhost:3000"]
+
+        # Disallow wildcard '*' in production when credentials are enabled
+        if self.is_production and "*" in origins:
+            logger.warning("CORS wildcard '*' detected in production with credentials. Removing '*' for security.")
+            origins = [o for o in origins if o != "*"]
+        return origins if origins else ["http://localhost:5173"]
 
     @property
     def max_file_size_bytes(self) -> int:
@@ -60,3 +75,4 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+

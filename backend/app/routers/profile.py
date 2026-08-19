@@ -103,7 +103,8 @@ async def upload_profile_picture(
 
     try:
         uid = user["uid"]
-        ext = file.filename.rsplit(".", 1)[-1].lower()
+        ext_map = {"image/jpeg": "jpg", "image/jpg": "jpg", "image/png": "png", "image/webp": "webp"}
+        ext = ext_map.get(file.content_type, "jpg")
         storage_path = f"profile_pictures/{uid}/profile.{ext}"
 
         bucket = get_storage_bucket()

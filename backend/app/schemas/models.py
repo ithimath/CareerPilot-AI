@@ -319,3 +319,69 @@ class SuccessResponse(BaseModel):
 class ErrorResponse(BaseModel):
     success: bool = False
     detail: str
+
+
+# ── Request Validation Schemas ────────────────────────────────────────────────
+class SkillAddRequest(BaseModel):
+    skill: Optional[str] = Field(None, max_length=100)
+    name: Optional[str] = Field(None, max_length=100)
+    level: str = Field("Intermediate", max_length=30)
+    verified: bool = False
+    source: str = Field("manual", max_length=30)
+
+    @field_validator("skill", "name")
+    @classmethod
+    def sanitize_skill_name(cls, v):
+        if v is not None:
+            return v.strip()
+        return v
+
+
+class AssessmentSubmitRequest(BaseModel):
+    test_id: str = Field("general", max_length=100)
+    test_title: str = Field("Technical Assessment", max_length=200)
+    score: float = Field(0.0, ge=0.0, le=100.0)
+    category: str = Field("Technical", max_length=100)
+    total_questions: int = Field(3, ge=1, le=100)
+    correct_count: int = Field(0, ge=0, le=100)
+
+
+class CommunityPostCreateRequest(BaseModel):
+    title: str = Field(..., min_length=3, max_length=200)
+    content: str = Field(..., min_length=5, max_length=5000)
+    tags: List[str] = Field(default_factory=lambda: ["General"])
+
+
+class CommunityCommentCreateRequest(BaseModel):
+    content: str = Field(..., min_length=1, max_length=2000)
+
+
+class InterviewStartRequest(BaseModel):
+    role: str = Field("Software Engineer", max_length=100)
+    category: str = Field("technical", max_length=50)
+
+
+class InterviewEvaluateRequest(BaseModel):
+    question: str = Field(..., min_length=5, max_length=1000)
+    answer: str = Field(..., max_length=5000)
+    role: str = Field("Software Engineer", max_length=100)
+    category: str = Field("technical", max_length=50)
+    session_id: Optional[str] = Field(None, max_length=100)
+
+
+class InterviewSaveSessionRequest(BaseModel):
+    session_id: Optional[str] = Field(None, max_length=100)
+    role: str = Field("Software Engineer", max_length=100)
+    category: str = Field("technical", max_length=50)
+    overall_score: float = Field(75.0, ge=0.0, le=100.0)
+    score: Optional[float] = Field(None, ge=0.0, le=100.0)
+    clarity: float = Field(80.0, ge=0.0, le=100.0)
+    technical_accuracy: float = Field(80.0, ge=0.0, le=100.0)
+    feedback: str = Field("Session completed.", max_length=3000)
+    questions_count: int = Field(3, ge=1, le=50)
+
+
+class ATSAnalyzeRequest(BaseModel):
+    resume_text: str = Field(..., max_length=50000)
+    target_role: str = Field("Software Engineer", max_length=100)
+

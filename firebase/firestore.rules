@@ -49,9 +49,30 @@ service cloud.firestore {
       allow read, write: if isOwner(uid);
     }
 
+    // Readiness score history — only owner
+    match /readinessHistory/{uid} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Resumes ATS scans & versions — only owner
+    match /resumes/{uid}/versions/{versionId} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Mock technical assessments records — only owner
+    match /assessments/{uid}/records/{recordId} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // AI Mock Interview sessions — only owner
+    match /interviews/{uid}/sessions/{sessionId} {
+      allow read, write: if isOwner(uid);
+    }
+
     // Default deny
     match /{document=**} {
       allow read, write: if false;
     }
   }
 }
+

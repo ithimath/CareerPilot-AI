@@ -2,12 +2,13 @@
 CareerPilot AI — FastAPI Backend
 Main application entry point
 """
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi import Limiter
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
+from starlette.middleware.base import BaseHTTPMiddleware
 import logging
 
 from app.core.config import settings
@@ -27,35 +28,76 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ── Rate limiter ───────────────────────────────────────────────────────────────
-limiter = Limiter(key_func=get_remote_address, default_limits=["200/minute"])
+limiter = Limiter(key_func=get_remote_address, default_limits=["100/minute"])
 
-# ── App ────────────────────────────────────────────────────────────────────────
+
+def custom_rate_limit_exceeded_handler(request: Request, exc: RateLimitExceeded):
+    """Secure rate limit exceeded response."""
+    return JSONResponse(
+        status_code=429,
+        content={
+            "detail": f"Rate limit exceeded: {exc.detail}. Please slow down your requests.",
+            "type": "rate_limit_exceeded"
+        },
+        headers={"Retry-After": "60"}
+    )
+
+
+# ── Security Headers Middleware ────────────────────────────────────────────────
+class SecurityHeadersMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        response = await call_next(request)
+        
+        # Standard OWASP recommended security headers
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "DENY"
+        response.headers["X-XSS-Protection"] = "0"
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+        response.headers["Content-Security-Policy"] = "default-src 'self'; frame-ancestors 'none';"
+        
+        # HSTS only when running over HTTPS or configured
+        if settings.ENABLE_HSTS and (request.url.scheme == "https" or settings.is_production):
+            response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains; preload"
+            
+        return response
+
+
+# ── App Initialization ─────────────────────────────────────────────────────────
+is_docs_enabled = not settings.is_production or settings.ENABLE_DOCS_IN_PROD
+
 app = FastAPI(
     title="CareerPilot AI API",
     description="AI-powered career readiness platform for students",
     version="1.0.0",
-    docs_url="/docs",
-    redoc_url="/redoc",
+    docs_url="/docs" if is_docs_enabled else None,
+    redoc_url="/redoc" if is_docs_enabled else None,
+    openapi_url="/openapi.json" if is_docs_enabled else None,
 )
 
 app.state.limiter = limiter
-app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_exception_handler(RateLimitExceeded, custom_rate_limit_exceeded_handler)
+
+# ── Security Middleware ────────────────────────────────────────────────────────
+app.add_middleware(SecurityHeadersMiddleware)
 
 # ── CORS ───────────────────────────────────────────────────────────────────────
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.allowed_origins_list,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allow_headers=["*"],
+    expose_headers=["Content-Length", "Retry-After"],
+    max_age=600,
 )
 
-# ── Supabase init ──────────────────────────────────────────────────────────────
+# ── Supabase & Firebase init ───────────────────────────────────────────────────
 @app.on_event("startup")
 async def startup_event():
     init_supabase()
     init_firebase()
-    logger.info("Supabase and Firebase backend initialized successfully")
+    logger.info(f"CareerPilot AI backend initialized (Environment: {settings.APP_ENV})")
 
 # ── Routers ────────────────────────────────────────────────────────────────────
 app.include_router(health.router,       prefix="/api/health",       tags=["Health"])
@@ -78,9 +120,10 @@ app.include_router(datasets.router,     prefix="/api/datasets",     tags=["Datas
 
 # ── Global error handler ───────────────────────────────────────────────────────
 @app.exception_handler(Exception)
-async def global_exception_handler(request, exc):
-    logger.error(f"Unhandled exception: {exc}", exc_info=True)
+async def global_exception_handler(request: Request, exc: Exception):
+    logger.error(f"Unhandled exception on {request.method} {request.url.path}: {exc}", exc_info=True)
     return JSONResponse(
         status_code=500,
         content={"detail": "Internal server error. Please try again later."},
     )
+

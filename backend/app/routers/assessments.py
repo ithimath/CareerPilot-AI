@@ -2,13 +2,15 @@
 CareerPilot AI — Technical Assessments & Mock Drills Router
 """
 from fastapi import APIRouter, Depends, HTTPException, Body
-from app.core.dependencies import get_current_user_optional
+from app.core.dependencies import get_current_user
+from app.schemas.models import AssessmentSubmitRequest
 from datetime import datetime
 import uuid
 import logging
 
 logger = logging.getLogger(__name__)
 router = APIRouter()
+
 
 MOCK_TESTS_CATALOG = [
     {
@@ -94,19 +96,19 @@ async def get_tests():
 
 @router.post("/submit")
 async def submit_assessment(
-    payload: dict = Body(...),
-    user: dict = Depends(get_current_user_optional)
+    payload: AssessmentSubmitRequest,
+    user: dict = Depends(get_current_user)
 ):
     """
     Record completed assessment results and recalculate candidate Career Readiness Score.
     """
-    uid = user.get("uid", "dev-user-id")
-    test_id = payload.get("test_id", "general")
-    test_title = payload.get("test_title", "Technical Assessment")
-    score = float(payload.get("score", 0.0))
-    category = payload.get("category", "Technical")
-    total_q = int(payload.get("total_questions", 3))
-    correct = int(payload.get("correct_count", 0))
+    uid = user["uid"]
+    test_id = payload.test_id
+    test_title = payload.test_title
+    score = payload.score
+    category = payload.category
+    total_q = payload.total_questions
+    correct = payload.correct_count
 
     try:
         from app.core.firebase import get_firestore
@@ -148,14 +150,14 @@ async def submit_assessment(
             "message": "Assessment score recorded and Career Readiness Score recalculated."
         }
     except Exception as e:
-        logger.error(f"Failed to record assessment: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Failed to record assessment for uid={uid}: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail="Failed to record assessment.")
 
 
 @router.get("/history")
-async def get_assessment_history(user: dict = Depends(get_current_user_optional)):
-    """Fetch completed assessment history for user."""
-    uid = user.get("uid", "dev-user-id")
+async def get_assessment_history(user: dict = Depends(get_current_user)):
+    """Fetch completed assessment history strictly for authenticated user."""
+    uid = user["uid"]
     try:
         from app.core.firebase import get_firestore
         db = get_firestore()
@@ -163,5 +165,6 @@ async def get_assessment_history(user: dict = Depends(get_current_user_optional)
         results = [d.to_dict() for d in docs if d.to_dict()]
         return {"uid": uid, "assessments": results}
     except Exception as e:
-        logger.error(f"Failed to fetch assessments history: {e}")
+        logger.error(f"Failed to fetch assessments history for uid={uid}: {e}")
         return {"uid": uid, "assessments": []}
+

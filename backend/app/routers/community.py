@@ -1,8 +1,12 @@
 """
 CareerPilot AI — Community & Peer Network Router
 """
-from fastapi import APIRouter, Depends, Body, HTTPException
-from app.core.dependencies import get_current_user_optional
+from fastapi import APIRouter, Depends, HTTPException
+from app.core.dependencies import get_current_user_optional, get_current_user
+from app.schemas.models import CommunityPostCreateRequest, CommunityCommentCreateRequest
+from datetime import datetime
+import html
+import uuid
 import logging
 
 logger = logging.getLogger(__name__)
@@ -94,18 +98,25 @@ async def get_community_posts(user: dict = Depends(get_current_user_optional)):
 
 @router.post("/posts")
 async def create_community_post(
-    payload: dict = Body(...),
+    payload: CommunityPostCreateRequest,
     user: dict = Depends(get_current_user_optional)
 ):
-    title = payload.get("title", "")
-    content = payload.get("content", "")
-    tags = payload.get("tags", ["General"])
+    # Sanitize inputs against stored XSS
+    title = html.escape(payload.title.strip())
+    content = html.escape(payload.content.strip())
+    tags = [html.escape(t.strip()[:30]) for t in payload.tags[:5] if t.strip()] or ["General"]
     
+    author_name = user.get("name", "Student User") if user else "Student User"
+    author_name = html.escape(author_name[:50])
+    avatar = (author_name or "U")[0].upper()
+    role = user.get("target_career", "Active Member") if user else "Active Member"
+    role = html.escape(role[:50])
+
     new_post = {
-        "id": f"post-{len(MOCK_POSTS) + 1}_{int(datetime.now().timestamp())}" if 'datetime' in globals() else f"post-{len(MOCK_POSTS) + 1}",
-        "author": user.get("name", "Student User"),
-        "avatar": (user.get("name") or "U")[0].upper(),
-        "role": user.get("target_career", "Active Member"),
+        "id": f"post-{len(MOCK_POSTS) + 1}_{int(datetime.utcnow().timestamp())}",
+        "author": author_name,
+        "avatar": avatar,
+        "role": role,
         "title": title,
         "content": content,
         "tags": tags,
@@ -139,19 +150,21 @@ async def get_post_comments(
 @router.post("/posts/{post_id}/comments")
 async def add_post_comment(
     post_id: str,
-    payload: dict = Body(...),
+    payload: CommunityCommentCreateRequest,
     user: dict = Depends(get_current_user_optional)
 ):
-    content = payload.get("content", "").strip()
+    content = html.escape(payload.content.strip())
     if not content:
         raise HTTPException(status_code=400, detail="Comment content cannot be empty")
 
-    author = user.get("name", "Candidate Peer")
+    author = user.get("name", "Candidate Peer") if user else "Candidate Peer"
+    author = html.escape(author[:50])
     avatar = author[0].upper()
-    role = user.get("target_career", "Student Developer")
+    role = user.get("target_career", "Student Developer") if user else "Student Developer"
+    role = html.escape(role[:50])
 
     new_comment = {
-        "id": f"comment-{Date.now()}" if 'Date' in globals() else f"comment-{post_id}-{len(MOCK_COMMENTS.get(post_id, [])) + 1}",
+        "id": f"comment-{post_id}-{int(datetime.utcnow().timestamp())}_{uuid.uuid4().hex[:4]}",
         "author": author,
         "avatar": avatar,
         "role": role,
@@ -170,3 +183,4 @@ async def add_post_comment(
             break
 
     return {"message": "Comment added", "comment": new_comment}
+
