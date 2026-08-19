@@ -362,6 +362,110 @@ const mockStore: any = {
   },
 }
 
+// ── Helper to dynamically evaluate candidate score in mock/fallback mode ───────
+function computeMockJobScore(uid: string, profile: any) {
+  const storageKey = `cp_user_score_${uid}`
+  const historyKey = `cp_user_history_${uid}`
+  
+  const rawSkills = profile?.skills || []
+  const rawProjects = profile?.projects || []
+  const rawCerts = profile?.certifications || []
+  const rawInternships = profile?.internships || []
+  
+  // 1. Skills (Max 25)
+  let skillsScore = 0
+  if (rawSkills.length > 0) {
+    let depthSum = 0
+    rawSkills.forEach((s: any) => {
+      const level = typeof s === 'string' ? 'Intermediate' : (s.level || 'Intermediate')
+      const mult = level.toLowerCase() === 'expert' ? 1.55 : level.toLowerCase() === 'advanced' ? 1.30 : level.toLowerCase() === 'beginner' ? 0.65 : 1.00
+      depthSum += mult * (s.verified ? 1.2 : 1.0)
+    })
+    const avgDepth = depthSum / rawSkills.length
+    const skillRatio = Math.min(rawSkills.length / 8, 1.0)
+    skillsScore = Math.min(25, Math.round(skillRatio * 22 * avgDepth * 10) / 10)
+    if (profile?.cgpa && profile.cgpa >= 7.5 && skillsScore > 0) {
+      skillsScore = Math.min(25, Math.round((skillsScore + (profile.cgpa >= 8.5 ? 2.5 : 1.5)) * 10) / 10)
+    }
+  }
+
+  // 2. Projects (Max 20)
+  let projectsScore = 0
+  if (rawProjects.length > 0) {
+    let qSum = 0
+    rawProjects.forEach((p: any) => {
+      let q = 0.4
+      if (p.title) q += 0.1
+      if (p.description && p.description.length >= 20) q += 0.25
+      if (p.github_url) q += 0.2
+      if (p.live_url) q += 0.15
+      qSum += q
+    })
+    projectsScore = Math.min(20, Math.round(Math.min(qSum / 1.8, 1.0) * 20 * 10) / 10)
+  }
+
+  // 3. Certificates (Max 10)
+  let certsScore = 0
+  const totalCerts = rawCerts.length + (mockStore.certificates?.length || 0)
+  if (totalCerts > 0) {
+    certsScore = Math.min(10, Math.round(totalCerts * 4.5 * 10) / 10)
+  }
+
+  // 4. Existing Activity Records in storage
+  const existingRaw = localStorage.getItem(storageKey)
+  let existing: any = {}
+  try { if (existingRaw) existing = JSON.parse(existingRaw) } catch {}
+
+  const interviewsScore = existing.interviews_score || (rawInternships.length > 0 ? Math.min(8, rawInternships.length * 5) : 0)
+  const resumeScore = existing.resume_score || (profile?.github_url || profile?.linkedin_url || rawProjects.some((p: any) => p.github_url) ? 5.5 : 0)
+  const assessmentsScore = existing.assessments_score || 0
+
+  const totalScore = Math.min(100, Math.round((skillsScore + projectsScore + interviewsScore + resumeScore + assessmentsScore + certsScore) * 10) / 10)
+
+  const isComplete = (skillsScore > 0 ? 1 : 0) + (projectsScore > 0 ? 1 : 0) + (certsScore > 0 ? 1 : 0) + (interviewsScore > 0 ? 1 : 0) + (resumeScore > 0 ? 1 : 0) >= 3
+
+  const result = {
+    uid,
+    total_score: totalScore,
+    skills_score: skillsScore,
+    projects_score: projectsScore,
+    interviews_score: interviewsScore,
+    resume_score: resumeScore,
+    assessments_score: assessmentsScore,
+    certificates_score: certsScore,
+    profile_score: Math.round((resumeScore / 15 * 10 + assessmentsScore / 10 * 5) * 10) / 10,
+    internships_score: interviewsScore,
+    confidence_level: totalScore === 0 ? 'Insufficient Data' : isComplete ? 'High Data Precision' : 'Moderate Data Grounding',
+    data_quality_notice: totalScore === 0
+      ? 'New candidate account. Complete activities to evaluate your score.'
+      : 'Evaluated against 2026 corporate hiring benchmarks.',
+    positive_drivers: [
+      skillsScore >= 12 ? `+${skillsScore} pts: Strong technical skill alignment with role.` : '',
+      projectsScore >= 10 ? `+${projectsScore} pts: Portfolio projects demonstrate practical hands-on capability.` : '',
+      certsScore > 0 ? `+${certsScore} pts: Verified industry credentials on file.` : '',
+    ].filter(Boolean),
+    suggestions: [
+      skillsScore < 20 ? 'Add more technical skills with Advanced/Expert proficiency.' : '',
+      projectsScore < 15 ? 'Add detailed project descriptions with GitHub repositories.' : '',
+      interviewsScore < 12 ? 'Complete an AI Mock Interview in the Simulator tab.' : '',
+    ].filter(Boolean),
+    max_scores: { skills: 25, projects: 20, interviews: 20, resume: 15, assessments: 10, certificates: 10 },
+    factors_breakdown: {
+      skills: { score: skillsScore, max: 25, percentage: Math.round(skillsScore / 25 * 100) },
+      projects: { score: projectsScore, max: 20, percentage: Math.round(projectsScore / 20 * 100) },
+      interviews: { score: interviewsScore, max: 20, percentage: Math.round(interviewsScore / 20 * 100) },
+      resume: { score: resumeScore, max: 15, percentage: Math.round(resumeScore / 15 * 100) },
+      assessments: { score: assessmentsScore, max: 10, percentage: Math.round(assessmentsScore / 10 * 100) },
+      certificates: { score: certsScore, max: 10, percentage: Math.round(certsScore / 10 * 100) },
+    },
+    history: existing.history || [],
+    updated_at: new Date().toISOString(),
+  }
+
+  localStorage.setItem(storageKey, JSON.stringify(result))
+  return result
+}
+
 // ── Interceptor Response Fallback Handler ──────────────────────────────────────
 api.interceptors.response.use(
   (response) => response,
@@ -379,7 +483,16 @@ api.interceptors.response.use(
       if (method === 'put') {
         const body = JSON.parse(error.config.data || '{}')
         mockStore.profile = { ...mockStore.profile, ...body }
-        return Promise.resolve({ data: mockStore.profile })
+        const currentUid = localStorage.getItem('cp_active_uid') || 'demo_user'
+        const score = computeMockJobScore(currentUid, mockStore.profile)
+        return Promise.resolve({
+          data: {
+            success: true,
+            message: 'Candidate Dossier updated successfully',
+            job_score: score.total_score,
+            profile: mockStore.profile,
+          }
+        })
       }
       return Promise.resolve({ data: mockStore.profile })
     }
@@ -387,65 +500,15 @@ api.interceptors.response.use(
     // ── Job Score Endpoints ───────────────────────────────────────────────────
     if (url.includes('/api/job-score')) {
       const currentUid = localStorage.getItem('cp_active_uid') || 'demo_user'
-      const storageKey = `cp_user_score_${currentUid}`
       const historyKey = `cp_user_history_${currentUid}`
-      const savedScore = localStorage.getItem(storageKey)
 
       if (url.includes('/history')) {
         const savedHistory = localStorage.getItem(historyKey)
         return Promise.resolve({ data: { uid: currentUid, history: savedHistory ? JSON.parse(savedHistory) : [] } })
       }
 
-      if (savedScore) {
-        try {
-          const parsed = JSON.parse(savedScore)
-          const savedHistory = localStorage.getItem(historyKey)
-          if (savedHistory) parsed.history = JSON.parse(savedHistory)
-          return Promise.resolve({ data: parsed })
-        } catch {}
-      }
-
-      // Initial 0 score for brand new account session
-      const initialScore = {
-        uid: currentUid,
-        total_score: 0.0,
-        skills_score: 0.0,
-        projects_score: 0.0,
-        interviews_score: 0.0,
-        resume_score: 0.0,
-        assessments_score: 0.0,
-        certificates_score: 0.0,
-        profile_score: 0.0,
-        internships_score: 0.0,
-        confidence_level: 'Insufficient Data',
-        data_quality_notice: 'New candidate account. Add technical skills, take mock tests, or run ATS resume diagnostics to compute your score.',
-        positive_drivers: [],
-        suggestions: [
-          'Welcome to CareerPilot AI! Add 3+ technical skills with proficiency in your profile.',
-          'Execute a resume ATS diagnostic scan to audit keyword compliance.',
-          'Complete a domain-specific AI Mock Interview.',
-        ],
-        max_scores: {
-          skills: 25,
-          projects: 20,
-          interviews: 20,
-          resume: 15,
-          assessments: 10,
-          certificates: 10,
-        },
-        factors_breakdown: {
-          skills: { score: 0, max: 25, percentage: 0 },
-          projects: { score: 0, max: 20, percentage: 0 },
-          interviews: { score: 0, max: 20, percentage: 0 },
-          resume: { score: 0, max: 15, percentage: 0 },
-          assessments: { score: 0, max: 10, percentage: 0 },
-          certificates: { score: 0, max: 10, percentage: 0 },
-        },
-        history: [],
-        updated_at: new Date().toISOString(),
-      }
-      localStorage.setItem(storageKey, JSON.stringify(initialScore))
-      return Promise.resolve({ data: initialScore })
+      const score = computeMockJobScore(currentUid, mockStore.profile)
+      return Promise.resolve({ data: score })
     }
 
     // ── Assessments Endpoints ─────────────────────────────────────────────────

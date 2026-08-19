@@ -88,7 +88,8 @@ export default function DashboardPage() {
   const refreshMutation = useMutation({
     mutationFn: () => api.post('/api/job-score/recalculate'),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['jobScore', user?.uid] })
+      queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
+      queryClient.invalidateQueries({ queryKey: ['profile'], exact: false })
       toast.success('Career Readiness Score recalculated!')
     },
   })

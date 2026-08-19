@@ -79,7 +79,7 @@ export default function ProfilePage() {
 
   // Live score query — refetched whenever ['jobScore'] is invalidated
   const { data: jobScore } = useQuery({
-    queryKey: ['jobScore'],
+    queryKey: ['jobScore', user?.uid],
     queryFn: () => api.get('/api/job-score').then((r) => r.data),
   })
 

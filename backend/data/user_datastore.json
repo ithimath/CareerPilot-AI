@@ -2560,5 +2560,326 @@
       }
     ],
     "updated_at": "2026-08-19T16:57:27.705238"
+  },
+  "readinessHistory/test_student_4f4edc15": {
+    "uid": "test_student_4f4edc15",
+    "history": [
+      {
+        "timestamp": "2026-08-19T17:13:02.834995",
+        "total_score": 0.0,
+        "delta": 0.0,
+        "reason": "Initial Evaluation",
+        "category_breakdown": {
+          "skills": 0.0,
+          "projects": 0.0,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 0.0,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-19T17:13:02.989695",
+        "total_score": 44.7,
+        "delta": 44.7,
+        "reason": "Profile & Skills Added",
+        "category_breakdown": {
+          "skills": 25.0,
+          "projects": 10.5,
+          "interviews": 0.0,
+          "resume": 4.67,
+          "assessments": 0.0,
+          "certificates": 4.5
+        }
+      },
+      {
+        "timestamp": "2026-08-19T17:13:03.027156",
+        "total_score": 51.3,
+        "delta": 6.6,
+        "reason": "Completed DSA Assessment (90%)",
+        "category_breakdown": {
+          "skills": 25.0,
+          "projects": 10.5,
+          "interviews": 0.0,
+          "resume": 4.67,
+          "assessments": 6.6,
+          "certificates": 4.5
+        }
+      },
+      {
+        "timestamp": "2026-08-19T17:13:03.097526",
+        "total_score": 63.7,
+        "delta": 12.4,
+        "reason": "Completed 2 Mock Interviews with score growth",
+        "category_breakdown": {
+          "skills": 25.0,
+          "projects": 10.5,
+          "interviews": 12.47,
+          "resume": 4.67,
+          "assessments": 6.6,
+          "certificates": 4.5
+        }
+      },
+      {
+        "timestamp": "2026-08-19T17:13:03.165932",
+        "total_score": 71.8,
+        "delta": 8.1,
+        "reason": "Completed Resume ATS Scan",
+        "category_breakdown": {
+          "skills": 25.0,
+          "projects": 10.5,
+          "interviews": 12.47,
+          "resume": 12.75,
+          "assessments": 6.6,
+          "certificates": 4.5
+        }
+      }
+    ],
+    "updated_at": "2026-08-19T17:13:03.166072"
+  },
+  "profiles/test_student_4f4edc15": {
+    "uid": "test_student_4f4edc15",
+    "name": "Jane Developer",
+    "target_career": "Full-Stack Engineer",
+    "skills": [
+      {
+        "name": "Python",
+        "level": "Advanced",
+        "verified": true
+      },
+      {
+        "name": "FastAPI",
+        "level": "Intermediate",
+        "verified": false
+      },
+      {
+        "name": "React",
+        "level": "Advanced",
+        "verified": true
+      },
+      {
+        "name": "SQL",
+        "level": "Expert",
+        "verified": true
+      },
+      {
+        "name": "Docker",
+        "level": "Intermediate",
+        "verified": false
+      }
+    ],
+    "projects": [
+      {
+        "title": "E-Commerce Microservices",
+        "description": "High-throughput microservices architecture with FastAPI and PostgreSQL",
+        "technologies": [
+          "Python",
+          "FastAPI",
+          "Docker",
+          "PostgreSQL"
+        ],
+        "github_url": "https://github.com/janedev/ecommerce",
+        "live_url": "https://ecommerce.demo"
+      }
+    ],
+    "certifications": [
+      "AWS Certified Cloud Practitioner"
+    ]
+  },
+  "assessments/test_student_4f4edc15/records/test_dsa_1": {
+    "record_id": "test_dsa_1",
+    "test_id": "dsa",
+    "test_title": "Data Structures & Algorithms Core Assessment",
+    "category": "Algorithms",
+    "score": 90.0,
+    "total_questions": 5,
+    "correct_count": 4,
+    "timestamp": "2026-08-14T10:00:00Z"
+  },
+  "interviews/test_student_4f4edc15/sessions/sess_1": {
+    "session_id": "sess_1",
+    "role": "Full-Stack Engineer",
+    "category": "technical",
+    "overall_score": 75.0,
+    "score": 75.0,
+    "clarity": 78.0,
+    "technical_accuracy": 76.0,
+    "timestamp": "2026-08-14T11:00:00Z"
+  },
+  "interviews/test_student_4f4edc15/sessions/sess_2": {
+    "session_id": "sess_2",
+    "role": "Full-Stack Engineer",
+    "category": "technical",
+    "overall_score": 90.0,
+    "score": 90.0,
+    "clarity": 92.0,
+    "technical_accuracy": 88.0,
+    "timestamp": "2026-08-14T12:00:00Z"
+  },
+  "resumes/test_student_4f4edc15/versions/v_1": {
+    "version_id": "v_1",
+    "target_role": "Full-Stack Engineer",
+    "ats_score": 85,
+    "score": 85,
+    "matched_keywords": [
+      "Python",
+      "React",
+      "FastAPI",
+      "PostgreSQL",
+      "Docker"
+    ],
+    "missing_keywords": [
+      "AWS",
+      "CI/CD"
+    ],
+    "timestamp": "2026-08-14T13:00:00Z"
+  },
+  "jobScores/test_student_4f4edc15": {
+    "uid": "test_student_4f4edc15",
+    "skills_score": 25.0,
+    "projects_score": 10.5,
+    "interviews_score": 12.47,
+    "resume_score": 12.75,
+    "assessments_score": 6.6,
+    "certificates_score": 4.5,
+    "profile_score": 11.8,
+    "internships_score": 0.0,
+    "total_score": 71.8,
+    "confidence_level": "High Data Precision",
+    "data_quality_notice": "Verified multi-signal evidence matched against 2026 corporate hiring benchmarks using semantic skill alignment and prestige-weighted credentials.",
+    "max_scores": {
+      "skills": 25,
+      "projects": 20,
+      "interviews": 20,
+      "resume": 15,
+      "assessments": 10,
+      "certificates": 10
+    },
+    "factors_breakdown": {
+      "skills": {
+        "score": 25.0,
+        "max": 25.0,
+        "percentage": 100.0,
+        "count": 5,
+        "verified": 3,
+        "cgpa_bonus": 0.0
+      },
+      "projects": {
+        "score": 10.5,
+        "max": 20.0,
+        "percentage": 52.5,
+        "count": 1
+      },
+      "interviews": {
+        "score": 12.47,
+        "max": 20.0,
+        "percentage": 62.4,
+        "interview_sub": 12.47,
+        "internship_sub": 0.0,
+        "count": 2,
+        "internship_count": 0
+      },
+      "resume": {
+        "score": 12.75,
+        "max": 15.0,
+        "percentage": 85.0,
+        "version_count": 1
+      },
+      "assessments": {
+        "score": 6.6,
+        "max": 10.0,
+        "percentage": 66.0,
+        "completed": 1
+      },
+      "certificates": {
+        "score": 4.5,
+        "max": 10.0,
+        "percentage": 45.0,
+        "count": 1
+      }
+    },
+    "positive_drivers": [
+      "+25.0 pts: Strong semantic skill alignment with Full Stack Engineer requisitions (3 certificate-verified).",
+      "+12.47 pts: Verified AI Mock Interview performance across 2 session(s).",
+      "+12.75 pts: ATS keyword compliance and resume structure audited.",
+      "+4.5 pts: Industry credentials on file (prestige-weighted)."
+    ],
+    "suggestions": [
+      "Portfolio Depth: Add project descriptions with GitHub links, live URLs, and 3+ technologies for maximum quality score.",
+      "Credentials: Upload a Google, AWS, or Microsoft professional certificate for Tier-1 prestige weighting (+4.5 pts per credential)."
+    ],
+    "history": [
+      {
+        "timestamp": "2026-08-19T17:13:02.834995",
+        "total_score": 0.0,
+        "delta": 0.0,
+        "reason": "Initial Evaluation",
+        "category_breakdown": {
+          "skills": 0.0,
+          "projects": 0.0,
+          "interviews": 0.0,
+          "resume": 0.0,
+          "assessments": 0.0,
+          "certificates": 0.0
+        }
+      },
+      {
+        "timestamp": "2026-08-19T17:13:02.989695",
+        "total_score": 44.7,
+        "delta": 44.7,
+        "reason": "Profile & Skills Added",
+        "category_breakdown": {
+          "skills": 25.0,
+          "projects": 10.5,
+          "interviews": 0.0,
+          "resume": 4.67,
+          "assessments": 0.0,
+          "certificates": 4.5
+        }
+      },
+      {
+        "timestamp": "2026-08-19T17:13:03.027156",
+        "total_score": 51.3,
+        "delta": 6.6,
+        "reason": "Completed DSA Assessment (90%)",
+        "category_breakdown": {
+          "skills": 25.0,
+          "projects": 10.5,
+          "interviews": 0.0,
+          "resume": 4.67,
+          "assessments": 6.6,
+          "certificates": 4.5
+        }
+      },
+      {
+        "timestamp": "2026-08-19T17:13:03.097526",
+        "total_score": 63.7,
+        "delta": 12.4,
+        "reason": "Completed 2 Mock Interviews with score growth",
+        "category_breakdown": {
+          "skills": 25.0,
+          "projects": 10.5,
+          "interviews": 12.47,
+          "resume": 4.67,
+          "assessments": 6.6,
+          "certificates": 4.5
+        }
+      },
+      {
+        "timestamp": "2026-08-19T17:13:03.165932",
+        "total_score": 71.8,
+        "delta": 8.1,
+        "reason": "Completed Resume ATS Scan",
+        "category_breakdown": {
+          "skills": 25.0,
+          "projects": 10.5,
+          "interviews": 12.47,
+          "resume": 12.75,
+          "assessments": 6.6,
+          "certificates": 4.5
+        }
+      }
+    ],
+    "updated_at": "2026-08-19T17:13:03.165218"
   }
 }
