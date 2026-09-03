@@ -113,6 +113,55 @@ def calculate_job_readiness_score(
 
     try:
         from app.services.ml_scoring_service import get_ml_predictor
+
+        # ── Priority 1: Try Random Forest Regression model ─────────────────
+        try:
+            from app.ml.model_registry import get_readiness_model
+            rf_model = get_readiness_model()
+            if rf_model.is_trained:
+                rf_result = rf_model.predict(profile)
+                if rf_result and rf_result.get("score") is not None:
+                    # RF model is available — use it as primary score, supplement with TF-IDF breakdown
+                    predictor = get_ml_predictor()
+                    tfidf_result = predictor.predict_readiness(
+                        profile=profile,
+                        interviews=activities.get("interviews", []),
+                        resumes=activities.get("resumes", []),
+                        assessments=activities.get("assessments", []),
+                        certificates=activities.get("certificates", []),
+                    )
+
+                    # Blend: RF score as primary, but preserve detailed TF-IDF breakdown
+                    rf_score = rf_result["score"]
+                    tfidf_score = tfidf_result.total_score
+                    # Use 60% RF + 40% TF-IDF for a balanced hybrid score
+                    hybrid_score = round(rf_score * 0.60 + tfidf_score * 0.40, 1)
+
+                    tfidf_result.total_score   = hybrid_score
+                    tfidf_result.prediction_method = "random_forest_regression"
+                    tfidf_result.prediction_label  = "Powered by Random Forest Regression"
+                    tfidf_result.rf_breakdown = {
+                        "rf_score":          rf_score,
+                        "tfidf_score":       tfidf_score,
+                        "hybrid_score":      hybrid_score,
+                        "blend":             "60% RF + 40% Semantic TF-IDF",
+                        "confidence_range":  rf_result.get("confidence_range", []),
+                        "feature_drivers":   rf_result.get("feature_drivers", []),
+                    }
+
+                    if uid:
+                        history = _manage_score_history(uid, tfidf_result, action_reason)
+                        tfidf_result.history = history
+
+                    logger.info(
+                        f"RF+TF-IDF hybrid score for uid={uid}: "
+                        f"rf={rf_score}, tfidf={tfidf_score}, hybrid={hybrid_score}"
+                    )
+                    return tfidf_result
+        except Exception as rf_err:
+            logger.debug(f"RF model unavailable (falling back to TF-IDF): {rf_err}")
+
+        # ── Priority 2: TF-IDF Semantic scoring (existing) ──────────────────
         predictor = get_ml_predictor()
         score_result = predictor.predict_readiness(
             profile=profile,
@@ -121,6 +170,8 @@ def calculate_job_readiness_score(
             assessments=activities.get("assessments", []),
             certificates=activities.get("certificates", []),
         )
+        score_result.prediction_method = "tfidf_semantic"
+        score_result.prediction_label  = "Powered by Semantic Skill Alignment"
 
         # Load and append history if UID is present
         if uid:
@@ -160,6 +211,8 @@ def calculate_job_readiness_score(
         total_score=total,
         confidence_level="Standard Grounding",
         data_quality_notice="Calculated via fallback engine.",
+        prediction_method="rule_based",
+        prediction_label="Calculated via Career Benchmarks",
         suggestions=["Add technical skills and project descriptions to increase evaluation precision."],
         updated_at=datetime.utcnow().isoformat()
     )

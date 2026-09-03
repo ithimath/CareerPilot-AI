@@ -103,7 +103,24 @@ Rules:
         response = _model.generate_content(prompt)
         raw = response.text
         data = _extract_json(raw)
-        return ExtractedSkills(**data)
+        extracted = ExtractedSkills(**data)
+
+        # ── NLP Normalization Post-Processing ─────────────────────────────
+        # Normalize extracted skills to canonical forms to reduce duplicates
+        # and ensure consistent skill naming across the platform.
+        try:
+            from app.ml.nlp_extractor import normalize_extracted_skills
+            raw_skills_dict = extracted.model_dump(exclude_none=True)
+            normalized_dict = normalize_extracted_skills(raw_skills_dict)
+            # Merge normalized fields back into the ExtractedSkills model
+            for field, skills_list in normalized_dict.items():
+                if hasattr(extracted, field):
+                    setattr(extracted, field, skills_list)
+        except Exception as nlp_err:
+            logger.debug(f"NLP normalization skipped (non-critical): {nlp_err}")
+
+        return extracted
+
     except ValueError as e:
         logger.error(f"JSON extraction failed: {e}")
         return ExtractedSkills()

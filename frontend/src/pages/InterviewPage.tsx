@@ -115,12 +115,12 @@ export default function InterviewPage() {
 
       {!activeSession ? (
         /* Configuration Screen */
-        <div className="max-w-2xl mx-auto card p-8 space-y-6">
+        <div className="max-w-2xl mx-auto card p-5 sm:p-8 space-y-5 sm:space-y-6">
           <div className="text-center space-y-2">
             <div className="w-12 h-12 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded-md flex items-center justify-center mx-auto">
               <Bot className="w-6 h-6 text-[#FF5722] dark:text-[#FF7043]" />
             </div>
-            <h3 className="font-heading text-2xl font-bold text-app">Initialize Interview Simulation</h3>
+            <h3 className="font-heading text-xl sm:text-2xl font-bold text-app">Initialize Interview Simulation</h3>
             <p className="text-xs text-secondary">
               Configure candidate target role and assessment category to generate domain-specific interview prompts.
             </p>
@@ -143,7 +143,7 @@ export default function InterviewPage() {
               <label className="text-xs font-bold text-secondary uppercase tracking-wider block mb-1.5">
                 Interview Domain Category
               </label>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3">
                 {[
                   { id: 'technical', label: 'Technical Concepts & Architecture' },
                   { id: 'behavioral', label: 'Behavioral & Leadership (STAR)' },
@@ -152,7 +152,7 @@ export default function InterviewPage() {
                   <button
                     key={item.id}
                     onClick={() => setCategory(item.id)}
-                    className={`p-3 border rounded-md text-left text-xs font-medium transition-all ${
+                    className={`p-3.5 sm:p-3 border rounded-md text-left text-xs font-medium transition-all min-h-[44px] ${
                       category === item.id
                         ? 'border-[#FF5722] bg-[#FF5722]/10 text-[#FF5722] font-bold dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF7043]'
                         : 'border-app bg-surface text-secondary hover:bg-subtle'
@@ -167,7 +167,7 @@ export default function InterviewPage() {
             <button
               onClick={() => startMutation.mutate()}
               disabled={startMutation.isPending || !role.trim()}
-              className="btn btn-primary w-full justify-center gap-2"
+              className="btn btn-primary w-full justify-center gap-2 py-3"
             >
               {startMutation.isPending ? 'Generating Interview Prompts...' : 'Start Diagnostic Session'}
               <ArrowRight className="w-4 h-4" />
@@ -178,19 +178,19 @@ export default function InterviewPage() {
         /* Active Interview Session Screen */
         <div className="grid lg:grid-cols-12 gap-6">
           <div className="lg:col-span-7 space-y-4">
-            <div className="card p-6 space-y-4">
+            <div className="card p-5 sm:p-6 space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-app">
                 <span className="text-xs font-bold text-secondary">
                   Prompt {currentQuestionIdx + 1} of {activeSession.questions.length}
                 </span>
-                <button onClick={() => setActiveSession(null)} className="text-xs text-red-600 hover:underline font-bold">
+                <button onClick={() => setActiveSession(null)} className="text-xs text-red-600 hover:underline font-bold p-1">
                   End Session
                 </button>
               </div>
 
               <div>
                 <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Assessed Prompt</span>
-                <h3 className="font-heading text-xl font-bold text-app leading-snug">
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-app leading-snug">
                   &quot;{activeSession.questions[currentQuestionIdx]}&quot;
                 </h3>
               </div>
@@ -200,18 +200,18 @@ export default function InterviewPage() {
                   Candidate Response Input
                 </label>
                 <textarea
-                  className="input h-48 leading-relaxed text-xs font-mono"
+                  className="input h-40 sm:h-48 leading-relaxed text-xs font-mono"
                   placeholder="Articulate your structured response here... (Recommendation: State situation context, technical decisions made, and measurable outcomes)"
                   value={answerInput}
                   onChange={(e) => setAnswerInput(e.target.value)}
                 />
               </div>
 
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 pt-2">
                 <button
                   onClick={() => evalMutation.mutate()}
                   disabled={!answerInput.trim() || evalMutation.isPending}
-                  className="btn btn-primary gap-2"
+                  className="btn btn-primary gap-2 w-full sm:w-auto justify-center"
                 >
                   {evalMutation.isPending ? (
                     <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -223,7 +223,7 @@ export default function InterviewPage() {
                 </button>
 
                 {evaluation && (
-                  <button onClick={handleNextQuestion} className="btn btn-secondary gap-2 text-xs">
+                  <button onClick={handleNextQuestion} className="btn btn-secondary gap-2 text-xs w-full sm:w-auto justify-center">
                     Next Prompt <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 )}
@@ -234,7 +234,7 @@ export default function InterviewPage() {
           {/* Evidence-Based Evaluation Feedback */}
           <div className="lg:col-span-5">
             {evaluation ? (
-              <div className="card p-6 space-y-4 animate-fade-in bg-subtle">
+              <div className="card p-4 sm:p-6 space-y-4 animate-fade-in bg-subtle">
                 <div className="flex items-center justify-between pb-3 border-b border-app">
                   <div>
                     <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block">AI Diagnostic Report</span>
@@ -250,9 +250,9 @@ export default function InterviewPage() {
                 <div className="space-y-2">
                   <span className="text-[11px] font-bold text-secondary uppercase tracking-wider block">Evidence-Based Rubric</span>
                   {evalMetrics.map((m, i) => (
-                    <div key={i} className="flex items-center justify-between text-xs bg-surface p-2.5 rounded border border-app">
+                    <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs bg-surface p-2.5 rounded border border-app">
                       <span className="font-bold text-app">{m.label}</span>
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2 self-end sm:self-auto">
                         <span className="text-[11px] font-mono text-secondary">{m.status}</span>
                         <span className="font-bold text-[#FF5722] dark:text-[#FF7043] font-mono">{m.score}%</span>
                       </div>

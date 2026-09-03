@@ -1,0 +1,38 @@
+{
+  "model_type": "KMeans",
+  "n_clusters": 5,
+  "train_samples": 211,
+  "metrics": {
+    "silhouette_score": 0.6494,
+    "inertia": 343.5
+  },
+  "cluster_archetypes": {
+    "0": {
+      "archetype_id": "cloud_devops_engineer",
+      "archetype_name": "Cloud & DevOps Engineer",
+      "color": "#F59E0B"
+    },
+    "1": {
+      "archetype_id": "fullstack_builder",
+      "archetype_name": "Full-Stack Builder",
+      "color": "#10B981"
+    },
+    "2": {
+      "archetype_id": "data_analytics_expert",
+      "archetype_name": "Data Analytics Expert",
+      "color": "#0EA5E9"
+    },
+    "3": {
+      "archetype_id": "ai_ml_pioneer",
+      "archetype_name": "AI/ML Pioneer",
+      "color": "#8B5CF6"
+    },
+    "4": {
+      "archetype_id": "security_systems",
+      "archetype_name": "Security & Systems Specialist",
+      "color": "#EF4444"
+    }
+  },
+  "trained_at": "2026-09-03T18:47:01.647186",
+  "prediction_method": "kmeans_clustering"
+}

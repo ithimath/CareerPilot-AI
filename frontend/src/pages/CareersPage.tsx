@@ -24,23 +24,38 @@ function CareerCard({ career, isTarget, onSelect }: any) {
 
   return (
     <div className={`card p-5 transition-all ${isTarget ? 'border-2 border-[#FF5722] dark:border-[#FF7043] shadow-xs' : ''}`}>
-      <div className="flex items-start gap-4">
-        <div className="w-10 h-10 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 flex items-center justify-center flex-shrink-0 rounded-md">
+      <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+        {/* Icon */}
+        <div className="w-10 h-10 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded-md flex items-center justify-center flex-shrink-0">
           <Briefcase className="w-5 h-5 text-[#FF5722] dark:text-[#FF7043]" />
         </div>
 
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 w-full">
           <div className="flex items-start gap-2 justify-between flex-wrap mb-2">
             <div>
               <div className="flex items-center gap-2 flex-wrap">
-                <h3 className="font-heading text-xl font-bold text-app">{career.title}</h3>
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-app break-words">{career.title}</h3>
                 {isTarget && <span className="badge badge-emerald">Active Target</span>}
                 {career.market_demand && (
                   <span className="badge badge-editorial">{career.market_demand} Demand</span>
                 )}
+                {/* RF Probability Score */}
+                {career.probability_score !== undefined && career.probability_score !== null && (
+                  <span className={`inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${
+                    career.probability_score >= 40
+                      ? 'bg-violet-500/10 text-violet-700 border-violet-400/30 dark:text-violet-300'
+                      : 'bg-slate-500/10 text-slate-600 border-slate-400/30'
+                  }`}>
+                    ⚡ RF {career.probability_score.toFixed(1)}%
+                  </span>
+                )}
               </div>
               {career.salary_range && (
                 <p className="text-xs font-mono font-bold text-[#FF5722] dark:text-[#FF7043] mt-0.5">Salary Benchmark: {career.salary_range}</p>
+              )}
+              {/* Recommendation method label */}
+              {career.recommendation_label && (
+                <p className="text-[9px] text-secondary font-medium mt-0.5">{career.recommendation_label}</p>
               )}
             </div>
           </div>
@@ -83,17 +98,17 @@ function CareerCard({ career, isTarget, onSelect }: any) {
             </div>
           )}
 
-          <div className="flex items-center gap-2 mt-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mt-4">
             <button
               onClick={() => onSelect(career.title)}
-              className={isTarget ? 'btn btn-secondary text-xs' : 'btn btn-primary text-xs'}
+              className={`${isTarget ? 'btn btn-secondary text-xs' : 'btn btn-primary text-xs'} w-full sm:w-auto justify-center`}
             >
               <Target className="w-3.5 h-3.5" />
               {isTarget ? 'Currently Selected' : 'Set as Target Track'}
             </button>
             <button
               onClick={() => setExpanded(!expanded)}
-              className="btn btn-ghost text-xs gap-1"
+              className="btn btn-secondary sm:btn-ghost text-xs gap-1 w-full sm:w-auto justify-center"
             >
               {expanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
               {expanded ? 'Less' : 'More details'}
@@ -141,16 +156,22 @@ export default function CareersPage() {
   return (
     <div className="space-y-6 max-w-3xl animate-fade-in text-app">
       {/* Header */}
-      <div className="card p-6 flex items-start justify-between gap-4 flex-wrap shadow-xs">
+      <div className="card p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
         <div>
           <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Market Track Matching</span>
-          <h2 className="font-heading text-3xl font-extrabold text-app">Market Career Tracks</h2>
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-app">Market Career Tracks</h2>
           <p className="text-secondary text-xs mt-0.5 font-medium">Algorithmic track matching based on verified skill profile and employability requisitions</p>
+          {/* Show recommendation method */}
+          {data?.recommendation_label && (
+            <p className="text-[10px] text-secondary mt-1">
+              <span className="font-bold">Engine:</span> {data.recommendation_label}
+            </p>
+          )}
         </div>
         <button
           onClick={() => refreshMutation.mutate()}
           disabled={refreshMutation.isPending}
-          className="btn btn-secondary text-xs gap-2"
+          className="btn btn-secondary text-xs gap-2 w-full sm:w-auto justify-center"
         >
           <RefreshCw className={`w-3.5 h-3.5 ${refreshMutation.isPending ? 'animate-spin' : ''}`} />
           Re-Analyze Tracks

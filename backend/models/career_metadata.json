@@ -1,0 +1,27 @@
+{
+  "model_type": "RandomForestClassifier",
+  "n_estimators": 300,
+  "train_samples": 211,
+  "test_samples": 53,
+  "n_classes": 4,
+  "class_labels": [
+    "Data Analyst",
+    "Data Scientist",
+    "Full Stack Engineer",
+    "Software Developer"
+  ],
+  "metrics": {
+    "accuracy": 0.8491,
+    "precision_weighted": 0.8491,
+    "recall_weighted": 0.8491,
+    "f1_weighted": 0.8491
+  },
+  "per_class_f1": {
+    "Data Analyst": 1.0,
+    "Data Scientist": 1.0,
+    "Full Stack Engineer": 0.5,
+    "Software Developer": 0.6
+  },
+  "trained_at": "2026-09-03T18:46:55.144332",
+  "prediction_method": "random_forest_classification"
+}

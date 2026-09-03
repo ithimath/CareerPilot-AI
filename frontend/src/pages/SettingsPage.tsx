@@ -43,11 +43,11 @@ export default function SettingsPage() {
       </div>
 
       {/* Appearance */}
-      <div className="card p-6">
-        <h3 className="font-heading text-xl font-bold text-app mb-4 flex items-center gap-2">
+      <div className="card p-4 sm:p-6">
+        <h3 className="font-heading text-lg sm:text-xl font-bold text-app mb-4 flex items-center gap-2">
           <Sun className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Theme Preference
         </h3>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
             <p className="text-xs font-bold text-app">Interface Theme Mode</p>
             <p className="text-xs text-secondary font-medium">Active: {theme} mode</p>
@@ -55,7 +55,7 @@ export default function SettingsPage() {
           <button
             id="theme-toggle"
             onClick={toggleTheme}
-            className="btn btn-secondary gap-2 text-xs"
+            className="btn btn-secondary gap-2 text-xs w-full sm:w-auto justify-center"
           >
             {theme === 'dark'
               ? <><Sun className="w-4 h-4 text-[#FF7043]" /> Light Mode</>
@@ -66,9 +66,9 @@ export default function SettingsPage() {
       </div>
 
       {/* Dataset Manager & Upload */}
-      <div className="card p-6 space-y-4">
-        <div className="flex items-center justify-between">
-          <h3 className="font-heading text-xl font-bold text-app flex items-center gap-2">
+      <div className="card p-4 sm:p-6 space-y-4">
+        <div className="flex items-center justify-between flex-wrap gap-2">
+          <h3 className="font-heading text-lg sm:text-xl font-bold text-app flex items-center gap-2">
             <Database className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Dataset Index Registry
           </h3>
           <span className="badge badge-emerald text-[10px]">JSON / CSV Integrated</span>
@@ -86,7 +86,7 @@ export default function SettingsPage() {
             <p className="text-xl font-bold font-heading text-app">15+</p>
             <p className="text-[10px] text-secondary font-bold">Career Tracks</p>
           </div>
-          <div className="p-3 bg-subtle border border-app rounded-md text-center">
+          <div className="p-3 bg-subtle border border-app rounded-md text-center col-span-2 sm:col-span-1">
             <p className="text-xl font-bold font-heading text-app">30+</p>
             <p className="text-[10px] text-secondary font-bold">Course Mappings</p>
           </div>
@@ -97,7 +97,7 @@ export default function SettingsPage() {
           <label className="text-[10px] font-bold text-secondary uppercase tracking-wider block mb-1.5">
             Upload Custom Dataset (.json or .csv)
           </label>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
             <input
               type="file"
               accept=".json,.csv"
@@ -118,7 +118,7 @@ export default function SettingsPage() {
             />
             <button
               onClick={() => toast.success('Datasets verified & re-indexed successfully!')}
-              className="btn btn-secondary text-xs p-2.5"
+              className="btn btn-secondary text-xs p-2.5 justify-center"
               title="Refresh datasets"
             >
               <Upload className="w-4 h-4" />
@@ -128,18 +128,18 @@ export default function SettingsPage() {
       </div>
 
       {/* Security */}
-      <div className="card p-6">
-        <h3 className="font-heading text-xl font-bold text-app mb-4 flex items-center gap-2">
+      <div className="card p-4 sm:p-6">
+        <h3 className="font-heading text-lg sm:text-xl font-bold text-app mb-4 flex items-center gap-2">
           <Shield className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Session Security
         </h3>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div>
             <p className="text-xs font-bold text-app">Sign Out Session</p>
             <p className="text-xs text-secondary font-medium">Terminate current candidate session</p>
           </div>
           <button
             onClick={handleLogout}
-            className="btn btn-danger text-xs gap-2"
+            className="btn btn-danger text-xs gap-2 w-full sm:w-auto justify-center"
           >
             <LogOut className="w-4 h-4" /> Sign Out
           </button>

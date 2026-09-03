@@ -63,10 +63,10 @@ export default function ResumePage() {
   return (
     <div className="space-y-6 animate-fade-in text-app">
       {/* Header */}
-      <div className="card p-6 shadow-xs">
+      <div className="card p-5 sm:p-6 shadow-xs">
         <div>
           <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Enterprise ATS Parser Compliance</span>
-          <h2 className="font-heading text-3xl font-extrabold text-app">Resume ATS Diagnostic & Evidence Analyzer</h2>
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-app break-words">Resume ATS Diagnostic & Evidence Analyzer</h2>
           <p className="text-secondary text-xs mt-1 font-medium">Upload PDF/DOCX or paste raw text for case-insensitive skill normalization, evidence weighting, and explainable scoring</p>
         </div>
       </div>
@@ -74,7 +74,7 @@ export default function ResumePage() {
       <div className="grid lg:grid-cols-12 gap-6">
         {/* Left Column: Input Controls */}
         <div className="lg:col-span-5 space-y-4">
-          <div className="card p-5 space-y-4">
+          <div className="card p-4 sm:p-5 space-y-4">
             <div>
               <label className="text-xs font-bold text-secondary uppercase tracking-wider block mb-1.5">
                 Target Role Requisition
@@ -94,10 +94,10 @@ export default function ResumePage() {
               </label>
               <label className="border-2 border-dashed border-app rounded-xl p-4 flex flex-col items-center justify-center cursor-pointer hover:border-[#FF5722] transition-colors bg-subtle">
                 <Upload className="w-6 h-6 text-secondary mb-1" />
-                <span className="text-xs font-bold text-app">
+                <span className="text-xs font-bold text-app text-center break-words max-w-full">
                   {selectedFile ? selectedFile.name : 'Click to select PDF, DOCX, or TXT file'}
                 </span>
-                <span className="text-[10px] text-secondary mt-0.5">Supports mixed-case, lowercase, or uppercase resumes</span>
+                <span className="text-[10px] text-secondary mt-0.5 text-center">Supports mixed-case, lowercase, or uppercase resumes</span>
                 <input
                   type="file"
                   accept=".pdf,.docx,.txt"
@@ -108,10 +108,10 @@ export default function ResumePage() {
 
               {selectedFile && (
                 <div className="flex items-center justify-between text-xs mt-1.5 px-1 text-secondary">
-                  <span>Attached: <strong>{selectedFile.name}</strong></span>
+                  <span className="truncate max-w-[200px]">Attached: <strong>{selectedFile.name}</strong></span>
                   <button
                     onClick={() => setSelectedFile(null)}
-                    className="text-red-500 font-bold hover:underline text-[11px]"
+                    className="text-red-500 font-bold hover:underline text-[11px] min-h-[32px] flex items-center"
                   >
                     Remove File
                   </button>
@@ -120,7 +120,7 @@ export default function ResumePage() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between mb-1.5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1.5">
                 <label className="text-xs font-bold text-secondary uppercase tracking-wider block">
                   Or Paste Raw Resume Content
                 </label>
@@ -150,13 +150,13 @@ Full-Stack AI Career Platform | React, TypeScript, FastAPI
 - Built a high throughput microservice using FastAPI, Docker, and PostgreSQL scaling to 100k active users.`
                     )
                   }}
-                  className="text-[11px] font-bold text-[#FF5722] dark:text-[#FF7043] hover:underline"
+                  className="text-[11px] font-bold text-[#FF5722] dark:text-[#FF7043] hover:underline self-start sm:self-auto py-0.5"
                 >
                   ⚡ Auto-Fill Sample Resume
                 </button>
               </div>
               <textarea
-                className="input h-52 font-mono text-xs leading-relaxed"
+                className="input h-40 sm:h-52 font-mono text-xs leading-relaxed"
                 placeholder="Paste raw plain text from your resume here..."
                 value={resumeText}
                 onChange={(e) => setResumeText(e.target.value)}

@@ -41,7 +41,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <div className="auth-card p-8">
+        <div className="auth-card p-5 sm:p-8">
           <div className="mb-6">
             <h2 className="font-heading text-2xl font-bold text-app">Candidate Sign In</h2>
             <p className="text-secondary text-xs mt-1 font-medium">Access candidate intelligence dashboard</p>

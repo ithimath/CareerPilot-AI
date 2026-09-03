@@ -47,7 +47,7 @@ export default function SignupPage() {
           </div>
         </div>
 
-        <div className="auth-card p-8">
+        <div className="auth-card p-5 sm:p-8">
           <h2 className="font-heading text-2xl font-bold text-app mb-1">Create Candidate Account</h2>
           <p className="text-secondary text-xs mb-6 font-medium">Start your evidence-based career readiness journey today</p>
 

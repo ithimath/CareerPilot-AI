@@ -1,0 +1,56 @@
+{
+  "model_type": "RandomForestRegressor",
+  "n_estimators": 200,
+  "train_samples": 211,
+  "test_samples": 53,
+  "metrics": {
+    "mae": 25.862,
+    "rmse": 29.459,
+    "r2": -0.0519
+  },
+  "top_features": [
+    {
+      "feature": "academic_year_num",
+      "importance": 0.59137
+    },
+    {
+      "feature": "has_projects",
+      "importance": 0.27248
+    },
+    {
+      "feature": "is_engineering",
+      "importance": 0.0153
+    },
+    {
+      "feature": "is_ai_course",
+      "importance": 0.01516
+    },
+    {
+      "feature": "is_data_course",
+      "importance": 0.01371
+    },
+    {
+      "feature": "is_science",
+      "importance": 0.0121
+    },
+    {
+      "feature": "skill_excel",
+      "importance": 0.00921
+    },
+    {
+      "feature": "skill_data_analysis",
+      "importance": 0.00907
+    },
+    {
+      "feature": "skill_business_strategy",
+      "importance": 0.00901
+    },
+    {
+      "feature": "skill_sql",
+      "importance": 0.0087
+    }
+  ],
+  "trained_at": "2026-09-03T18:46:54.594671",
+  "prediction_method": "random_forest_regression",
+  "label_note": "Target label = readiness_rating \u00d7 20 (1\u219220 \u2026 5\u2192100)"
+}

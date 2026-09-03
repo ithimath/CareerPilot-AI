@@ -195,11 +195,11 @@ export default function CommunityPage() {
   return (
     <div className="space-y-6 max-w-4xl animate-fade-in text-app">
       {/* Header Banner */}
-      <div className="card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
+      <div className="card p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
         <div>
           <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Peer & Placement Network</span>
-          <div className="flex items-center gap-3">
-            <h2 className="font-heading text-3xl font-extrabold text-app">Candidate Network Board</h2>
+          <div className="flex items-center gap-3 flex-wrap">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-app break-words">Candidate Network Board</h2>
             <span className="badge badge-emerald flex items-center gap-1">
               <Users className="w-3 h-3 text-[#FF5722] dark:text-[#FF7043]" /> Verified Peer Network
             </span>
@@ -208,7 +208,7 @@ export default function CommunityPage() {
             Connect with candidate peers, discuss project tech stacks, and share interview experiences.
           </p>
         </div>
-        <button onClick={() => setShowModal(true)} className="btn btn-primary text-xs gap-2">
+        <button onClick={() => setShowModal(true)} className="btn btn-primary text-xs gap-2 w-full md:w-auto justify-center py-2.5">
           <Plus className="w-4 h-4 text-white" /> Create Topic
         </button>
       </div>
@@ -219,27 +219,68 @@ export default function CommunityPage() {
           {[...Array(3)].map((_, i) => <div key={i} className="card h-32 skeleton" />)}
         </div>
       ) : posts.length === 0 ? (
-        <div className="card p-12 text-center">
-          <Users className="w-8 h-8 text-secondary mx-auto mb-2" />
-          <p className="text-xs text-secondary font-medium">No community discussions posted yet. Be the first to start a topic!</p>
+        <div className="card p-8 sm:p-12 text-center space-y-3">
+          <Users className="w-12 h-12 text-secondary mx-auto" />
+          <h3 className="font-heading text-lg font-bold text-app">No Active Discussions Yet</h3>
+          <p className="text-xs text-secondary max-w-sm mx-auto">
+            Be the first candidate to publish a technical question, career strategy query, or project collaboration pitch.
+          </p>
+          <button onClick={() => setShowModal(true)} className="btn btn-primary text-xs gap-2">
+            <Plus className="w-4 h-4 text-white" /> Create First Discussion
+          </button>
         </div>
       ) : (
         <div className="space-y-4">
           {posts.map((post: any) => (
-            <PostCard
-              key={post.id}
-              post={post}
-              onUpvote={(postId: string) => upvoteMutation.mutate(postId)}
-            />
+            <div key={post.id} className="card p-4 sm:p-5 space-y-3 hover:border-[#FF5722]/40 transition-all">
+              <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
+                <div className="space-y-1 min-w-0 flex-1">
+                  <h3 className="font-heading text-base sm:text-lg font-bold text-app hover:text-[#FF5722] transition-colors break-words">
+                    {post.title}
+                  </h3>
+                  <div className="flex items-center gap-3 text-[11px] text-secondary font-medium flex-wrap">
+                    <span>By <strong className="text-app">{post.author_name || 'Anonymous Candidate'}</strong></span>
+                    <span>•</span>
+                    <span>{new Date(post.created_at).toLocaleDateString()}</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2 self-end sm:self-start shrink-0">
+                  <button
+                    onClick={() => upvoteMutation.mutate(post.id)}
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded border border-app hover:border-[#FF5722] hover:bg-[#FF5722]/10 text-xs font-bold text-app transition-colors min-h-[36px]"
+                  >
+                    <ThumbsUp className="w-3.5 h-3.5 text-[#FF5722]" />
+                    <span>{post.upvotes || 0}</span>
+                  </button>
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-subtle text-xs font-bold text-secondary min-h-[36px]">
+                    <MessageSquare className="w-3.5 h-3.5" />
+                    <span>{post.comments_count || 0}</span>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-xs text-secondary leading-relaxed break-words">{post.content}</p>
+
+              {post.tags && post.tags.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {post.tags.map((tag: string, idx: number) => (
+                    <span key={idx} className="badge badge-sand text-[10px]">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
         </div>
       )}
 
-      {/* New Topic Modal */}
+      {/* Create Topic Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-4">
-          <div className="card max-w-lg w-full p-6 space-y-4 shadow-lg">
-            <h3 className="font-heading text-xl font-bold text-app">Post Discussion Topic</h3>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-xs p-3 sm:p-4 overflow-y-auto">
+          <div className="card max-w-lg w-full p-5 sm:p-6 space-y-4 shadow-lg max-h-[92vh] overflow-y-auto">
+            <h3 className="font-heading text-lg sm:text-xl font-bold text-app">Post Discussion Topic</h3>
 
             <div className="space-y-3">
               <div>
@@ -275,12 +316,12 @@ export default function CommunityPage() {
               </div>
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-2 border-t border-app">
-              <button onClick={() => setShowModal(false)} className="btn btn-secondary text-xs">Cancel</button>
+            <div className="flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2 pt-2 border-t border-app">
+              <button onClick={() => setShowModal(false)} className="btn btn-secondary text-xs w-full sm:w-auto justify-center">Cancel</button>
               <button
                 onClick={() => postMutation.mutate()}
                 disabled={!title.trim() || !content.trim() || postMutation.isPending}
-                className="btn btn-primary text-xs"
+                className="btn btn-primary text-xs w-full sm:w-auto justify-center"
               >
                 Publish Topic
               </button>

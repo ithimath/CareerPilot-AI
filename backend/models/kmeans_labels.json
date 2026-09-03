@@ -1,0 +1,105 @@
+{
+  "0": {
+    "id": "cloud_devops_engineer",
+    "name": "Cloud & DevOps Engineer",
+    "icon": "\u2601\ufe0f",
+    "color": "#F59E0B",
+    "description": "Infrastructure and automation focused. Strong in cloud platforms (AWS/GCP/Azure), containerization, and CI/CD pipelines.",
+    "career_fit": [
+      "DevOps & Cloud Engineer",
+      "Backend Engineer"
+    ],
+    "skill_signals": [
+      "aws",
+      "docker",
+      "kubernetes",
+      "ci/cd",
+      "terraform",
+      "linux",
+      "gcp",
+      "azure"
+    ]
+  },
+  "1": {
+    "id": "fullstack_builder",
+    "name": "Full-Stack Builder",
+    "icon": "\u26a1",
+    "color": "#10B981",
+    "description": "Well-rounded in frontend and backend development. Comfortable with React, Node.js, databases, and REST API design.",
+    "career_fit": [
+      "Full Stack Engineer",
+      "Software Developer",
+      "Backend Engineer",
+      "Frontend Developer"
+    ],
+    "skill_signals": [
+      "react",
+      "javascript",
+      "node.js",
+      "sql",
+      "html",
+      "css",
+      "rest apis",
+      "typescript"
+    ]
+  },
+  "2": {
+    "id": "data_analytics_expert",
+    "name": "Data Analytics Expert",
+    "icon": "\ud83d\udcca",
+    "color": "#0EA5E9",
+    "description": "Proficient in data analysis, SQL, and visualization. Excels at translating data into insights using Python, R, Excel, and BI tools.",
+    "career_fit": [
+      "Data Analyst",
+      "Data Engineer",
+      "Data Scientist"
+    ],
+    "skill_signals": [
+      "data analysis",
+      "sql",
+      "excel",
+      "tableau",
+      "power bi",
+      "r",
+      "python",
+      "statistics"
+    ]
+  },
+  "3": {
+    "id": "ai_ml_pioneer",
+    "name": "AI/ML Pioneer",
+    "icon": "\ud83e\udd16",
+    "color": "#8B5CF6",
+    "description": "Strong focus on machine learning, deep learning, and AI engineering. Skilled in Python, TensorFlow, and data-driven model development.",
+    "career_fit": [
+      "AI / Machine Learning Engineer",
+      "Data Scientist"
+    ],
+    "skill_signals": [
+      "machine learning",
+      "deep learning",
+      "tensorflow",
+      "pytorch",
+      "scikit-learn",
+      "nlp",
+      "python"
+    ]
+  },
+  "4": {
+    "id": "security_systems",
+    "name": "Security & Systems Specialist",
+    "icon": "\ud83d\udd12",
+    "color": "#EF4444",
+    "description": "Focused on cybersecurity, network defense, and systems programming. Skilled in penetration testing, cryptography, and Linux.",
+    "career_fit": [
+      "Cybersecurity Analyst"
+    ],
+    "skill_signals": [
+      "network security",
+      "ethical hacking",
+      "cryptography",
+      "linux",
+      "penetration testing"
+    ]
+  }
+}

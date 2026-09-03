@@ -182,15 +182,15 @@ function MessageBubble({ message }: { message: any }) {
         {isUser ? <User className="w-4 h-4 text-white" /> : <Bot className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />}
       </div>
       
-      <div className={`relative max-w-[85%] md:max-w-[78%] px-4 py-3 text-xs rounded-2xl shadow-xs transition-all ${
+      <div className={`relative max-w-[88%] sm:max-w-[78%] px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs rounded-2xl shadow-xs transition-all break-words overflow-hidden ${
         isUser
           ? 'bg-[#FF5722] text-white font-medium rounded-tr-xs'
           : 'bg-subtle text-app border border-app rounded-tl-xs'
       }`}>
         {isUser ? (
-          <p className="whitespace-pre-wrap leading-relaxed">{message.content}</p>
+          <p className="whitespace-pre-wrap leading-relaxed break-words">{message.content}</p>
         ) : (
-          <div>
+          <div className="break-words overflow-hidden">
             <FormattedMessageContent content={message.content} />
             <div className="mt-2 pt-2 border-t border-app/40 flex items-center justify-between text-[10px] text-secondary">
               <span className="flex items-center gap-1 font-semibold text-[#FF5722] dark:text-[#FF7043]">
@@ -198,7 +198,7 @@ function MessageBubble({ message }: { message: any }) {
               </span>
               <button
                 onClick={copyToClipboard}
-                className="opacity-60 hover:opacity-100 hover:text-app flex items-center gap-1 px-1.5 py-0.5 rounded transition-all cursor-pointer"
+                className="opacity-60 hover:opacity-100 hover:text-app flex items-center gap-1 px-1.5 py-0.5 rounded transition-all cursor-pointer min-h-[28px]"
                 title="Copy response"
               >
                 {copied ? <Check className="w-3 h-3 text-green-500" /> : <Copy className="w-3 h-3" />}
@@ -327,7 +327,7 @@ export default function ChatPage() {
   const convs = convsData?.conversations || []
 
   return (
-    <div className="h-[calc(100vh-6.5rem)] flex gap-4 animate-fade-in text-app relative">
+    <div className="h-[calc(100dvh-8rem)] lg:h-[calc(100vh-6.5rem)] flex gap-4 animate-fade-in text-app relative">
       {/* Mobile Drawer Overlay */}
       {mobileSidebarOpen && (
         <div
@@ -407,11 +407,11 @@ export default function ChatPage() {
       {/* Main chat window */}
       <div className="flex-1 card flex flex-col justify-between overflow-hidden bg-surface">
         {/* Header */}
-        <div className="p-3.5 md:p-4 border-b border-app flex items-center justify-between bg-surface">
-          <div className="flex items-center gap-3">
+        <div className="p-3 sm:p-4 border-b border-app flex items-center justify-between bg-surface">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
             <button
               onClick={() => setMobileSidebarOpen(true)}
-              className="md:hidden p-1.5 rounded-lg border border-app text-secondary hover:text-app"
+              className="md:hidden p-2 rounded-lg border border-app text-secondary hover:text-app min-w-[36px] min-h-[36px] flex items-center justify-center shrink-0"
             >
               <Menu className="w-4 h-4" />
             </button>
@@ -419,14 +419,14 @@ export default function ChatPage() {
             <div className="w-9 h-9 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] rounded-lg flex items-center justify-center flex-shrink-0">
               <Bot className="w-5 h-5 text-[#FF5722] dark:text-[#FF7043]" />
             </div>
-            <div>
+            <div className="min-w-0">
               <div className="flex items-center gap-2">
-                <p className="font-heading text-sm font-bold text-app">AI Career Strategist & Mentor</p>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-500/10 text-green-700 dark:text-green-400 border border-green-500/20">
+                <p className="font-heading text-sm font-bold text-app truncate">AI Career Strategist</p>
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-500/10 text-green-700 dark:text-green-400 border border-green-500/20 shrink-0">
                   Online
                 </span>
               </div>
-              <p className="text-[11px] text-secondary font-medium">Context-aware candidate evaluation, skill gap diagnostics & interview coaching</p>
+              <p className="text-[11px] text-secondary font-medium hidden sm:block truncate">Context-aware candidate evaluation & interview coaching</p>
             </div>
           </div>
 
@@ -498,7 +498,7 @@ export default function ChatPage() {
         {/* Input box */}
         <div className="p-3 md:p-4 border-t border-app bg-surface space-y-2">
           {messages.length > 0 && (
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-[11px] custom-scrollbar">
+            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-[11px] no-scrollbar">
               <span className="text-secondary font-semibold text-[10px] uppercase tracking-wider flex-shrink-0">Suggested:</span>
               <button
                 onClick={() => sendMessage('What specific skills should I learn next?')}
@@ -529,8 +529,8 @@ export default function ChatPage() {
             className="flex items-center gap-2"
           >
             <input
-              className="input text-xs flex-1 py-2.5 px-3.5 rounded-xl border border-app bg-subtle focus:bg-surface"
-              placeholder="Ask AI Career Mentor anything (e.g. system design, resume audit, skill roadmap)..."
+              className="input text-xs flex-1 py-2.5 px-3.5 rounded-xl border border-app bg-subtle focus:bg-surface min-h-[42px]"
+              placeholder="Ask AI Career Mentor anything..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
               disabled={sending}
@@ -538,9 +538,13 @@ export default function ChatPage() {
             <button
               type="submit"
               disabled={!input.trim() || sending}
-              className="btn btn-primary px-4 py-2.5 rounded-xl cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="btn btn-primary p-2.5 rounded-xl shrink-0 min-w-[42px] min-h-[42px] flex items-center justify-center cursor-pointer disabled:opacity-50"
             >
-              <Send className="w-4 h-4 text-white" />
+              {sending ? (
+                <Loader className="w-4 h-4 animate-spin text-white" />
+              ) : (
+                <Send className="w-4 h-4 text-white" />
+              )}
             </button>
           </form>
         </div>

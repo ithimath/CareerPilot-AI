@@ -215,6 +215,8 @@ class ScoreBreakdown(BaseModel):
     total_score: float = 0.0         # Max 100
     confidence_level: str = "High"   # "High Data Precision" | "Moderate Data Grounding" | "Insufficient Data"
     data_quality_notice: str = ""
+    prediction_method: str = "tfidf_semantic"  # "random_forest_regression" | "tfidf_semantic" | "rule_based"
+    prediction_label: str = "Powered by Semantic Skill Alignment"  # Human-readable label shown to user
     max_scores: Dict[str, int] = {
         "skills": 25,
         "projects": 20,
@@ -224,6 +226,7 @@ class ScoreBreakdown(BaseModel):
         "certificates": 10,
     }
     factors_breakdown: Optional[Dict[str, Any]] = None
+    rf_breakdown: Optional[Dict[str, Any]] = None  # RF-specific feature importances
     positive_drivers: List[str] = []
     suggestions: List[str] = []
     history: List[ScoreHistoryEntry] = []
@@ -242,12 +245,86 @@ class CareerRecommendation(BaseModel):
     salary_range: str = ""
     reason: str = ""
     category: str = ""
+    probability_score: Optional[float] = None        # RF classification probability (0–100)
+    recommendation_method: str = "rule_based"        # "random_forest_classification" | "rule_based"
+    recommendation_label: str = "Matched via Skill Alignment"  # Human-readable label
 
 
 class CareerRecommendationResponse(BaseModel):
     uid: str
     recommendations: List[CareerRecommendation]
     generated_at: datetime
+    recommendation_method: str = "rule_based"        # overall method used
+    recommendation_label: str = "Matched via Skill Alignment"
+
+
+# ── ML Specific Models ──────────────────────────────────────────────────────────
+class MLReadinessResult(BaseModel):
+    """Output from the Random Forest Regression readiness model."""
+    uid: str = ""
+    score: float
+    confidence_range: List[float] = []  # [low, high] percentile range
+    feature_drivers: List[Dict[str, Any]] = []
+    prediction_method: str = "random_forest_regression"
+    prediction_label: str = "Random Forest Regression"
+    model_available: bool = True
+    generated_at: Optional[str] = None
+    note: str = ""
+
+
+class MLCareerRecommendation(BaseModel):
+    """Single career recommendation from Random Forest Classifier."""
+    title: str
+    probability_score: float  # 0–100
+    reason: str = ""
+    prediction_method: str = "random_forest_classification"
+    prediction_label: str = "Random Forest Classification"
+
+
+class MLCareerResult(BaseModel):
+    """Output from the Random Forest Classification career model."""
+    uid: str = ""
+    recommendations: List[MLCareerRecommendation] = []
+    prediction_method: str = "random_forest_classification"
+    prediction_label: str = "Random Forest Classification"
+    model_available: bool = True
+    generated_at: Optional[str] = None
+    note: str = ""
+
+
+class StudentCluster(BaseModel):
+    """K-Means cluster assignment for a student."""
+    uid: str = ""
+    cluster_id: int
+    archetype_id: str
+    archetype_name: str
+    archetype_icon: str = ""
+    archetype_color: str = ""
+    description: str = ""
+    career_fit: List[str] = []
+    prediction_method: str = "kmeans_clustering"
+    prediction_label: str = "K-Means Clustering"
+    cluster_available: bool = True
+    note: str = ""
+
+
+class MLModelInfo(BaseModel):
+    """Status info for a single ML model."""
+    status: str  # "trained" | "not_trained" | "failed"
+    name: str
+    trained_at: Optional[str] = None
+    train_samples: Optional[int] = None
+    metrics: Dict[str, Any] = {}
+    prediction_method: str = ""
+
+
+class MLModelStatus(BaseModel):
+    """Overall ML engine status."""
+    ml_engine_version: str = "2.0"
+    readiness_rf: MLModelInfo
+    career_rf: MLModelInfo
+    kmeans_clustering: MLModelInfo
+    timestamp: str = ""
 
 
 # ── Skill Gap ──────────────────────────────────────────────────────────────────

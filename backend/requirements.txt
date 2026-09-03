@@ -14,6 +14,8 @@ pdf2image
 pandas
 numpy
 scikit-learn
+joblib
+imbalanced-learn
 python-jose[cryptography]
 aiofiles
 slowapi

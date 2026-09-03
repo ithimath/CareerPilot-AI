@@ -17,7 +17,7 @@ from app.core.firebase import init_firebase
 from app.routers import (
     auth, profile, certificates, ocr, skills,
     job_score, careers, skill_gap, learning, chat, health,
-    resume, interview, company_prep, community, datasets, assessments
+    resume, interview, company_prep, community, datasets, assessments, ml
 )
 
 # ── Logging ────────────────────────────────────────────────────────────────────
@@ -95,8 +95,31 @@ app.add_middleware(
 # ── Supabase & Firebase init ───────────────────────────────────────────────────
 @app.on_event("startup")
 async def startup_event():
+    import os
+    # Ensure models directory exists
+    models_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "models"))
+    os.makedirs(models_dir, exist_ok=True)
+
     init_supabase()
     init_firebase()
+
+    # Pre-load ML models from disk (non-blocking — failures are logged, not raised)
+    try:
+        from app.ml.model_registry import get_registry_status
+        status = get_registry_status()  # triggers lazy load
+        trained_models = [k for k, v in status.items() if isinstance(v, dict) and v.get("status") == "trained"]
+        logger.info(
+            f"ML Model Registry initialized — "
+            f"{len(trained_models)}/3 models loaded from disk: {trained_models}"
+        )
+        if len(trained_models) == 0:
+            logger.info(
+                "No trained ML models found. Call POST /api/ml/train to train the ML models "
+                "using the students_database dataset."
+            )
+    except Exception as ml_err:
+        logger.warning(f"ML Model Registry startup warning (non-critical): {ml_err}")
+
     logger.info(f"CareerPilot AI backend initialized (Environment: {settings.APP_ENV})")
 
 # ── Routers ────────────────────────────────────────────────────────────────────
@@ -117,6 +140,7 @@ app.include_router(company_prep.router, prefix="/api/company-prep", tags=["Compa
 app.include_router(assessments.router,  prefix="/api/assessments",  tags=["Assessments"])
 app.include_router(community.router,    prefix="/api/community",    tags=["Community Board"])
 app.include_router(datasets.router,     prefix="/api/datasets",     tags=["Dataset Manager"])
+app.include_router(ml.router,           prefix="/api/ml",           tags=["ML Engine"])
 
 # ── Global error handler ───────────────────────────────────────────────────────
 @app.exception_handler(Exception)

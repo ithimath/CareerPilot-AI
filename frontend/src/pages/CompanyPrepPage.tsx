@@ -132,13 +132,13 @@ export default function CompanyPrepPage() {
   ]
 
   return (
-    <div className="space-y-6 animate-fade-in text-app">
+    <div className="space-y-6 animate-fade-in text-app w-full max-w-full">
       {/* Header */}
-      <div className="card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
+      <div className="card p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
         <div>
           <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Target Organization Intelligence</span>
-          <div className="flex items-center gap-3">
-            <h2 className="font-heading text-3xl font-extrabold text-app">Target Company Interview Intelligence</h2>
+          <div className="flex items-center gap-3 flex-wrap">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-app break-words">Target Company Interview Intelligence</h2>
             <span className="badge badge-emerald flex items-center gap-1">
               <Building2 className="w-3 h-3 text-[#FF5722] dark:text-[#FF7043]" /> Recruiter Intel
             </span>

@@ -273,21 +273,21 @@ export default function ProfilePage() {
   )
 
   return (
-    <div className="space-y-5 max-w-4xl animate-fade-in text-app">
+    <div className="space-y-5 max-w-4xl animate-fade-in text-app w-full max-w-full">
       {/* Header */}
-      <div className="card p-6 flex items-start justify-between gap-4 flex-wrap shadow-xs">
+      <div className="card p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
         <div>
           <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Candidate Profile & Credentials Dossier</span>
-          <h2 className="font-heading text-3xl font-extrabold text-app">Candidate Dossier</h2>
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-app">Candidate Dossier</h2>
           <p className="text-secondary text-xs mt-0.5 font-medium">Maintain verified academic history, portfolio projects, and technical skills for recruiter ATS matching</p>
         </div>
-        <div className="flex items-center gap-3 flex-wrap">
+        <div className="flex items-center gap-3 flex-wrap w-full sm:w-auto justify-between sm:justify-end">
           {/* Live Score Badge */}
           {jobScore?.total_score !== undefined && (
-            <div className="flex flex-col items-center justify-center px-4 py-2 rounded-xl bg-gradient-to-b from-[#FF5722]/10 to-[#FF5722]/5 border border-[#FF5722]/25 min-w-[90px]">
+            <div className="flex flex-col items-center justify-center px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-gradient-to-b from-[#FF5722]/10 to-[#FF5722]/5 border border-[#FF5722]/25 min-w-[80px]">
               <span className="text-[9px] font-bold uppercase tracking-wider text-secondary mb-0.5">Readiness</span>
               <div className="flex items-end gap-0.5">
-                <span className={`font-heading text-2xl font-extrabold ${
+                <span className={`font-heading text-xl sm:text-2xl font-extrabold ${
                   jobScore.total_score >= 75 ? 'text-emerald-500' :
                   jobScore.total_score >= 50 ? 'text-amber-500' :
                   'text-[#FF5722]'
@@ -343,7 +343,7 @@ export default function ProfilePage() {
 
       {/* Personal Info */}
       <Section title="Personal Identification & Academic Standing" icon={User}>
-        <div className="flex items-start gap-6 flex-wrap">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 w-full">
           {/* Avatar */}
           <div className="relative flex-shrink-0">
             <div className="w-20 h-20 overflow-hidden bg-subtle rounded-xl border border-app">
@@ -362,7 +362,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Fields */}
-          <div className="flex-1 grid sm:grid-cols-2 gap-4 min-w-0">
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4 min-w-0 w-full">
             {[
               { key: 'name', label: 'Full Legal Name', type: 'text' },
               { key: 'email', label: 'Registered Email', type: 'email' },
@@ -471,7 +471,7 @@ export default function ProfilePage() {
                 Type single or comma-separated skills (e.g. <code>React, TypeScript, Python, FastAPI, Docker, SQL</code>)
               </span>
             </label>
-            <div className="flex gap-2 flex-wrap sm:flex-nowrap">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 className="input flex-1 text-xs"
                 placeholder="Enter technical skill names (comma separated supported)..."
@@ -479,22 +479,24 @@ export default function ProfilePage() {
                 onChange={(e) => setNewSkill(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && addSkill()}
               />
-              <select
-                className="input text-xs w-36 shrink-0"
-                value={newSkillLevel}
-                onChange={(e) => setNewSkillLevel(e.target.value)}
-              >
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-                <option value="Expert">Expert</option>
-              </select>
-              <button
-                onClick={() => addSkill()}
-                className="btn btn-primary px-4 text-xs font-bold shrink-0 gap-1.5 py-2"
-              >
-                <Plus className="w-4 h-4 text-white" /> Add Skill(s)
-              </button>
+              <div className="flex gap-2 w-full sm:w-auto">
+                <select
+                  className="input text-xs flex-1 sm:w-36 shrink-0"
+                  value={newSkillLevel}
+                  onChange={(e) => setNewSkillLevel(e.target.value)}
+                >
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                  <option value="Expert">Expert</option>
+                </select>
+                <button
+                  onClick={() => addSkill()}
+                  className="btn btn-primary px-4 text-xs font-bold shrink-0 gap-1.5 py-2.5 justify-center flex-1 sm:flex-none"
+                >
+                  <Plus className="w-4 h-4 text-white" /> Add Skill(s)
+                </button>
+              </div>
             </div>
           </div>
         </div>

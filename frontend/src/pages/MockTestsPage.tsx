@@ -147,13 +147,13 @@ export default function MockTestsPage() {
   }
 
   return (
-    <div className="space-y-6 text-app">
+    <div className="space-y-6 text-app w-full max-w-full">
       {/* Header Banner */}
-      <div className="card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
+      <div className="card p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
         <div>
           <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Technical Readiness Verification</span>
-          <div className="flex items-center gap-3">
-            <h2 className="font-heading text-3xl font-extrabold text-app">Technical Mock Test Drills</h2>
+          <div className="flex items-center gap-3 flex-wrap">
+            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-app break-words">Technical Mock Test Drills</h2>
             <span className="badge badge-emerald flex items-center gap-1">
               <FileCode className="w-3 h-3 text-[#FF5722] dark:text-[#FF7043]" /> Timed Drills
             </span>
@@ -166,7 +166,7 @@ export default function MockTestsPage() {
 
       {!selectedTest ? (
         /* Test Selection Cards */
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {MOCK_TESTS.map((test) => (
             <div key={test.id} className="card p-5 space-y-4 flex flex-col justify-between hover:border-[#FF5722]/50 transition-all">
               <div>
@@ -174,7 +174,7 @@ export default function MockTestsPage() {
                   <span className="badge badge-sand text-[10px]">{test.category}</span>
                   <span className={`badge ${test.difficulty === 'Hard' ? 'badge-red' : 'badge-amber'}`}>{test.difficulty}</span>
                 </div>
-                <h3 className="font-heading text-lg font-bold text-app">{test.title}</h3>
+                <h3 className="font-heading text-lg font-bold text-app break-words">{test.title}</h3>
                 <div className="flex items-center gap-4 text-xs font-semibold text-secondary mt-3">
                   <span className="flex items-center gap-1"><FileCode className="w-3.5 h-3.5" /> {test.questionsCount} Prompts</span>
                   <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {test.timeLimit}</span>
@@ -183,7 +183,7 @@ export default function MockTestsPage() {
 
               <button
                 onClick={() => { setSelectedTest(test); setCurrentQ(0); setAnswers({}); setSubmitted(false) }}
-                className="btn btn-primary text-xs w-full justify-center gap-2"
+                className="btn btn-primary text-xs w-full justify-center gap-2 py-2.5"
               >
                 Start Drill <ArrowRight className="w-3.5 h-3.5 text-white" />
               </button>
@@ -193,16 +193,16 @@ export default function MockTestsPage() {
       ) : (
         /* Active Test Interface */
         <div className="max-w-3xl mx-auto space-y-4">
-          <div className="flex items-center justify-between">
-            <button onClick={resetTest} className="text-xs font-bold text-[#FF5722] dark:text-[#FF7043] hover:underline">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <button onClick={resetTest} className="text-xs font-bold text-[#FF5722] dark:text-[#FF7043] hover:underline self-start sm:self-auto py-1">
               ← Back to Test Catalog
             </button>
-            <span className="badge badge-emerald">
+            <span className="badge badge-emerald truncate max-w-full">
               {selectedTest.title}
             </span>
           </div>
 
-          <div className="card p-6 space-y-6">
+          <div className="card p-4 sm:p-6 space-y-5 sm:space-y-6">
             <div className="flex items-center justify-between pb-3 border-b border-app">
               <span className="text-xs font-bold text-secondary">
                 Question {currentQ + 1} of {selectedTest.questions.length}

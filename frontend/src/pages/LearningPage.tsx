@@ -18,14 +18,14 @@ function CourseCard({ course }: { course: any }) {
 
   return (
     <div className="p-4 bg-subtle border border-app rounded-xl space-y-2.5">
-      <div className="flex items-start justify-between gap-3 flex-wrap">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <div>
           <span className="text-[10px] font-extrabold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block">
             {course.platform || 'Official Resource'} • {course.duration || 'Flexible'}
           </span>
-          <h5 className="font-heading text-sm font-bold text-app mt-0.5">{course.title}</h5>
+          <h5 className="font-heading text-sm font-bold text-app mt-0.5 break-words">{course.title}</h5>
         </div>
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end shrink-0">
           <span className="badge badge-subtle text-[10px]">
             {course.level || course.difficulty || 'Intermediate'}
           </span>
@@ -34,7 +34,7 @@ function CourseCard({ course }: { course: any }) {
               href={course.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-primary text-xs py-1 px-3 inline-flex items-center gap-1.5 font-extrabold shadow-xs hover:scale-105 transition-transform"
+              className="btn btn-primary text-xs py-1.5 px-3 inline-flex items-center gap-1.5 font-extrabold shadow-xs hover:scale-105 transition-transform"
             >
               <ExternalLink className="w-3.5 h-3.5" /> Learn Now →
             </a>
@@ -74,8 +74,8 @@ function ModuleCard({ item, onStatusChange }: any) {
       item.status === 'in_progress' ? 'border-amber-500/30 bg-amber-500/5' :
       'border-app bg-surface'
     }`}>
-      <div className="flex items-start justify-between gap-3 flex-wrap">
-        <div className="flex items-start gap-3 flex-1 min-w-[240px]">
+      <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
+        <div className="flex items-start gap-3 flex-1 min-w-0 w-full">
           <button
             onClick={() => onStatusChange(item.id, nextStatus)}
             className={`mt-0.5 shrink-0 ${cfg.color} hover:scale-110 transition-transform`}
@@ -84,9 +84,9 @@ function ModuleCard({ item, onStatusChange }: any) {
             <Icon className="w-5 h-5" />
           </button>
 
-          <div>
+          <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2 flex-wrap">
-              <h4 className={`font-heading text-sm font-bold ${item.status === 'completed' ? 'line-through text-muted' : 'text-app'}`}>
+              <h4 className={`font-heading text-sm font-bold break-words ${item.status === 'completed' ? 'line-through text-muted' : 'text-app'}`}>
                 {item.title}
               </h4>
               <span className={`badge ${
@@ -96,16 +96,16 @@ function ModuleCard({ item, onStatusChange }: any) {
                 {item.difficulty}
               </span>
             </div>
-            {item.description && <p className="text-xs text-secondary font-medium mt-1">{item.description}</p>}
-            <div className="flex items-center gap-3 text-[11px] text-secondary font-semibold mt-1.5">
+            {item.description && <p className="text-xs text-secondary font-medium mt-1 leading-relaxed">{item.description}</p>}
+            <div className="flex items-center gap-3 text-[11px] text-secondary font-semibold mt-1.5 flex-wrap">
               <span>Focus Skill: <strong className="text-app">{item.skill}</strong></span>
-              <span>•</span>
+              <span className="hidden sm:inline">•</span>
               <span>Provider: <strong className="text-app">{item.platform}</strong></span>
             </div>
           </div>
         </div>
 
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-2 flex-wrap w-full sm:w-auto shrink-0 justify-end pt-1 sm:pt-0 border-t sm:border-0 border-app/50">
           {primaryUrl && primaryUrl !== '#' && (
             <a
               href={primaryUrl}
@@ -209,22 +209,22 @@ export default function LearningPage() {
   return (
     <div className="space-y-5 max-w-3xl animate-fade-in text-app">
       {/* Header */}
-      <div className="card p-6 shadow-xs flex items-start justify-between flex-wrap gap-4">
+      <div className="card p-5 sm:p-6 shadow-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <span className="badge badge-emerald flex items-center gap-1 text-[10px]">
               <Compass className="w-3 h-3 text-emerald-500" /> Domain: {domain}
             </span>
           </div>
-          <h2 className="font-heading text-3xl font-extrabold text-app">{currentRole} Roadmap</h2>
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-app">{currentRole} Roadmap</h2>
           <p className="text-secondary text-xs mt-0.5 font-medium">Domain-matched, skill-gap driven curriculum for {currentRole} requisitions</p>
         </div>
 
         {/* Role Switcher */}
-        <div className="shrink-0">
+        <div className="w-full sm:w-auto shrink-0">
           <label className="text-[10px] font-bold text-secondary uppercase tracking-wider block mb-1">Switch Career Track</label>
           <select
-            className="input text-xs w-48"
+            className="input text-xs w-full sm:w-48"
             value={currentRole}
             onChange={(e) => setSelectedRole(e.target.value)}
           >

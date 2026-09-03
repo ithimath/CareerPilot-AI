@@ -109,49 +109,49 @@ export default function SkillGapPage() {
   })
 
   return (
-    <div className="space-y-6 animate-fade-in text-app">
+    <div className="space-y-6 animate-fade-in text-app w-full max-w-full">
       {/* Header Banner */}
-      <div className="card p-6 flex items-start justify-between gap-4 flex-wrap shadow-xs">
+      <div className="card p-5 sm:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-xs">
         <div>
           <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Market Benchmark Assessment</span>
-          <h2 className="font-heading text-3xl font-extrabold text-app">Skill Gap Analysis Matrix</h2>
+          <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-app">Skill Gap Analysis Matrix</h2>
           <p className="text-secondary text-xs mt-1">
             Target Role: <strong className="text-app font-bold">{targetCareer}</strong> • Comparison Baseline: <span className="text-app font-semibold">2026 Tech Employability Standard</span>
           </p>
         </div>
-        <Link to="/career/roadmap" className="btn btn-primary text-xs gap-2">
+        <Link to="/career/roadmap" className="btn btn-primary text-xs gap-2 w-full sm:w-auto justify-center">
           <BookOpen className="w-3.5 h-3.5 text-white" /> View Recommended Roadmap
         </Link>
       </div>
 
       {/* Summary Cards */}
-      <div className="grid md:grid-cols-3 gap-4">
-        <div className="card p-5 flex items-center gap-3">
-          <div className="w-10 h-10 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded-md flex items-center justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+        <div className="card p-4 sm:p-5 flex items-center gap-3">
+          <div className="w-10 h-10 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded-md flex items-center justify-center flex-shrink-0">
             <CheckCircle2 className="w-5 h-5 text-[#FF5722] dark:text-[#FF7043]" />
           </div>
           <div>
-            <p className="font-heading text-3xl font-bold text-app">{matchingSkills.length}</p>
+            <p className="font-heading text-2xl sm:text-3xl font-bold text-app">{matchingSkills.length}</p>
             <p className="text-[11px] font-bold text-secondary uppercase tracking-wider">Acquired Competencies</p>
           </div>
         </div>
 
-        <div className="card p-5 flex items-center gap-3">
-          <div className="w-10 h-10 bg-red-50 text-red-900 border border-red-200 dark:bg-red-950/40 dark:text-red-300 rounded-md flex items-center justify-center">
+        <div className="card p-4 sm:p-5 flex items-center gap-3">
+          <div className="w-10 h-10 bg-red-50 text-red-900 border border-red-200 dark:bg-red-950/40 dark:text-red-300 rounded-md flex items-center justify-center flex-shrink-0">
             <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
           </div>
           <div>
-            <p className="font-heading text-3xl font-bold text-app">{combinedMatrix.filter(s => s.gapLevel !== 'None').length}</p>
+            <p className="font-heading text-2xl sm:text-3xl font-bold text-app">{combinedMatrix.filter(s => s.gapLevel !== 'None').length}</p>
             <p className="text-[11px] font-bold text-secondary uppercase tracking-wider">Active Skill Gaps</p>
           </div>
         </div>
 
-        <div className="card p-5 flex items-center gap-3">
-          <div className="w-10 h-10 bg-subtle border border-app rounded-md flex items-center justify-center text-app">
+        <div className="card p-4 sm:p-5 flex items-center gap-3">
+          <div className="w-10 h-10 bg-subtle border border-app rounded-md flex items-center justify-center text-app flex-shrink-0">
             <Target className="w-5 h-5 text-[#FF5722] dark:text-[#FF7043]" />
           </div>
           <div>
-            <p className="font-heading text-3xl font-bold text-app">
+            <p className="font-heading text-2xl sm:text-3xl font-bold text-app">
               {Math.round(((combinedMatrix.filter(s => s.gapLevel === 'None').length) / combinedMatrix.length) * 100)}%
             </p>
             <p className="text-[11px] font-bold text-secondary uppercase tracking-wider">Market Alignment Rate</p>
@@ -160,19 +160,21 @@ export default function SkillGapPage() {
       </div>
 
       {/* Practical Market Comparison Matrix Table */}
-      <div className="card p-6 space-y-4">
-        <div className="flex items-center justify-between pb-3 border-b border-app flex-wrap gap-2">
+      <div className="card p-4 sm:p-6 space-y-4 overflow-hidden">
+        <div className="flex items-start sm:items-center justify-between pb-3 border-b border-app flex-col sm:flex-row gap-2">
           <div>
             <span className="text-[11px] font-bold text-secondary uppercase tracking-wider block">Recruiter Evaluation Grid</span>
-            <h3 className="font-heading text-xl font-bold text-app">Market Skill Comparison Matrix</h3>
+            <h3 className="font-heading text-lg sm:text-xl font-bold text-app">Market Skill Comparison Matrix</h3>
           </div>
           <span className="text-xs font-semibold text-secondary">
             Evaluating Candidate vs. Standard Market Requirements for <strong className="text-app">{targetCareer}</strong>
           </span>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="editorial-table">
+        <p className="text-[10px] text-secondary sm:hidden italic">← Swipe table horizontally to review full evaluation grid →</p>
+
+        <div className="overflow-x-auto -mx-4 sm:mx-0 px-4 sm:px-0 custom-scrollbar">
+          <table className="editorial-table min-w-[640px]">
             <thead>
               <tr>
                 <th>Market-Required Skill</th>
@@ -226,18 +228,18 @@ export default function SkillGapPage() {
       </div>
 
       {/* Curriculum Action Guide */}
-      <div className="card p-6 space-y-3 bg-subtle">
-        <h4 className="font-heading text-lg font-bold text-app flex items-center gap-2">
+      <div className="card p-5 sm:p-6 space-y-3 bg-subtle">
+        <h4 className="font-heading text-base sm:text-lg font-bold text-app flex items-center gap-2">
           <Layers className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Strategic Learning Recommendation
         </h4>
         <p className="text-xs text-secondary leading-relaxed font-medium">
           Closing your <strong className="text-app">Critical Gaps</strong> in SQL & Database Architecture and Docker containerization will increase your target role employability index from present level to over <strong className="text-app">85%</strong>.
         </p>
-        <div className="pt-2 flex gap-3">
-          <Link to="/career/roadmap" className="btn btn-primary text-xs gap-2">
+        <div className="pt-2 flex flex-col sm:flex-row gap-2.5">
+          <Link to="/career/roadmap" className="btn btn-primary text-xs gap-2 w-full sm:w-auto justify-center">
             Start Learning Modules <ArrowRight className="w-3.5 h-3.5 text-white" />
           </Link>
-          <Link to="/career/tracks" className="btn btn-secondary text-xs">
+          <Link to="/career/tracks" className="btn btn-secondary text-xs w-full sm:w-auto justify-center">
             Explore Alternate Role Tracks
           </Link>
         </div>

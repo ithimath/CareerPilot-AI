@@ -107,14 +107,14 @@ export default function DashboardPage() {
   ]
 
   return (
-    <div className="space-y-6 text-app">
+    <div className="space-y-6 text-app w-full max-w-full">
       {/* ── Contextual Horizontal Sub-Navigation for Dashboard Section ─────── */}
-      <div className="bg-surface border border-app rounded-md p-1.5 flex items-center gap-1.5 overflow-x-auto">
+      <div className="bg-surface border border-app rounded-md p-1.5 flex items-center gap-1.5 overflow-x-auto no-scrollbar -mx-1 sm:mx-0 max-w-full">
         {dashboardTabs.map((t) => (
           <button
             key={t.id}
             onClick={() => setActiveTab(t.id as any)}
-            className={`px-4 py-2 text-xs font-bold transition-all rounded-md flex-shrink-0 ${
+            className={`px-3 sm:px-4 py-2 text-xs font-bold transition-all rounded-md flex-shrink-0 min-h-[36px] ${
               activeTab === t.id
                 ? 'bg-[#FF5722]/10 text-[#FF5722] border-b-2 border-[#FF5722] dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF7043] shadow-2xs'
                 : 'text-secondary hover:bg-subtle hover:text-app'
@@ -126,14 +126,14 @@ export default function DashboardPage() {
       </div>
 
       {/* ── TOP WELCOME BANNER ─────────────────────────────────────────────── */}
-      <div className="card p-6 border-app flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 shadow-xs relative overflow-hidden">
+      <div className="card p-5 sm:p-6 border-app flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 sm:gap-6 shadow-xs relative overflow-hidden">
         <SubtlePathsBg opacity={0.25} sets={1} />
         <div className="space-y-1.5 max-w-2xl relative z-10">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className="badge badge-emerald">Active Command Center</span>
             <span className="text-xs font-semibold text-secondary font-mono">Target Track: <strong className="text-app">{targetCareer}</strong></span>
           </div>
-          <h1 className="font-heading text-3xl font-extrabold text-app">
+          <h1 className="font-heading text-2xl sm:text-3xl font-extrabold text-app break-words">
             Welcome back, {firstName}.
           </h1>
           <p className="text-secondary text-xs leading-relaxed">
@@ -141,16 +141,16 @@ export default function DashboardPage() {
           </p>
         </div>
 
-        <div className="flex items-center gap-3 flex-shrink-0 relative z-10">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 w-full lg:w-auto flex-shrink-0 relative z-10">
           <button
             onClick={() => refreshMutation.mutate()}
             disabled={refreshMutation.isPending}
-            className="btn btn-secondary text-xs gap-2"
+            className="btn btn-secondary text-xs gap-2 w-full sm:w-auto justify-center"
           >
             <RefreshCw className={`w-3.5 h-3.5 ${refreshMutation.isPending ? 'animate-spin' : ''}`} />
             Recalculate Readiness
           </button>
-          <Link to="/practice/interview" className="btn btn-primary text-xs gap-2">
+          <Link to="/practice/interview" className="btn btn-primary text-xs gap-2 w-full sm:w-auto justify-center">
             <Bot className="w-3.5 h-3.5 text-white" /> Launch AI Interview
           </Link>
         </div>
@@ -158,19 +158,19 @@ export default function DashboardPage() {
 
       {/* ── PROMINENT CAREER READINESS SCORE CARD ──────────────────────────── */}
       {(activeTab === 'overview' || activeTab === 'readiness') && (
-        <div className="card p-6 bg-surface border-app space-y-6">
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-app">
-            <div className="flex items-center gap-5">
+        <div className="card p-4 sm:p-6 bg-surface border-app space-y-5 sm:space-y-6">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-5 sm:pb-6 border-b border-app">
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-5 text-center sm:text-left w-full lg:w-auto">
               {/* Radial Progress Gauge Simulation */}
-              <div className="relative w-24 h-24 flex items-center justify-center bg-[#FF5722]/10 dark:bg-[#FF5722]/15 rounded-full border-4 border-[#FF5722]/40 flex-shrink-0">
+              <div className="relative w-22 h-22 sm:w-24 sm:h-24 flex items-center justify-center bg-[#FF5722]/10 dark:bg-[#FF5722]/15 rounded-full border-4 border-[#FF5722]/40 flex-shrink-0 mx-auto sm:mx-0">
                 <div className="text-center">
-                  <span className="font-heading text-3xl font-extrabold text-app">{totalScore}</span>
+                  <span className="font-heading text-2xl sm:text-3xl font-extrabold text-app">{totalScore}</span>
                   <span className="text-[10px] text-secondary font-bold block -mt-1">/ 100</span>
                 </div>
               </div>
 
-              <div>
-                <div className="flex items-center gap-2 mb-0.5">
+              <div className="space-y-1">
+                <div className="flex items-center justify-center sm:justify-start gap-2 mb-0.5 flex-wrap">
                   <span className="text-[10px] font-extrabold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block">
                     Dynamic Career Readiness Score
                   </span>
@@ -178,18 +178,36 @@ export default function DashboardPage() {
                     {jobScore?.confidence_level || 'Data Precision'}
                   </span>
                 </div>
-                <h2 className="font-heading text-2xl font-bold text-app">Career Readiness Index</h2>
-                <div className="flex items-center gap-2 mt-1">
+                <h2 className="font-heading text-xl sm:text-2xl font-bold text-app">Career Readiness Index</h2>
+                <div className="flex items-center justify-center sm:justify-start gap-2 mt-1 flex-wrap">
                   <span className="badge badge-sand font-bold">{scoreTier}</span>
                   <span className="text-xs font-medium text-secondary">
                     {totalScore === 0 ? 'Brand new account — complete activities to build your score' : 'Calculated across 6 verified employability dimensions'}
                   </span>
+                  {/* ML Method Badge */}
+                  {jobScore?.prediction_method && (
+                    <span className={`inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${
+                      jobScore.prediction_method === 'random_forest_regression'
+                        ? 'bg-violet-500/10 text-violet-700 border-violet-400/30 dark:text-violet-300'
+                        : jobScore.prediction_method === 'tfidf_semantic'
+                        ? 'bg-cyan-500/10 text-cyan-700 border-cyan-400/30 dark:text-cyan-300'
+                        : 'bg-slate-500/10 text-slate-600 border-slate-400/30'
+                    }`}>
+                      ⚡ {jobScore.prediction_label || jobScore.prediction_method}
+                    </span>
+                  )}
                 </div>
+                {/* RF Breakdown hint */}
+                {jobScore?.rf_breakdown && (
+                  <p className="text-[10px] text-secondary mt-1 font-mono">
+                    RF: {jobScore.rf_breakdown.rf_score} · TF-IDF: {jobScore.rf_breakdown.tfidf_score} → Hybrid: {jobScore.rf_breakdown.hybrid_score}
+                  </p>
+                )}
               </div>
             </div>
 
             {/* 6-Factor Breakdown Cards */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 w-full md:w-auto">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-2.5 w-full lg:w-auto">
               <div className="p-2.5 bg-subtle border border-app rounded-md text-center">
                 <p className="text-[10px] font-bold text-secondary uppercase">Skills</p>
                 <p className="font-heading text-lg font-bold text-app mt-0.5">
@@ -379,7 +397,7 @@ export default function DashboardPage() {
                   { title: 'AWS Cloud Developer Certificate Uploaded', score: 'OCR Verified', time: '1 day ago', icon: Award },
                   { title: 'Resume ATS Diagnostic Executed', score: '78 ATS Match Index', time: '2 days ago', icon: FileCheck },
                 ].map((act, i) => (
-                  <div key={i} className="flex items-start justify-between p-3.5 bg-subtle border border-app rounded-md text-xs">
+                  <div key={i} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-3.5 bg-subtle border border-app rounded-md text-xs">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/30 dark:bg-[#FF5722]/15 dark:text-[#FF7043] dark:border-[#FF5722]/40 rounded-md flex items-center justify-center flex-shrink-0">
                         <act.icon className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" />
@@ -389,16 +407,16 @@ export default function DashboardPage() {
                         <p className="text-[11px] text-secondary font-medium">{act.time}</p>
                       </div>
                     </div>
-                    <span className="badge badge-sand">{act.score}</span>
+                    <span className="badge badge-sand self-start sm:self-auto">{act.score}</span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Upcoming Roadmap Tasks */}
-            <div className="card p-6 space-y-4">
+            <div className="card p-5 sm:p-6 space-y-4">
               <div className="flex items-center justify-between pb-3 border-b border-app">
-                <h3 className="font-heading text-lg font-bold text-app flex items-center gap-2">
+                <h3 className="font-heading text-base sm:text-lg font-bold text-app flex items-center gap-2">
                   <BookOpen className="w-4 h-4 text-[#FF5722] dark:text-[#FF7043]" /> Upcoming Roadmap Tasks
                 </h3>
                 <Link to="/career/roadmap" className="text-xs font-bold text-[#FF5722] dark:text-[#FF7043] hover:underline">
@@ -411,12 +429,12 @@ export default function DashboardPage() {
                   { name: 'Master PostgreSQL Query Indexing & Schema Design', stage: 'Stage III', priority: 'High' },
                   { name: 'Docker Multi-stage Build Configuration Drill', stage: 'Stage IV', priority: 'Medium' },
                 ].map((task, idx) => (
-                  <div key={idx} className="p-3.5 bg-subtle border border-app rounded-md flex items-center justify-between text-xs">
+                  <div key={idx} className="p-3 sm:p-3.5 bg-subtle border border-app rounded-md flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
                     <div>
                       <p className="font-bold text-app">{task.name}</p>
                       <p className="text-[10px] text-secondary font-medium">{task.stage}</p>
                     </div>
-                    <span className={`badge ${task.priority === 'High' ? 'badge-red' : 'badge-amber'}`}>
+                    <span className={`badge self-start sm:self-auto ${task.priority === 'High' ? 'badge-red' : 'badge-amber'}`}>
                       {task.priority} Priority
                     </span>
                   </div>

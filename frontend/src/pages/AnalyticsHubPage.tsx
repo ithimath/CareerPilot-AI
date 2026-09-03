@@ -2,13 +2,15 @@ import { NavLink, Routes, Route, Navigate } from 'react-router-dom'
 import ResumePage from './ResumePage'
 import CertificatesPage from './CertificatesPage'
 import ProfilePage from './ProfilePage'
-import { FileCheck, Award, User } from 'lucide-react'
+import ProfilingPage from './ProfilingPage'
+import { FileCheck, Award, User, Users } from 'lucide-react'
 
 export default function AnalyticsHubPage() {
   const subNav = [
-    { to: '/analytics/resume',   label: 'ATS Resume Review', icon: FileCheck },
-    { to: '/analytics/certs',    label: 'Verified Credentials', icon: Award },
-    { to: '/analytics/profile',  label: 'Candidate Dossier', icon: User },
+    { to: '/analytics/resume',    label: 'ATS Resume Review',    icon: FileCheck },
+    { to: '/analytics/certs',     label: 'Verified Credentials', icon: Award },
+    { to: '/analytics/profile',   label: 'Candidate Dossier',    icon: User },
+    { to: '/analytics/profiling', label: 'Student Profiling',    icon: Users },
   ]
 
   return (
@@ -40,9 +42,10 @@ export default function AnalyticsHubPage() {
       {/* Sub-module Routes */}
       <Routes>
         <Route index element={<Navigate to="resume" replace />} />
-        <Route path="resume"  element={<ResumePage />} />
-        <Route path="certs"   element={<CertificatesPage />} />
-        <Route path="profile" element={<ProfilePage />} />
+        <Route path="resume"    element={<ResumePage />} />
+        <Route path="certs"     element={<CertificatesPage />} />
+        <Route path="profile"   element={<ProfilePage />} />
+        <Route path="profiling" element={<ProfilingPage />} />
       </Routes>
     </div>
   )
