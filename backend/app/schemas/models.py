@@ -292,22 +292,6 @@ class MLCareerResult(BaseModel):
     note: str = ""
 
 
-class StudentCluster(BaseModel):
-    """K-Means cluster assignment for a student."""
-    uid: str = ""
-    cluster_id: int
-    archetype_id: str
-    archetype_name: str
-    archetype_icon: str = ""
-    archetype_color: str = ""
-    description: str = ""
-    career_fit: List[str] = []
-    prediction_method: str = "kmeans_clustering"
-    prediction_label: str = "K-Means Clustering"
-    cluster_available: bool = True
-    note: str = ""
-
-
 class MLModelInfo(BaseModel):
     """Status info for a single ML model."""
     status: str  # "trained" | "not_trained" | "failed"
@@ -323,7 +307,6 @@ class MLModelStatus(BaseModel):
     ml_engine_version: str = "2.0"
     readiness_rf: MLModelInfo
     career_rf: MLModelInfo
-    kmeans_clustering: MLModelInfo
     timestamp: str = ""
 
 

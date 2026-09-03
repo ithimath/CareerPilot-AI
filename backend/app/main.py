@@ -110,7 +110,7 @@ async def startup_event():
         trained_models = [k for k, v in status.items() if isinstance(v, dict) and v.get("status") == "trained"]
         logger.info(
             f"ML Model Registry initialized — "
-            f"{len(trained_models)}/3 models loaded from disk: {trained_models}"
+            f"{len(trained_models)}/2 models loaded from disk: {trained_models}"
         )
         if len(trained_models) == 0:
             logger.info(

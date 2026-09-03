@@ -81,7 +81,6 @@ export default function AppLayout() {
         { to: '/analytics/resume', label: 'ATS Resume Review', icon: FileCheck },
         { to: '/analytics/certs', label: 'Verified Credentials & OCR', icon: FileCheck },
         { to: '/analytics/profile', label: 'Candidate Dossier', icon: Users },
-        { to: '/analytics/profiling', label: 'Student Profiling (K-Means)', icon: Target },
       ]
     },
   ]

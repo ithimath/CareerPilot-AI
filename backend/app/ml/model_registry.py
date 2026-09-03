@@ -7,25 +7,23 @@ import threading
 import logging
 from typing import Optional, Dict, Any
 
-from app.ml.readiness_model  import ReadinessModel
-from app.ml.career_model     import CareerModel
-from app.ml.clustering_model import ClusteringModel
+from app.ml.readiness_model import ReadinessModel
+from app.ml.career_model    import CareerModel
 
 logger = logging.getLogger(__name__)
 
 _lock = threading.Lock()
 
 # ── Singleton instances ────────────────────────────────────────────────────────
-_readiness_model:  Optional[ReadinessModel]  = None
-_career_model:     Optional[CareerModel]     = None
-_clustering_model: Optional[ClusteringModel] = None
+_readiness_model: Optional[ReadinessModel] = None
+_career_model:    Optional[CareerModel]    = None
 
 _models_loaded = False
 
 
 def _ensure_loaded():
     """Lazy-load all models from disk on first access."""
-    global _readiness_model, _career_model, _clustering_model, _models_loaded
+    global _readiness_model, _career_model, _models_loaded
 
     if _models_loaded:
         return
@@ -36,19 +34,16 @@ def _ensure_loaded():
 
         logger.info("ML Model Registry: loading persisted models from disk...")
 
-        _readiness_model  = ReadinessModel()
-        _career_model     = CareerModel()
-        _clustering_model = ClusteringModel()
+        _readiness_model = ReadinessModel()
+        _career_model    = CareerModel()
 
         r_loaded = _readiness_model.load()
         c_loaded = _career_model.load()
-        k_loaded = _clustering_model.load()
 
         logger.info(
             f"ML Registry loaded — "
             f"Readiness(RF)={'✓' if r_loaded else '✗ (not trained)'} | "
-            f"Career(RF)={'✓' if c_loaded else '✗ (not trained)'} | "
-            f"Clustering(KM)={'✓' if k_loaded else '✗ (not trained)'}"
+            f"Career(RF)={'✓' if c_loaded else '✗ (not trained)'}"
         )
         _models_loaded = True
 
@@ -63,18 +58,13 @@ def get_career_model() -> CareerModel:
     return _career_model
 
 
-def get_clustering_model() -> ClusteringModel:
-    _ensure_loaded()
-    return _clustering_model
-
-
-def train_all_models(n_clusters: int = 5) -> Dict[str, Any]:
+def train_all_models() -> Dict[str, Any]:
     """
     Train all ML models using the students_database dataset.
     Returns a comprehensive training report.
     Raises ValueError if training data is insufficient.
     """
-    global _readiness_model, _career_model, _clustering_model, _models_loaded
+    global _readiness_model, _career_model, _models_loaded
 
     from app.ml.data_builder import prepare_training_data
 
@@ -131,25 +121,6 @@ def train_all_models(n_clusters: int = 5) -> Dict[str, Any]:
             errors["career_rf"] = str(e)
             report["models"]["career_rf"] = {"status": "failed", "error": str(e)}
 
-    # 3. Train K-Means (uses full X_train; unsupervised)
-    with _lock:
-        try:
-            model = ClusteringModel(n_clusters=n_clusters)
-            metrics = model.train(X_train, n_clusters=n_clusters)
-            model.save()
-            _clustering_model = model
-            report["models"]["kmeans_clustering"] = {
-                "status":     "trained",
-                "metrics":    metrics,
-                "n_clusters": n_clusters,
-                "method":     model.PREDICTION_METHOD,
-            }
-            logger.info(f"K-Means trained and saved — metrics: {metrics}")
-        except Exception as e:
-            logger.error(f"K-Means training failed: {e}", exc_info=True)
-            errors["kmeans_clustering"] = str(e)
-            report["models"]["kmeans_clustering"] = {"status": "failed", "error": str(e)}
-
     _models_loaded = True
     report["success"] = len(errors) == 0
     report["errors"]  = errors
@@ -176,9 +147,8 @@ def get_registry_status() -> Dict[str, Any]:
         }
 
     return {
-        "readiness_rf":       model_status(_readiness_model,  "Random Forest Regression (Readiness)"),
-        "career_rf":          model_status(_career_model,     "Random Forest Classifier (Career)"),
-        "kmeans_clustering":  model_status(_clustering_model, "K-Means Clustering (Student Profiling)"),
+        "readiness_rf": model_status(_readiness_model, "Random Forest Regression (Readiness)"),
+        "career_rf":    model_status(_career_model,    "Random Forest Classifier (Career)"),
     }
 
 

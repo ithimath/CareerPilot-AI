@@ -17,21 +17,19 @@ logger = logging.getLogger(__name__)
 # ── POST /api/ml/train ─────────────────────────────────────────────────────────
 @router.post("/train")
 async def train_all_models(
-    n_clusters: int = Query(5, ge=2, le=20, description="Number of K-Means clusters"),
     user: dict = Depends(get_current_user),
 ):
     """
     Trigger full ML training pipeline using students_database dataset.
-    Trains: Random Forest Regressor (readiness), Random Forest Classifier (career),
-    K-Means Clustering (student profiling).
+    Trains: Random Forest Regressor (readiness), Random Forest Classifier (career).
     Models are persisted to backend/models/ for reuse across requests.
     Requires authentication.
     """
     uid = user.get("uid", "")
-    logger.info(f"ML training triggered by uid={uid}, n_clusters={n_clusters}")
+    logger.info(f"ML training triggered by uid={uid}")
     try:
         from app.ml.model_registry import train_all_models as _train
-        report = _train(n_clusters=n_clusters)
+        report = _train()
 
         # Log training event
         try:
@@ -39,7 +37,6 @@ async def train_all_models(
             db.collection("mlTrainingHistory").add({
                 "triggered_by": uid,
                 "trained_at":   datetime.utcnow().isoformat(),
-                "n_clusters":   n_clusters,
                 "report":       report,
             })
         except Exception:
@@ -80,7 +77,6 @@ async def get_ml_status():
             "architecture": {
                 "readiness":  "Random Forest Regression (scikit-learn)",
                 "career":     "Random Forest Classification (scikit-learn)",
-                "clustering": "K-Means Clustering (scikit-learn)",
                 "skill_gap":  "Rule-Based Career Mapping (deterministic)",
                 "nlp":        "NLP Normalization Pipeline (pure Python dictionary)",
                 "chatbot":    "LLM — Gemini 1.5 Flash (Google AI)",
@@ -88,63 +84,6 @@ async def get_ml_status():
         }
     except Exception as e:
         logger.error(f"ML status check failed: {e}")
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-# ── GET /api/ml/profile-cluster ───────────────────────────────────────────────
-@router.get("/profile-cluster")
-async def get_student_cluster(user: dict = Depends(get_current_user)):
-    """
-    Get K-Means cluster assignment for the current authenticated student.
-    Returns a human-readable archetype (e.g. "AI/ML Pioneer", "Data Analytics Expert").
-    Returns 503 if the clustering model has not been trained yet.
-    """
-    try:
-        db = get_firestore()
-        uid = user["uid"]
-
-        profile_doc = db.collection("profiles").document(uid).get()
-        if not profile_doc.exists:
-            raise HTTPException(status_code=404, detail="Profile not found")
-
-        profile = profile_doc.to_dict() or {}
-        profile["uid"] = uid
-
-        from app.ml.model_registry import get_clustering_model
-        model = get_clustering_model()
-
-        if not model.is_trained:
-            return {
-                "cluster_available": False,
-                "message": (
-                    "Student profiling model not yet trained. "
-                    "An admin needs to call POST /api/ml/train first."
-                ),
-                "prediction_label": "K-Means Clustering (not trained)",
-            }
-
-        result = model.assign_cluster(profile)
-        if result is None:
-            raise HTTPException(status_code=500, detail="Cluster assignment failed")
-
-        result["cluster_available"] = True
-        result["uid"] = uid
-
-        # Cache cluster in Firestore
-        try:
-            db.collection("studentClusters").document(uid).set({
-                **result,
-                "updated_at": datetime.utcnow().isoformat(),
-            })
-        except Exception:
-            pass
-
-        return result
-
-    except HTTPException:
-        raise
-    except Exception as e:
-        logger.error(f"Profile cluster failed for uid={user.get('uid')}: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -295,29 +234,6 @@ async def get_enhanced_skill_gap(
     except Exception as e:
         logger.error(f"Enhanced skill gap failed: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
-
-
-# ── GET /api/ml/archetypes ────────────────────────────────────────────────────
-@router.get("/archetypes")
-async def get_all_archetypes():
-    """
-    Return all available student profile archetypes defined in the clustering model.
-    Useful for UI display — no authentication required.
-    """
-    from app.ml.clustering_model import ARCHETYPES
-    return {
-        "archetypes": [
-            {
-                "id":          a["id"],
-                "name":        a["name"],
-                "icon":        a["icon"],
-                "color":       a["color"],
-                "description": a["description"],
-                "career_fit":  a["career_fit"],
-            }
-            for a in ARCHETYPES
-        ]
-    }
 
 
 # Fix forward reference to CareerModel
