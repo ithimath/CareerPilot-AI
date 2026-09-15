@@ -12,21 +12,31 @@ from app.schemas.models import ExtractedSkills
 logger = logging.getLogger(__name__)
 
 # Configure Gemini once on import
+_model = None
+_chat_model = None
+
 if settings.GEMINI_API_KEY:
-    genai.configure(api_key=settings.GEMINI_API_KEY)
-    _model = genai.GenerativeModel("gemini-1.5-flash")
-    _chat_model = genai.GenerativeModel(
-        "gemini-1.5-flash",
-        system_instruction=(
-            "You are CareerPilot AI Mentor — a professional career advisor for students. "
-            "You provide actionable, concise, and encouraging guidance on careers, "
-            "interview prep, technical skills, projects, and internships. "
-            "When given student profile context, tailor your advice accordingly."
-        ),
-    )
+    try:
+        genai.configure(api_key=settings.GEMINI_API_KEY)
+        # Primary model is gemini-3.6-flash as recommended by Google Generative AI API
+        _model = genai.GenerativeModel("gemini-3.6-flash")
+        _chat_model = genai.GenerativeModel(
+            "gemini-3.6-flash",
+            system_instruction=(
+                "You are CareerPilot AI Mentor — a professional career advisor for students. "
+                "You provide actionable, concise, and encouraging guidance on careers, "
+                "interview prep, technical skills, projects, and internships. "
+                "When given student profile context, tailor your advice accordingly."
+            ),
+        )
+    except Exception as e:
+        logger.warning(f"Failed to initialize Gemini models with gemini-3.6-flash: {e}")
+        try:
+            _model = genai.GenerativeModel("gemini-flash-latest")
+            _chat_model = genai.GenerativeModel("gemini-flash-latest")
+        except Exception as fallback_e:
+            logger.error(f"Fallback model initialization failed: {fallback_e}")
 else:
-    _model = None
-    _chat_model = None
     logger.warning("GEMINI_API_KEY not set — AI features will be disabled")
 
 

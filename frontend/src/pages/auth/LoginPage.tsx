@@ -6,12 +6,14 @@ import toast from 'react-hot-toast'
 import { BackgroundPaths } from '@/components/ui/background-paths'
 
 export default function LoginPage() {
-  const { login } = useAuth()
+  const { login, autoConfirm } = useAuth()
   const navigate = useNavigate()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPass, setShowPass] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [confirming, setConfirming] = useState(false)
+  const [showAutoConfirmHelp, setShowAutoConfirmHelp] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -21,9 +23,33 @@ export default function LoginPage() {
       await login(email, password)
       navigate('/dashboard')
     } catch (err: any) {
-      toast.error(err.message?.includes('auth/') ? 'Invalid email or password' : err.message)
+      const msg = err.message || ''
+      if (msg.toLowerCase().includes('email not confirmed')) {
+        setShowAutoConfirmHelp(true)
+        toast.error('Email not confirmed. Click "Auto-Confirm Email" below.')
+      } else if (msg.toLowerCase().includes('invalid login credentials')) {
+        toast.error('Invalid email or password. Please check your credentials.')
+      } else if (msg.toLowerCase().includes('rate limit')) {
+        toast.error('Supabase rate limit exceeded. Please wait a moment and try again.')
+      } else {
+        toast.error(msg.includes('auth/') ? 'Invalid email or password' : msg)
+      }
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleManualConfirm = async () => {
+    if (!email) return toast.error('Please enter your email address')
+    setConfirming(true)
+    try {
+      await autoConfirm(email)
+      toast.success('Email confirmed! You can now sign in.')
+      setShowAutoConfirmHelp(false)
+    } catch (err: any) {
+      toast.error(err.message || 'Auto-confirm failed.')
+    } finally {
+      setConfirming(false)
     }
   }
 
@@ -89,6 +115,20 @@ export default function LoginPage() {
               </div>
             </div>
 
+            {showAutoConfirmHelp && (
+              <div className="p-3 bg-amber-500/10 border border-amber-500/20 rounded-lg text-xs flex items-center justify-between gap-2">
+                <span className="text-amber-500 font-medium">Account not confirmed yet?</span>
+                <button
+                  type="button"
+                  onClick={handleManualConfirm}
+                  disabled={confirming}
+                  className="text-xs px-2.5 py-1 bg-[#FF5722] hover:bg-[#F4511E] text-white font-bold rounded shadow-xs transition"
+                >
+                  {confirming ? 'Confirming...' : 'Auto-Confirm Email'}
+                </button>
+              </div>
+            )}
+
             <button
               id="login-submit"
               type="submit"
@@ -100,7 +140,19 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <p className="text-center text-xs text-secondary font-medium mt-6">
+          <div className="mt-4 pt-4 border-t border-border flex flex-col gap-2">
+            {!showAutoConfirmHelp && (
+              <button
+                type="button"
+                onClick={() => setShowAutoConfirmHelp(true)}
+                className="text-[11px] text-muted-foreground hover:text-foreground text-center transition-colors"
+              >
+                Having email confirmation issues? Click here to auto-confirm
+              </button>
+            )}
+          </div>
+
+          <p className="text-center text-xs text-secondary font-medium mt-4">
             Don&apos;t have an account?{' '}
             <Link to="/signup" className="text-[#FF5722] dark:text-[#FF7043] font-bold hover:underline">
               Create account

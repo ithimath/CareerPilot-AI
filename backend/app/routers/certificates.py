@@ -1,5 +1,7 @@
-"""Certificates router — upload, process, delete"""
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, BackgroundTasks
+"""Certificates router — upload, process, delete with deduplication and replacement"""
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form, BackgroundTasks
+from fastapi.responses import Response
+from typing import Optional
 from app.core.dependencies import get_current_user
 from app.core.firebase import get_firestore, get_storage_bucket
 from app.schemas.models import CertificateStatus
@@ -11,6 +13,8 @@ import uuid
 import logging
 import os
 import re
+import hashlib
+import mimetypes
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -115,7 +119,7 @@ async def _process_certificate(cert_id: str, uid: str, file_bytes: bytes, conten
 
 @router.get("")
 async def list_certificates(user: dict = Depends(get_current_user)):
-    """List all certificates for the current user."""
+    """List all certificates strictly for the authenticated user."""
     try:
         db = get_firestore()
         docs = (
@@ -143,9 +147,16 @@ async def list_certificates(user: dict = Depends(get_current_user)):
 async def upload_certificate(
     background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
+    replace_id: Optional[str] = Form(None),
     user: dict = Depends(get_current_user),
 ):
-    """Upload certificate to Firebase Storage and trigger async processing."""
+    """
+    Upload certificate with:
+    - Deduplication: checks if this file has already been uploaded by the user.
+    - Replacement: if replace_id is supplied, atomically removes old cert and replaces.
+    - User isolation: certificates stored strictly under user UID.
+    - Private access: files are not made publicly browsable.
+    """
     if file.content_type not in ALLOWED_CERT_TYPES:
         raise HTTPException(
             status_code=400,
@@ -159,30 +170,68 @@ async def upload_certificate(
         raise HTTPException(status_code=400, detail="File is empty")
 
     uid = user["uid"]
-    cert_id = str(uuid.uuid4())
+    file_hash = hashlib.sha256(file_bytes).hexdigest()
+
     ext = ALLOWED_CERT_TYPES[file.content_type]
     raw_fname = os.path.basename(file.filename or f"certificate{ext}")
     clean_fname = re.sub(r'[^a-zA-Z0-9_.-]', '_', raw_fname)
+
+    db = get_firestore()
+
+    # 1. Fetch user's existing certificates to check for duplicates and handle replacement
+    existing_docs = list(db.collection("certificates").where("uid", "==", uid).stream())
+    existing_certs = [d.to_dict() for d in existing_docs]
+
+    old_cert_data = None
+    if replace_id:
+        old_cert_data = next((c for c in existing_certs if c.get("id") == replace_id), None)
+        if not old_cert_data:
+            raise HTTPException(status_code=404, detail="Target certificate to replace not found.")
+        if old_cert_data.get("uid") != uid:
+            raise HTTPException(status_code=403, detail="Not authorized to replace this certificate.")
+
+    # 2. If not an explicit replacement, check for identical duplicates (by SHA-256 hash or filename)
+    if not replace_id:
+        for existing in existing_certs:
+            if existing.get("file_hash") == file_hash or existing.get("file_name") == clean_fname:
+                raise HTTPException(
+                    status_code=409,
+                    detail=f"Certificate '{existing.get('file_name', clean_fname)}' already exists in your account. To update it, please replace the existing certificate."
+                )
+
+    # 3. If replacing, safely clean up old file from storage and delete old Firestore doc
+    if old_cert_data:
+        try:
+            bucket = get_storage_bucket()
+            old_blob = bucket.blob(old_cert_data.get("storage_path", ""))
+            if old_blob.exists():
+                old_blob.delete()
+        except Exception as e:
+            logger.warning(f"Storage delete failed during replacement: {e}")
+        db.collection("certificates").document(replace_id).delete()
+
+    cert_id = str(uuid.uuid4())
     storage_path = f"certificates/{uid}/{cert_id}/{clean_fname}"
 
     try:
-        # Upload to Firebase Storage
+        # Upload to Storage (kept private for authenticated user only)
         bucket = get_storage_bucket()
         blob = bucket.blob(storage_path)
         blob.upload_from_string(file_bytes, content_type=file.content_type)
-        blob.make_public()
-        file_url = blob.public_url
+        # Note: Do NOT call blob.make_public() to preserve privacy
+
+        file_url = f"/api/certificates/{cert_id}/file"
 
         # Create Firestore metadata doc
-        db = get_firestore()
         cert_data = {
             "id": cert_id,
             "uid": uid,
             "file_name": clean_fname,
             "file_url": file_url,
             "storage_path": storage_path,
+            "file_hash": file_hash,
+            "file_size": len(file_bytes),
             "upload_date": datetime.utcnow(),
-
             "status": CertificateStatus.UPLOADED,
             "extracted_text": "",
             "extracted_skills": {},
@@ -202,10 +251,13 @@ async def upload_certificate(
             "success": True,
             "certificate_id": cert_id,
             "file_url": file_url,
+            "replaced_id": replace_id,
             "status": CertificateStatus.UPLOADED,
-            "message": "Certificate uploaded. Processing started in background.",
+            "message": "Certificate uploaded. Processing started in background." if not replace_id else "Certificate replaced successfully. Processing started.",
         }
 
+    except HTTPException:
+        raise
     except Exception as e:
         logger.error(f"Certificate upload failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))
@@ -238,7 +290,27 @@ async def delete_certificate(cert_id: str, user: dict = Depends(get_current_user
         # Delete from Firestore
         cert_ref.delete()
 
-        return {"success": True, "message": "Certificate deleted"}
+        # Recalculate job score upon certificate deletion to maintain data integrity
+        uid = user["uid"]
+        try:
+            profile_ref = db.collection("profiles").document(uid)
+            profile_doc = profile_ref.get()
+            if profile_doc.exists:
+                profile_data = profile_doc.to_dict()
+                cert_title = cert_data.get("certificate_title")
+                if cert_title and cert_title in profile_data.get("certifications", []):
+                    profile_data["certifications"].remove(cert_title)
+                    profile_ref.update({"certifications": profile_data["certifications"]})
+                score = calculate_job_readiness_score(profile_data)
+                db.collection("jobScores").document(uid).set({
+                    **score.model_dump(),
+                    "uid": uid,
+                    "updated_at": datetime.utcnow(),
+                })
+        except Exception as e:
+            logger.warning(f"Score recalculation after cert delete warning: {e}")
+
+        return {"success": True, "message": "Certificate deleted and readiness score recalculated."}
 
     except HTTPException:
         raise
@@ -249,7 +321,7 @@ async def delete_certificate(cert_id: str, user: dict = Depends(get_current_user
 
 @router.get("/{cert_id}")
 async def get_certificate(cert_id: str, user: dict = Depends(get_current_user)):
-    """Get a single certificate's details."""
+    """Get a single certificate's details — strictly for authenticated owner."""
     try:
         db = get_firestore()
         doc = db.collection("certificates").document(cert_id).get()
@@ -263,4 +335,32 @@ async def get_certificate(cert_id: str, user: dict = Depends(get_current_user)):
     except HTTPException:
         raise
     except Exception as e:
+        logger.error(f"Get certificate failed: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@router.get("/{cert_id}/file")
+async def get_certificate_file(cert_id: str, user: dict = Depends(get_current_user)):
+    """Stream/download certificate file securely — strictly for authenticated owner."""
+    try:
+        db = get_firestore()
+        doc = db.collection("certificates").document(cert_id).get()
+        if not doc.exists:
+            raise HTTPException(status_code=404, detail="Certificate not found")
+        data = doc.to_dict()
+        if data.get("uid") != user["uid"]:
+            raise HTTPException(status_code=403, detail="Not authorized")
+
+        bucket = get_storage_bucket()
+        blob = bucket.blob(data.get("storage_path", ""))
+        if not blob.exists():
+            raise HTTPException(status_code=404, detail="Certificate file not found in storage")
+
+        file_bytes = blob.download_as_bytes()
+        media_type, _ = mimetypes.guess_type(data.get("file_name", "certificate.pdf"))
+        return Response(content=file_bytes, media_type=media_type or "application/pdf")
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Download certificate file failed: {e}")
         raise HTTPException(status_code=500, detail=str(e))

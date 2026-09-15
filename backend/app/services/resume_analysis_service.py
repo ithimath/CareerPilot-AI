@@ -88,15 +88,93 @@ SKILL_ALIASES: Dict[str, List[str]] = {
 }
 
 
+# Related skills graph: mapping canonical skills to related/alternative technologies
+RELATED_SKILLS_MAP: Dict[str, List[str]] = {
+    "JavaScript": ["TypeScript", "React", "Node.js", "Vue.js", "Angular", "HTML", "CSS"],
+    "TypeScript": ["JavaScript", "React", "Node.js", "Angular"],
+    "Python": ["FastAPI", "Django", "Flask", "Pandas", "NumPy", "Scikit-learn", "PyTorch"],
+    "SQL": ["PostgreSQL", "MySQL", "SQLite", "MongoDB"],
+    "PostgreSQL": ["SQL", "MySQL", "SQLite", "MongoDB"],
+    "MongoDB": ["PostgreSQL", "SQL"],
+    "React": ["React Native", "Next.js", "JavaScript", "TypeScript", "Redux"],
+    "Node.js": ["Express.js", "JavaScript", "TypeScript", "FastAPI"],
+    "Docker": ["Kubernetes", "CI/CD", "AWS", "Linux", "Terraform"],
+    "Kubernetes": ["Docker", "AWS", "CI/CD", "GCP"],
+    "AWS": ["GCP", "Azure", "Docker", "Terraform"],
+    "GCP": ["AWS", "Azure", "Kubernetes"],
+    "Azure": ["AWS", "GCP", "Docker"],
+    "CI/CD": ["Docker", "Git", "Kubernetes"],
+    "Machine Learning": ["Deep Learning", "Python", "Scikit-learn", "TensorFlow", "PyTorch"],
+    "Deep Learning": ["Machine Learning", "PyTorch", "TensorFlow"],
+    "Data Structures": ["Algorithms", "C++", "Java", "Python"],
+    "Algorithms": ["Data Structures", "C++", "Java", "Python"],
+    "System Design": ["REST APIs", "SQL", "PostgreSQL", "Docker", "Kubernetes"],
+    "C++": ["C#", "Java", "Data Structures", "Algorithms"],
+    "C#": ["C++", "Java", "SQL"],
+    "Java": ["Kotlin", "C++", "C#", "SQL"],
+    "FastAPI": ["Python", "REST APIs", "Node.js"],
+    "REST APIs": ["FastAPI", "Node.js", "PostgreSQL"],
+    "Git": ["CI/CD", "Linux"],
+}
+
+
 def normalize_text(text: str) -> str:
     """Case-insensitive, unicode-safe text cleaner."""
     if not text:
         return ""
     text = text.lower()
-    # Normalize unicode spaces and dashes
+    # Normalize unicode spaces, dashes, quotes
     text = re.sub(r'[\u2013\u2014]', '-', text)
+    text = re.sub(r'[\u2018\u2019]', "'", text)
+    text = re.sub(r'[\u201c\u201d]', '"', text)
     text = re.sub(r'\s+', ' ', text)
     return text.strip()
+
+
+def build_skill_pattern(alias: str, canonical_name: str) -> re.Pattern:
+    """
+    Build a boundary-aware regex pattern for a skill alias that handles:
+    - Symbol skills like C++, C#, .NET, Node.js without \b boundary failures
+    - False match protection (e.g. Java must NOT match JavaScript/Java-script/Java Script)
+    - Punctuation & whitespace normalization (e.g. React.js, ReactJS, React JS)
+    """
+    alias_clean = alias.strip().lower()
+
+    # 1. False match guard: Java vs JavaScript / TypeScript
+    if canonical_name == "Java" and alias_clean == "java":
+        return re.compile(r'(?i)(?<![a-zA-Z0-9_])java(?!\s*[-_]?\s*script|[a-zA-Z0-9_])')
+
+    # 2. Symbol skills: C++ (regex \b fails after + because + is non-word)
+    if alias_clean in ("c++", "cpp", "c plus plus"):
+        return re.compile(r'(?i)(?:(?<![a-zA-Z0-9_])c\+\+(?![a-zA-Z0-9_+#])|(?<![a-zA-Z0-9_])cpp(?![a-zA-Z0-9_])|(?<![a-zA-Z0-9_])c\s+plus\s+plus(?![a-zA-Z0-9_]))')
+
+    # 3. Symbol skills: C# (regex \b fails after #)
+    if alias_clean in ("c#", "csharp", "c sharp"):
+        return re.compile(r'(?i)(?:(?<![a-zA-Z0-9_])c#(?![a-zA-Z0-9_+#])|(?<![a-zA-Z0-9_])csharp(?![a-zA-Z0-9_])|(?<![a-zA-Z0-9_])c\s+sharp(?![a-zA-Z0-9_]))')
+
+    # 4. Symbol skills: .NET
+    if alias_clean in (".net", "dotnet"):
+        return re.compile(r'(?i)(?:(?<![a-zA-Z0-9_])\.net(?![a-zA-Z0-9_])|(?<![a-zA-Z0-9_])dotnet(?![a-zA-Z0-9_]))')
+
+    # 5. False match guard: R (programming language — never match standalone letter r)
+    if canonical_name == "R" and alias_clean in ("r", "r programming", "r language", "r studio"):
+        return re.compile(r'(?i)(?:(?<![a-zA-Z0-9_])r\s+(?:programming|language|script|studio|data|analytics)|(?<![a-zA-Z0-9_])r-project(?![a-zA-Z0-9_])|(?<![a-zA-Z0-9_])cran(?![a-zA-Z0-9_]))')
+
+    # 6. False match guard: Go (programming language — avoid "go to", "ongoing", "Django")
+    if canonical_name == "Go" and alias_clean in ("go", "golang"):
+        return re.compile(r'(?i)(?:(?<![a-zA-Z0-9_])golang(?![a-zA-Z0-9_])|(?<![a-zA-Z0-9_])go\s+(?:programming|language|developer|engineer|code|routine|routines)(?![a-zA-Z0-9_]))')
+
+    # 7. Flexible punctuation & whitespace for compound skills
+    # e.g. "node.js" -> matches "node.js", "nodejs", "node js", "node-js"
+    # "react.js" -> matches "react.js", "reactjs", "react js", "react-js"
+    if "." in alias_clean or " " in alias_clean or "-" in alias_clean:
+        tokens = [re.escape(t) for t in re.split(r'[\s.\-_]+', alias_clean) if t]
+        if len(tokens) > 1:
+            core_pattern = r'[\s.\-_]*'.join(tokens)
+            return re.compile(r'(?i)(?<![a-zA-Z0-9_])' + core_pattern + r'(?![a-zA-Z0-9_])')
+
+    # Default boundary-aware pattern
+    return re.compile(r'(?i)(?<![a-zA-Z0-9_])' + re.escape(alias_clean) + r'(?![a-zA-Z0-9_])')
 
 
 def extract_sections(resume_text: str) -> Dict[str, str]:
@@ -154,38 +232,32 @@ def find_skill_evidence(skill_name: str, sections: Dict[str, str], full_text_low
     if skill_name.lower() not in aliases:
         aliases = [skill_name.lower()] + aliases
 
-    # Match in Projects section (highest practical evidence weight 1.25)
     projects_text = sections.get("projects", "").lower()
+    exp_text = sections.get("experience", "").lower()
+    cert_text = sections.get("certifications", "").lower()
+    skills_text = sections.get("skills", "").lower()
+
     for alias in aliases:
-        pattern = r'(?i)\b' + re.escape(alias) + r'\b'
-        if re.search(pattern, projects_text):
+        pattern = build_skill_pattern(alias, skill_name)
+
+        # Match in Projects section (highest practical evidence weight 1.25)
+        if pattern.search(projects_text):
             return True, 1.25, f"Matched through practical project experience ('{alias}')"
 
-    # Match in Experience section (high evidence weight 1.20)
-    exp_text = sections.get("experience", "").lower()
-    for alias in aliases:
-        pattern = r'(?i)\b' + re.escape(alias) + r'\b'
-        if re.search(pattern, exp_text):
+        # Match in Experience section (high evidence weight 1.20)
+        if pattern.search(exp_text):
             return True, 1.20, f"Matched through work/internship experience ('{alias}')"
 
-    # Match in Certifications section (weight 1.15)
-    cert_text = sections.get("certifications", "").lower()
-    for alias in aliases:
-        pattern = r'(?i)\b' + re.escape(alias) + r'\b'
-        if re.search(pattern, cert_text):
+        # Match in Certifications section (weight 1.15)
+        if pattern.search(cert_text):
             return True, 1.15, f"Matched in certifications ('{alias}')"
 
-    # Match in Skills section (direct match weight 1.0)
-    skills_text = sections.get("skills", "").lower()
-    for alias in aliases:
-        pattern = r'(?i)\b' + re.escape(alias) + r'\b'
-        if re.search(pattern, skills_text):
+        # Match in Skills section (direct match weight 1.0)
+        if pattern.search(skills_text):
             return True, 1.0, f"Matched in Skills section ('{alias}')"
 
-    # General text match fallback (weight 0.85)
-    for alias in aliases:
-        pattern = r'(?i)\b' + re.escape(alias) + r'\b'
-        if re.search(pattern, full_text_lower):
+        # General text match fallback (weight 0.85)
+        if pattern.search(full_text_lower):
             return True, 0.85, f"Matched in resume content ('{alias}')"
 
     return False, 0.0, "Missing"
@@ -210,49 +282,73 @@ class ResumeAnalyzer:
         # Get role skills requisition
         req_skills, role_keywords = self._get_target_role_data(target_role)
 
-        # 1. SKILLS & ROLE MATCH ANALYSIS (35% Weight)
+        # 1. Detect all skills present in resume across canonical skill dictionary
+        all_canonical_skills = list(SKILL_ALIASES.keys())
+        detected_resume_skills = {}
+        for s in all_canonical_skills:
+            found, w, src = find_skill_evidence(s, sections, text_clean)
+            if found:
+                detected_resume_skills[s] = {"weight": w, "source": src}
+
+        # 2. SKILLS & ROLE MATCH ANALYSIS (35% Weight)
         matched_skills = []
         missing_skills = []
         partially_matched = []
+        related_skills = []
         skill_evidence_details = []
 
         total_evidence_weight = 0.0
 
         for skill in req_skills:
-            is_matched, weight, source_desc = find_skill_evidence(skill, sections, text_clean)
-            if is_matched:
+            if skill in detected_resume_skills:
+                w = detected_resume_skills[skill]["weight"]
+                src = detected_resume_skills[skill]["source"]
                 matched_skills.append(skill)
-                total_evidence_weight += weight
+                total_evidence_weight += w
                 skill_evidence_details.append({
                     "skill": skill,
                     "status": "Matched",
-                    "source": source_desc,
-                    "weight_multiplier": weight
+                    "source": src,
+                    "weight_multiplier": w
                 })
             else:
-                missing_skills.append(skill)
-                skill_evidence_details.append({
-                    "skill": skill,
-                    "status": "Missing",
-                    "source": f"Not found in resume for {target_role} requisition",
-                    "weight_multiplier": 0.0
-                })
+                # Skill is missing directly — check for related technologies
+                possible_related = RELATED_SKILLS_MAP.get(skill, [])
+                detected_related = [r for r in possible_related if r in detected_resume_skills]
+
+                if detected_related:
+                    related_skills.append({
+                        "skill": skill,
+                        "related_competencies": detected_related,
+                        "explanation": f"Missing direct '{skill}', but candidate possesses related expertise: {', '.join(detected_related)}"
+                    })
+                    partially_matched.append(skill)
+                    skill_evidence_details.append({
+                        "skill": skill,
+                        "status": "Related Competency",
+                        "source": f"Related experience detected ({', '.join(detected_related)})",
+                        "weight_multiplier": 0.5
+                    })
+                else:
+                    missing_skills.append(skill)
+                    skill_evidence_details.append({
+                        "skill": skill,
+                        "status": "Missing",
+                        "source": f"Not found in resume for {target_role} requisition",
+                        "weight_multiplier": 0.0
+                    })
 
         # Additional domain skills detected
-        all_canonical_skills = list(SKILL_ALIASES.keys())
-        additional_skills = []
-        for s in all_canonical_skills:
-            if s not in req_skills and s not in matched_skills:
-                found, _, _ = find_skill_evidence(s, sections, text_clean)
-                if found:
-                    additional_skills.append(s)
+        additional_skills = [s for s in detected_resume_skills.keys() if s not in req_skills and s not in matched_skills]
 
         total_req = max(1, len(req_skills))
         exact_count = len(matched_skills)
         match_percentage = round((exact_count / total_req) * 100, 1)
 
-        # Skills Score (Max 100)
+        # Skills Score (Max 100) — based on verified evidence
         skills_score = min(100.0, (total_evidence_weight / total_req) * 100.0)
+        if exact_count == 0:
+            skills_score = 0.0
         if exact_count == 0:
             skills_score = 0.0
 
@@ -385,6 +481,7 @@ class ResumeAnalyzer:
             "matched_keywords": matched_skills,
             "missing_keywords": missing_skills,
             "partially_matched_keywords": partially_matched,
+            "related_skills": related_skills,
             "additional_relevant_skills": additional_skills[:6],
             "structure_checks": structure_checks,
             "skill_match_details": {
@@ -445,6 +542,7 @@ class ResumeAnalyzer:
             "matched_keywords": [],
             "missing_keywords": req_skills,
             "partially_matched_keywords": [],
+            "related_skills": [],
             "additional_relevant_skills": [],
             "structure_checks": {
                 "summary": False,

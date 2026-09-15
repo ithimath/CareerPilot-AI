@@ -59,30 +59,7 @@ const mockStore: any = {
       'Add measurable metrics (% performance gain) to resume project descriptions',
     ],
   },
-  certificates: [
-    {
-      id: 'cert_1',
-      file_name: 'AWS_Certified_Cloud_Practitioner.pdf',
-      certificate_title: 'AWS Certified Cloud Practitioner',
-      issuing_organization: 'Amazon Web Services',
-      upload_date: '2026-07-15T10:00:00Z',
-      status: 'completed',
-      extracted_skills: {
-        Cloud: ['AWS EC2', 'AWS S3', 'IAM', 'CloudFront', 'Lambda'],
-      },
-    },
-    {
-      id: 'cert_2',
-      file_name: 'Meta_Front_End_Developer.pdf',
-      certificate_title: 'Meta Professional Front-End Developer',
-      issuing_organization: 'Meta / Coursera',
-      upload_date: '2026-08-01T14:30:00Z',
-      status: 'completed',
-      extracted_skills: {
-        Frontend: ['React', 'JavaScript', 'HTML5/CSS3', 'Version Control'],
-      },
-    },
-  ],
+  certificates: [],
   communityPosts: [
     {
       id: 'post_1',
@@ -362,10 +339,43 @@ const mockStore: any = {
   },
 }
 
+// ── Per-UID mock profile store ────────────────────────────────────────────────
+// Keeps each user's fallback profile isolated. A new/unknown UID gets a
+// zero/empty profile rather than Alex Morgan's demo data.
+const mockProfileStore: Record<string, any> = {}
+
+function getMockProfile(uid: string): any {
+  // Return previously saved per-UID mock profile, or a clean empty baseline
+  if (!mockProfileStore[uid]) {
+    mockProfileStore[uid] = {
+      uid,
+      name: '',
+      email: '',
+      college: '',
+      degree: '',
+      department: '',
+      current_year: 0,
+      cgpa: 0.0,
+      target_career: '',
+      skills: [],
+      interests: [],
+      projects: [],
+      internships: [],
+      certifications: [],
+      github_url: '',
+      linkedin_url: '',
+      portfolio_url: '',
+      profile_completion: { percentage: 0, missing_fields: [] },
+    }
+  }
+  return mockProfileStore[uid]
+}
+
 // ── Helper to dynamically evaluate candidate score in mock/fallback mode ───────
+// Computes score ONLY from the provided user's own profile — never from any
+// shared store or demo data.
 function computeMockJobScore(uid: string, profile: any) {
   const storageKey = `cp_user_score_${uid}`
-  const historyKey = `cp_user_history_${uid}`
   
   const rawSkills = profile?.skills || []
   const rawProjects = profile?.projects || []
@@ -406,9 +416,8 @@ function computeMockJobScore(uid: string, profile: any) {
 
   // 3. Certificates (Max 10)
   let certsScore = 0
-  const totalCerts = rawCerts.length + (mockStore.certificates?.length || 0)
-  if (totalCerts > 0) {
-    certsScore = Math.min(10, Math.round(totalCerts * 4.5 * 10) / 10)
+  if (rawCerts.length > 0) {
+    certsScore = Math.min(10, Math.round(rawCerts.length * 4.5 * 10) / 10)
   }
 
   // 4. Existing Activity Records in storage
@@ -416,9 +425,9 @@ function computeMockJobScore(uid: string, profile: any) {
   let existing: any = {}
   try { if (existingRaw) existing = JSON.parse(existingRaw) } catch {}
 
-  const interviewsScore = existing.interviews_score || (rawInternships.length > 0 ? Math.min(8, rawInternships.length * 5) : 0)
-  const resumeScore = existing.resume_score || (profile?.github_url || profile?.linkedin_url || rawProjects.some((p: any) => p.github_url) ? 5.5 : 0)
-  const assessmentsScore = existing.assessments_score || 0
+  const interviewsScore = existing.interviews_score ?? (rawInternships.length > 0 ? Math.min(8, rawInternships.length * 5) : 0)
+  const resumeScore = existing.resume_score ?? (profile?.github_url || profile?.linkedin_url || rawProjects.some((p: any) => p.github_url) ? 5.5 : 0)
+  const assessmentsScore = existing.assessments_score ?? 0
 
   const totalScore = Math.min(100, Math.round((skillsScore + projectsScore + interviewsScore + resumeScore + assessmentsScore + certsScore) * 10) / 10)
 
@@ -477,29 +486,32 @@ api.interceptors.response.use(
 
     // ── Profile Endpoints ─────────────────────────────────────────────────────
     if (url.includes('/api/profile')) {
+      const currentUid = localStorage.getItem('cp_active_uid') || 'unknown_user'
       if (url.includes('/picture')) {
         return Promise.resolve({ data: { message: 'Picture uploaded', profile_picture_url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150' } })
       }
       if (method === 'put') {
         const body = JSON.parse(error.config.data || '{}')
-        mockStore.profile = { ...mockStore.profile, ...body }
-        const currentUid = localStorage.getItem('cp_active_uid') || 'demo_user'
-        const score = computeMockJobScore(currentUid, mockStore.profile)
+        // Merge into per-UID profile store — never the shared mockStore
+        const existing = getMockProfile(currentUid)
+        mockProfileStore[currentUid] = { ...existing, ...body }
+        const score = computeMockJobScore(currentUid, mockProfileStore[currentUid])
         return Promise.resolve({
           data: {
             success: true,
             message: 'Candidate Dossier updated successfully',
             job_score: score.total_score,
-            profile: mockStore.profile,
+            profile: mockProfileStore[currentUid],
           }
         })
       }
-      return Promise.resolve({ data: mockStore.profile })
+      // GET /api/profile — return per-UID profile (empty for new users)
+      return Promise.resolve({ data: getMockProfile(currentUid) })
     }
 
     // ── Job Score Endpoints ───────────────────────────────────────────────────
     if (url.includes('/api/job-score')) {
-      const currentUid = localStorage.getItem('cp_active_uid') || 'demo_user'
+      const currentUid = localStorage.getItem('cp_active_uid') || 'unknown_user'
       const historyKey = `cp_user_history_${currentUid}`
 
       if (url.includes('/history')) {
@@ -507,33 +519,38 @@ api.interceptors.response.use(
         return Promise.resolve({ data: { uid: currentUid, history: savedHistory ? JSON.parse(savedHistory) : [] } })
       }
 
-      const score = computeMockJobScore(currentUid, mockStore.profile)
+      // Use the per-UID profile — new/unknown users get an empty profile = score 0
+      const userProfile = getMockProfile(currentUid)
+      const score = computeMockJobScore(currentUid, userProfile)
       return Promise.resolve({ data: score })
     }
 
     // ── Assessments Endpoints ─────────────────────────────────────────────────
     if (url.includes('/api/assessments')) {
-      const currentUid = localStorage.getItem('cp_active_uid') || 'demo_user'
+      const currentUid = localStorage.getItem('cp_active_uid') || 'unknown_user'
       if (url.includes('/submit') && method === 'post') {
         const body = JSON.parse(error.config?.data || '{}')
-        const scoreVal = Number(body.score || 80)
-        
+        const scoreVal = Number(body.score || 0)
+
         // Update stored score
         const storageKey = `cp_user_score_${currentUid}`
         const historyKey = `cp_user_history_${currentUid}`
         const raw = localStorage.getItem(storageKey)
         let currScore = raw ? JSON.parse(raw) : { total_score: 0, skills_score: 0, assessments_score: 0, max_scores: {} }
-        
+
+        const prevTotal = currScore.total_score || 0
         const addedAssessments = Math.min(10, Math.round((scoreVal / 100) * 10))
         currScore.assessments_score = addedAssessments
         currScore.total_score = Math.min(100, Math.round((currScore.skills_score || 0) + (currScore.projects_score || 0) + (currScore.interviews_score || 0) + (currScore.resume_score || 0) + addedAssessments + (currScore.certificates_score || 0)))
         currScore.confidence_level = 'Verified Data Precision'
-        
+
+        // Compute real delta instead of hardcoded 8.0
+        const realDelta = Math.round((currScore.total_score - prevTotal) * 10) / 10
         const history = JSON.parse(localStorage.getItem(historyKey) || '[]')
         history.push({
           timestamp: new Date().toISOString(),
           total_score: currScore.total_score,
-          delta: 8.0,
+          delta: realDelta,
           reason: `Completed ${body.test_title || 'Mock Test'} (${scoreVal}%)`
         })
         localStorage.setItem(storageKey, JSON.stringify(currScore))
@@ -1007,27 +1024,76 @@ api.interceptors.response.use(
 
     // ── Certificates & OCR Endpoints ──────────────────────────────────────────
     if (url.includes('/api/certificates')) {
+      const currentUid = localStorage.getItem('cp_active_uid') || 'demo_user'
+      const certsStorageKey = `cp_user_certs_${currentUid}`
+      const getUserCerts = (): any[] => {
+        try {
+          const raw = localStorage.getItem(certsStorageKey)
+          return raw ? JSON.parse(raw) : []
+        } catch {
+          return []
+        }
+      }
+      const saveUserCerts = (certs: any[]) => {
+        localStorage.setItem(certsStorageKey, JSON.stringify(certs))
+      }
+
       if (method === 'post') {
+        let userCerts = getUserCerts()
+        const isFormData = error.config?.data instanceof FormData
+        let fileName = 'Uploaded_Certificate.pdf'
+        let replaceId: string | null = null
+
+        if (isFormData) {
+          const fileObj = (error.config.data as FormData).get('file') as any
+          if (fileObj && fileObj.name) fileName = fileObj.name
+          replaceId = (error.config.data as FormData).get('replace_id') as string | null
+        }
+
+        // Check for duplicates if not explicitly replacing
+        if (!replaceId) {
+          const existing = userCerts.find(c => c.file_name === fileName)
+          if (existing) {
+            return Promise.reject({
+              response: {
+                status: 409,
+                data: { detail: `Certificate '${fileName}' already exists in your account. To update it, please replace the existing certificate.` }
+              }
+            })
+          }
+        }
+
+        // If replacing, remove the old one first
+        if (replaceId) {
+          userCerts = userCerts.filter(c => c.id !== replaceId)
+        }
+
         const newCert = {
           id: 'cert_' + Date.now(),
-          file_name: 'Uploaded_Certificate.pdf',
-          certificate_title: 'Full Stack Development Certification',
-          issuing_organization: 'Recognized Tech Academy',
+          file_name: fileName,
+          certificate_title: fileName.replace(/\.[^/.]+$/, '').replace(/[-_]/g, ' '),
+          issuing_organization: 'Verified Certification Body',
           upload_date: new Date().toISOString(),
           status: 'completed',
           extracted_skills: {
-            Verified: ['React', 'Node.js', 'PostgreSQL', 'API Security'],
+            Verified: ['Technical Competency', 'Domain Proficiency'],
           },
         }
-        mockStore.certificates.unshift(newCert)
+        userCerts.unshift(newCert)
+        saveUserCerts(userCerts)
         return Promise.resolve({ data: newCert })
       }
+
       if (method === 'delete') {
         const id = url.split('/certificates/')[1]
-        mockStore.certificates = mockStore.certificates.filter((c: any) => c.id !== id)
+        let userCerts = getUserCerts()
+        userCerts = userCerts.filter((c: any) => c.id !== id)
+        saveUserCerts(userCerts)
         return Promise.resolve({ data: { message: 'Deleted' } })
       }
-      return Promise.resolve({ data: { certificates: mockStore.certificates } })
+
+      // Default GET: Return certificates strictly for this user (empty array if none uploaded)
+      return Promise.resolve({ data: { certificates: getUserCerts() } })
     }
 
     // ── Careers Endpoints ─────────────────────────────────────────────────────

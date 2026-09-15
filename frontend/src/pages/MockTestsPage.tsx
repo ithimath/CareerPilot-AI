@@ -1,290 +1,1030 @@
-import { useState } from 'react'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { FileCode, CheckCircle2, XCircle, Clock, ArrowRight, RefreshCw, Sparkles } from 'lucide-react'
+/**
+ * CareerPilot AI — Mock Technical Assessment System (Enhanced Phase 6)
+ *
+ * Features:
+ * - 6 career-path test suites with Intermediate-to-Advanced calibrated MCQs
+ * - 3 Open-Ended Technical Scenario Questions per track
+ * - Strict 10-minute (600s) server-enforced countdown timer with auto-submit
+ * - 5-Criteria Multi-Rubric Evaluation (Correctness, Reasoning, Technical Depth, Relevance, Completeness)
+ * - Separate scoring for MCQs and Open-Ended questions
+ * - Persists attempt via backend (/api/assessments/submit) & score history
+ */
+import React, { useState, useEffect, useRef, useCallback } from 'react'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useAuth } from '@/context/AuthContext'
 import api from '@/lib/api'
-import toast from 'react-hot-toast'
 
-const MOCK_TESTS = [
-  {
-    id: 'dsa',
-    title: 'Data Structures & Algorithms Core Assessment',
-    category: 'Algorithms',
-    questionsCount: 5,
-    timeLimit: '20 mins',
-    difficulty: 'Hard',
-    questions: [
-      {
-        id: 1,
-        q: 'Which data structure offers average O(1) time complexity for lookup, insert, and delete operations?',
-        options: ['Binary Search Tree', 'Hash Table / Map', 'Linked List', 'Max Heap'],
-        correct: 1,
-        explanation: 'Hash tables leverage a hash function to map keys to bucket indices, yielding O(1) average time complexity.'
-      },
-      {
-        id: 2,
-        q: 'What is the time complexity of Breadth-First Search (BFS) on a graph with V vertices and E edges?',
-        options: ['O(V * E)', 'O(V + E)', 'O(V^2)', 'O(log V)'],
-        correct: 1,
-        explanation: 'BFS visits every vertex once and explores every edge once, taking O(V + E) time.'
-      },
-      {
-        id: 3,
-        q: 'What is the primary advantage of a Red-Black Tree over a standard Binary Search Tree?',
-        options: ['O(1) search time', 'Guaranteed O(log N) height balancing', 'Requires 50% less memory', 'Faster array allocation'],
-        correct: 1,
-        explanation: 'Red-Black Trees automatically rebalance during insertions/deletions, preventing worst-case O(N) degradation.'
-      }
-    ]
-  },
-  {
-    id: 'react-arch',
-    title: 'React.js & Architecture Benchmark',
-    category: 'Frontend',
-    questionsCount: 4,
-    timeLimit: '15 mins',
-    difficulty: 'Medium',
-    questions: [
-      {
-        id: 1,
-        q: 'What triggers a re-render in a React functional component?',
-        options: ['Changes in state, props, or parent context', 'Calling a helper utility function', 'Mutating a regular let variable', 'Inspecting DOM nodes'],
-        correct: 0,
-        explanation: 'React components re-render whenever state updates (useState), prop values change, or parent context values mutate.'
-      },
-      {
-        id: 2,
-        q: 'What is the primary purpose of the useMemo hook?',
-        options: ['To create side effects on mount', 'To memoize expensive calculations between renders', 'To replace Redux store', 'To lazy load components'],
-        correct: 1,
-        explanation: 'useMemo caches the result of a calculation between renders unless dependencies change.'
-      }
-    ]
-  },
-  {
-    id: 'sql-db',
-    title: 'SQL Performance & Database Design Drill',
-    category: 'Database',
-    questionsCount: 4,
-    timeLimit: '15 mins',
-    difficulty: 'Medium',
-    questions: [
-      {
-        id: 1,
-        q: 'Which SQL clause is used to filter aggregate query results (e.g. after GROUP BY)?',
-        options: ['WHERE', 'HAVING', 'ORDER BY', 'FILTER BY'],
-        correct: 1,
-        explanation: 'WHERE filters rows before aggregation, while HAVING filters aggregated groups after GROUP BY execution.'
-      }
-    ]
-  }
-]
+// ── Types ─────────────────────────────────────────────────────────────────────
+interface Question {
+  id: number
+  topic: string
+  difficulty: 'easy' | 'medium' | 'hard'
+  type: 'conceptual' | 'scenario' | 'code_output'
+  q: string
+  options: string[]
+  correct: number
+  explanation: string
+}
 
+interface OpenEndedQuestion {
+  id: number
+  title: string
+  scenario: string
+  prompt: string
+  rubric_focus: string[]
+}
+
+interface OpenEndedEvaluation {
+  question_id: number
+  question_title: string
+  correctness: number
+  reasoning: number
+  technical_understanding: number
+  relevance: number
+  completeness: number
+  score: number
+  feedback: string
+}
+
+interface TestMeta {
+  id: string
+  title: string
+  career_path: string
+  category: string
+  questions_count: number
+  open_ended_count?: number
+  time_limit_seconds: number
+  difficulty: string
+}
+
+interface TestWithQuestions extends TestMeta {
+  questions: Question[]
+  open_ended_questions?: OpenEndedQuestion[]
+}
+
+interface Attempt {
+  test_id: string
+  test_title: string
+  career_path: string
+  category: string
+  score: number
+  mcq_score?: number
+  open_ended_score?: number
+  correct_count: number
+  incorrect_count: number
+  total_questions: number
+  time_taken: number
+  time_expired?: boolean
+  session_id?: string
+  mcq_answers?: Record<string, number>
+  open_ended_answers?: Array<{ question_id: number; question: string; answer: string }>
+  open_ended_evaluations?: OpenEndedEvaluation[]
+  topic_breakdown: Record<string, { correct: number; total: number }>
+  difficulty_breakdown: Record<string, { correct: number; total: number }>
+}
+
+interface AssessmentRecord {
+  id: string
+  test_id: string
+  test_title: string
+  career_path: string
+  score: number
+  mcq_score?: number
+  open_ended_score?: number
+  correct_count: number
+  total_questions: number
+  time_taken: number
+  timestamp: string
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+const DIFF_COLOR: Record<string, string> = {
+  easy: 'text-emerald-400',
+  medium: 'text-amber-400',
+  hard: 'text-rose-400',
+}
+
+const DIFF_BG: Record<string, string> = {
+  easy: 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300',
+  medium: 'bg-amber-500/10 border-amber-500/30 text-amber-300',
+  hard: 'bg-rose-500/10 border-rose-500/30 text-rose-300',
+}
+
+const CAREER_EMOJI: Record<string, string> = {
+  'full-stack': '🏗️',
+  'ai-ml': '🤖',
+  backend: '⚙️',
+  frontend: '🎨',
+  'data-science': '📊',
+  cloud: '☁️',
+}
+
+function formatTime(seconds: number): string {
+  const m = Math.floor(Math.max(0, seconds) / 60).toString().padStart(2, '0')
+  const s = (Math.max(0, seconds) % 60).toString().padStart(2, '0')
+  return `${m}:${s}`
+}
+
+function scoreLabel(pct: number): { label: string; color: string } {
+  if (pct >= 80) return { label: 'Excellent', color: 'text-emerald-400' }
+  if (pct >= 60) return { label: 'Good', color: 'text-amber-400' }
+  if (pct >= 40) return { label: 'Fair', color: 'text-orange-400' }
+  return { label: 'Needs Work', color: 'text-rose-400' }
+}
+
+// ── Main Component ─────────────────────────────────────────────────────────────
 export default function MockTestsPage() {
+  const { user } = useAuth()
   const queryClient = useQueryClient()
-  const [selectedTest, setSelectedTest] = useState<any>(null)
+
+  // ── Phase state: 'select' | 'test' | 'result' ───────────────────────────────
+  const [phase, setPhase] = useState<'select' | 'test' | 'result'>('select')
+  const [activeTestId, setActiveTestId] = useState<string | null>(null)
+  const [testData, setTestData] = useState<TestWithQuestions | null>(null)
+  const [lastResult, setLastResult] = useState<Attempt | null>(null)
+
+  // ── Test session state ───────────────────────────────────────────────────────
+  const [testTab, setTestTab] = useState<'mcq' | 'open_ended'>('mcq')
+  const [sessionId, setSessionId] = useState<string | null>(null)
+  const [answers, setAnswers] = useState<Record<number, number>>({})             // questionIndex → optionIndex
+  const [openEndedAnswers, setOpenEndedAnswers] = useState<Record<number, string>>({}) // questionId → answer
+  const [flagged, setFlagged] = useState<Set<number>>(new Set())
   const [currentQ, setCurrentQ] = useState(0)
-  const [answers, setAnswers] = useState<Record<number, number>>({})
+  const [currentOpenQ, setCurrentOpenQ] = useState(0)
+  const [timeLeft, setTimeLeft] = useState(600) // 10 minutes (600s)
   const [submitted, setSubmitted] = useState(false)
-  const [scoreEarned, setScoreEarned] = useState<number | null>(null)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  const submitRef = useRef<() => void>(() => {})
 
-  const handleSelectOption = (qIdx: number, optIdx: number) => {
-    if (submitted) return
-    setAnswers(prev => ({ ...prev, [qIdx]: optIdx }))
-  }
-
-  const submitMutation = useMutation({
-    mutationFn: async (testScore: number) => {
-      let correctCount = 0
-      selectedTest.questions.forEach((q: any, idx: number) => {
-        if (answers[idx] === q.correct) correctCount++
-      })
-      const res = await api.post('/api/assessments/submit', {
-        test_id: selectedTest.id,
-        test_title: selectedTest.title,
-        category: selectedTest.category,
-        score: testScore,
-        total_questions: selectedTest.questions.length,
-        correct_count: correctCount,
-      })
-      return res.data
-    },
-    onSuccess: (data) => {
-      // exact:false ensures Dashboard's ['jobScore', uid] key is also invalidated
-      queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
-      const displayScore = data.readiness_score ?? scoreEarned ?? calculateScore()
-      toast.success(`Mock Test Submitted! Career Readiness Score recalculated to ${displayScore}%`)
-    }
+  // ── Fetch test catalog ───────────────────────────────────────────────────────
+  const { data: catalog, isLoading: catalogLoading } = useQuery<{ tests: TestMeta[] }>({
+    queryKey: ['assessments-catalog'],
+    queryFn: () => api.get('/api/assessments/tests').then(r => r.data),
+    staleTime: 5 * 60 * 1000,
   })
 
-  const handleSubmit = () => {
-    if (!selectedTest) return
-    let correctCount = 0
-    selectedTest.questions.forEach((q: any, idx: number) => {
-      if (answers[idx] === q.correct) correctCount++
-    })
-    const score = Math.round((correctCount / selectedTest.questions.length) * 100)
-    setScoreEarned(score)
+  // ── Fetch history ─────────────────────────────────────────────────────────────
+  const { data: history } = useQuery<{ assessments: AssessmentRecord[] }>({
+    queryKey: ['assessments-history', user?.uid],
+    queryFn: () => api.get('/api/assessments/history').then(r => r.data),
+    enabled: !!user?.uid,
+  })
+
+  // ── Submit mutation ───────────────────────────────────────────────────────────
+  const submitMutation = useMutation({
+    mutationFn: (payload: Attempt) => api.post('/api/assessments/submit', payload),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['jobScore'] })
+      queryClient.invalidateQueries({ queryKey: ['assessments-history'] })
+    },
+  })
+
+  function clearTimerInterval() {
+    if (timerRef.current) {
+      clearInterval(timerRef.current)
+      timerRef.current = null
+    }
+  }
+
+  // ── Compute and submit results ────────────────────────────────────────────────
+  const computeAndSubmit = useCallback(async (timeTaken: number) => {
+    if (!testData || submitted) return
     setSubmitted(true)
-    submitMutation.mutate(score)
-  }
+    setIsSubmitting(true)
+    clearTimerInterval()
 
-  const resetTest = () => {
-    setSelectedTest(null)
-    setCurrentQ(0)
-    setAnswers({})
-    setSubmitted(false)
-    setScoreEarned(null)
-  }
+    const questions = testData.questions
+    let correct = 0
+    const topicMap: Record<string, { correct: number; total: number }> = {}
+    const diffMap: Record<string, { correct: number; total: number }> = {}
 
-  const calculateScore = () => {
-    if (scoreEarned !== null) return scoreEarned
-    if (!selectedTest) return 0
-    let correctCount = 0
-    selectedTest.questions.forEach((q: any, idx: number) => {
-      if (answers[idx] === q.correct) correctCount++
+    questions.forEach((q, idx) => {
+      const userAns = answers[idx]
+      const isCorrect = userAns !== undefined && userAns === q.correct
+
+      if (!topicMap[q.topic]) topicMap[q.topic] = { correct: 0, total: 0 }
+      topicMap[q.topic].total++
+      if (isCorrect) { correct++; topicMap[q.topic].correct++ }
+
+      if (!diffMap[q.difficulty]) diffMap[q.difficulty] = { correct: 0, total: 0 }
+      diffMap[q.difficulty].total++
+      if (isCorrect) diffMap[q.difficulty].correct++
     })
-    return Math.round((correctCount / selectedTest.questions.length) * 100)
+
+    const mcqPct = Math.round((correct / Math.max(1, questions.length)) * 100)
+
+    // Format open-ended answers
+    const openAnswersList = (testData.open_ended_questions || []).map(q => ({
+      question_id: q.id,
+      question: q.title,
+      answer: openEndedAnswers[q.id] || '',
+    }))
+
+    const formattedMcqAnswers: Record<string, number> = {}
+    Object.entries(answers).forEach(([k, v]) => {
+      formattedMcqAnswers[k] = v
+    })
+
+    const attemptPayload: Attempt = {
+      test_id: testData.id,
+      test_title: testData.title,
+      career_path: testData.career_path,
+      category: testData.category,
+      score: mcqPct,
+      mcq_score: mcqPct,
+      correct_count: correct,
+      incorrect_count: questions.length - correct,
+      total_questions: questions.length,
+      time_taken: timeTaken,
+      session_id: sessionId || undefined,
+      mcq_answers: formattedMcqAnswers,
+      open_ended_answers: openAnswersList,
+      topic_breakdown: topicMap,
+      difficulty_breakdown: diffMap,
+    }
+
+    try {
+      const res = await submitMutation.mutateAsync(attemptPayload)
+      const data = res.data
+      const finalAttempt: Attempt = {
+        ...attemptPayload,
+        score: data.score ?? mcqPct,
+        mcq_score: data.mcq_score ?? mcqPct,
+        open_ended_score: data.open_ended_score,
+        open_ended_evaluations: data.open_ended_evaluations,
+        correct_count: data.correct_count ?? correct,
+        incorrect_count: data.incorrect_count ?? (questions.length - correct),
+        time_expired: data.time_expired,
+      }
+      setLastResult(finalAttempt)
+      setPhase('result')
+    } catch (err) {
+      console.error('Submit failed, using local attempt:', err)
+      setLastResult(attemptPayload)
+      setPhase('result')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }, [testData, answers, openEndedAnswers, sessionId, submitted, submitMutation])
+
+  // Store submitRef so the timer can call latest version
+  submitRef.current = () => {
+    const elapsed = testData ? Math.min(600, (testData.time_limit_seconds || 600) - timeLeft) : 600
+    computeAndSubmit(elapsed)
   }
 
-  return (
-    <div className="space-y-6 text-app w-full max-w-full">
-      {/* Header Banner */}
-      <div className="card p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-xs">
-        <div>
-          <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">Technical Readiness Verification</span>
-          <div className="flex items-center gap-3 flex-wrap">
-            <h2 className="font-heading text-2xl sm:text-3xl font-extrabold text-app break-words">Technical Mock Test Drills</h2>
-            <span className="badge badge-emerald flex items-center gap-1">
-              <FileCode className="w-3 h-3 text-[#FF5722] dark:text-[#FF7043]" /> Timed Drills
-            </span>
+  // ── Timer countdown (strictly 10 minutes / 600s) ──────────────────────────────
+  useEffect(() => {
+    if (phase !== 'test') return
+    clearTimerInterval()
+    timerRef.current = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearTimerInterval()
+          submitRef.current() // auto-submit on expiry
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+    return () => clearTimerInterval()
+  }, [phase])
+
+  // ── Start a test ──────────────────────────────────────────────────────────────
+  async function startTest(testId: string) {
+    try {
+      // 1. Create server-side 10-minute session
+      let sid: string | null = null
+      try {
+        const sessionRes = await api.post('/api/assessments/start-session', { test_id: testId })
+        sid = sessionRes.data?.session_id || null
+      } catch (sessErr) {
+        console.warn('Session start fallback:', sessErr)
+      }
+      setSessionId(sid)
+
+      // 2. Fetch test questions & open-ended scenarios
+      const res = await api.get(`/api/assessments/tests/${testId}`)
+      const data: TestWithQuestions = res.data
+      setTestData(data)
+      setActiveTestId(testId)
+      setAnswers({})
+      setOpenEndedAnswers({})
+      setFlagged(new Set())
+      setCurrentQ(0)
+      setCurrentOpenQ(0)
+      setTestTab('mcq')
+      setTimeLeft(600) // 10 minutes strictly enforced
+      setSubmitted(false)
+      setIsSubmitting(false)
+      setLastResult(null)
+      setPhase('test')
+    } catch (err) {
+      console.error('Failed to load test:', err)
+    }
+  }
+
+  function handleAnswer(optionIdx: number) {
+    if (submitted || isSubmitting) return
+    setAnswers(prev => ({ ...prev, [currentQ]: optionIdx }))
+  }
+
+  function handleOpenEndedAnswer(questionId: number, val: string) {
+    if (submitted || isSubmitting) return
+    setOpenEndedAnswers(prev => ({ ...prev, [questionId]: val }))
+  }
+
+  function toggleFlag(idx: number) {
+    setFlagged(prev => {
+      const next = new Set(prev)
+      next.has(idx) ? next.delete(idx) : next.add(idx)
+      return next
+    })
+  }
+
+  function handleSubmitEarly() {
+    if (submitted || isSubmitting) return
+    const elapsed = testData ? Math.min(600, (testData.time_limit_seconds || 600) - timeLeft) : 0
+    computeAndSubmit(elapsed)
+  }
+
+  const unansweredMCQ = testData ? testData.questions.filter((_, i) => answers[i] === undefined).length : 0
+  const openQuestions = testData?.open_ended_questions || []
+  const answeredOpenCount = openQuestions.filter(q => (openEndedAnswers[q.id] || '').trim().length > 15).length
+
+  // ── RENDER: Select Screen ─────────────────────────────────────────────────────
+  if (phase === 'select') {
+    const recentHistory = history?.assessments?.slice(0, 5) || []
+    return (
+      <div className="min-h-screen bg-[var(--bg-app)] text-[var(--text-primary)] pb-16">
+        <div className="max-w-5xl mx-auto px-4 pt-8">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="font-heading text-3xl sm:text-4xl font-extrabold text-app mb-1">
+              Technical Assessments
+            </h1>
+            <p className="text-secondary text-sm">
+              Intermediate & Advanced MCQs + 3 Open-Ended Technical Scenarios · 10-Minute Server Timer · Multi-Criteria Rubric Evaluation
+            </p>
           </div>
-          <p className="text-secondary text-xs mt-1 font-medium">
-            Test domain concept retention under real recruiter time constraints.
-          </p>
+
+          {/* Test Grid */}
+          {catalogLoading ? (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {Array.from({ length: 6 }).map((_, i) => (
+                <div key={i} className="h-56 rounded-2xl bg-subtle border border-app animate-pulse" />
+              ))}
+            </div>
+          ) : (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+              {(catalog?.tests || []).map(test => {
+                const lastAttempt = history?.assessments?.find(a => a.test_id === test.id)
+                return (
+                  <div
+                    key={test.id}
+                    className="group relative flex flex-col justify-between bg-subtle border border-app rounded-2xl p-5 hover:border-[#FF5722]/50 transition-all duration-200 hover:shadow-lg hover:shadow-[#FF5722]/5"
+                  >
+                    {/* Icon + title */}
+                    <div className="flex items-start gap-3 mb-3">
+                      <span className="text-3xl">{CAREER_EMOJI[test.id] || '📝'}</span>
+                      <div>
+                        <h2 className="font-semibold text-app text-sm leading-tight">{test.title}</h2>
+                        <span className="text-[10px] text-secondary mt-0.5 block">{test.career_path}</span>
+                      </div>
+                    </div>
+
+                    {/* Badges */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#FF5722]/10 text-[#FF5722] border border-[#FF5722]/20">
+                        {test.questions_count} MCQs
+                      </span>
+                      <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                        + 3 Scenarios
+                      </span>
+                      <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-rose-500/10 text-rose-300 border border-rose-500/20 font-mono">
+                        ⏱️ 10 Minutes
+                      </span>
+                      <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                        {test.difficulty || 'Intermediate / Advanced'}
+                      </span>
+                    </div>
+
+                    {/* Last attempt */}
+                    {lastAttempt && (
+                      <div className="text-[10px] text-secondary mb-3 flex items-center gap-1">
+                        <span>Last:</span>
+                        <span className={scoreLabel(lastAttempt.score).color + ' font-bold'}>
+                          {lastAttempt.score}%
+                        </span>
+                        <span>({lastAttempt.correct_count}/{lastAttempt.total_questions})</span>
+                      </div>
+                    )}
+
+                    {/* Start button */}
+                    <button
+                      id={`start-test-${test.id}`}
+                      onClick={() => startTest(test.id)}
+                      className="w-full py-2.5 rounded-xl text-sm font-semibold bg-[#FF5722] hover:bg-[#E64A19] text-white transition-colors group-hover:shadow-md cursor-pointer"
+                    >
+                      {lastAttempt ? 'Retake Assessment (10 min)' : 'Start Assessment (10 min)'}
+                    </button>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+
+          {/* History Table */}
+          {recentHistory.length > 0 && (
+            <div>
+              <h2 className="font-heading text-lg font-bold text-app mb-3">Recent Attempts</h2>
+              <div className="overflow-x-auto rounded-xl border border-app">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="bg-subtle border-b border-app text-secondary text-[11px] uppercase tracking-wider">
+                      <th className="px-4 py-2.5 text-left font-semibold">Test</th>
+                      <th className="px-4 py-2.5 text-left font-semibold">Total Score</th>
+                      <th className="px-4 py-2.5 text-left font-semibold">Result</th>
+                      <th className="px-4 py-2.5 text-left font-semibold">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {recentHistory.map((r, i) => {
+                      const { label, color } = scoreLabel(r.score)
+                      return (
+                        <tr key={i} className="border-b border-app/30 last:border-0 hover:bg-subtle/50 transition-colors">
+                          <td className="px-4 py-3 font-medium text-app text-[13px]">{r.test_title}</td>
+                          <td className="px-4 py-3 font-bold text-app">
+                            {r.score}%
+                            <span className="text-secondary font-normal text-[11px] ml-1">
+                              ({r.correct_count}/{r.total_questions} MCQs)
+                            </span>
+                          </td>
+                          <td className={`px-4 py-3 font-semibold text-[12px] ${color}`}>{label}</td>
+                          <td className="px-4 py-3 text-secondary text-[12px]">
+                            {new Date(r.timestamp).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}
+                          </td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
       </div>
+    )
+  }
 
-      {!selectedTest ? (
-        /* Test Selection Cards */
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {MOCK_TESTS.map((test) => (
-            <div key={test.id} className="card p-5 space-y-4 flex flex-col justify-between hover:border-[#FF5722]/50 transition-all">
-              <div>
-                <div className="flex items-center justify-between mb-2">
-                  <span className="badge badge-sand text-[10px]">{test.category}</span>
-                  <span className={`badge ${test.difficulty === 'Hard' ? 'badge-red' : 'badge-amber'}`}>{test.difficulty}</span>
-                </div>
-                <h3 className="font-heading text-lg font-bold text-app break-words">{test.title}</h3>
-                <div className="flex items-center gap-4 text-xs font-semibold text-secondary mt-3">
-                  <span className="flex items-center gap-1"><FileCode className="w-3.5 h-3.5" /> {test.questionsCount} Prompts</span>
-                  <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {test.timeLimit}</span>
-                </div>
-              </div>
+  // ── RENDER: Test Screen ───────────────────────────────────────────────────────
+  if (phase === 'test' && testData) {
+    const question = testData.questions[currentQ]
+    const totalQ = testData.questions.length
+    const answeredMCQCount = Object.keys(answers).length
+    const timerWarning = timeLeft <= 120 // last 2 minutes
+    const timerCritical = timeLeft <= 60
+    const activeOpenQuestion = openQuestions[currentOpenQ]
 
-              <button
-                onClick={() => { setSelectedTest(test); setCurrentQ(0); setAnswers({}); setSubmitted(false) }}
-                className="btn btn-primary text-xs w-full justify-center gap-2 py-2.5"
-              >
-                Start Drill <ArrowRight className="w-3.5 h-3.5 text-white" />
-              </button>
+    return (
+      <div className="min-h-screen bg-[var(--bg-app)] text-[var(--text-primary)] pb-16">
+        <div className="max-w-3xl mx-auto px-4 pt-6">
+
+          {/* Top Bar */}
+          <div className="flex items-center justify-between mb-4 sticky top-0 bg-[var(--bg-app)] py-3 z-10 border-b border-app">
+            <div>
+              <p className="text-[11px] text-secondary font-semibold uppercase tracking-wide">{testData.career_path}</p>
+              <h1 className="font-heading text-lg font-bold text-app">{testData.title}</h1>
             </div>
-          ))}
-        </div>
-      ) : (
-        /* Active Test Interface */
-        <div className="max-w-3xl mx-auto space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <button onClick={resetTest} className="text-xs font-bold text-[#FF5722] dark:text-[#FF7043] hover:underline self-start sm:self-auto py-1">
-              ← Back to Test Catalog
-            </button>
-            <span className="badge badge-emerald truncate max-w-full">
-              {selectedTest.title}
-            </span>
+
+            {/* Timer */}
+            <div className="flex flex-col items-end">
+              <span className="text-[10px] text-secondary uppercase tracking-wider font-semibold">10-Min Timer</span>
+              <span
+                id="test-timer"
+                className={`font-mono text-2xl font-extrabold tabular-nums transition-colors ${
+                  timerCritical ? 'text-rose-400 animate-pulse' : timerWarning ? 'text-amber-400' : 'text-app'
+                }`}
+              >
+                {formatTime(timeLeft)}
+              </span>
+            </div>
           </div>
 
-          <div className="card p-4 sm:p-6 space-y-5 sm:space-y-6">
-            <div className="flex items-center justify-between pb-3 border-b border-app">
-              <span className="text-xs font-bold text-secondary">
-                Question {currentQ + 1} of {selectedTest.questions.length}
-              </span>
-              {submitted && (
-                <span className="font-heading text-lg font-bold text-[#FF5722] dark:text-[#FF7043]">
-                  Score: {calculateScore()}%
-                </span>
-              )}
-            </div>
+          {/* Mode Switcher Tabs */}
+          <div className="flex gap-2 mb-5 p-1 bg-subtle rounded-xl border border-app">
+            <button
+              onClick={() => setTestTab('mcq')}
+              className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all ${
+                testTab === 'mcq'
+                  ? 'bg-[#FF5722] text-white shadow-sm'
+                  : 'text-secondary hover:text-app'
+              }`}
+            >
+              Part 1: Technical MCQs ({answeredMCQCount}/{totalQ})
+            </button>
+            <button
+              onClick={() => setTestTab('open_ended')}
+              className={`flex-1 py-2 px-3 rounded-lg text-xs font-semibold transition-all ${
+                testTab === 'open_ended'
+                  ? 'bg-[#FF5722] text-white shadow-sm'
+                  : 'text-secondary hover:text-app'
+              }`}
+            >
+              Part 2: Scenario Drills ({answeredOpenCount}/{openQuestions.length})
+            </button>
+          </div>
 
-            {/* Question Prompt */}
-            <div>
-              <h3 className="font-heading text-lg font-bold text-app mb-4">
-                {selectedTest.questions[currentQ].q}
-              </h3>
+          {/* TAB 1: MCQs */}
+          {testTab === 'mcq' && question && (
+            <>
+              {/* Progress bar */}
+              <div className="w-full h-1.5 bg-subtle rounded-full mb-4 overflow-hidden">
+                <div
+                  className="h-full bg-[#FF5722] rounded-full transition-all duration-300"
+                  style={{ width: `${((currentQ + 1) / totalQ) * 100}%` }}
+                />
+              </div>
 
-              <div className="space-y-2.5">
-                {selectedTest.questions[currentQ].options.map((opt: string, optIdx: number) => {
-                  const isSelected = answers[currentQ] === optIdx
-                  const isCorrect = selectedTest.questions[currentQ].correct === optIdx
+              {/* Navigation pills */}
+              <div className="flex flex-wrap gap-1.5 mb-5">
+                {testData.questions.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentQ(i)}
+                    className={`w-7 h-7 rounded-lg text-[11px] font-bold border transition-all ${
+                      i === currentQ
+                        ? 'bg-[#FF5722] text-white border-[#FF5722]'
+                        : answers[i] !== undefined
+                        ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                        : flagged.has(i)
+                        ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                        : 'bg-subtle text-secondary border-app hover:border-[#FF5722]/40'
+                    }`}
+                  >
+                    {i + 1}
+                  </button>
+                ))}
+              </div>
 
-                  let btnStyle = 'border-app bg-surface text-app hover:bg-subtle font-medium'
-                  if (submitted) {
-                    if (isCorrect) btnStyle = 'border-[#FF5722] bg-[#FF5722]/10 text-[#FF5722] font-bold dark:bg-[#FF5722]/15 dark:text-[#FF7043]'
-                    else if (isSelected && !isCorrect) btnStyle = 'border-red-500 bg-red-50 text-red-950 font-bold dark:bg-red-950/50 dark:text-red-200'
-                  } else if (isSelected) {
-                    btnStyle = 'border-[#FF5722] bg-[#FF5722]/10 text-[#FF5722] font-bold dark:bg-[#FF5722]/15 dark:text-[#FF7043]'
-                  }
+              {/* Question Card */}
+              <div className="bg-subtle border border-app rounded-2xl p-6 mb-5 shadow-sm">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${DIFF_BG[question.difficulty]}`}>
+                    {question.difficulty.toUpperCase()}
+                  </span>
+                  <span className="text-[11px] text-secondary font-medium">{question.topic}</span>
+                  <span className="ml-auto text-xs text-secondary">
+                    {currentQ + 1} / {totalQ}
+                  </span>
+                </div>
 
+                <p className="text-app font-medium text-base mb-6 leading-relaxed whitespace-pre-wrap">
+                  {question.q}
+                </p>
+
+                {/* Options */}
+                <div className="flex flex-col gap-2.5 mb-6">
+                  {question.options.map((opt, optIdx) => {
+                    const isSelected = answers[currentQ] === optIdx
+                    return (
+                      <button
+                        key={optIdx}
+                        onClick={() => handleAnswer(optIdx)}
+                        disabled={submitted || isSubmitting}
+                        className={`w-full text-left p-4 rounded-xl border text-sm transition-all duration-150 flex items-start gap-3 ${
+                          isSelected
+                            ? 'bg-[#FF5722]/15 border-[#FF5722] text-app font-medium shadow-sm'
+                            : 'bg-[var(--bg-app)] border-app hover:border-[#FF5722]/50 text-[var(--text-secondary)] hover:text-app'
+                        }`}
+                      >
+                        <span
+                          className={`w-6 h-6 rounded-full text-[11px] font-bold flex items-center justify-center flex-shrink-0 border mt-0.5 ${
+                            isSelected
+                              ? 'bg-[#FF5722] text-white border-[#FF5722]'
+                              : 'bg-subtle border-app text-secondary'
+                          }`}
+                        >
+                          {String.fromCharCode(65 + optIdx)}
+                        </span>
+                        <span className="flex-1 leading-normal">{opt}</span>
+                      </button>
+                    )
+                  })}
+                </div>
+
+                {/* Bottom Navigation */}
+                <div className="flex items-center justify-between border-t border-app pt-4">
+                  <button
+                    onClick={() => toggleFlag(currentQ)}
+                    className={`text-xs font-semibold px-3 py-1.5 rounded-lg border transition-colors flex items-center gap-1.5 ${
+                      flagged.has(currentQ)
+                        ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                        : 'border-app text-secondary hover:text-app'
+                    }`}
+                  >
+                    🚩 {flagged.has(currentQ) ? 'Flagged' : 'Flag'}
+                  </button>
+
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setCurrentQ(prev => Math.max(0, prev - 1))}
+                      disabled={currentQ === 0}
+                      className="px-4 py-2 rounded-xl text-xs font-semibold border border-app text-secondary hover:text-app disabled:opacity-30 transition-colors"
+                    >
+                      Previous
+                    </button>
+                    {currentQ < totalQ - 1 ? (
+                      <button
+                        onClick={() => setCurrentQ(prev => prev + 1)}
+                        className="px-4 py-2 rounded-xl text-xs font-semibold bg-[#FF5722] hover:bg-[#E64A19] text-white transition-colors"
+                      >
+                        Next
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setTestTab('open_ended')}
+                        className="px-4 py-2 rounded-xl text-xs font-semibold bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
+                      >
+                        To Scenarios →
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+
+          {/* TAB 2: Open-Ended Technical Questions */}
+          {testTab === 'open_ended' && activeOpenQuestion && (
+            <div className="bg-subtle border border-app rounded-2xl p-6 mb-5 shadow-sm">
+              {/* Question selector tabs */}
+              <div className="flex gap-2 mb-5">
+                {openQuestions.map((q, idx) => {
+                  const hasAnswer = (openEndedAnswers[q.id] || '').trim().length > 15
                   return (
                     <button
-                      key={optIdx}
-                      onClick={() => handleSelectOption(currentQ, optIdx)}
-                      className={`w-full p-3.5 border rounded-md text-left text-xs transition-all flex items-center justify-between ${btnStyle}`}
+                      key={q.id}
+                      onClick={() => setCurrentOpenQ(idx)}
+                      className={`flex-1 py-2 px-3 rounded-xl text-xs font-bold border transition-all ${
+                        idx === currentOpenQ
+                          ? 'bg-[#FF5722] text-white border-[#FF5722]'
+                          : hasAnswer
+                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                          : 'bg-[var(--bg-app)] border-app text-secondary hover:text-app'
+                      }`}
                     >
-                      <span>{opt}</span>
-                      {submitted && isCorrect && <CheckCircle2 className="w-4 h-4 text-[#FF5722] flex-shrink-0" />}
-                      {submitted && isSelected && !isCorrect && <XCircle className="w-4 h-4 text-red-600 flex-shrink-0" />}
+                      Scenario {idx + 1} {hasAnswer ? '✓' : ''}
                     </button>
                   )
                 })}
               </div>
 
-              {submitted && (
-                <div className="mt-4 p-3.5 bg-subtle border border-app rounded-md text-xs text-secondary leading-relaxed font-medium">
-                  <strong className="text-app block mb-0.5">Explanation:</strong>
-                  {selectedTest.questions[currentQ].explanation}
+              {/* Scenario Context */}
+              <div className="mb-4">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 uppercase tracking-wider">
+                  Open-Ended Scenario {currentOpenQ + 1} of {openQuestions.length}
+                </span>
+                <h3 className="text-base font-bold text-app mt-2 mb-2">
+                  {activeOpenQuestion.title}
+                </h3>
+                <div className="p-3.5 rounded-xl bg-[var(--bg-app)] border border-app text-xs text-secondary leading-relaxed mb-3">
+                  <strong className="text-app block mb-1">Scenario Context:</strong>
+                  {activeOpenQuestion.scenario}
                 </div>
-              )}
-            </div>
+                <div className="p-3.5 rounded-xl bg-orange-500/5 border border-orange-500/20 text-xs text-app leading-relaxed">
+                  <strong className="text-[#FF5722] block mb-1">Your Objective:</strong>
+                  {activeOpenQuestion.prompt}
+                </div>
+              </div>
 
-            {/* Pagination Controls */}
-            <div className="flex items-center justify-between pt-4 border-t border-app">
-              <button
-                onClick={() => setCurrentQ(prev => Math.max(0, prev - 1))}
-                disabled={currentQ === 0}
-                className="btn btn-secondary text-xs"
-              >
-                Previous
-              </button>
+              {/* Rubric Focus Tags */}
+              <div className="mb-4">
+                <span className="text-[11px] text-secondary block mb-1.5 font-medium">Evaluation Focus Areas:</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {activeOpenQuestion.rubric_focus.map((focus, fIdx) => (
+                    <span
+                      key={fIdx}
+                      className="text-[10px] px-2 py-0.5 rounded-md bg-subtle border border-app text-secondary font-mono"
+                    >
+                      🎯 {focus}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-              {currentQ < selectedTest.questions.length - 1 ? (
+              {/* Textarea */}
+              <div className="mb-4">
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="text-xs font-semibold text-app">
+                    Your Architectural Solution & Reasoning:
+                  </label>
+                  <span className="text-[10px] text-secondary font-mono">
+                    {((openEndedAnswers[activeOpenQuestion.id] || '').split(/\s+/).filter(Boolean).length)} words
+                  </span>
+                </div>
+                <textarea
+                  value={openEndedAnswers[activeOpenQuestion.id] || ''}
+                  onChange={e => handleOpenEndedAnswer(activeOpenQuestion.id, e.target.value)}
+                  disabled={submitted || isSubmitting}
+                  placeholder="Explain your approach step-by-step: design decisions, algorithms/protocols, trade-offs, edge-case recovery, and why you chose this architecture..."
+                  className="w-full h-44 p-3.5 rounded-xl bg-[var(--bg-app)] border border-app text-xs text-app placeholder:text-secondary/50 focus:outline-none focus:border-[#FF5722] leading-relaxed resize-y font-sans"
+                />
+                <p className="text-[10px] text-secondary mt-1">
+                  💡 <em>Evaluated on Correctness, Reasoning, Technical Depth, Relevance, and Completeness. Wording differences are credited if the engineering principles are sound.</em>
+                </p>
+              </div>
+
+              {/* Open-ended navigation */}
+              <div className="flex items-center justify-between border-t border-app pt-4">
                 <button
-                  onClick={() => setCurrentQ(prev => prev + 1)}
-                  className="btn btn-secondary text-xs"
+                  onClick={() => setCurrentOpenQ(prev => Math.max(0, prev - 1))}
+                  disabled={currentOpenQ === 0}
+                  className="px-4 py-2 rounded-xl text-xs font-semibold border border-app text-secondary hover:text-app disabled:opacity-30 transition-colors"
                 >
-                  Next Prompt →
+                  Previous Scenario
                 </button>
-              ) : !submitted ? (
-                <button onClick={handleSubmit} className="btn btn-primary text-xs">
-                  Submit Mock Test
-                </button>
-              ) : (
-                <button onClick={resetTest} className="btn btn-primary text-xs gap-1.5">
-                  <RefreshCw className="w-3.5 h-3.5" /> Retake Test
-                </button>
-              )}
+                {currentOpenQ < openQuestions.length - 1 ? (
+                  <button
+                    onClick={() => setCurrentOpenQ(prev => prev + 1)}
+                    className="px-4 py-2 rounded-xl text-xs font-semibold bg-[#FF5722] hover:bg-[#E64A19] text-white transition-colors"
+                  >
+                    Next Scenario
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => setTestTab('mcq')}
+                    className="px-4 py-2 rounded-xl text-xs font-semibold border border-[#FF5722]/50 text-[#FF5722] hover:bg-[#FF5722]/10 transition-colors"
+                  >
+                    Review MCQs
+                  </button>
+                )}
+              </div>
             </div>
+          )}
+
+          {/* Submit Action Bar */}
+          <div className="flex items-center justify-between p-4 rounded-2xl bg-subtle border border-app">
+            <div className="text-xs text-secondary">
+              <span className="mr-3">MCQs: <strong className="text-app">{answeredMCQCount}/{totalQ}</strong></span>
+              <span>Scenarios: <strong className="text-app">{answeredOpenCount}/{openQuestions.length}</strong></span>
+            </div>
+            <button
+              id="submit-test-btn"
+              onClick={handleSubmitEarly}
+              disabled={submitted || isSubmitting}
+              className="px-6 py-2.5 rounded-xl text-xs font-bold bg-[#FF5722] hover:bg-[#E64A19] text-white disabled:opacity-60 transition-all cursor-pointer shadow-md"
+            >
+              {isSubmitting ? 'Evaluating Submission...' : unansweredMCQ > 0 ? `Submit (${unansweredMCQ} MCQs skipped)` : 'Submit Entire Assessment'}
+            </button>
           </div>
         </div>
-      )}
-    </div>
-  )
+      </div>
+    )
+  }
+
+  // ── RENDER: Result Screen ─────────────────────────────────────────────────────
+  if (phase === 'result' && lastResult && testData) {
+    const { label, color } = scoreLabel(lastResult.score)
+    const timeTakenMin = Math.floor(lastResult.time_taken / 60)
+    const timeTakenSec = lastResult.time_taken % 60
+    const questions = testData.questions
+    const mcqScore = lastResult.mcq_score ?? Math.round((lastResult.correct_count / Math.max(1, lastResult.total_questions)) * 100)
+    const openScore = lastResult.open_ended_score
+
+    return (
+      <div className="min-h-screen bg-[var(--bg-app)] text-[var(--text-primary)] pb-16">
+        <div className="max-w-3xl mx-auto px-4 pt-6">
+
+          {/* Result Header */}
+          <div className="bg-subtle border border-app rounded-2xl p-6 mb-5 text-center shadow-sm">
+            <p className="text-secondary text-xs uppercase tracking-wider font-semibold mb-1">
+              {lastResult.career_path} Assessment Completed
+            </p>
+            <h1 className="font-heading text-2xl sm:text-3xl font-extrabold text-app mb-3">
+              {lastResult.test_title}
+            </h1>
+
+            {/* Score Circle */}
+            <div className="inline-flex flex-col items-center justify-center w-28 h-28 rounded-full border-4 border-[#FF5722]/50 bg-[#FF5722]/10 mb-3 shadow-inner">
+              <span className="font-heading text-4xl font-black text-app">{Math.round(lastResult.score)}</span>
+              <span className="text-[11px] text-secondary font-bold">Overall %</span>
+            </div>
+
+            <p className={`text-lg font-bold mb-1 ${color}`}>{label}</p>
+            <p className="text-secondary text-xs">
+              Time taken: {timeTakenMin}m {timeTakenSec}s {lastResult.time_expired ? '(Enforced at 10m limit)' : ''}
+            </p>
+          </div>
+
+          {/* Separated Component Scores */}
+          <div className="grid sm:grid-cols-2 gap-4 mb-5">
+            {/* Component 1: MCQs */}
+            <div className="bg-subtle border border-app rounded-2xl p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-bold text-secondary uppercase tracking-wider">Part 1: Technical MCQs</span>
+                <span className="text-xs font-extrabold text-[#FF5722]">Weight: 70%</span>
+              </div>
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-3xl font-extrabold text-app">{Math.round(mcqScore)}%</span>
+                <span className="text-xs text-secondary font-medium">
+                  ({lastResult.correct_count} of {lastResult.total_questions} correct)
+                </span>
+              </div>
+              <div className="w-full h-2 bg-[var(--bg-app)] rounded-full overflow-hidden mb-3">
+                <div
+                  className="h-full bg-[#FF5722] rounded-full transition-all"
+                  style={{ width: `${Math.min(100, mcqScore)}%` }}
+                />
+              </div>
+              <p className="text-[11px] text-secondary">
+                Evaluates intermediate-to-advanced knowledge across system design, edge cases, and practical debugging.
+              </p>
+            </div>
+
+            {/* Component 2: Open-Ended */}
+            <div className="bg-subtle border border-app rounded-2xl p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs font-bold text-secondary uppercase tracking-wider">Part 2: Scenario Drills</span>
+                <span className="text-xs font-extrabold text-indigo-400">Weight: 30%</span>
+              </div>
+              <div className="flex items-baseline gap-2 mb-2">
+                <span className="text-3xl font-extrabold text-app">
+                  {openScore !== undefined && openScore !== null ? Math.round(openScore) : Math.round(mcqScore)}%
+                </span>
+                <span className="text-xs text-secondary font-medium">(3 Scenarios Evaluated)</span>
+              </div>
+              <div className="w-full h-2 bg-[var(--bg-app)] rounded-full overflow-hidden mb-3">
+                <div
+                  className="h-full bg-indigo-500 rounded-full transition-all"
+                  style={{ width: `${Math.min(100, openScore ?? mcqScore)}%` }}
+                />
+              </div>
+              <p className="text-[11px] text-secondary">
+                Multi-criteria rubric assessing correctness, reasoning, technical depth, relevance, and trade-off completeness.
+              </p>
+            </div>
+          </div>
+
+          {/* Open-Ended Detailed Rubric Reviews */}
+          {lastResult.open_ended_evaluations && lastResult.open_ended_evaluations.length > 0 && (
+            <div className="bg-subtle border border-app rounded-2xl p-5 mb-5">
+              <h2 className="font-semibold text-app mb-3 text-sm flex items-center gap-2">
+                <span>🎯</span> Open-Ended Technical Scenario Feedback
+              </h2>
+              <div className="flex flex-col gap-4">
+                {lastResult.open_ended_evaluations.map((ev, eIdx) => (
+                  <div key={eIdx} className="p-4 rounded-xl bg-[var(--bg-app)] border border-app text-xs">
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-bold text-app text-sm">
+                        Scenario {eIdx + 1}: {ev.question_title}
+                      </span>
+                      <span className="font-mono font-bold text-xs px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-300 border border-indigo-500/30">
+                        {ev.score} / 100
+                      </span>
+                    </div>
+
+                    {/* Criteria 5-bar breakdown */}
+                    <div className="grid grid-cols-5 gap-2 my-3 text-center">
+                      <div className="p-2 rounded bg-subtle border border-app">
+                        <span className="text-[9px] text-secondary uppercase block font-semibold">Correctness</span>
+                        <strong className="text-xs text-app">{ev.correctness}/20</strong>
+                      </div>
+                      <div className="p-2 rounded bg-subtle border border-app">
+                        <span className="text-[9px] text-secondary uppercase block font-semibold">Reasoning</span>
+                        <strong className="text-xs text-app">{ev.reasoning}/20</strong>
+                      </div>
+                      <div className="p-2 rounded bg-subtle border border-app">
+                        <span className="text-[9px] text-secondary uppercase block font-semibold">Depth</span>
+                        <strong className="text-xs text-app">{ev.technical_understanding}/20</strong>
+                      </div>
+                      <div className="p-2 rounded bg-subtle border border-app">
+                        <span className="text-[9px] text-secondary uppercase block font-semibold">Relevance</span>
+                        <strong className="text-xs text-app">{ev.relevance}/20</strong>
+                      </div>
+                      <div className="p-2 rounded bg-subtle border border-app">
+                        <span className="text-[9px] text-secondary uppercase block font-semibold">Completeness</span>
+                        <strong className="text-xs text-app">{ev.completeness}/20</strong>
+                      </div>
+                    </div>
+
+                    <p className="text-secondary leading-relaxed bg-subtle p-2.5 rounded-lg border border-app/50 mt-2">
+                      💬 <strong className="text-app font-medium">Reviewer Feedback:</strong> {ev.feedback}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Difficulty Breakdown */}
+          <div className="bg-subtle border border-app rounded-2xl p-5 mb-5">
+            <h2 className="font-semibold text-app mb-3 text-sm">MCQ Difficulty Breakdown</h2>
+            <div className="grid grid-cols-3 gap-3">
+              {(['easy', 'medium', 'hard'] as const).map(d => {
+                const stat = lastResult.difficulty_breakdown[d] || { correct: 0, total: 0 }
+                const pct = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0
+                return (
+                  <div key={d} className={`rounded-xl border p-3 text-center ${DIFF_BG[d]}`}>
+                    <p className="text-[11px] font-bold uppercase tracking-wider mb-1 capitalize">{d}</p>
+                    <p className="font-heading text-xl font-extrabold">{pct}%</p>
+                    <p className="text-[10px] mt-0.5">{stat.correct} / {stat.total}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Topic Breakdown */}
+          <div className="bg-subtle border border-app rounded-2xl p-5 mb-5">
+            <h2 className="font-semibold text-app mb-3 text-sm">Topic Breakdown</h2>
+            <div className="flex flex-col gap-2.5">
+              {Object.entries(lastResult.topic_breakdown)
+                .sort(([, a], [, b]) => b.total - a.total)
+                .map(([topic, stat]) => {
+                  const pct = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0
+                  const barColor = pct >= 70 ? 'bg-emerald-500' : pct >= 40 ? 'bg-amber-500' : 'bg-rose-500'
+                  return (
+                    <div key={topic}>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[12px] text-app font-medium">{topic}</span>
+                        <span className="text-[11px] text-secondary">{stat.correct}/{stat.total} ({pct}%)</span>
+                      </div>
+                      <div className="h-1.5 bg-[var(--bg-app)] rounded-full overflow-hidden">
+                        <div className={`h-full rounded-full ${barColor} transition-all`} style={{ width: `${pct}%` }} />
+                      </div>
+                    </div>
+                  )
+                })}
+            </div>
+          </div>
+
+          {/* Answer Review */}
+          <div className="bg-subtle border border-app rounded-2xl p-5 mb-6">
+            <h2 className="font-semibold text-app mb-4 text-sm">MCQ Answer Review</h2>
+            <div className="flex flex-col gap-4 max-h-[480px] overflow-y-auto pr-1">
+              {questions.map((q, idx) => {
+                const userAns = answers[idx]
+                const isCorrect = userAns === q.correct
+                const wasAnswered = userAns !== undefined
+                return (
+                  <div
+                    key={idx}
+                    className={`rounded-xl border p-4 text-sm ${
+                      !wasAnswered ? 'border-app bg-[var(--bg-app)]' :
+                      isCorrect ? 'border-emerald-500/30 bg-emerald-500/5' : 'border-rose-500/30 bg-rose-500/5'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="text-[10px] font-bold">Q{idx + 1}</span>
+                      <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded border ${DIFF_BG[q.difficulty]}`}>
+                        {q.difficulty}
+                      </span>
+                      <span className="text-[10px] text-secondary">{q.topic}</span>
+                      <span className="ml-auto text-[13px]">
+                        {!wasAnswered ? '⏩' : isCorrect ? '✅' : '❌'}
+                      </span>
+                    </div>
+                    <p className="text-app font-medium mb-2 whitespace-pre-wrap">{q.q}</p>
+                    {wasAnswered && !isCorrect && (
+                      <p className="text-rose-300 text-[12px] mb-1">
+                        Your answer: <strong>{q.options[userAns]}</strong>
+                      </p>
+                    )}
+                    <p className="text-emerald-300 text-[12px] mb-1.5">
+                      Correct: <strong>{q.options[q.correct]}</strong>
+                    </p>
+                    <p className="text-secondary text-[11px] leading-relaxed border-t border-app pt-2">
+                      💡 {q.explanation}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          {/* Actions */}
+          <div className="flex gap-3 flex-wrap">
+            <button
+              id="retake-test-btn"
+              onClick={() => startTest(testData.id)}
+              className="flex-1 py-3 rounded-xl font-semibold border border-[#FF5722]/40 text-[#FF5722] hover:bg-[#FF5722]/5 transition-colors cursor-pointer"
+            >
+              🔁 Retake Assessment
+            </button>
+            <button
+              id="back-to-tests-btn"
+              onClick={() => setPhase('select')}
+              className="flex-1 py-3 rounded-xl font-semibold bg-[#FF5722] hover:bg-[#E64A19] text-white transition-colors cursor-pointer"
+            >
+              ← All Assessments
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return null
 }

@@ -125,9 +125,14 @@ class AssessmentRecord(BaseModel):
     test_id: str = ""
     test_title: str = ""
     category: str = "Technical"
+    career_path: str = ""         # e.g. "Full-Stack Engineer", "AI/ML Engineer"
     score: float = 0.0
     total_questions: int = 0
     correct_count: int = 0
+    incorrect_count: int = 0
+    time_taken: int = 0           # seconds elapsed during attempt
+    topic_breakdown: Dict[str, Any] = {}    # {"topic": {correct, total}}
+    difficulty_breakdown: Dict[str, Any] = {}  # {"easy": {correct, total}, ...}
     timestamp: str = ""
 
 
@@ -397,13 +402,29 @@ class SkillAddRequest(BaseModel):
         return v
 
 
+class OpenEndedAnswerSubmission(BaseModel):
+    question_id: int = Field(..., ge=1, le=50)
+    question: str = Field(..., min_length=5, max_length=2000)
+    answer: str = Field(default="", max_length=10000)
+
+
 class AssessmentSubmitRequest(BaseModel):
     test_id: str = Field("general", max_length=100)
     test_title: str = Field("Technical Assessment", max_length=200)
     score: float = Field(0.0, ge=0.0, le=100.0)
+    mcq_score: Optional[float] = Field(None, ge=0.0, le=100.0)
+    open_ended_score: Optional[float] = Field(None, ge=0.0, le=100.0)
     category: str = Field("Technical", max_length=100)
+    career_path: str = Field("", max_length=100)    # career path slug
     total_questions: int = Field(3, ge=1, le=100)
     correct_count: int = Field(0, ge=0, le=100)
+    incorrect_count: int = Field(0, ge=0, le=100)
+    time_taken: int = Field(0, ge=0)                # seconds
+    session_id: Optional[str] = Field(None, max_length=100)
+    mcq_answers: Optional[Dict[str, int]] = Field(default_factory=dict)
+    open_ended_answers: Optional[List[OpenEndedAnswerSubmission]] = Field(default_factory=list)
+    topic_breakdown: Dict[str, Any] = Field(default_factory=dict)
+    difficulty_breakdown: Dict[str, Any] = Field(default_factory=dict)
 
 
 class CommunityPostCreateRequest(BaseModel):

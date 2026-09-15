@@ -12,11 +12,16 @@ service cloud.firestore {
       allow read, write: if isOwner(uid);
     }
 
-    // Certificates — only owner
+    // Certificates — only owner can read/write their own certificates.
+    // The create rule requires the submitted uid field to match the caller's UID
+    // to prevent a client from creating a certificate attributed to another user.
     match /certificates/{certId} {
-      allow read, write: if request.auth != null &&
-        request.auth.uid == resource.data.uid;
-      allow create: if request.auth != null;
+      allow read: if request.auth != null &&
+        resource.data.uid == request.auth.uid;
+      allow update, delete: if request.auth != null &&
+        resource.data.uid == request.auth.uid;
+      allow create: if request.auth != null &&
+        request.resource.data.uid == request.auth.uid;
     }
 
     // Job scores — only owner
@@ -69,10 +74,15 @@ service cloud.firestore {
       allow read, write: if isOwner(uid);
     }
 
-    // Default deny
+    // Mock test attempts (Phase 6 expanded schema) — only owner
+    // Stored under: users/{uid}/mockTests/{attemptId}
+    match /users/{uid}/mockTests/{attemptId} {
+      allow read, write: if isOwner(uid);
+    }
+
+    // Default deny — deny all reads/writes not matched above
     match /{document=**} {
       allow read, write: if false;
     }
   }
 }
-

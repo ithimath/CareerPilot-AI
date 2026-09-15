@@ -70,19 +70,22 @@ export default function DashboardPage() {
   const queryClient = useQueryClient()
   const [activeTab, setActiveTab] = useState<'overview' | 'readiness' | 'tools' | 'activity'>('overview')
 
-  const { data: profile } = useQuery({
+  const { data: profile, isLoading: profileLoading } = useQuery({
     queryKey: ['profile', user?.uid],
     queryFn: () => api.get('/api/profile').then(r => r.data),
+    enabled: !!user?.uid,
   })
 
-  const { data: jobScore } = useQuery({
+  const { data: jobScore, isLoading: scoreLoading } = useQuery({
     queryKey: ['jobScore', user?.uid],
     queryFn: () => api.get('/api/job-score').then(r => r.data),
+    enabled: !!user?.uid,
   })
 
   const { data: certs } = useQuery({
     queryKey: ['certificates', user?.uid],
     queryFn: () => api.get('/api/certificates').then(r => r.data),
+    enabled: !!user?.uid,
   })
 
   const refreshMutation = useMutation({
@@ -96,6 +99,8 @@ export default function DashboardPage() {
 
   const firstName = user?.displayName?.split(' ')[0] || 'Candidate'
   const targetCareer = profile?.target_career || 'Full-Stack Engineer'
+  // Show score as loading while query is in flight or recalculation is pending
+  const isScoreLoading = scoreLoading || refreshMutation.isPending
   const totalScore = jobScore?.total_score ?? 0
   const scoreTier = totalScore >= 75 ? 'Industry Ready' : totalScore >= 50 ? 'Developing Alignment' : 'Foundational'
 
@@ -164,8 +169,14 @@ export default function DashboardPage() {
               {/* Radial Progress Gauge Simulation */}
               <div className="relative w-22 h-22 sm:w-24 sm:h-24 flex items-center justify-center bg-[#FF5722]/10 dark:bg-[#FF5722]/15 rounded-full border-4 border-[#FF5722]/40 flex-shrink-0 mx-auto sm:mx-0">
                 <div className="text-center">
-                  <span className="font-heading text-2xl sm:text-3xl font-extrabold text-app">{totalScore}</span>
-                  <span className="text-[10px] text-secondary font-bold block -mt-1">/ 100</span>
+                  {isScoreLoading ? (
+                    <span className="text-xs font-bold text-secondary animate-pulse">...</span>
+                  ) : (
+                    <>
+                      <span className="font-heading text-2xl sm:text-3xl font-extrabold text-app">{totalScore}</span>
+                      <span className="text-[10px] text-secondary font-bold block -mt-1">/ 100</span>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -472,11 +483,11 @@ export default function DashboardPage() {
               <span className="text-[10px] font-bold text-secondary uppercase tracking-wider block">Candidate dossier stats</span>
               <div className="grid grid-cols-2 gap-3">
                 <div className="p-3 bg-subtle border border-app rounded-md text-center">
-                  <p className="font-heading text-2xl font-bold text-app">{profile?.skills?.length || 8}</p>
+                  <p className="font-heading text-2xl font-bold text-app">{profile?.skills?.length ?? 0}</p>
                   <p className="text-[10px] text-secondary font-semibold">Skills Verified</p>
                 </div>
                 <div className="p-3 bg-subtle border border-app rounded-md text-center">
-                  <p className="font-heading text-2xl font-bold text-app">{(certs?.certificates || []).length || 2}</p>
+                  <p className="font-heading text-2xl font-bold text-app">{(certs?.certificates || []).length}</p>
                   <p className="text-[10px] text-secondary font-semibold">Certificates</p>
                 </div>
               </div>

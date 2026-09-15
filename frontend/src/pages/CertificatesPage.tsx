@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useRef } from 'react'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useDropzone } from 'react-dropzone'
 import api from '@/lib/api'
@@ -17,7 +17,7 @@ const STATUS_CONFIG: Record<string, { label: string; color: string; icon: any }>
   failed:         { label: 'Failed',         color: 'badge-red',     icon: XCircle },
 }
 
-function CertCard({ cert, onDelete, onReprocess }: any) {
+function CertCard({ cert, onDelete, onReprocess, onReplace }: any) {
   const [expanded, setExpanded] = useState(false)
   const cfg = STATUS_CONFIG[cert.status] || STATUS_CONFIG.uploaded
   const StatusIcon = cfg.icon
@@ -37,6 +37,13 @@ function CertCard({ cert, onDelete, onReprocess }: any) {
 
           {/* Mobile Actions in header */}
           <div className="flex sm:hidden items-center gap-1">
+            <button
+              onClick={() => onReplace(cert.id)}
+              className="p-2 text-secondary hover:text-[#FF5722] hover:bg-subtle rounded min-h-[36px] min-w-[36px] flex items-center justify-center"
+              title="Replace certificate with newer version"
+            >
+              <Upload className="w-4 h-4" />
+            </button>
             {cert.status === 'failed' && (
               <button
                 onClick={() => onReprocess(cert.id)}
@@ -113,6 +120,13 @@ function CertCard({ cert, onDelete, onReprocess }: any) {
 
         {/* Desktop Actions */}
         <div className="hidden sm:flex gap-1 flex-shrink-0">
+          <button
+            onClick={() => onReplace(cert.id)}
+            className="p-2 text-secondary hover:text-[#FF5722] hover:bg-subtle rounded transition-colors"
+            title="Replace certificate with newer file"
+          >
+            <Upload className="w-3.5 h-3.5" />
+          </button>
           {cert.status === 'failed' && (
             <button
               onClick={() => onReprocess(cert.id)}
@@ -138,6 +152,8 @@ function CertCard({ cert, onDelete, onReprocess }: any) {
 export default function CertificatesPage() {
   const queryClient = useQueryClient()
   const [uploading, setUploading] = useState(false)
+  const [replacingId, setReplacingId] = useState<string | null>(null)
+  const replaceInputRef = useRef<HTMLInputElement>(null)
 
   const { data, isLoading } = useQuery({
     queryKey: ['certificates'],
@@ -153,7 +169,6 @@ export default function CertificatesPage() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['certificates'] })
       queryClient.invalidateQueries({ queryKey: ['profile'] })
-      // Invalidate score — certificates_score component contributes to readiness
       queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
       toast.success('Certificate uploaded! Skills extracted and Career Readiness Score recalculated.')
     },
@@ -165,7 +180,6 @@ export default function CertificatesPage() {
     mutationFn: (id: string) => api.delete(`/api/certificates/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['certificates'] })
-      // Removing a cert affects certificates_score — recalculate
       queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
       toast.success('Certificate deleted. Career Readiness Score recalculated.')
     },
@@ -178,6 +192,38 @@ export default function CertificatesPage() {
       toast.success('Reprocessing triggered')
     },
   })
+
+  const handleReplaceClick = (id: string) => {
+    setReplacingId(id)
+    if (replaceInputRef.current) {
+      replaceInputRef.current.value = ''
+      replaceInputRef.current.click()
+    }
+  }
+
+  const handleReplaceFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file && replacingId) {
+      setUploading(true)
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('replace_id', replacingId)
+      api.post('/api/certificates/upload', formData)
+        .then(() => {
+          queryClient.invalidateQueries({ queryKey: ['certificates'] })
+          queryClient.invalidateQueries({ queryKey: ['profile'] })
+          queryClient.invalidateQueries({ queryKey: ['jobScore'], exact: false })
+          toast.success('Certificate replaced successfully! Skills & score recalculated.')
+        })
+        .catch((err: any) => {
+          toast.error(err.response?.data?.detail || err.message || 'Replacement failed')
+        })
+        .finally(() => {
+          setUploading(false)
+          setReplacingId(null)
+        })
+    }
+  }
 
   const onDrop = useCallback(
     (files: File[]) => {
@@ -202,6 +248,15 @@ export default function CertificatesPage() {
 
   return (
     <div className="space-y-6 max-w-3xl animate-fade-in text-app">
+      {/* Hidden file input for replacement */}
+      <input
+        type="file"
+        ref={replaceInputRef}
+        className="hidden"
+        accept=".pdf,.png,.jpg,.jpeg,application/pdf,image/*"
+        onChange={handleReplaceFileChange}
+      />
+
       <div className="card p-6 shadow-xs">
         <span className="text-[10px] font-bold text-[#FF5722] dark:text-[#FF7043] uppercase tracking-wider block mb-1">OCR Skill Verification Log</span>
         <h2 className="font-heading text-3xl font-extrabold text-app">Verified Credentials & Certificates</h2>
@@ -257,6 +312,7 @@ export default function CertificatesPage() {
               cert={cert}
               onDelete={(id: string) => deleteMutation.mutate(id)}
               onReprocess={(id: string) => reprocessMutation.mutate(id)}
+              onReplace={handleReplaceClick}
             />
           ))}
         </div>

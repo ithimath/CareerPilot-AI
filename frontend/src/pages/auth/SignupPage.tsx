@@ -27,7 +27,12 @@ export default function SignupPage() {
       toast.success('Account created! Welcome to CareerPilot AI 🚀')
       navigate('/dashboard')
     } catch (err: any) {
-      toast.error(err.message || 'Registration failed')
+      const msg = err.message || ''
+      if (msg.toLowerCase().includes('already exists') || msg.toLowerCase().includes('already been registered')) {
+        toast.error('An account with this email already exists. Please sign in.')
+      } else {
+        toast.error(msg || 'Registration failed')
+      }
     } finally {
       setLoading(false)
     }
