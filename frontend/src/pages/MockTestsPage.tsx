@@ -117,6 +117,10 @@ const CAREER_EMOJI: Record<string, string> = {
   frontend: '🎨',
   'data-science': '📊',
   cloud: '☁️',
+  dsa: '🧩',
+  'sql-dbms': '🗄️',
+  'aiml-fundamentals': '🧠',
+  aptitude: '🎯',
 }
 
 function formatTime(seconds: number): string {
@@ -154,6 +158,8 @@ export default function MockTestsPage() {
   const [timeLeft, setTimeLeft] = useState(600) // 10 minutes (600s)
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [startError, setStartError] = useState<string | null>(null)
+  const [startingTestId, setStartingTestId] = useState<string | null>(null)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
   const submitRef = useRef<() => void>(() => {})
 
@@ -293,6 +299,9 @@ export default function MockTestsPage() {
 
   // ── Start a test ──────────────────────────────────────────────────────────────
   async function startTest(testId: string) {
+    if (startingTestId) return
+    setStartError(null)
+    setStartingTestId(testId)
     try {
       // 1. Create server-side 10-minute session
       let sid: string | null = null
@@ -300,13 +309,16 @@ export default function MockTestsPage() {
         const sessionRes = await api.post('/api/assessments/start-session', { test_id: testId })
         sid = sessionRes.data?.session_id || null
       } catch (sessErr) {
-        console.warn('Session start fallback:', sessErr)
+        console.warn('Session start fallback (non-fatal):', sessErr)
       }
       setSessionId(sid)
 
       // 2. Fetch test questions & open-ended scenarios
       const res = await api.get(`/api/assessments/tests/${testId}`)
       const data: TestWithQuestions = res.data
+      if (!data || !data.questions || data.questions.length === 0) {
+        throw new Error('Test questions could not be loaded. Please try again.')
+      }
       setTestData(data)
       setActiveTestId(testId)
       setAnswers({})
@@ -320,8 +332,15 @@ export default function MockTestsPage() {
       setIsSubmitting(false)
       setLastResult(null)
       setPhase('test')
-    } catch (err) {
+    } catch (err: unknown) {
+      const message = err instanceof Error
+        ? err.message
+        : (err as { response?: { data?: { detail?: string } } })?.response?.data?.detail
+          ?? 'Failed to load the test. Please check your connection and try again.'
       console.error('Failed to load test:', err)
+      setStartError(message)
+    } finally {
+      setStartingTestId(null)
     }
   }
 
@@ -365,9 +384,24 @@ export default function MockTestsPage() {
               Technical Assessments
             </h1>
             <p className="text-secondary text-sm">
-              Intermediate & Advanced MCQs + 3 Open-Ended Technical Scenarios · 10-Minute Server Timer · Multi-Criteria Rubric Evaluation
+              Interview-Level MCQs + 3 Open-Ended Technical Scenarios · Strict 10-Minute Timer · Multi-Criteria Rubric Evaluation
             </p>
           </div>
+
+          {/* Start Error Banner */}
+          {startError && (
+            <div className="mb-5 flex items-start gap-3 p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-sm">
+              <span className="text-lg flex-shrink-0">⚠️</span>
+              <div>
+                <strong className="block font-semibold mb-0.5">Failed to start test</strong>
+                <span>{startError}</span>
+                <button
+                  onClick={() => setStartError(null)}
+                  className="ml-3 text-[11px] underline opacity-70 hover:opacity-100"
+                >Dismiss</button>
+              </div>
+            </div>
+          )}
 
           {/* Test Grid */}
           {catalogLoading ? (
@@ -425,9 +459,10 @@ export default function MockTestsPage() {
                     <button
                       id={`start-test-${test.id}`}
                       onClick={() => startTest(test.id)}
-                      className="w-full py-2.5 rounded-xl text-sm font-semibold bg-[#FF5722] hover:bg-[#E64A19] text-white transition-colors group-hover:shadow-md cursor-pointer"
+                      disabled={!!startingTestId}
+                      className="w-full py-2.5 rounded-xl text-sm font-semibold bg-[#FF5722] hover:bg-[#E64A19] text-white transition-colors group-hover:shadow-md cursor-pointer disabled:opacity-60 disabled:cursor-wait"
                     >
-                      {lastAttempt ? 'Retake Assessment (10 min)' : 'Start Assessment (10 min)'}
+                      {startingTestId === test.id ? '⏳ Loading...' : lastAttempt ? 'Retake Assessment (10 min)' : 'Start Assessment (10 min)'}
                     </button>
                   </div>
                 )

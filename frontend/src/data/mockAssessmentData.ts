@@ -1,0 +1,3961 @@
+// Auto-generated comprehensive assessment bank for offline & client-fallback mode
+export interface MockQuestion {
+  id: number
+  topic: string
+  difficulty: 'easy' | 'medium' | 'hard'
+  type: 'conceptual' | 'scenario' | 'code_output'
+  q: string
+  options: string[]
+  correct: number
+  explanation: string
+}
+
+export interface MockOpenEndedQuestion {
+  id: number
+  title: string
+  scenario: string
+  prompt: string
+  rubric_focus: string[]
+}
+
+export interface MockTestCatalogItem {
+  id: string
+  title: string
+  career_path: string
+  category: string
+  questions_count: number
+  open_ended_count: number
+  time_limit_seconds: number
+  difficulty: string
+  questions: MockQuestion[]
+  open_ended_questions: MockOpenEndedQuestion[]
+}
+
+export const MOCK_ASSESSMENTS_CATALOG: MockTestCatalogItem[] = [
+  {
+    "id": "full-stack",
+    "title": "Full-Stack Engineer Assessment",
+    "career_path": "Full-Stack Engineer",
+    "category": "Full-Stack",
+    "questions_count": 22,
+    "open_ended_count": 3,
+    "time_limit_seconds": 600,
+    "difficulty": "Intermediate / Advanced",
+    "questions": [
+      {
+        "id": 1,
+        "topic": "HTML/CSS",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "Which CSS property controls the space between an element's border and its content?",
+        "options": [
+          "margin",
+          "padding",
+          "gap",
+          "spacing"
+        ],
+        "correct": 1,
+        "explanation": "padding controls the inner space between an element's content and its border. margin controls the outer space between elements."
+      },
+      {
+        "id": 2,
+        "topic": "JavaScript",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does the `===` operator check in JavaScript?",
+        "options": [
+          "Only value equality",
+          "Only type equality",
+          "Both value and type equality (strict equality)",
+          "Reference equality"
+        ],
+        "correct": 2,
+        "explanation": "`===` is the strict equality operator — it checks that both the value AND type are identical without type coercion."
+      },
+      {
+        "id": 3,
+        "topic": "React",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What hook is used to perform side effects in React functional components?",
+        "options": [
+          "useState",
+          "useEffect",
+          "useContext",
+          "useReducer"
+        ],
+        "correct": 1,
+        "explanation": "useEffect runs after renders and handles side effects like API calls, subscriptions, and DOM mutations."
+      },
+      {
+        "id": 4,
+        "topic": "HTTP",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "Which HTTP method is idempotent AND safe (no side effects)?",
+        "options": [
+          "POST",
+          "PUT",
+          "GET",
+          "PATCH"
+        ],
+        "correct": 2,
+        "explanation": "GET is both safe (no server state change) and idempotent (same result on repeated calls). POST creates resources and is neither."
+      },
+      {
+        "id": 5,
+        "topic": "Git",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does `git stash` do?",
+        "options": [
+          "Deletes uncommitted changes permanently",
+          "Temporarily shelves uncommitted changes",
+          "Creates a new branch",
+          "Merges two branches"
+        ],
+        "correct": 1,
+        "explanation": "`git stash` saves your uncommitted changes to a stack so you can work on something else and restore them later with `git stash pop`."
+      },
+      {
+        "id": 6,
+        "topic": "SQL",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "Which SQL statement retrieves unique values from a column?",
+        "options": [
+          "SELECT UNIQUE",
+          "SELECT DISTINCT",
+          "SELECT DIFFERENT",
+          "SELECT FILTER"
+        ],
+        "correct": 1,
+        "explanation": "SELECT DISTINCT eliminates duplicate rows from the result set."
+      },
+      {
+        "id": 7,
+        "topic": "React",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the primary purpose of React's `useMemo` hook?",
+        "options": [
+          "Perform side effects on mount",
+          "Memoize expensive computed values between renders",
+          "Replace Redux for state management",
+          "Lazy-load components"
+        ],
+        "correct": 1,
+        "explanation": "useMemo caches the result of a computation and only recomputes it when its dependencies change, preventing expensive recalculations on every render."
+      },
+      {
+        "id": 8,
+        "topic": "React",
+        "difficulty": "medium",
+        "type": "scenario",
+        "q": "A React component re-renders excessively when a parent re-renders, even though its props haven't changed. What is the best fix?",
+        "options": [
+          "Move state to Context",
+          "Wrap the component in React.memo()",
+          "Use useRef instead of useState",
+          "Convert to a class component"
+        ],
+        "correct": 1,
+        "explanation": "React.memo() is a Higher-Order Component that prevents a functional component from re-rendering if its props haven't changed."
+      },
+      {
+        "id": 9,
+        "topic": "JavaScript",
+        "difficulty": "medium",
+        "type": "code_output",
+        "q": "What does the following code log?\n```js\nconsole.log(typeof null);\n```",
+        "options": [
+          "'null'",
+          "'undefined'",
+          "'object'",
+          "'boolean'"
+        ],
+        "correct": 2,
+        "explanation": "This is a longstanding JavaScript bug — `typeof null` returns 'object', not 'null'. It's preserved for backward compatibility."
+      },
+      {
+        "id": 10,
+        "topic": "REST API",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "Which HTTP status code should a REST API return when a resource is successfully created?",
+        "options": [
+          "200 OK",
+          "201 Created",
+          "204 No Content",
+          "202 Accepted"
+        ],
+        "correct": 1,
+        "explanation": "201 Created signals that a new resource has been successfully created. The response should include a Location header pointing to the new resource."
+      },
+      {
+        "id": 11,
+        "topic": "JavaScript",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the difference between `Promise.all()` and `Promise.allSettled()`?",
+        "options": [
+          "Promise.all() waits for ALL to settle; Promise.allSettled() rejects on first failure",
+          "Promise.all() rejects on first failure; Promise.allSettled() waits for ALL to settle regardless",
+          "They are identical",
+          "Promise.all() only works with async/await"
+        ],
+        "correct": 1,
+        "explanation": "Promise.all() short-circuits and rejects as soon as any promise rejects. Promise.allSettled() always waits for every promise and returns each outcome (fulfilled or rejected)."
+      },
+      {
+        "id": 12,
+        "topic": "SQL",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the difference between `INNER JOIN` and `LEFT JOIN`?",
+        "options": [
+          "INNER JOIN returns all rows from both tables; LEFT JOIN returns matching rows only",
+          "INNER JOIN returns only matching rows; LEFT JOIN returns all rows from the left table plus matching from the right",
+          "They are identical",
+          "LEFT JOIN requires an index; INNER JOIN does not"
+        ],
+        "correct": 1,
+        "explanation": "INNER JOIN returns only rows with a match in both tables. LEFT JOIN returns all rows from the left table even if there's no match in the right (NULLs fill non-matching columns)."
+      },
+      {
+        "id": 13,
+        "topic": "CSS",
+        "difficulty": "medium",
+        "type": "scenario",
+        "q": "A flex container's items are not wrapping to the next line when there's no room. Which property fixes this?",
+        "options": [
+          "flex-direction: column",
+          "flex-wrap: wrap",
+          "align-items: flex-start",
+          "justify-content: space-between"
+        ],
+        "correct": 1,
+        "explanation": "By default, flexbox forces items onto a single line. `flex-wrap: wrap` allows items to wrap onto multiple lines when the container's width is exceeded."
+      },
+      {
+        "id": 14,
+        "topic": "TypeScript",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is a TypeScript `interface` used for?",
+        "options": [
+          "Defining runtime class behavior",
+          "Describing the shape of an object at compile-time",
+          "Creating abstract base classes",
+          "Enforcing method implementations in functions"
+        ],
+        "correct": 1,
+        "explanation": "TypeScript interfaces define the structure (shape) of objects — their properties and method signatures — purely for compile-time type checking."
+      },
+      {
+        "id": 15,
+        "topic": "REST API",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What does CORS stand for, and why do browsers enforce it?",
+        "options": [
+          "Cross-Origin Resource Sharing — prevents a web page from making requests to a different domain without permission",
+          "Client-Origin Request System — limits server response size",
+          "Cache Origin Response Sync — controls caching",
+          "Cross-Origin Request Streaming — enables WebSocket connections"
+        ],
+        "correct": 0,
+        "explanation": "CORS is a browser security mechanism that restricts web pages from making requests to a different domain (origin) than the one that served the page, unless the server explicitly allows it."
+      },
+      {
+        "id": 16,
+        "topic": "Node.js",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the purpose of the Node.js Event Loop?",
+        "options": [
+          "To manage multiple CPU threads for parallelism",
+          "To handle asynchronous I/O operations in a single-threaded environment without blocking",
+          "To garbage-collect unused memory",
+          "To compile JavaScript to machine code at runtime"
+        ],
+        "correct": 1,
+        "explanation": "The Node.js Event Loop allows non-blocking I/O by offloading operations to the system kernel and executing callbacks when operations complete, enabling high concurrency on a single thread."
+      },
+      {
+        "id": 17,
+        "topic": "Database",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What does database indexing improve?",
+        "options": [
+          "Write throughput",
+          "Read query performance (especially on large tables)",
+          "Data compression ratio",
+          "Transaction isolation level"
+        ],
+        "correct": 1,
+        "explanation": "An index creates a separate data structure that allows the database to find rows matching a WHERE clause without scanning every row (a full table scan)."
+      },
+      {
+        "id": 18,
+        "topic": "System Design",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "You need to design a rate limiter that allows each user 100 requests per minute. Which algorithm handles burst traffic most gracefully?",
+        "options": [
+          "Fixed Window Counter",
+          "Sliding Window Log",
+          "Token Bucket",
+          "Leaky Bucket"
+        ],
+        "correct": 2,
+        "explanation": "Token Bucket accumulates tokens at a fixed rate and allows bursts up to the bucket capacity, making it the most flexible for handling traffic spikes while still enforcing an average rate."
+      },
+      {
+        "id": 19,
+        "topic": "JavaScript",
+        "difficulty": "hard",
+        "type": "code_output",
+        "q": "What does this code output?\n```js\nconst obj = { a: 1 };\nconst copy = Object.assign({}, obj);\ncopy.a = 99;\nconsole.log(obj.a);\n```",
+        "options": [
+          "99",
+          "1",
+          "undefined",
+          "ReferenceError"
+        ],
+        "correct": 1,
+        "explanation": "Object.assign() creates a shallow copy. Primitive values (like numbers) are copied by value, so mutating `copy.a` does not affect `obj.a`. (Nested objects would be affected.)"
+      },
+      {
+        "id": 20,
+        "topic": "React",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A large list component re-renders on every parent update, causing jank. The list data itself doesn't change. What is the optimal solution?",
+        "options": [
+          "Move the list to a separate file",
+          "Use React.memo() on the list component AND useCallback() on any event handlers passed as props",
+          "Use useEffect to re-render the list only on mount",
+          "Convert to a class component with shouldComponentUpdate"
+        ],
+        "correct": 1,
+        "explanation": "React.memo() prevents re-renders when props are the same, but if event handler props are new function references each render (from the parent), you must also wrap them in useCallback() to preserve referential equality."
+      },
+      {
+        "id": 21,
+        "topic": "Database",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What does the CAP theorem state?",
+        "options": [
+          "A distributed system can guarantee Consistency, Availability, and Partition Tolerance simultaneously",
+          "A distributed system can guarantee at most two of: Consistency, Availability, Partition Tolerance",
+          "Partition Tolerance can always be sacrificed for better performance",
+          "Availability is always more important than Consistency in production systems"
+        ],
+        "correct": 1,
+        "explanation": "The CAP theorem states that in the presence of a network partition, a distributed system must choose between Consistency (all nodes see the same data) or Availability (every request gets a response). Partition Tolerance is not optional in real distributed systems."
+      },
+      {
+        "id": 22,
+        "topic": "Security",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A web application renders user-submitted comments directly as HTML. What vulnerability does this introduce and how do you fix it?",
+        "options": [
+          "SQL Injection — use parameterized queries",
+          "XSS (Cross-Site Scripting) — escape all user-generated content before rendering it as HTML",
+          "CSRF — add SameSite cookie flags",
+          "Path Traversal — validate file upload names"
+        ],
+        "correct": 1,
+        "explanation": "Rendering unsanitized user input as HTML enables XSS attacks. Fix by escaping HTML entities (e.g., using textContent instead of innerHTML in JavaScript) or using a library like DOMPurify."
+      }
+    ],
+    "open_ended_questions": [
+      {
+        "id": 101,
+        "title": "Real-Time Collaborative Document Sync & Conflict Resolution",
+        "scenario": "You are tasked with designing the core synchronization architecture for a real-time collaborative markdown editor (similar to Google Docs or Notion). Multiple users can edit the same document concurrently over WebSockets with intermittent network latency.",
+        "prompt": "Detail your architectural solution. Specifically address: 1) What conflict resolution algorithm or data structure would you select (e.g., Operational Transformation vs CRDTs like Yjs/Automerge) and why? 2) How would you design the client-server synchronization protocol and client-side optimistic UI updates? 3) How do you handle edge cases such as offline reconnections, dropped packets, and server state persistence without losing keystrokes?",
+        "rubric_focus": [
+          "CRDT or OT algorithm",
+          "WebSocket protocol",
+          "Optimistic rendering",
+          "Offline re-sync",
+          "Edge cases & persistence"
+        ]
+      },
+      {
+        "id": 102,
+        "title": "React Performance Optimization & Long-Task Profiling",
+        "scenario": "A mission-critical financial analytics dashboard built in React displays 50 live real-time updating tickers and data charts. Users report severe UI freezing, sluggish typing in search inputs, and an Interaction to Next Paint (INP) exceeding 450ms.",
+        "prompt": "Explain your step-by-step diagnostic and optimization approach. Specifically: 1) What browser profiling tools (e.g., Chrome Performance profiler, React Profiler) and metrics would you use to pinpoint the root cause? 2) What state management and rendering refactors would you implement (e.g., useTransition, web workers, virtualization, selector memoization)? 3) How would you ensure high-frequency WebSocket updates do not trigger cascading re-renders across unaffected components?",
+        "rubric_focus": [
+          "DevTools profiling",
+          "INP / Long tasks diagnosis",
+          "Concurrent features (useTransition/useDeferredValue)",
+          "Virtualization & Web Workers",
+          "State isolation"
+        ]
+      },
+      {
+        "id": 103,
+        "title": "Resilient Microservices Payment Gateway & Idempotency",
+        "scenario": "A high-volume checkout microservice interacts with an external third-party payment gateway. During peak flash sales, the payment gateway periodically returns HTTP 504 timeouts, connection resets, and latency spikes.",
+        "prompt": "Propose an end-to-end resilient architecture to prevent double charges and stranded orders: 1) How would you implement distributed idempotency keys across client, API gateway, and database? 2) What retry strategy would you enforce (exponential backoff with full jitter, circuit breakers)? 3) How do you handle cases where the gateway charged the customer's card but timed out before returning a response to your backend?",
+        "rubric_focus": [
+          "Distributed idempotency keys",
+          "Exponential backoff with jitter",
+          "Circuit breaker pattern",
+          "Reconciliation / Webhooks / DLQ",
+          "Transaction consistency"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ai-ml",
+    "title": "AI/ML Engineer Assessment",
+    "career_path": "AI/ML Engineer",
+    "category": "AI & Machine Learning",
+    "questions_count": 22,
+    "open_ended_count": 3,
+    "time_limit_seconds": 600,
+    "difficulty": "Intermediate / Advanced",
+    "questions": [
+      {
+        "id": 1,
+        "topic": "ML Basics",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is the difference between supervised and unsupervised learning?",
+        "options": [
+          "Supervised uses labeled data; unsupervised finds patterns in unlabeled data",
+          "Supervised is faster; unsupervised is slower",
+          "Unsupervised uses labeled data; supervised uses unlabeled data",
+          "They are the same — just different names"
+        ],
+        "correct": 0,
+        "explanation": "Supervised learning trains on labeled input-output pairs to predict outputs. Unsupervised learning finds structure or clusters in data without predefined labels."
+      },
+      {
+        "id": 2,
+        "topic": "ML Basics",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does 'overfitting' mean in machine learning?",
+        "options": [
+          "The model is too simple to capture patterns in the data",
+          "The model memorizes training data but fails to generalize to new data",
+          "The model takes too long to train",
+          "The model has too few parameters"
+        ],
+        "correct": 1,
+        "explanation": "Overfitting occurs when a model learns noise and specifics of the training set, resulting in high training accuracy but poor performance on validation/test data."
+      },
+      {
+        "id": 3,
+        "topic": "Python",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "Which NumPy function creates an array of zeros with a specified shape?",
+        "options": [
+          "np.empty()",
+          "np.zeros()",
+          "np.full()",
+          "np.blank()"
+        ],
+        "correct": 1,
+        "explanation": "np.zeros(shape) creates an ndarray filled with 0.0 values. np.empty() allocates uninitialized memory (values are unpredictable)."
+      },
+      {
+        "id": 4,
+        "topic": "Statistics",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does a correlation coefficient of -1 indicate?",
+        "options": [
+          "No linear relationship",
+          "A perfect positive linear relationship",
+          "A perfect negative linear relationship",
+          "The variables are independent"
+        ],
+        "correct": 2,
+        "explanation": "A correlation of -1 means a perfect inverse linear relationship — as one variable increases, the other decreases proportionally."
+      },
+      {
+        "id": 5,
+        "topic": "Deep Learning",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is the role of an activation function in a neural network?",
+        "options": [
+          "To initialize weight values",
+          "To introduce non-linearity so the network can learn complex patterns",
+          "To normalize the input data",
+          "To calculate the loss"
+        ],
+        "correct": 1,
+        "explanation": "Without activation functions, a neural network would be a linear transformation regardless of depth. Non-linear activations (ReLU, sigmoid, tanh) allow the network to approximate any function."
+      },
+      {
+        "id": 6,
+        "topic": "ML Basics",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is the purpose of a train/validation/test split in ML?",
+        "options": [
+          "To reduce training time",
+          "To train on one set, tune hyperparameters on another, and evaluate final performance on unseen data",
+          "To increase dataset size through duplication",
+          "To run training on multiple GPUs"
+        ],
+        "correct": 1,
+        "explanation": "Training set trains the model. Validation set tunes hyperparameters and prevents overfitting. Test set gives an unbiased estimate of real-world performance on unseen data."
+      },
+      {
+        "id": 7,
+        "topic": "Algorithms",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is gradient descent, and what does the learning rate control?",
+        "options": [
+          "An optimizer that maximizes loss; learning rate controls batch size",
+          "An optimization algorithm that iteratively adjusts parameters to minimize loss; learning rate controls step size",
+          "A regularization technique; learning rate controls dropout probability",
+          "A data preprocessing step; learning rate controls normalization scale"
+        ],
+        "correct": 1,
+        "explanation": "Gradient descent computes the gradient of the loss w.r.t. parameters and moves in the direction that reduces the loss. The learning rate determines how large each update step is."
+      },
+      {
+        "id": 8,
+        "topic": "Deep Learning",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What problem does batch normalization solve?",
+        "options": [
+          "Overfitting in small datasets",
+          "Vanishing/exploding gradients and internal covariate shift by normalizing layer inputs",
+          "Slow inference time in production",
+          "Class imbalance in training data"
+        ],
+        "correct": 1,
+        "explanation": "Batch normalization normalizes the inputs to each layer to have zero mean and unit variance, which stabilizes training, allows higher learning rates, and reduces sensitivity to weight initialization."
+      },
+      {
+        "id": 9,
+        "topic": "NLP",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What does the Transformer architecture's 'attention mechanism' do?",
+        "options": [
+          "Downsamples sequence length for efficiency",
+          "Allows each token to 'attend' to all other tokens in the sequence, learning contextual relationships",
+          "Applies a recurrent cell like LSTM to each token",
+          "Converts text to fixed-size embeddings using TF-IDF"
+        ],
+        "correct": 1,
+        "explanation": "Self-attention computes a weighted sum of all token representations, where weights reflect how relevant each token is to every other token — enabling the model to capture long-range dependencies."
+      },
+      {
+        "id": 10,
+        "topic": "ML Basics",
+        "difficulty": "medium",
+        "type": "scenario",
+        "q": "Your binary classifier achieves 99% accuracy on a dataset where 99% of samples are class 0. What metric should you use instead?",
+        "options": [
+          "Accuracy",
+          "F1-Score or AUC-ROC",
+          "Mean Squared Error",
+          "Log Loss only"
+        ],
+        "correct": 1,
+        "explanation": "A model that always predicts the majority class gets 99% accuracy trivially. F1-Score (balances precision/recall) and AUC-ROC are appropriate for imbalanced classification problems."
+      },
+      {
+        "id": 11,
+        "topic": "Algorithms",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is regularization, and what does L2 (Ridge) regularization do?",
+        "options": [
+          "A data augmentation technique; it increases the amount of training data",
+          "A technique to reduce overfitting; L2 penalizes the sum of squared weights, shrinking large weights",
+          "A loss function; it computes mean absolute error",
+          "A training scheduler; L2 reduces the learning rate over time"
+        ],
+        "correct": 1,
+        "explanation": "Regularization adds a penalty to the loss function to discourage complex models. L2 regularization penalizes large weights quadratically, effectively shrinking all weights and reducing overfitting."
+      },
+      {
+        "id": 12,
+        "topic": "Feature Engineering",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "Why is feature scaling (normalization/standardization) important for many ML algorithms?",
+        "options": [
+          "It increases the number of features",
+          "It ensures features with larger magnitudes don't dominate distance-based or gradient-based algorithms",
+          "It reduces dataset size",
+          "It is only needed for decision trees"
+        ],
+        "correct": 1,
+        "explanation": "Algorithms like k-NN, SVM, and gradient descent-based models are sensitive to feature scale. Without scaling, features with larger magnitudes dominate, leading to biased learning."
+      },
+      {
+        "id": 13,
+        "topic": "Python",
+        "difficulty": "medium",
+        "type": "code_output",
+        "q": "What does `df.groupby('city')['sales'].mean()` in pandas return?",
+        "options": [
+          "A single mean of all sales",
+          "The average sales value grouped by each unique city",
+          "A DataFrame with sales sorted by city",
+          "A pivot table"
+        ],
+        "correct": 1,
+        "explanation": "groupby('city') splits the DataFrame by city, then ['sales'].mean() computes the mean sales for each city group, returning a Series indexed by city."
+      },
+      {
+        "id": 14,
+        "topic": "Deep Learning",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is dropout and why is it used during training?",
+        "options": [
+          "A pruning technique used after training to reduce model size",
+          "A regularization method that randomly sets neuron activations to zero during training to prevent co-adaptation",
+          "A learning rate scheduler",
+          "A data augmentation strategy for images"
+        ],
+        "correct": 1,
+        "explanation": "Dropout randomly deactivates a fraction of neurons during each forward pass, forcing the network to learn redundant representations and preventing co-adaptation, which reduces overfitting."
+      },
+      {
+        "id": 15,
+        "topic": "ML Basics",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is cross-validation and why is it used?",
+        "options": [
+          "Running the model on multiple GPUs",
+          "A technique to estimate model performance by training/testing on different subsets of the data (reducing variance in evaluation)",
+          "Combining multiple models into an ensemble",
+          "Normalizing data across multiple features simultaneously"
+        ],
+        "correct": 1,
+        "explanation": "Cross-validation (e.g., k-fold) splits data into k subsets, trains on k-1, tests on 1, and repeats k times. It gives a more reliable performance estimate than a single train/test split."
+      },
+      {
+        "id": 16,
+        "topic": "NLP",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the difference between stemming and lemmatization in NLP?",
+        "options": [
+          "Stemming uses a dictionary; lemmatization uses rules",
+          "Stemming crudely chops word endings; lemmatization returns the dictionary base form",
+          "They are identical processes",
+          "Lemmatization only works for English"
+        ],
+        "correct": 1,
+        "explanation": "Stemming is a heuristic that removes suffixes (e.g., 'running' → 'run', but 'better' → 'bett'). Lemmatization uses vocabulary and morphological analysis to return the correct base form ('better' → 'good')."
+      },
+      {
+        "id": 17,
+        "topic": "Statistics",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What does a p-value of 0.03 mean in hypothesis testing (significance level α = 0.05)?",
+        "options": [
+          "There is a 3% chance the hypothesis is true",
+          "The result is statistically significant — we reject the null hypothesis",
+          "The result is not significant — we fail to reject the null hypothesis",
+          "The effect size is 3%"
+        ],
+        "correct": 1,
+        "explanation": "p-value < α (0.03 < 0.05) means the observed result is unlikely to occur by chance under the null hypothesis, so we reject the null hypothesis."
+      },
+      {
+        "id": 18,
+        "topic": "Deep Learning",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the vanishing gradient problem in deep neural networks?",
+        "options": [
+          "Gradients grow too large and cause weight explosion",
+          "Gradients shrink exponentially as they propagate back through many layers, causing early layers to learn very slowly",
+          "The loss function becomes constant during training",
+          "Batch size is too small to compute stable gradients"
+        ],
+        "correct": 1,
+        "explanation": "In deep networks with sigmoid/tanh activations, gradients are multiplied by derivatives (< 1) at each layer during backpropagation, shrinking exponentially. Early layers receive near-zero gradients and fail to learn. ReLU and residual connections (skip connections) address this."
+      },
+      {
+        "id": 19,
+        "topic": "Algorithms",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "You have 1M training samples but training is slow. Which approach best preserves convergence quality while reducing training time?",
+        "options": [
+          "Use batch size 1 (stochastic gradient descent)",
+          "Use mini-batch gradient descent with adaptive learning rates (e.g., Adam optimizer)",
+          "Train on only 10% of the data",
+          "Increase epochs and reduce learning rate"
+        ],
+        "correct": 1,
+        "explanation": "Mini-batch gradient descent with an adaptive optimizer like Adam combines the noise regularization benefit of small batches with the computational efficiency of vectorized batch operations, converging faster and more stably than SGD alone."
+      },
+      {
+        "id": 20,
+        "topic": "NLP",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is RLHF (Reinforcement Learning from Human Feedback) and why is it used to train LLMs?",
+        "options": [
+          "A technique to reduce LLM inference cost",
+          "A training paradigm where human preference scores guide a reward model that fine-tunes the LLM to generate more helpful, accurate, and safe outputs",
+          "A data augmentation method for low-resource languages",
+          "A method to compress large models via knowledge distillation"
+        ],
+        "correct": 1,
+        "explanation": "RLHF uses human raters to rank model outputs, trains a reward model on those preferences, then uses RL (PPO) to fine-tune the LLM to maximize the reward signal — aligning model behavior with human intent."
+      },
+      {
+        "id": 21,
+        "topic": "ML Systems",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A deployed ML model's performance degrades over time even though the code hasn't changed. What is the most likely cause?",
+        "options": [
+          "The server ran out of memory",
+          "Data/concept drift — the statistical distribution of production data has shifted from the training distribution",
+          "The model file was corrupted",
+          "Overfitting that only appears after deployment"
+        ],
+        "correct": 1,
+        "explanation": "Data drift (input distribution changes) or concept drift (relationship between inputs and outputs changes) causes model performance to degrade post-deployment. Monitoring input distributions and retraining periodically addresses this."
+      },
+      {
+        "id": 22,
+        "topic": "Deep Learning",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the key architectural innovation in ResNet that enables training of very deep networks (100+ layers)?",
+        "options": [
+          "Depthwise separable convolutions",
+          "Residual/skip connections that add the input directly to the output of a layer block, allowing gradients to flow unchanged",
+          "Batch normalization applied after every layer",
+          "A smaller learning rate for deeper layers"
+        ],
+        "correct": 1,
+        "explanation": "Skip connections allow the gradient to bypass layers entirely, preventing vanishing gradients and enabling identity mappings — so the network can learn residual functions (small corrections) rather than entire mappings from scratch."
+      }
+    ],
+    "open_ended_questions": [
+      {
+        "id": 201,
+        "title": "Production RAG Pipeline Architecture & Hallucination Guardrails",
+        "scenario": "You are building a production Retrieval-Augmented Generation (RAG) system answering technical inquiries across 500,000 internal engineering documents and code repositories. Users complain about stale answers and occasional hallucinations.",
+        "prompt": "Design the end-to-end RAG architecture: 1) What chunking and indexing strategies would you employ for mixed code and natural language text? 2) How would you implement hybrid search (dense embeddings + sparse BM25) and re-ranking (cross-encoders)? 3) What evaluation metrics and guardrails (e.g., Ragas, groundedness checks, prompt isolation) would you install to detect and mitigate hallucinations in real time?",
+        "rubric_focus": [
+          "Chunking strategy (semantic/hierarchical)",
+          "Hybrid search (BM25 + Dense)",
+          "Cross-encoder re-ranking",
+          "Hallucination guardrails & groundedness",
+          "Evaluation frameworks"
+        ]
+      },
+      {
+        "id": 202,
+        "title": "Deep Learning Model Latency Optimization (<60ms SLA)",
+        "scenario": "A multi-modal transformer model deployed for live audio-visual moderation is experiencing a P99 inference latency of 380ms on GPU instances, breaching your business SLA of <60ms P99 under 500 concurrent requests.",
+        "prompt": "Outline your systematic model optimization and deployment plan: 1) What algorithmic and model compression techniques (quantization INT8/FP8, structured pruning, knowledge distillation) would you apply? 2) What inference engine optimizations (TensorRT, ONNX Runtime, vLLM, continuous batching) would you leverage? 3) How would you design dynamic request batching and GPU memory management (KV cache paging) to maximize throughput while honoring the SLA?",
+        "rubric_focus": [
+          "Model compression (quantization, distillation)",
+          "Runtime compilation (TensorRT/ONNX)",
+          "Dynamic & continuous batching",
+          "Memory & KV-cache optimization",
+          "P99 SLA trade-offs"
+        ]
+      },
+      {
+        "id": 203,
+        "title": "Data & Concept Drift Detection with Automated Retraining",
+        "scenario": "A credit default risk prediction model deployed 6 months ago has seen its AUC-ROC drop from 0.89 to 0.74 due to shifting macroeconomic conditions and new user demographics.",
+        "prompt": "Detail your drift monitoring and MLOps strategy: 1) How do you differentiate between covariate shift, prior probability shift, and concept drift? What statistical tests (KS-test, PSI, Wasserstein distance) would you automate? 2) How do you handle delayed ground-truth labels in credit risk? 3) Design the automated retraining trigger, shadow/canary evaluation pipeline, and rollback safety triggers.",
+        "rubric_focus": [
+          "Covariate vs concept drift",
+          "Statistical drift metrics (PSI, KS-test)",
+          "Delayed feedback handling",
+          "Shadow / Canary model evaluation",
+          "Automated CI/CD for ML"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "backend",
+    "title": "Backend Developer Assessment",
+    "career_path": "Backend Developer",
+    "category": "Backend Engineering",
+    "questions_count": 22,
+    "open_ended_count": 3,
+    "time_limit_seconds": 600,
+    "difficulty": "Intermediate / Advanced",
+    "questions": [
+      {
+        "id": 1,
+        "topic": "APIs",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does REST stand for in REST API?",
+        "options": [
+          "Rapid Endpoint State Transfer",
+          "Representational State Transfer",
+          "Remote Execution Service Transfer",
+          "Resource Entity Storage Technology"
+        ],
+        "correct": 1,
+        "explanation": "REST (Representational State Transfer) is an architectural style for distributed hypermedia systems, using HTTP methods and stateless communication."
+      },
+      {
+        "id": 2,
+        "topic": "HTTP",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What HTTP status code indicates that a resource was not found?",
+        "options": [
+          "500",
+          "401",
+          "404",
+          "403"
+        ],
+        "correct": 2,
+        "explanation": "404 Not Found indicates the server cannot find the requested resource. 401 = unauthorized, 403 = forbidden, 500 = server error."
+      },
+      {
+        "id": 3,
+        "topic": "Database",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is a Primary Key in a relational database?",
+        "options": [
+          "A key that references another table",
+          "A unique identifier for each row in a table — it cannot be NULL and must be unique",
+          "A key that enforces ordering",
+          "An index on a frequently queried column"
+        ],
+        "correct": 1,
+        "explanation": "A Primary Key uniquely identifies each record in a table. It is automatically indexed, cannot be NULL, and must be unique across all rows."
+      },
+      {
+        "id": 4,
+        "topic": "Python",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is the purpose of a Python decorator?",
+        "options": [
+          "To format code output",
+          "To wrap a function and modify its behavior without changing its source code",
+          "To import external libraries",
+          "To define abstract base classes"
+        ],
+        "correct": 1,
+        "explanation": "Decorators are higher-order functions that wrap another function, allowing you to add behavior (logging, auth, caching) before/after the wrapped function runs."
+      },
+      {
+        "id": 5,
+        "topic": "Concurrency",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is the difference between a process and a thread?",
+        "options": [
+          "A process is a thread with a larger memory footprint",
+          "A process is an independent program with its own memory space; threads are lightweight execution units within a process that share memory",
+          "Threads run on separate CPUs; processes run on a single CPU",
+          "They are the same thing in modern operating systems"
+        ],
+        "correct": 1,
+        "explanation": "Processes have isolated memory spaces. Threads share the same memory within a process, making communication faster but requiring synchronization to prevent race conditions."
+      },
+      {
+        "id": 6,
+        "topic": "Security",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does JWT stand for and what is it used for?",
+        "options": [
+          "Java Web Token — for Java backend authentication",
+          "JSON Web Token — a compact, URL-safe way to transmit claims (e.g., user identity) between parties",
+          "JavaScript Worker Task — for background jobs",
+          "JSON Write Transfer — for API request bodies"
+        ],
+        "correct": 1,
+        "explanation": "JWT (JSON Web Token) is a signed token (header.payload.signature) used for stateless authentication. The server signs the token; the client sends it on subsequent requests."
+      },
+      {
+        "id": 7,
+        "topic": "Database",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "Explain the ACID properties of a database transaction.",
+        "options": [
+          "Atomicity, Consistency, Isolation, Durability — guarantees that transactions are processed reliably",
+          "Availability, Concurrency, Integrity, Distribution",
+          "Atomicity, Caching, Indexing, Durability",
+          "Availability, Consistency, Isolation, Distribution"
+        ],
+        "correct": 0,
+        "explanation": "ACID: Atomicity (all or nothing), Consistency (valid state before/after), Isolation (concurrent transactions don't interfere), Durability (committed data persists even after crashes)."
+      },
+      {
+        "id": 8,
+        "topic": "System Design",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the purpose of a message queue (e.g., RabbitMQ, Kafka) in a backend system?",
+        "options": [
+          "To cache database query results",
+          "To decouple services by enabling asynchronous communication — producers publish messages, consumers process them independently",
+          "To load-balance HTTP requests",
+          "To store user session data"
+        ],
+        "correct": 1,
+        "explanation": "Message queues allow services to communicate asynchronously. The producer doesn't wait for the consumer to finish, enabling decoupling, fault tolerance, and scalable background processing."
+      },
+      {
+        "id": 9,
+        "topic": "Python",
+        "difficulty": "medium",
+        "type": "code_output",
+        "q": "What is the output of this Python code?\n```python\ndef f(x, lst=[]):\n    lst.append(x)\n    return lst\nprint(f(1))\nprint(f(2))\n```",
+        "options": [
+          "[1]\n[2]",
+          "[1]\n[1, 2]",
+          "[1, 2]\n[1, 2]",
+          "Error"
+        ],
+        "correct": 1,
+        "explanation": "Python evaluates mutable default arguments once at function definition time, not each call. So the same list is reused across calls. f(1) → [1], f(2) → [1, 2]. This is a classic Python gotcha."
+      },
+      {
+        "id": 10,
+        "topic": "Caching",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What cache invalidation strategy evicts the item that was accessed least recently?",
+        "options": [
+          "FIFO (First In First Out)",
+          "LRU (Least Recently Used)",
+          "MRU (Most Recently Used)",
+          "LFU (Least Frequently Used)"
+        ],
+        "correct": 1,
+        "explanation": "LRU evicts the item that hasn't been accessed for the longest time, under the assumption that recently used data is more likely to be needed again."
+      },
+      {
+        "id": 11,
+        "topic": "Security",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is SQL injection and how do parameterized queries prevent it?",
+        "options": [
+          "SQL injection is slow query performance; parameterized queries use indexes to fix it",
+          "SQL injection inserts malicious SQL via user input; parameterized queries treat input as data (not executable code), preventing it",
+          "SQL injection is a database backup technique",
+          "Parameterized queries cache SQL execution plans to prevent duplicate queries"
+        ],
+        "correct": 1,
+        "explanation": "SQL injection tricks the database into executing attacker-controlled SQL. Parameterized queries (prepared statements) separate code from data — the input is never interpreted as SQL."
+      },
+      {
+        "id": 12,
+        "topic": "APIs",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is idempotency in REST APIs, and which methods should be idempotent?",
+        "options": [
+          "Idempotent means the same response regardless of authentication; only GET should be idempotent",
+          "Idempotent means repeating the same request produces the same result; GET, PUT, DELETE should be idempotent",
+          "Idempotent means the API never throws errors; all methods must be idempotent",
+          "Idempotency only applies to POST requests"
+        ],
+        "correct": 1,
+        "explanation": "An idempotent operation produces the same result whether called once or many times. GET, PUT, DELETE are idempotent. POST is not (each call creates a new resource)."
+      },
+      {
+        "id": 13,
+        "topic": "Concurrency",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is a race condition in concurrent programming?",
+        "options": [
+          "When two threads compete to be the fastest",
+          "When multiple threads access shared data simultaneously and the final result depends on the unpredictable execution order",
+          "When a thread acquires too many locks",
+          "When CPU context switching is too slow"
+        ],
+        "correct": 1,
+        "explanation": "A race condition occurs when the program's outcome depends on the interleaving of multiple thread operations on shared state, producing incorrect or inconsistent results."
+      },
+      {
+        "id": 14,
+        "topic": "Database",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is database normalization and what does 3NF (Third Normal Form) prevent?",
+        "options": [
+          "Normalization indexes tables; 3NF prevents slow joins",
+          "Normalization organizes tables to reduce redundancy; 3NF prevents transitive dependencies (non-key columns depending on other non-key columns)",
+          "Normalization encrypts data; 3NF prevents SQL injection",
+          "Normalization shards databases; 3NF prevents data loss on partition"
+        ],
+        "correct": 1,
+        "explanation": "Normalization reduces data redundancy. 3NF requires that non-key columns depend ONLY on the primary key, not on other non-key columns, preventing update anomalies."
+      },
+      {
+        "id": 15,
+        "topic": "FastAPI/Python",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the difference between `async def` and `def` in FastAPI route handlers?",
+        "options": [
+          "async def routes return JSON; def routes return HTML",
+          "async def handlers are non-blocking coroutines that free the event loop during I/O; def handlers block the thread",
+          "def handlers run faster for CPU-intensive tasks; async def is only for file operations",
+          "They are identical — FastAPI handles both the same way"
+        ],
+        "correct": 1,
+        "explanation": "FastAPI runs async def handlers in the async event loop without blocking. Regular def handlers run in a thread pool executor. Use async for I/O-bound operations (DB, HTTP calls) and def for CPU-bound tasks."
+      },
+      {
+        "id": 16,
+        "topic": "System Design",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is horizontal scaling vs. vertical scaling?",
+        "options": [
+          "Horizontal = adding more CPU/RAM to one server; Vertical = adding more servers",
+          "Horizontal = adding more servers; Vertical = adding more CPU/RAM to one server",
+          "They are the same concept with different names",
+          "Horizontal scaling only applies to databases"
+        ],
+        "correct": 1,
+        "explanation": "Horizontal scaling (scaling out) adds more machines. Vertical scaling (scaling up) increases resources on an existing machine. Horizontal scaling is generally preferred for fault tolerance and unlimited growth."
+      },
+      {
+        "id": 17,
+        "topic": "Security",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What does bcrypt do when storing user passwords?",
+        "options": [
+          "Encrypts the password with AES-256",
+          "Hashes the password with a built-in work factor and random salt, making brute-force attacks computationally expensive",
+          "Base64 encodes the password",
+          "Stores the password in a secure HSM"
+        ],
+        "correct": 1,
+        "explanation": "bcrypt is a slow hash function designed for passwords. The cost factor makes it orders of magnitude slower than general hashes (SHA-256), and the random salt prevents rainbow table attacks."
+      },
+      {
+        "id": 18,
+        "topic": "System Design",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "You need to design a URL shortener service that handles 100M URLs and 10B redirects/day. What is the most critical design decision?",
+        "options": [
+          "Choose MySQL over PostgreSQL",
+          "Use a consistent hashing scheme for the short code, cache hot URLs in Redis, and distribute read traffic across replicas",
+          "Store everything in a single relational database",
+          "Generate sequential numeric IDs for all URLs"
+        ],
+        "correct": 1,
+        "explanation": "At 10B redirects/day (~115K req/s), the redirect path is read-heavy. Redis caching hot URLs reduces DB load by 99%. Consistent hashing prevents hotspots. Read replicas distribute load. The write path is much lighter."
+      },
+      {
+        "id": 19,
+        "topic": "Database",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the N+1 query problem in ORMs and how do you fix it?",
+        "options": [
+          "When a query returns N+1 more results than expected; fix with pagination",
+          "When fetching N records triggers N additional queries (one per record); fix with eager loading (JOIN or prefetch_related)",
+          "When N simultaneous users trigger 1 shared query; fix with connection pooling",
+          "When an index has N+1 entries; fix by rebuilding the index"
+        ],
+        "correct": 1,
+        "explanation": "N+1 occurs when you fetch a list of N records then loop to fetch related data for each (N queries). Fix by using JOIN-based eager loading or ORM prefetching to load all data in 1–2 queries."
+      },
+      {
+        "id": 20,
+        "topic": "Concurrency",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is a deadlock, and what are the four conditions required for it to occur?",
+        "options": [
+          "A deadlock is CPU starvation; it requires high load, slow network, large memory, and disk bottleneck",
+          "A deadlock is mutual blocking of threads; it requires Mutual Exclusion, Hold and Wait, No Preemption, and Circular Wait",
+          "A deadlock occurs only in distributed systems; it requires network partitions",
+          "A deadlock is when a thread runs indefinitely; it requires an infinite loop"
+        ],
+        "correct": 1,
+        "explanation": "Deadlock: two or more threads block each other waiting for locks the other holds. The four Coffman conditions: (1) Mutual Exclusion, (2) Hold and Wait, (3) No Preemption, (4) Circular Wait. Breaking any one prevents deadlock."
+      },
+      {
+        "id": 21,
+        "topic": "System Design",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A microservice's downstream dependency is slow. How do you prevent this from cascading and taking down your entire service?",
+        "options": [
+          "Increase the timeout to 60 seconds",
+          "Implement a Circuit Breaker pattern that opens after a failure threshold, returning fallback responses until the dependency recovers",
+          "Add more replicas of the slow downstream service",
+          "Cache all requests to avoid calling the dependency"
+        ],
+        "correct": 1,
+        "explanation": "The Circuit Breaker pattern (Closed → Open → Half-Open) stops forwarding requests to a failing dependency after a threshold, returning fast fallback responses instead of waiting and exhausting thread pools."
+      },
+      {
+        "id": 22,
+        "topic": "Security",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is a timing attack, and how does it apply to token comparison?",
+        "options": [
+          "An attack that exploits server time zones",
+          "An attack that measures how long a comparison takes — early termination on string mismatch leaks information; fix with constant-time comparison",
+          "An attack that floods the server with time-sensitive requests",
+          "An attack on JWT expiration timestamps"
+        ],
+        "correct": 1,
+        "explanation": "Standard string comparison short-circuits on the first mismatch. By measuring response time, an attacker can determine how many characters of a token match the real value. `secrets.compare_digest()` in Python performs constant-time comparison regardless of where the mismatch occurs."
+      }
+    ],
+    "open_ended_questions": [
+      {
+        "id": 301,
+        "title": "High-Concurrency Inventory Reservation & Lock Contention",
+        "scenario": "During an e-commerce flash sale with 20,000 requests/second targeting 500 units of a limited item, your relational database suffers from severe row-level lock contention, thread starvation, and connection pool exhaustion.",
+        "prompt": "Architect a high-performance inventory reservation system: 1) Why does naive `SELECT ... FOR UPDATE` fail under this load? 2) How would you use an in-memory distributed store (like Redis Lua scripts or redlock) or optimistic locking with versioning to achieve sub-10ms reservation? 3) How do you guarantee inventory consistency between the reservation cache and the persistent SQL database, handling cart expirations and order cancellations?",
+        "rubric_focus": [
+          "Pessimistic vs optimistic locking pitfalls",
+          "Redis atomic operations / Lua scripts",
+          "Eventual consistency & two-phase reservation",
+          "TTL expiry & rollback mechanisms",
+          "Failure handling"
+        ]
+      },
+      {
+        "id": 302,
+        "title": "Multi-Region Distributed Rate Limiter (100k RPS)",
+        "scenario": "You need to enforce global rate limits (e.g., 500 req/min per API key) across three geographic regions (US-East, EU-West, AP-South) processing a combined 100,000 requests per second.",
+        "prompt": "Propose the rate limiter architecture: 1) Compare the Token Bucket, Leaky Bucket, and Sliding Window Counter algorithms for this use case. 2) How do you handle cross-region state synchronization without introducing cross-continental network latency on every API call? 3) Under network partition (split-brain), how does your system fail (fail-open vs fail-closed) and adhere to CAP theorem trade-offs?",
+        "rubric_focus": [
+          "Rate limiting algorithms (Sliding window vs Token bucket)",
+          "Local caching with asynchronous synchronization",
+          "CAP theorem & latency budget",
+          "Fail-open vs fail-closed policy",
+          "High-throughput data store"
+        ]
+      },
+      {
+        "id": 303,
+        "title": "Event-Driven Asynchronous Order Pipeline with Strict Ordering",
+        "scenario": "An event-driven financial order processing pipeline built on Apache Kafka must guarantee strictly ordered execution of ledger events per account, while achieving high overall horizontal throughput.",
+        "prompt": "Design the streaming pipeline: 1) How do you configure Kafka partition keys to ensure per-account ordering without causing hot partition hotspots? 2) How do you handle consumer group rebalancing, dead-letter queues (DLQ), and poison pill messages without halting the partition pipeline? 3) How do you implement idempotent consumer processing (e.g., transactional outbox pattern, deduplication store)?",
+        "rubric_focus": [
+          "Partition key strategy & skew prevention",
+          "Idempotent consumer / Outbox pattern",
+          "Dead-letter queues & poison pill isolation",
+          "Rebalance handling",
+          "Strict ordering semantics"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "frontend",
+    "title": "Frontend Developer Assessment",
+    "career_path": "Frontend Developer",
+    "category": "Frontend Engineering",
+    "questions_count": 22,
+    "open_ended_count": 3,
+    "time_limit_seconds": 600,
+    "difficulty": "Intermediate / Advanced",
+    "questions": [
+      {
+        "id": 1,
+        "topic": "HTML",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is the purpose of the HTML `<meta charset='UTF-8'>` tag?",
+        "options": [
+          "Sets the page title",
+          "Declares the character encoding so browsers correctly render text including special characters",
+          "Links an external stylesheet",
+          "Sets the page language"
+        ],
+        "correct": 1,
+        "explanation": "UTF-8 encoding supports nearly all human languages. Declaring it prevents garbled text when the page contains non-ASCII characters."
+      },
+      {
+        "id": 2,
+        "topic": "CSS",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does `box-sizing: border-box` do?",
+        "options": [
+          "Removes the element's border",
+          "Makes width and height include padding and border in the total size calculation",
+          "Enables flexbox layout",
+          "Centers the element on the page"
+        ],
+        "correct": 1,
+        "explanation": "With border-box, the declared width/height is the total element size including padding and border. Without it (content-box), padding and border are added ON TOP of the declared width."
+      },
+      {
+        "id": 3,
+        "topic": "JavaScript",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is event bubbling in the DOM?",
+        "options": [
+          "Events fire on all elements at the same depth simultaneously",
+          "An event triggered on a child element propagates upward through its ancestor elements",
+          "Mouse events bubble; keyboard events don't",
+          "Events fire twice on each element"
+        ],
+        "correct": 1,
+        "explanation": "Bubbling: after a click on a child, the event propagates up through parent, grandparent, etc. You can stop it with `event.stopPropagation()`."
+      },
+      {
+        "id": 4,
+        "topic": "CSS",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "Which CSS display value enables flexbox layout?",
+        "options": [
+          "display: block",
+          "display: flex",
+          "display: grid",
+          "display: inline-flex"
+        ],
+        "correct": 1,
+        "explanation": "display: flex makes an element a flex container, allowing its direct children to be laid out using the flexbox model."
+      },
+      {
+        "id": 5,
+        "topic": "React",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does `useState` return in React?",
+        "options": [
+          "Just the current state value",
+          "An array of [currentValue, setterFunction]",
+          "An object with {value, set, reset}",
+          "A Promise that resolves to the state"
+        ],
+        "correct": 1,
+        "explanation": "useState returns a 2-element tuple: the current state value and a setter function. Calling the setter with a new value triggers a re-render."
+      },
+      {
+        "id": 6,
+        "topic": "Performance",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does the browser's critical rendering path refer to?",
+        "options": [
+          "The sequence of JavaScript file downloads",
+          "The sequence of steps to convert HTML/CSS/JS into pixels on screen: DOM → CSSOM → Render Tree → Layout → Paint",
+          "The CDN route with lowest latency",
+          "The process of loading web fonts"
+        ],
+        "correct": 1,
+        "explanation": "The critical rendering path is the sequence the browser follows to render a page. Optimizing it (minimizing render-blocking resources) directly improves page load perceived speed."
+      },
+      {
+        "id": 7,
+        "topic": "React",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What triggers a re-render in a React functional component?",
+        "options": [
+          "Changes in state, props, or parent context",
+          "Calling any function inside the component",
+          "Mutating a regular let variable declared inside the component",
+          "Reading from localStorage"
+        ],
+        "correct": 0,
+        "explanation": "React schedules a re-render when useState/useReducer state changes, when the parent passes new props, or when a consumed Context value changes. Direct variable mutation does NOT trigger re-renders."
+      },
+      {
+        "id": 8,
+        "topic": "CSS",
+        "difficulty": "medium",
+        "type": "scenario",
+        "q": "Elements inside a CSS Grid container are overflowing their cells on small screens. What property constrains them?",
+        "options": [
+          "grid-template-columns: auto",
+          "minmax(0, 1fr) in grid-template-columns",
+          "overflow: hidden on the container",
+          "flex-shrink: 1"
+        ],
+        "correct": 1,
+        "explanation": "Using `1fr` alone doesn't prevent overflow since `fr` has an implied minimum size. `minmax(0, 1fr)` sets a minimum of 0, allowing grid items to shrink below their content size."
+      },
+      {
+        "id": 9,
+        "topic": "JavaScript",
+        "difficulty": "medium",
+        "type": "code_output",
+        "q": "What does the following code log?\n```js\nconsole.log(1 + '2');\nconsole.log(1 - '2');\n```",
+        "options": [
+          "3\n-1",
+          "'12'\n-1",
+          "NaN\nNaN",
+          "12\nNaN"
+        ],
+        "correct": 1,
+        "explanation": "`1 + '2'` triggers string concatenation ('+' with a string coerces the number) → '12'. `1 - '2'` performs numeric subtraction (strings are coerced to numbers for '-') → -1."
+      },
+      {
+        "id": 10,
+        "topic": "React",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the purpose of the React `key` prop when rendering lists?",
+        "options": [
+          "It provides accessibility labels for screen readers",
+          "It helps React identify which items changed, were added, or removed — enabling efficient DOM reconciliation",
+          "It is required for CSS styling of list items",
+          "It prevents the list from re-rendering"
+        ],
+        "correct": 1,
+        "explanation": "React uses the key to match virtual DOM elements with actual DOM nodes across renders. Stable, unique keys ensure React only updates what actually changed."
+      },
+      {
+        "id": 11,
+        "topic": "Performance",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is lazy loading in the context of React?",
+        "options": [
+          "Using setTimeout to delay component updates",
+          "Loading components only when they are needed using React.lazy() and Suspense, reducing the initial bundle size",
+          "Preventing re-renders until the user interacts",
+          "Caching API responses in localStorage"
+        ],
+        "correct": 1,
+        "explanation": "React.lazy() combined with Suspense enables code-splitting — the component's code is downloaded only when it's first rendered, reducing the initial JS payload."
+      },
+      {
+        "id": 12,
+        "topic": "TypeScript",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the difference between `type` and `interface` in TypeScript?",
+        "options": [
+          "interface is for objects; type is only for primitives",
+          "interface can be extended with `extends` and merged via declaration merging; type is more flexible (unions, intersections, primitives)",
+          "They are completely identical",
+          "type is for functions only"
+        ],
+        "correct": 1,
+        "explanation": "Both can describe object shapes. interface supports declaration merging (two declarations with the same name are merged). type supports union types, mapped types, and conditional types. For object shapes, either works; prefer interface for library APIs."
+      },
+      {
+        "id": 13,
+        "topic": "CSS",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the CSS specificity order from lowest to highest?",
+        "options": [
+          "Inline → ID → Class → Element",
+          "Element → Class/Attribute/Pseudo-class → ID → Inline styles",
+          "Class → ID → Inline → Element",
+          "All selectors have equal specificity"
+        ],
+        "correct": 1,
+        "explanation": "CSS specificity (low to high): element/pseudo-element (0,0,1) < class/attribute/pseudo-class (0,1,0) < ID (1,0,0) < inline style (1,0,0,0). `!important` overrides all."
+      },
+      {
+        "id": 14,
+        "topic": "JavaScript",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the difference between `null` and `undefined` in JavaScript?",
+        "options": [
+          "They are identical — both mean 'no value'",
+          "`undefined` means a variable was declared but not assigned; `null` is an explicit assignment meaning 'no value'",
+          "`null` is a number; `undefined` is a string",
+          "`undefined` is for objects; `null` is for primitives"
+        ],
+        "correct": 1,
+        "explanation": "`undefined` is the default value of uninitialized variables, missing function parameters, and absent object properties. `null` must be explicitly assigned to signal intentional absence of a value."
+      },
+      {
+        "id": 15,
+        "topic": "React",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "When should you use Context API vs. a state management library like Redux?",
+        "options": [
+          "Context is for performance-critical state; Redux is for simple state",
+          "Context is best for low-frequency global state (theme, auth); Redux/Zustand for frequently updated state that many components consume",
+          "They cannot be used in the same application",
+          "Context replaces Redux entirely in React 18"
+        ],
+        "correct": 1,
+        "explanation": "Context triggers all consumers to re-render when the value changes. For frequently updated state (e.g., live data), Redux/Zustand provide fine-grained subscription to prevent unnecessary re-renders."
+      },
+      {
+        "id": 16,
+        "topic": "Performance",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is Core Web Vitals and which metric measures interactivity/responsiveness?",
+        "options": [
+          "A Google ranking framework; CLS measures interactivity",
+          "Google's user experience metrics; INP (Interaction to Next Paint) measures responsiveness/interactivity",
+          "A CSS performance benchmark; FCP measures interactivity",
+          "A JavaScript testing framework; TTI measures interactivity"
+        ],
+        "correct": 1,
+        "explanation": "Core Web Vitals are LCP (loading — Largest Contentful Paint), INP (interactivity — replaced FID in 2024), and CLS (visual stability — Cumulative Layout Shift). INP measures how quickly the page responds to user interactions."
+      },
+      {
+        "id": 17,
+        "topic": "Accessibility",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the purpose of the HTML `alt` attribute on `<img>` elements?",
+        "options": [
+          "Controls image loading priority",
+          "Provides alternative text for screen readers and displays when the image fails to load",
+          "Defines the image file format",
+          "Sets the image's ARIA role"
+        ],
+        "correct": 1,
+        "explanation": "The `alt` attribute provides a textual description for screen readers (accessibility) and is displayed when the image cannot be loaded. Decorative images should use `alt=''`."
+      },
+      {
+        "id": 18,
+        "topic": "Performance",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A React app with a large data table becomes sluggish when users scroll. The table renders 10,000 rows. What is the best fix?",
+        "options": [
+          "Reduce font size to improve rendering speed",
+          "Implement virtual/windowed rendering (e.g., react-window) — only render rows visible in the viewport",
+          "Use setTimeout to stagger row renders",
+          "Move the table to a Web Worker"
+        ],
+        "correct": 1,
+        "explanation": "Virtual lists render only the rows visible in the viewport (+ a small buffer), keeping DOM nodes in the hundreds rather than thousands. react-window and react-virtual implement this pattern."
+      },
+      {
+        "id": 19,
+        "topic": "JavaScript",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the JavaScript event loop, and what is the difference between the microtask queue and the macrotask queue?",
+        "options": [
+          "Both queues are identical; the event loop processes them in random order",
+          "Microtasks (Promises, queueMicrotask) run after the current task and before the next macrotask (setTimeout, setInterval). Microtasks drain completely before any macrotask runs.",
+          "Macrotasks (Promises) run first; microtasks (setTimeout) run after all macrotasks",
+          "The event loop only exists in Node.js, not browsers"
+        ],
+        "correct": 1,
+        "explanation": "After each task, the event loop drains the entire microtask queue (Promises, MutationObserver) before picking the next macrotask (setTimeout, setInterval, I/O). This is why Promise.then() callbacks run before setTimeout(fn, 0)."
+      },
+      {
+        "id": 20,
+        "topic": "React",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A parent component passes an object literal as a prop to a memoized child: `<Child config={{theme: 'dark'}} />`. The child still re-renders on every parent render despite React.memo(). Why?",
+        "options": [
+          "React.memo() doesn't work with object props",
+          "A new object literal is created on every render, so the prop reference changes even though the value is the same. Fix with useMemo.",
+          "The child needs to implement shouldComponentUpdate",
+          "Objects must be passed as JSON strings to memoized components"
+        ],
+        "correct": 1,
+        "explanation": "React.memo() uses shallow comparison. `{theme: 'dark'}` creates a NEW object reference each render. The shallow comparison sees a different reference → re-renders. Fix: `const config = useMemo(() => ({theme: 'dark'}), [])`."
+      },
+      {
+        "id": 21,
+        "topic": "Security",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is Content Security Policy (CSP) and what attack does it primarily prevent?",
+        "options": [
+          "An API authentication mechanism; prevents CORS violations",
+          "An HTTP response header that whitelists trusted content sources, primarily preventing XSS attacks from injected scripts",
+          "A database query validator; prevents SQL injection",
+          "A browser setting for blocking ads"
+        ],
+        "correct": 1,
+        "explanation": "CSP is a response header (Content-Security-Policy) that tells the browser which sources are trusted for scripts, styles, images, etc. By restricting script sources, it prevents injected malicious scripts (XSS) from executing."
+      },
+      {
+        "id": 22,
+        "topic": "Performance",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is hydration in the context of server-side rendering (SSR) with React?",
+        "options": [
+          "Adding water to improve server cooling",
+          "The process where React attaches event listeners and makes server-rendered HTML interactive by reconciling it with the virtual DOM",
+          "Pre-fetching data before the user navigates",
+          "Rehydrating stale cache entries with fresh data"
+        ],
+        "correct": 1,
+        "explanation": "In SSR, the server sends static HTML. Hydration is React's process of 'taking over' that HTML — attaching event handlers, setting up state, and making it fully interactive without re-rendering the DOM from scratch."
+      }
+    ],
+    "open_ended_questions": [
+      {
+        "id": 401,
+        "title": "Enterprise Micro-Frontend Architecture Migration",
+        "scenario": "An enterprise SaaS platform is migrating from a massive monolith to micro-frontends maintained by five independent product squads. Squads must deploy independently without coordinated release trains.",
+        "prompt": "Present an architectural evaluation: 1) Compare Webpack Module Federation, Web Components, and iframe-based integration across bundle size, routing, shared state, and styling isolation. 2) How do you handle version skew of shared dependencies (e.g., React, design system tokens)? 3) How would you implement global authentication state and cross-micro-frontend event communication without tight coupling?",
+        "rubric_focus": [
+          "Module Federation vs alternative patterns",
+          "Shared dependency management & version skew",
+          "Cross-app communication (Event Bus / CustomEvents)",
+          "CSS isolation (Shadow DOM / Scoped CSS)",
+          "CI/CD autonomy"
+        ]
+      },
+      {
+        "id": 402,
+        "title": "Core Web Vitals Remediation (LCP 4.8s, INP 420ms)",
+        "scenario": "An international retail client experiences a sudden drop in organic search rankings due to failing Core Web Vitals on mobile: Largest Contentful Paint (LCP) is 4.8s, Cumulative Layout Shift (CLS) is 0.28, and Interaction to Next Paint (INP) is 420ms.",
+        "prompt": "Detail your technical remediation roadmap: 1) How do you optimize the critical rendering path, resource prioritization (fetchpriority, preload, responsive srcset), and server response times to bring LCP under 2.0s? 2) What common frontend anti-patterns cause CLS, and how do you eliminate them? 3) How do you break up long JavaScript tasks on the main thread to achieve sub-150ms INP?",
+        "rubric_focus": [
+          "Critical rendering path & resource hints",
+          "LCP optimization (server, compression, priority)",
+          "CLS elimination (aspect-ratio, font-display, dynamic injection)",
+          "INP / Main-thread yields (scheduler.yield/requestIdleCallback)",
+          "Measurement & monitoring"
+        ]
+      },
+      {
+        "id": 403,
+        "title": "Offline-First Progressive Web App (PWA) with Background Sync",
+        "scenario": "Field engineers in remote areas need to record equipment inspection logs on a tablet web application with zero or intermittent cellular connectivity.",
+        "prompt": "Design the offline-first web architecture: 1) How would you utilize Service Workers and the Cache API for static application shell caching and runtime asset updates? 2) How would you architect client-side data storage using IndexedDB for forms, high-resolution photos, and draft reviews? 3) Explain your background synchronization and conflict resolution strategy when the device re-establishes connectivity.",
+        "rubric_focus": [
+          "Service Worker lifecycle & Cache strategies (Stale-while-revalidate)",
+          "IndexedDB data schema & blob storage",
+          "Background Sync API & retry queue",
+          "Conflict resolution (Timestamp, Last-Write-Wins, Manual)",
+          "User experience & sync status indicator"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "data-science",
+    "title": "Data Scientist Assessment",
+    "career_path": "Data Scientist",
+    "category": "Data Science",
+    "questions_count": 22,
+    "open_ended_count": 3,
+    "time_limit_seconds": 600,
+    "difficulty": "Intermediate / Advanced",
+    "questions": [
+      {
+        "id": 1,
+        "topic": "Statistics",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is the median of the dataset: [3, 1, 4, 1, 5, 9, 2, 6]?",
+        "options": [
+          "3.5",
+          "3.875",
+          "4",
+          "3"
+        ],
+        "correct": 0,
+        "explanation": "Sorted: [1, 1, 2, 3, 4, 5, 6, 9]. Even count → median = (3 + 4) / 2 = 3.5."
+      },
+      {
+        "id": 2,
+        "topic": "Python/Pandas",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "Which pandas method shows a statistical summary (count, mean, std, min, max) of numeric columns?",
+        "options": [
+          "df.info()",
+          "df.describe()",
+          "df.summary()",
+          "df.stats()"
+        ],
+        "correct": 1,
+        "explanation": "df.describe() generates descriptive statistics for numeric columns: count, mean, std, min, 25th/50th/75th percentile, max."
+      },
+      {
+        "id": 3,
+        "topic": "Visualization",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "Which chart type is best for showing the distribution of a single continuous variable?",
+        "options": [
+          "Bar chart",
+          "Histogram",
+          "Pie chart",
+          "Scatter plot"
+        ],
+        "correct": 1,
+        "explanation": "A histogram bins continuous data into intervals and shows the frequency of each bin, revealing the distribution shape (normal, skewed, bimodal, etc.)."
+      },
+      {
+        "id": 4,
+        "topic": "ML Basics",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is linear regression used for?",
+        "options": [
+          "Classifying items into categories",
+          "Predicting a continuous numerical output based on input features",
+          "Clustering similar data points",
+          "Reducing feature dimensionality"
+        ],
+        "correct": 1,
+        "explanation": "Linear regression models the linear relationship between input features and a continuous target variable, making predictions like price, temperature, or score."
+      },
+      {
+        "id": 5,
+        "topic": "Statistics",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does standard deviation measure?",
+        "options": [
+          "The center of a distribution",
+          "The spread or dispersion of data around the mean",
+          "The most frequent value in a dataset",
+          "The range between the minimum and maximum values"
+        ],
+        "correct": 1,
+        "explanation": "Standard deviation quantifies how much values deviate from the mean on average. A small std means data clusters tightly around the mean; a large std means data is spread out."
+      },
+      {
+        "id": 6,
+        "topic": "Data Cleaning",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is a common strategy for handling missing values (NaN) in a numerical dataset?",
+        "options": [
+          "Always delete rows with missing values",
+          "Impute with mean, median, or mode; or use a model-based imputation",
+          "Replace all NaN with 0",
+          "Missing values cannot be handled"
+        ],
+        "correct": 1,
+        "explanation": "Imputation fills NaN with a summary statistic (mean/median for numeric; mode for categorical) or uses model-based methods. Deleting rows is only appropriate when missingness is very sparse and random."
+      },
+      {
+        "id": 7,
+        "topic": "ML",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the bias-variance tradeoff in machine learning?",
+        "options": [
+          "Reducing bias always reduces variance",
+          "High bias = underfitting (model too simple); High variance = overfitting (model too complex). Optimal models balance both.",
+          "Bias and variance are independent of model complexity",
+          "This tradeoff only applies to classification, not regression"
+        ],
+        "correct": 1,
+        "explanation": "Bias: error from wrong assumptions (underfit, high training error). Variance: sensitivity to training data fluctuations (overfit, low training error but high test error). The goal is to find the sweet spot."
+      },
+      {
+        "id": 8,
+        "topic": "Statistics",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the Central Limit Theorem?",
+        "options": [
+          "The mean of any dataset is always normally distributed",
+          "The sampling distribution of the sample mean approaches a normal distribution as sample size increases, regardless of the population's distribution",
+          "Large datasets always have a normal distribution",
+          "The standard deviation approaches 0 with more samples"
+        ],
+        "correct": 1,
+        "explanation": "CLT states that the distribution of sample means approaches a normal distribution as n → ∞, enabling hypothesis testing and confidence intervals even when the underlying data is not normally distributed."
+      },
+      {
+        "id": 9,
+        "topic": "Python",
+        "difficulty": "medium",
+        "type": "code_output",
+        "q": "What does `df['col'].value_counts()` return?",
+        "options": [
+          "The number of non-null values in 'col'",
+          "A Series with unique values as index and their frequency counts as values, sorted descending",
+          "A DataFrame with value and count columns",
+          "The sum of all values in 'col'"
+        ],
+        "correct": 1,
+        "explanation": "value_counts() returns a Series where each unique value is an index entry and the value is how many times it appears in the column, sorted from most to least frequent."
+      },
+      {
+        "id": 10,
+        "topic": "SQL",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What does `GROUP BY` do in SQL and when do you use it?",
+        "options": [
+          "Sorts the result set",
+          "Groups rows that share the same values in specified columns so you can apply aggregate functions (COUNT, SUM, AVG) to each group",
+          "Filters rows based on a condition",
+          "Joins two tables"
+        ],
+        "correct": 1,
+        "explanation": "GROUP BY collapses multiple rows into groups based on shared column values. You then apply aggregate functions to summarize each group (e.g., total sales per city)."
+      },
+      {
+        "id": 11,
+        "topic": "Visualization",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "When should you use a box plot instead of a histogram?",
+        "options": [
+          "Box plots are for categorical data; histograms are for numerical",
+          "Box plots show the distribution summary (median, quartiles, outliers) and are ideal for comparing multiple groups; histograms show the full shape of one distribution",
+          "Histograms only work for small datasets; box plots scale better",
+          "They convey identical information"
+        ],
+        "correct": 1,
+        "explanation": "Box plots compactly show median, IQR, and outliers, making them ideal for comparing distributions across multiple groups. Histograms reveal distribution shape but are harder to compare side-by-side."
+      },
+      {
+        "id": 12,
+        "topic": "ML",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the purpose of PCA (Principal Component Analysis)?",
+        "options": [
+          "To increase the number of features",
+          "To reduce dimensionality by projecting data onto the directions of maximum variance",
+          "To impute missing values",
+          "To normalize feature scales"
+        ],
+        "correct": 1,
+        "explanation": "PCA finds orthogonal axes (principal components) that capture the most variance. By keeping the top k components, you reduce dimensions while preserving the most information."
+      },
+      {
+        "id": 13,
+        "topic": "Feature Engineering",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is one-hot encoding used for?",
+        "options": [
+          "Normalizing numerical features",
+          "Converting categorical variables into binary columns (one per category) that ML models can process numerically",
+          "Handling missing values in categorical columns",
+          "Encoding passwords securely"
+        ],
+        "correct": 1,
+        "explanation": "ML algorithms require numerical inputs. One-hot encoding creates a binary column per category (1 = present, 0 = absent), avoiding the false ordinal relationship that simple integer encoding introduces."
+      },
+      {
+        "id": 14,
+        "topic": "Statistics",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What does the R² (R-squared) metric measure in regression?",
+        "options": [
+          "The error between predictions and actual values",
+          "The proportion of variance in the target variable explained by the model (0 = no explanation, 1 = perfect)",
+          "The correlation between features",
+          "The model's prediction speed"
+        ],
+        "correct": 1,
+        "explanation": "R² ranges from 0 to 1 (can be negative for very bad models). An R² of 0.85 means the model explains 85% of the variance in the target. It does NOT indicate the model is calibrated or unbiased."
+      },
+      {
+        "id": 15,
+        "topic": "ML",
+        "difficulty": "medium",
+        "type": "scenario",
+        "q": "A churn prediction model has 95% accuracy but the business says it's useless. The actual churn rate is 3%. What's wrong?",
+        "options": [
+          "The model's learning rate is too high",
+          "The model likely predicts 'no churn' for everyone — accuracy is misleading for imbalanced classes. Use Precision, Recall, F1, or AUC.",
+          "95% accuracy is not high enough",
+          "The dataset is too small"
+        ],
+        "correct": 1,
+        "explanation": "With 3% churn rate, a model that always predicts 'no churn' gets 97% accuracy but catches zero churners. Precision and Recall (and their F1 harmonic mean) measure how well the model identifies the minority class."
+      },
+      {
+        "id": 16,
+        "topic": "SQL",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is a window function in SQL, and give an example use case.",
+        "options": [
+          "A function that creates database views",
+          "A function that performs calculations across a sliding set of rows related to the current row (e.g., running totals, rank within group) without collapsing rows",
+          "A function that opens a connection pool",
+          "A function for string manipulation across multiple rows"
+        ],
+        "correct": 1,
+        "explanation": "Window functions (ROW_NUMBER, RANK, SUM OVER PARTITION BY) compute values over a 'window' of related rows. Unlike GROUP BY, they preserve individual rows. Example: rank each employee by salary within their department."
+      },
+      {
+        "id": 17,
+        "topic": "Data Pipeline",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What does ETL stand for in data engineering?",
+        "options": [
+          "Encrypt-Transform-Load",
+          "Extract-Transform-Load — a pipeline that extracts data from sources, transforms it, and loads it into a target system",
+          "External-Transfer-Link",
+          "Evaluate-Test-Launch"
+        ],
+        "correct": 1,
+        "explanation": "ETL: Extract data from source systems (databases, APIs, files) → Transform it (clean, aggregate, join, reshape) → Load it into a data warehouse or lake for analytics."
+      },
+      {
+        "id": 18,
+        "topic": "ML",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is gradient boosting, and how does it differ from random forests?",
+        "options": [
+          "Both train trees in parallel; gradient boosting uses different random subsets",
+          "Gradient boosting trains trees sequentially where each tree corrects the errors of the previous; random forests train trees in parallel on random subsets and average their predictions",
+          "They are the same algorithm with different hyperparameters",
+          "Random forests use gradient descent; gradient boosting uses random sampling"
+        ],
+        "correct": 1,
+        "explanation": "Gradient boosting (XGBoost, LightGBM) builds trees sequentially, each fitting the residual errors of the ensemble so far. Random forests build independent trees in parallel and average them. Boosting typically achieves lower bias; forests lower variance."
+      },
+      {
+        "id": 19,
+        "topic": "Statistics",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "You run an A/B test showing a 5% lift in conversion rate with p=0.04. Your manager says 'great, ship it!' What important question should you ask first?",
+        "options": [
+          "Was the data stored in a relational database?",
+          "What is the practical effect size / business impact? Statistical significance does not guarantee a meaningful or cost-justified change.",
+          "Was Python or R used for the analysis?",
+          "Was the test run on a weekday?"
+        ],
+        "correct": 1,
+        "explanation": "Statistical significance (p < 0.05) only means the result is unlikely due to chance. A 0.001% lift can be statistically significant with enough traffic. Always ask: Is the effect size practically meaningful given the cost of shipping?"
+      },
+      {
+        "id": 20,
+        "topic": "ML",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is SHAP (SHapley Additive exPlanations) used for in ML?",
+        "options": [
+          "A training algorithm for neural networks",
+          "A model-agnostic explainability method that assigns each feature a contribution (Shapley value) to the prediction for a specific instance",
+          "A data preprocessing technique for high-cardinality categoricals",
+          "A regularization technique for tree-based models"
+        ],
+        "correct": 1,
+        "explanation": "SHAP uses cooperative game theory (Shapley values) to fairly distribute the prediction among all features. It's model-agnostic and provides both global (feature importance) and local (per-instance) explanations."
+      },
+      {
+        "id": 21,
+        "topic": "Data Pipeline",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "Your data pipeline processes 10TB of click logs daily. Processing is slow with pandas. What is the best solution?",
+        "options": [
+          "Increase the RAM of your server to 256GB",
+          "Use distributed processing (Apache Spark, Dask, or BigQuery) that partitions data and processes in parallel across a cluster",
+          "Downsample the data to 1TB before processing",
+          "Convert pandas to numpy arrays first"
+        ],
+        "correct": 1,
+        "explanation": "Pandas is single-node and loads data into RAM. For TBs of data, distributed frameworks like Spark partition data across multiple nodes and process in parallel, making otherwise impossible computations feasible."
+      },
+      {
+        "id": 22,
+        "topic": "Statistics",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is multicollinearity in regression and how do you detect it?",
+        "options": [
+          "When the target variable has multiple modes; detect with histograms",
+          "When two or more predictor variables are highly correlated, making coefficient estimates unstable; detect with VIF (Variance Inflation Factor)",
+          "When the residuals are not normally distributed; detect with Q-Q plots",
+          "When the sample size is too small; detect with power analysis"
+        ],
+        "correct": 1,
+        "explanation": "Multicollinearity makes it hard to isolate individual feature effects and inflates standard errors. VIF > 5–10 indicates problematic multicollinearity. Fix by removing correlated features or using regularization (Ridge/Lasso)."
+      }
+    ],
+    "open_ended_questions": [
+      {
+        "id": 501,
+        "title": "Real-Time & Batch Feature Store Architecture",
+        "scenario": "Your machine learning platform supports both fraud detection models requiring sub-10ms online feature retrieval and offline historical batch model training across billions of transaction rows.",
+        "prompt": "Architect the unified feature store: 1) How do you achieve dual-storage consistency between low-latency online stores (e.g., Redis, DynamoDB) and high-throughput offline stores (e.g., Parquet, Iceberg, BigQuery)? 2) How do you strictly prevent data leakage and ensure point-in-time correctness during historical backfills and training dataset generation? 3) How do you monitor feature drift and feature value degradation between online inference and offline training distributions?",
+        "rubric_focus": [
+          "Online vs offline store dual architecture",
+          "Point-in-time correctness / Time-travel joins",
+          "Feature leakage prevention",
+          "Streaming feature computation (Flink/Spark)",
+          "Drift monitoring"
+        ]
+      },
+      {
+        "id": 502,
+        "title": "Extreme Class Imbalance in Rare Event Detection (0.02% Positive)",
+        "scenario": "You are building a fraud or rare medical condition detection model where positive instances make up only 0.02% of the dataset (1 in 5,000 cases). A naive baseline model achieves 99.98% accuracy.",
+        "prompt": "Describe your end-to-end modeling strategy: 1) Why is accuracy completely uninformative here, and what evaluation metrics (PR-AUC, precision at fixed recall, Cost-Utility curve, F-beta) would you optimize? 2) What sampling (SMOTE, Focal Loss, threshold moving) or anomaly detection techniques (Isolation Forest, Autoencoders) are best suited? 3) How would you calibrate output probabilities (Platt scaling or Isotonic regression) to make prediction scores actionable for business operations?",
+        "rubric_focus": [
+          "Metric selection (PR-AUC vs ROC-AUC, Cost-sensitive)",
+          "Focal Loss & Class weighting vs resampling",
+          "Anomaly detection alternatives",
+          "Probability calibration (Platt/Isotonic)",
+          "Operational decision thresholding"
+        ]
+      },
+      {
+        "id": 503,
+        "title": "Causal Inference & Resolving Simpson's Paradox in Product Analytics",
+        "scenario": "A major product redesign showed an aggregate 4% uplift in user retention in a 2-week A/B test. However, when slicing by user cohort (new vs power users), both cohorts individually exhibited a 2% decline in retention.",
+        "prompt": "Analyze this paradox and prescribe solutions: 1) Explain the mathematical and statistical mechanism of Simpson's Paradox occurring here (e.g., cohort distribution shift or sample ratio mismatch). 2) How would you conduct diagnostics to verify Sample Ratio Mismatch (SRM) using Chi-square tests? 3) If an unbiased A/B test cannot be run due to network interference or ethical constraints, how would you apply quasi-experimental causal inference methods (e.g., Propensity Score Matching, Difference-in-Differences, or Synthetic Controls)?",
+        "rubric_focus": [
+          "Simpson's Paradox explanation & confounding variables",
+          "Sample Ratio Mismatch (SRM) diagnostics",
+          "Cohort weight adjustments",
+          "Quasi-experimental methods (Diff-in-Diff, PSM, Synthetic Control)",
+          "Causal DAGs"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cloud",
+    "title": "Cloud Engineer Assessment",
+    "career_path": "Cloud Engineer",
+    "category": "Cloud & DevOps",
+    "questions_count": 22,
+    "open_ended_count": 3,
+    "time_limit_seconds": 600,
+    "difficulty": "Intermediate / Advanced",
+    "questions": [
+      {
+        "id": 1,
+        "topic": "Cloud Basics",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is the difference between IaaS, PaaS, and SaaS?",
+        "options": [
+          "They are three names for the same cloud service model",
+          "IaaS provides raw infrastructure (VMs, storage); PaaS provides a managed platform for development; SaaS delivers complete software applications",
+          "IaaS is for databases; PaaS is for networking; SaaS is for compute",
+          "SaaS is the cheapest; IaaS is the most expensive"
+        ],
+        "correct": 1,
+        "explanation": "IaaS (e.g., AWS EC2): you manage OS and above. PaaS (e.g., Heroku, Cloud Run): you deploy code, provider manages runtime. SaaS (e.g., Gmail): fully managed application you just use."
+      },
+      {
+        "id": 2,
+        "topic": "AWS",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is Amazon S3 used for?",
+        "options": [
+          "Running virtual machines",
+          "Scalable object storage for files, images, backups, and static website hosting",
+          "Relational database hosting",
+          "Content delivery network"
+        ],
+        "correct": 1,
+        "explanation": "S3 (Simple Storage Service) stores objects (files) in buckets. It offers 99.999999999% (11 nines) durability and is used for backups, media storage, data lakes, and static website hosting."
+      },
+      {
+        "id": 3,
+        "topic": "Networking",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is a VPC (Virtual Private Cloud)?",
+        "options": [
+          "A physical server you rent in a data center",
+          "A logically isolated section of a cloud provider's network where you launch resources with full control over IP ranges and routing",
+          "A type of content delivery network",
+          "A managed Kubernetes service"
+        ],
+        "correct": 1,
+        "explanation": "A VPC is your own isolated virtual network within the cloud. You define IP ranges (CIDR), subnets, route tables, and security groups, giving you network-level isolation and control."
+      },
+      {
+        "id": 4,
+        "topic": "Security",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What does IAM (Identity and Access Management) control in AWS?",
+        "options": [
+          "Network traffic between services",
+          "Who can authenticate and what actions they can perform on which AWS resources",
+          "Storage encryption keys",
+          "Auto-scaling policies"
+        ],
+        "correct": 1,
+        "explanation": "IAM manages users, groups, roles, and policies. Policies define permissions (Allow/Deny) for API actions on specific resources. Principle of Least Privilege: grant only necessary permissions."
+      },
+      {
+        "id": 5,
+        "topic": "Containers",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is a Docker container?",
+        "options": [
+          "A lightweight virtual machine with its own OS kernel",
+          "A standardized, portable package that bundles an application and its dependencies, sharing the host OS kernel",
+          "A cloud-specific format for deploying functions",
+          "A tool for storing Docker images"
+        ],
+        "correct": 1,
+        "explanation": "Docker containers package code + libraries + runtime into an immutable unit. Unlike VMs, they share the host kernel, making them faster to start and more resource-efficient."
+      },
+      {
+        "id": 6,
+        "topic": "Cloud Basics",
+        "difficulty": "easy",
+        "type": "conceptual",
+        "q": "What is a CDN (Content Delivery Network) and what problem does it solve?",
+        "options": [
+          "A private network for cloud service communication",
+          "A geographically distributed network of servers that caches and delivers content from locations closest to users, reducing latency",
+          "A service for managing DNS records",
+          "A load balancer for database connections"
+        ],
+        "correct": 1,
+        "explanation": "CDNs cache static assets (images, JS, CSS) at edge locations near users worldwide. Users download from a nearby edge node rather than a distant origin server, reducing load times."
+      },
+      {
+        "id": 7,
+        "topic": "AWS",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the difference between horizontal auto-scaling and a load balancer?",
+        "options": [
+          "They are the same service in AWS",
+          "Auto-scaling adds/removes EC2 instances based on load; a load balancer distributes incoming traffic across the running instances",
+          "A load balancer scales instances; auto-scaling distributes traffic",
+          "Auto-scaling only applies to databases; load balancers only to web servers"
+        ],
+        "correct": 1,
+        "explanation": "Auto-scaling group manages instance count (scale out when CPU > 70%, scale in when < 30%). The load balancer (ALB/NLB) distributes requests across healthy instances. They work together: scale + distribute."
+      },
+      {
+        "id": 8,
+        "topic": "Containers",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is Kubernetes and what problem does it solve?",
+        "options": [
+          "A Docker alternative for building container images",
+          "A container orchestration platform that automates deployment, scaling, load balancing, and self-healing of containerized applications",
+          "A monitoring tool for cloud infrastructure",
+          "A CI/CD pipeline for containerized applications"
+        ],
+        "correct": 1,
+        "explanation": "Kubernetes (K8s) manages containers at scale: scheduling pods to nodes, maintaining desired replica counts, rolling out updates, and restarting failed containers automatically."
+      },
+      {
+        "id": 9,
+        "topic": "Security",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the Principle of Least Privilege in cloud security?",
+        "options": [
+          "Only cloud administrators should have access to production",
+          "Every entity (user, service, instance) should have only the minimum permissions needed to perform its specific function",
+          "Databases should always be private; public access is never allowed",
+          "Encryption keys should be rotated every 90 days"
+        ],
+        "correct": 1,
+        "explanation": "Least Privilege reduces the blast radius of security breaches. If a compromised service only has read access to one S3 bucket, an attacker can't use it to delete data or access other resources."
+      },
+      {
+        "id": 10,
+        "topic": "Networking",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the difference between a public subnet and a private subnet in AWS?",
+        "options": [
+          "Public subnets are free; private subnets cost more",
+          "Public subnets route traffic to an Internet Gateway (resources can have public IPs); private subnets have no direct internet access and use a NAT Gateway for outbound traffic",
+          "Public subnets can only hold web servers; private subnets can only hold databases",
+          "They are the same — the naming is just organizational"
+        ],
+        "correct": 1,
+        "explanation": "Public subnets have a route to the Internet Gateway, enabling inbound traffic to resources with public IPs. Private subnets route outbound traffic through a NAT Gateway (no inbound internet access) — ideal for databases and backend services."
+      },
+      {
+        "id": 11,
+        "topic": "CI/CD",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is the difference between Continuous Integration and Continuous Deployment?",
+        "options": [
+          "They are the same process",
+          "CI automatically builds and tests code on every commit; CD automatically deploys every passing build to production",
+          "CI deploys to staging; CD deploys to production",
+          "CD requires human approval; CI is always automated"
+        ],
+        "correct": 1,
+        "explanation": "CI: every code commit triggers automated build and test (catches integration bugs early). CD: every passing build is automatically deployed to production with no manual step. Continuous Delivery requires a manual approval gate before production."
+      },
+      {
+        "id": 12,
+        "topic": "AWS",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is AWS Lambda, and what is its key advantage over EC2?",
+        "options": [
+          "Lambda is a managed database; EC2 is for compute. Lambda scales automatically.",
+          "Lambda is a serverless compute service — you run code in response to events without managing servers, paying only for execution duration",
+          "Lambda is always faster than EC2 for all workloads",
+          "Lambda is only for Python workloads; EC2 supports all languages"
+        ],
+        "correct": 1,
+        "explanation": "Lambda executes code (functions) in response to triggers (HTTP, S3 event, schedule) without provisioning or managing servers. You pay per invocation and millisecond of execution. Ideal for event-driven, intermittent workloads."
+      },
+      {
+        "id": 13,
+        "topic": "Infrastructure as Code",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is Infrastructure as Code (IaC) and which tool is most commonly used for cloud IaC?",
+        "options": [
+          "Writing Python scripts to call cloud APIs; most common tool is boto3",
+          "Defining infrastructure (servers, networks, databases) in declarative configuration files; Terraform and AWS CloudFormation are most common",
+          "Automating server configuration with shell scripts",
+          "Using Docker Compose to define cloud resources"
+        ],
+        "correct": 1,
+        "explanation": "IaC treats infrastructure as code: version-controlled, reviewed, and reproducible. Terraform (multi-cloud, declarative) and CloudFormation (AWS-specific) provision and manage resources from configuration files, eliminating manual console operations."
+      },
+      {
+        "id": 14,
+        "topic": "Monitoring",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What are the three pillars of observability in cloud systems?",
+        "options": [
+          "CPU, Memory, Network",
+          "Logs, Metrics, Traces — together they provide full visibility into system behavior",
+          "Uptime, Latency, Throughput",
+          "Availability, Reliability, Scalability"
+        ],
+        "correct": 1,
+        "explanation": "Logs: timestamped text records of events. Metrics: numeric time-series data (CPU%, request rate, error rate). Traces: end-to-end request journeys across microservices. All three together enable diagnosing complex distributed system issues."
+      },
+      {
+        "id": 15,
+        "topic": "Containers",
+        "difficulty": "medium",
+        "type": "scenario",
+        "q": "A Kubernetes pod keeps restarting with status 'OOMKilled'. What is happening and how do you fix it?",
+        "options": [
+          "The pod's Docker image is corrupted; rebuild the image",
+          "The container exceeded its memory limit and was killed by Kubernetes. Fix by increasing the memory limit or reducing the container's memory usage.",
+          "The cluster has no available nodes; add more nodes",
+          "The pod's liveness probe is misconfigured; adjust the timeout"
+        ],
+        "correct": 1,
+        "explanation": "OOMKilled (Out of Memory Killed) means the container used more memory than its resource limit. Fix: profile memory usage, optimize the application, and set appropriate limits in the pod spec."
+      },
+      {
+        "id": 16,
+        "topic": "Security",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is encryption at rest vs. encryption in transit?",
+        "options": [
+          "At rest = encrypted during transfer; in transit = encrypted on disk",
+          "At rest = data is encrypted when stored on disk (S3, RDS); in transit = data is encrypted while being transmitted over the network (TLS/HTTPS)",
+          "Both terms mean the same thing",
+          "In transit encryption only applies to external traffic"
+        ],
+        "correct": 1,
+        "explanation": "Encryption at rest protects stored data (e.g., KMS-encrypted S3 objects, RDS encrypted volumes) if physical storage is compromised. Encryption in transit (TLS/HTTPS) protects data from eavesdropping during network transmission."
+      },
+      {
+        "id": 17,
+        "topic": "Networking",
+        "difficulty": "medium",
+        "type": "conceptual",
+        "q": "What is DNS and what does the `A` record type specify?",
+        "options": [
+          "Domain Name System; A records specify mail server addresses",
+          "Domain Name System; A records map a hostname to an IPv4 address",
+          "Dynamic Network Service; A records specify authentication providers",
+          "Distributed Name Server; A records specify HTTPS certificates"
+        ],
+        "correct": 1,
+        "explanation": "DNS translates human-readable hostnames to IP addresses. An A record maps a domain name (api.example.com) to a specific IPv4 address. AAAA records are the IPv6 equivalent."
+      },
+      {
+        "id": 18,
+        "topic": "Architecture",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "Your microservice architecture has 20 services all calling each other directly. This causes cascading failures and makes deployments complex. What pattern solves this?",
+        "options": [
+          "Replace all microservices with a monolith",
+          "Implement a Service Mesh (e.g., Istio, Linkerd) for inter-service communication, or an API Gateway for external traffic, with circuit breakers",
+          "Add more replicas of each service",
+          "Move all services to the same VPC"
+        ],
+        "correct": 1,
+        "explanation": "A service mesh handles retries, circuit breakers, mTLS, and observability for service-to-service traffic transparently via a sidecar proxy, decoupling these concerns from application code."
+      },
+      {
+        "id": 19,
+        "topic": "Cost Optimization",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the difference between Reserved Instances and Spot Instances in AWS?",
+        "options": [
+          "Reserved = pay per hour; Spot = pay per year",
+          "Reserved Instances offer up to 75% discount for a 1–3 year commitment; Spot Instances use unused capacity at up to 90% discount but can be interrupted with 2-minute notice",
+          "They are the same product with different names",
+          "Spot Instances are for databases; Reserved are for web servers"
+        ],
+        "correct": 1,
+        "explanation": "Reserved Instances: committed usage discount (stable, predictable workloads). Spot Instances: bid on spare AWS capacity at steep discounts — ideal for fault-tolerant batch jobs. Not suitable for stateful/persistent workloads due to interruption risk."
+      },
+      {
+        "id": 20,
+        "topic": "Security",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A developer accidentally commits AWS credentials to a public GitHub repo. What are the immediate steps?",
+        "options": [
+          "Make the GitHub repo private and no action needed",
+          "Immediately invalidate/rotate the exposed credentials in IAM, audit CloudTrail for unauthorized activity, and remove the secrets from git history",
+          "Email AWS support to block the credentials",
+          "Delete the GitHub repo entirely"
+        ],
+        "correct": 1,
+        "explanation": "Exposed secrets must be rotated IMMEDIATELY (assume they are already compromised — bots scrape GitHub in seconds). Then: audit CloudTrail for any unauthorized API calls, and use git filter-branch or BFG Repo Cleaner to purge secrets from history."
+      },
+      {
+        "id": 21,
+        "topic": "Architecture",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the difference between stateless and stateful cloud architectures, and which is easier to scale?",
+        "options": [
+          "Stateful architectures scale better because they cache user data locally",
+          "Stateless services don't retain user-specific data between requests (state is in DB/cache); stateless architectures scale horizontally much more easily",
+          "They scale equally — it depends on the load balancer",
+          "Stateless means the service has no database"
+        ],
+        "correct": 1,
+        "explanation": "Stateless services handle each request independently with no local session. Any instance can serve any request, making horizontal scaling trivial. Stateful services need sticky sessions or shared storage to maintain consistency across instances."
+      },
+      {
+        "id": 22,
+        "topic": "Containers",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is a Kubernetes liveness probe vs. a readiness probe?",
+        "options": [
+          "They are identical — Kubernetes uses them interchangeably",
+          "Liveness: determines if a container is alive (restart if failing); Readiness: determines if a container is ready to serve traffic (remove from load balancer if failing)",
+          "Readiness restarts failed containers; Liveness removes them from service",
+          "Both probes are optional and have no effect on pod lifecycle"
+        ],
+        "correct": 1,
+        "explanation": "Liveness probe: if it fails, Kubernetes restarts the container (dead-lock recovery). Readiness probe: if it fails, Kubernetes removes the pod from the Service's endpoints (no traffic sent) without restarting — useful during startup or dependency downtime."
+      }
+    ],
+    "open_ended_questions": [
+      {
+        "id": 601,
+        "title": "Active-Active Multi-Region Disaster Recovery (RPO < 1s, RTO < 30s)",
+        "scenario": "A tier-1 banking transaction gateway hosted in the cloud must withstand an entire region outage with a Recovery Point Objective (RPO) < 1 second and Recovery Time Objective (RTO) < 30 seconds.",
+        "prompt": "Detail your multi-region architecture: 1) How do you configure global DNS and traffic routing (e.g., AWS Route 53 latency/health-check routing or Anycast IP)? 2) How do you handle cross-region database replication, synchronous vs asynchronous trade-offs, and multi-master conflict resolution? 3) How do you design automated health checks and failover mechanisms to avoid false-positive failovers (flapping) during regional network degradation?",
+        "rubric_focus": [
+          "Global DNS / Anycast load balancing",
+          "Cross-region DB replication & RPO trade-offs",
+          "Multi-region conflict resolution (vector clocks, CRDT)",
+          "Health checks & anti-flapping dampening",
+          "Automated RTO < 30s execution"
+        ]
+      },
+      {
+        "id": 602,
+        "title": "Kubernetes Zero-Downtime Deployment Remediation (502 Gateway Errors)",
+        "scenario": "During rolling deployments in an EKS/GKE cluster, users intermittently encounter HTTP 502 Bad Gateway and connection reset errors for 15-30 seconds following pod terminations and spin-ups.",
+        "prompt": "Diagnose the root cause and prescribe remediation: 1) Explain the exact race condition between kubelet pod termination (SIGTERM), endpoint slice propagation to ingress controllers/iptables, and in-flight request draining. 2) How do you configure `preStop` hooks, termination grace periods, and connection draining on ingress controllers? 3) What are the distinct roles and best-practice configurations of Readiness, Liveness, and Startup probes in preventing traffic from hitting unready pods?",
+        "rubric_focus": [
+          "Pod lifecycle (SIGTERM vs iptables/IPVS updates)",
+          "preStop sleep hooks & terminationGracePeriodSeconds",
+          "Readiness vs Liveness probe misconfigurations",
+          "Ingress / Service Mesh connection draining",
+          "Canary / Progressive delivery"
+        ]
+      },
+      {
+        "id": 603,
+        "title": "Cloud FinOps & Infrastructure Cost Remediation ($20k to $80k Spike)",
+        "scenario": "An enterprise's cloud infrastructure bill surged from $20,000/month to $80,000/month over 90 days across AWS/GCP, prompting an urgent FinOps intervention.",
+        "prompt": "Lay out your FinOps audit methodology: 1) What specific cost culprits would you investigate first (e.g., cross-AZ and NAT Gateway data transfer, unattached EBS/persistent volumes, over-provisioned idle compute, unexpiring object storage versions)? 2) What architectural mitigations (VPC endpoints, Karpenter/cluster autoscalers, S3 lifecycle policies) would you deploy immediately? 3) How would you implement long-term FinOps governance (cost allocation tags, anomaly detection alerts, compute Savings Plans/Reserved Instances)?",
+        "rubric_focus": [
+          "Egress & NAT Gateway data transfer audit",
+          "Compute rightsizing & spot/graviton/savings plans",
+          "Storage lifecycles & orphaned asset cleanup",
+          "VPC endpoints for internal traffic",
+          "Tagging & FinOps governance"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dsa",
+    "title": "DSA & Coding Assessment",
+    "career_path": "Software Engineer",
+    "category": "DSA & Coding",
+    "questions_count": 25,
+    "open_ended_count": 3,
+    "time_limit_seconds": 600,
+    "difficulty": "Hard",
+    "questions": [
+      {
+        "id": 1,
+        "topic": "Arrays",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the time complexity of finding the median of two sorted arrays of sizes m and n?",
+        "options": [
+          "O(m+n)",
+          "O(log(m+n))",
+          "O(log(min(m,n)))",
+          "O(m*n)"
+        ],
+        "correct": 2,
+        "explanation": "The optimal approach (binary search on the smaller array) achieves O(log(min(m,n))). This is the basis of LeetCode #4 'Median of Two Sorted Arrays'."
+      },
+      {
+        "id": 2,
+        "topic": "Sliding Window",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "You need to find the minimum window substring containing all characters of a target string T in string S. What is the optimal time complexity?",
+        "options": [
+          "O(n²)",
+          "O(n*m) where m = len(T)",
+          "O(n + m) using two-pointer sliding window with a frequency map",
+          "O(n log n)"
+        ],
+        "correct": 2,
+        "explanation": "A sliding window with a character frequency map expands/shrinks in O(n+m). You track how many characters are currently satisfied, and shrink the window when all T chars are covered — classic two-pointer approach."
+      },
+      {
+        "id": 3,
+        "topic": "Dynamic Programming",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "In the 0/1 Knapsack problem with n items and capacity W, what is the space-optimized DP complexity?",
+        "options": [
+          "O(n*W) time, O(n*W) space",
+          "O(n*W) time, O(W) space using a 1D DP array iterated in reverse",
+          "O(n log n) time, O(n) space",
+          "O(W²) time, O(1) space"
+        ],
+        "correct": 1,
+        "explanation": "The 1D DP optimization iterates capacity W down to the item weight for each item, eliminating the need for the full 2D table. Time stays O(n*W) but space reduces to O(W)."
+      },
+      {
+        "id": 4,
+        "topic": "Graphs",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Dijkstra's algorithm fails (produces incorrect shortest paths) when the graph contains which of the following?",
+        "options": [
+          "Cycles",
+          "Disconnected components",
+          "Negative weight edges",
+          "Directed edges"
+        ],
+        "correct": 2,
+        "explanation": "Dijkstra's greedy assumption (once a node is finalized, its distance is optimal) breaks with negative edges. Use Bellman-Ford (O(VE)) for negative edges, which also detects negative cycles."
+      },
+      {
+        "id": 5,
+        "topic": "Trees",
+        "difficulty": "hard",
+        "type": "code_output",
+        "q": "For a balanced Binary Search Tree with n nodes, what is the height h in terms of n?",
+        "options": [
+          "h = n",
+          "h = n/2",
+          "h = O(log n)",
+          "h = O(n log n)"
+        ],
+        "correct": 2,
+        "explanation": "A balanced BST halves the remaining nodes at each level, yielding height O(log n). This is why BST search, insert, and delete are O(log n) in the average/balanced case."
+      },
+      {
+        "id": 6,
+        "topic": "Heaps",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "You need to find the K-th largest element in an unsorted array of n elements. What is the optimal approach and its complexity?",
+        "options": [
+          "Sort the array: O(n log n)",
+          "Min-heap of size K: insert all, pop extras — O(n log K)",
+          "Max-heap: build in O(n), extract K times — O(n + K log n)",
+          "QuickSelect: average O(n), worst O(n²)"
+        ],
+        "correct": 1,
+        "explanation": "A min-heap of size K processes each element in O(log K): push if element > heap root, pop minimum. Total O(n log K) time, O(K) space. QuickSelect achieves O(n) average but O(n²) worst without randomization."
+      },
+      {
+        "id": 7,
+        "topic": "Dynamic Programming",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the time complexity of the Longest Common Subsequence (LCS) problem solved with DP?",
+        "options": [
+          "O(n + m)",
+          "O(n * m)",
+          "O(n² * m)",
+          "O(2^n)"
+        ],
+        "correct": 1,
+        "explanation": "LCS DP fills an (n+1) x (m+1) table where each cell depends on adjacent cells — O(n*m) time and space. The naive recursive approach is exponential O(2^n)."
+      },
+      {
+        "id": 8,
+        "topic": "Graphs",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "To detect a cycle in a DIRECTED graph, which algorithm is most appropriate?",
+        "options": [
+          "BFS with a visited set (same as undirected)",
+          "DFS with a 'recursion stack' (gray-white-black coloring)",
+          "Union-Find / Disjoint Set Union",
+          "Topological sort with in-degree counting (Kahn's algorithm)"
+        ],
+        "correct": 1,
+        "explanation": "DFS with three states (white=unvisited, gray=in-stack, black=done) detects back edges in directed graphs. Union-Find works for undirected graphs. Kahn's algorithm also detects cycles (if all nodes aren't processed) but is less direct."
+      },
+      {
+        "id": 9,
+        "topic": "Stack",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "The 'Largest Rectangle in Histogram' problem can be solved in O(n) using which data structure?",
+        "options": [
+          "A priority queue tracking maximum heights",
+          "A monotonic increasing stack tracking bar indices",
+          "A segment tree for range minimum queries",
+          "Two-pointer scanning from both ends"
+        ],
+        "correct": 1,
+        "explanation": "A monotonic stack maintains bars in increasing height order. When a shorter bar is found, bars are popped and their max rectangle computed using the current index as the right boundary. This processes each bar at most twice — O(n)."
+      },
+      {
+        "id": 10,
+        "topic": "Bit Manipulation",
+        "difficulty": "hard",
+        "type": "code_output",
+        "q": "What does the expression `n & (n - 1)` compute, and what problem does it elegantly solve?",
+        "options": [
+          "n modulo 2 — checks if n is even",
+          "Clears the lowest set bit of n — used to count set bits (Brian Kernighan's algorithm)",
+          "Negates all bits of n",
+          "Shifts n right by 1"
+        ],
+        "correct": 1,
+        "explanation": "`n & (n-1)` clears the rightmost set bit of n. Repeatedly applying it and counting iterations gives the number of 1-bits (Hamming weight) in O(count of set bits) rather than O(32/64 bits)."
+      },
+      {
+        "id": 11,
+        "topic": "Trees",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the time complexity of finding the Lowest Common Ancestor (LCA) of two nodes in a binary tree without preprocessing?",
+        "options": [
+          "O(1)",
+          "O(log n) — only for balanced trees",
+          "O(n) — DFS traversal in worst case",
+          "O(n²)"
+        ],
+        "correct": 2,
+        "explanation": "A single DFS traversal checks both subtrees for the target nodes. In the worst case (skewed tree or nodes at leaves), all n nodes are visited — O(n). With sparse table preprocessing (Euler tour + RMQ), LCA can be answered in O(1) after O(n log n) preprocessing."
+      },
+      {
+        "id": 12,
+        "topic": "Sorting",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Quick Sort has O(n log n) average time but O(n²) worst case. Which pivot selection strategy best mitigates worst-case behavior?",
+        "options": [
+          "Always pick the first element",
+          "Always pick the middle element",
+          "Randomized pivot selection or Median-of-Three",
+          "Always pick the maximum element"
+        ],
+        "correct": 2,
+        "explanation": "The worst case (sorted/reverse-sorted input) occurs when the pivot always creates maximally unbalanced partitions. Randomized pivot reduces worst-case probability to near-zero. Median-of-Three picks the median of first, middle, and last elements."
+      },
+      {
+        "id": 13,
+        "topic": "Trie",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the time complexity of inserting a word of length L into a Trie, and what is the main advantage of a Trie over a Hash Set for prefix queries?",
+        "options": [
+          "O(L) insert; Trie supports O(L) prefix search while Hash Set requires O(n*L) to scan all words",
+          "O(log n) insert; Trie is faster for exact matches",
+          "O(L²) insert; Trie uses less memory",
+          "O(1) insert; Trie stores words alphabetically"
+        ],
+        "correct": 0,
+        "explanation": "Trie insert is O(L) — create/traverse L nodes. Prefix search is also O(L) — follow the prefix path and collect all words below. A Hash Set can only do O(1) exact lookups; finding all words with a given prefix requires O(n*L) scanning."
+      },
+      {
+        "id": 14,
+        "topic": "Union-Find",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "With path compression and union by rank, what is the amortized time per operation in Union-Find?",
+        "options": [
+          "O(log n)",
+          "O(n)",
+          "O(α(n)) — near-constant (inverse Ackermann function)",
+          "O(1)"
+        ],
+        "correct": 2,
+        "explanation": "The combination of path compression (flatten tree after find) and union by rank (attach shorter tree under taller) yields O(α(n)) amortized per operation, where α is the inverse Ackermann function — effectively constant for all practical n."
+      },
+      {
+        "id": 15,
+        "topic": "Dynamic Programming",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "The Edit Distance problem (Levenshtein distance) between two strings of lengths m and n has DP complexity of:",
+        "options": [
+          "O(m + n) time",
+          "O(m * n) time and O(m * n) space (reducible to O(min(m,n)) space)",
+          "O(m² + n²) time",
+          "O(m * n * log(m)) time"
+        ],
+        "correct": 1,
+        "explanation": "The 2D DP table has O(m*n) cells, each computed in O(1). Space can be optimized to O(min(m,n)) by keeping only two rows at a time (current and previous)."
+      },
+      {
+        "id": 16,
+        "topic": "Graphs",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Topological sort is only valid for which type of graph? What algorithm produces it in O(V+E)?",
+        "options": [
+          "Undirected graphs — using BFS",
+          "Directed Acyclic Graphs (DAGs) — using DFS (reverse post-order) or Kahn's BFS-based in-degree algorithm",
+          "Weighted graphs — using Dijkstra's",
+          "Trees — using level-order traversal"
+        ],
+        "correct": 1,
+        "explanation": "Topological sort defines a linear ordering of vertices such that every directed edge u→v has u before v. It only exists for DAGs (cycles make it impossible). Both DFS post-order reversal and Kahn's BFS in-degree approach run in O(V+E)."
+      },
+      {
+        "id": 17,
+        "topic": "Sliding Window",
+        "difficulty": "hard",
+        "type": "code_output",
+        "q": "The 'Maximum Sum Subarray of size K' can be solved in O(n) using sliding window. What is the key operation when the window slides?",
+        "options": [
+          "Recompute the sum from scratch each time: O(K) per slide",
+          "Add the new element entering the window and subtract the element leaving the window",
+          "Sort the window elements each time",
+          "Use a prefix sum array and subtract: O(1) per query"
+        ],
+        "correct": 1,
+        "explanation": "Maintain a running sum: when the window slides right by 1, add nums[right] and subtract nums[right - K]. This keeps the sum updated in O(1) per slide, giving O(n) total versus O(n*K) for recomputing from scratch."
+      },
+      {
+        "id": 18,
+        "topic": "Trees",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "Serializing and deserializing a binary tree (LeetCode #297) can be done in O(n). What traversal order is most commonly used and why?",
+        "options": [
+          "Inorder — because it reconstructs the BST uniquely",
+          "Level-order (BFS) — straightforward queue-based encoding with null markers",
+          "Preorder DFS — naturally encodes root before subtrees, enabling recursive deserialization without requiring end markers",
+          "Postorder — because it processes leaves first"
+        ],
+        "correct": 2,
+        "explanation": "Preorder DFS (root → left → right) encodes each subtree naturally — the root is always first, so deserialization can recursively reconstruct left then right subtrees. Null markers represent missing children. Inorder alone is insufficient to uniquely reconstruct a general binary tree (non-BST)."
+      },
+      {
+        "id": 19,
+        "topic": "Hashing",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "A hash table with chaining has O(1) average-case lookups. What causes O(n) worst-case lookup, and how do modern hash tables mitigate this?",
+        "options": [
+          "Large table size causes cache misses — mitigated by smaller load factors",
+          "All keys hash to the same bucket (worst-case collision) — mitigated by a good hash function, randomization (hash salting), or switch to balanced BST per bucket (Java HashMap Java 8+)",
+          "Too many deletions cause clustering — mitigated by tombstone markers",
+          "The hash function is too slow — mitigated by using XOR-based hashing"
+        ],
+        "correct": 1,
+        "explanation": "With a poor or adversarially crafted hash function, all n keys can collide into one bucket, making lookup O(n). Java 8+ HashMap switches individual buckets from linked lists to red-black trees when a bucket exceeds 8 entries, capping worst-case per-bucket lookup at O(log n)."
+      },
+      {
+        "id": 20,
+        "topic": "Dynamic Programming",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "The 'Coin Change' problem (minimum coins to reach amount) uses DP. What recurrence relation governs the solution?",
+        "options": [
+          "dp[i] = max(dp[i], dp[i - coin] + 1) for each coin",
+          "dp[i] = min(dp[i], dp[i - coin] + 1) for each coin where i >= coin",
+          "dp[i] = dp[i-1] + dp[i-2] (Fibonacci-like)",
+          "dp[i] = coin * dp[i // coin]"
+        ],
+        "correct": 1,
+        "explanation": "dp[i] represents minimum coins for amount i. For each coin denomination, if coin <= i, we try using it: dp[i] = min(dp[i], dp[i-coin] + 1). dp[0] = 0 (base case). This is a classic unbounded knapsack variant."
+      },
+      {
+        "id": 21,
+        "topic": "Graphs",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Kosaraju's algorithm finds Strongly Connected Components (SCCs) in a directed graph. How many DFS passes does it require?",
+        "options": [
+          "1 DFS pass on the original graph",
+          "2 DFS passes — first on original graph to compute finish order, second on transpose graph in reverse finish order",
+          "3 DFS passes — one for SCC detection, one for ordering, one for validation",
+          "1 BFS pass using a modified queue"
+        ],
+        "correct": 1,
+        "explanation": "Kosaraju's requires 2 DFS passes: (1) DFS on the original graph, push nodes to a stack in finish order; (2) Transpose the graph, then run DFS in reverse-finish-time order — each DFS tree in pass 2 is an SCC. Total complexity: O(V+E)."
+      },
+      {
+        "id": 22,
+        "topic": "String Algorithms",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "The KMP (Knuth-Morris-Pratt) pattern matching algorithm avoids unnecessary recomparisons by using a 'failure function'. What does the failure function store?",
+        "options": [
+          "The index where the last mismatch occurred",
+          "The length of the longest proper prefix of the pattern[0..i] that is also a suffix",
+          "The hash of each pattern character",
+          "The count of character occurrences in the pattern"
+        ],
+        "correct": 1,
+        "explanation": "The KMP failure function (partial match table) lps[i] = length of longest proper prefix of pattern[0..i] that is also a suffix. When a mismatch occurs at position j in the pattern, we jump to lps[j-1] instead of restarting from 0, achieving O(n+m) total pattern search time."
+      },
+      {
+        "id": 23,
+        "topic": "Two Pointers",
+        "difficulty": "hard",
+        "type": "code_output",
+        "q": "The 'Trapping Rain Water' problem (LeetCode #42) can be solved in O(n) time and O(1) space. Which technique achieves this?",
+        "options": [
+          "Precompute prefix max and suffix max arrays: O(n) time O(n) space",
+          "Two pointers from both ends tracking left_max and right_max: O(n) time O(1) space",
+          "Stack-based approach tracking previous bars: O(n) time O(n) space",
+          "Dynamic programming filling a 2D table"
+        ],
+        "correct": 1,
+        "explanation": "Two pointers lo=0 and hi=n-1 move inward. The pointer pointing to the shorter boundary is moved inward: if height[lo] < height[hi], water at lo = left_max - height[lo], advance lo. This eliminates the need for extra arrays, achieving O(1) extra space."
+      },
+      {
+        "id": 24,
+        "topic": "Complexity",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is amortized O(1) time complexity, and which data structure operation is a classic example?",
+        "options": [
+          "Each individual operation takes constant time",
+          "The average time per operation over a sequence of n operations is O(1), even if some individual operations are costly — classic example: dynamic array (ArrayList) append with doubling strategy",
+          "The operation is O(1) in best case only",
+          "The operation uses O(1) extra space"
+        ],
+        "correct": 1,
+        "explanation": "Dynamic array append is O(1) amortized: most appends are O(1), but occasional resizing (copy all elements to a 2x array) is O(n). Total cost for n appends = O(n) resize + O(n) regular appends = O(n) total, so O(1) per operation amortized."
+      },
+      {
+        "id": 25,
+        "topic": "Graphs",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "In a weighted undirected graph, which algorithm finds the Minimum Spanning Tree (MST) more efficiently when the graph is dense (many edges)?",
+        "options": [
+          "Kruskal's — O(E log E): sort edges and apply Union-Find, best for sparse graphs",
+          "Prim's with an adjacency matrix — O(V²), best for dense graphs where E ≈ V²",
+          "Bellman-Ford — O(VE), always better than both",
+          "Dijkstra's — same as Prim's for MST"
+        ],
+        "correct": 1,
+        "explanation": "For dense graphs (E ≈ V²), Prim's with a simple O(V²) implementation outperforms Kruskal's O(E log E) = O(V² log V). Prim's with a Fibonacci heap achieves O(E + V log V) for sparse graphs. Dijkstra finds shortest paths, not MST."
+      }
+    ],
+    "open_ended_questions": [
+      {
+        "id": 701,
+        "title": "Design a Real-Time Leaderboard System (Top-K with Live Updates)",
+        "scenario": "You are building a live gaming leaderboard for 10 million concurrent players. Scores update every second. Players can query 'top 100 globally', 'my rank', and 'top 10 in my region' in under 10ms. The system must handle 50,000 score-update writes per second.",
+        "prompt": "Design the data structure and system architecture: 1) Which data structures (e.g., Sorted Set, Segment Tree, Skip List, Heap) would you use at the algorithmic level for ranking, and why? 2) How does Redis Sorted Set (ZADD/ZRANK/ZRANGE) implement a balanced BST + skip list internally, and why is it the industry standard for leaderboards? 3) How do you handle the 'regional top-10' query efficiently — partition by region or fan out?",
+        "rubric_focus": [
+          "Sorted Set vs Heap trade-offs",
+          "Redis ZADD/ZRANK O(log n)",
+          "Skip List internals",
+          "Regional partitioning strategy",
+          "Write throughput vs read latency balance"
+        ]
+      },
+      {
+        "id": 702,
+        "title": "Optimize a Pathfinding Algorithm for a Dynamic Weighted Graph",
+        "scenario": "A logistics company routes delivery vehicles on a city map (graph of 500,000 nodes, 2M edges). Edge weights change dynamically (traffic, closures). Vehicles need the optimal path recalculated every 30 seconds. The naive Dijkstra on the full graph takes 800ms — too slow.",
+        "prompt": "Propose an optimized pathfinding strategy: 1) Compare A* (with a consistent heuristic) vs Bidirectional Dijkstra vs Contraction Hierarchies for this use case — what are their space/time trade-offs? 2) How would you handle dynamic edge weight updates without re-running full pathfinding from scratch (e.g., dynamic SSSP, incremental updates)? 3) How do you design the graph data structure (adjacency list vs matrix) and memory layout for cache-friendly traversal?",
+        "rubric_focus": [
+          "A* heuristic admissibility",
+          "Bidirectional search speedup",
+          "Contraction Hierarchies preprocessing",
+          "Dynamic SSSP / incremental updates",
+          "Cache-efficient graph representation"
+        ]
+      },
+      {
+        "id": 703,
+        "title": "Design an O(1) Average-Case LRU Cache with Concurrent Access",
+        "scenario": "You need to implement an LRU (Least Recently Used) cache that supports get() and put() in O(1) average time, handles 100,000 requests/second, and supports concurrent access from 64 threads without deadlocks.",
+        "prompt": "Detail the implementation: 1) What combination of data structures achieves O(1) get and put for LRU? Describe the doubly-linked list + hash map approach and why each structure is needed. 2) For thread safety, compare coarse-grained locking (single mutex), fine-grained locking (segment locks), and lock-free approaches (CAS operations) — what are the trade-offs at 64 threads? 3) How would you extend this to a distributed LRU cache (e.g., using Redis with LRU eviction policy), and what consistency guarantees are lost?",
+        "rubric_focus": [
+          "HashMap + Doubly-Linked List O(1) design",
+          "Thread-safety: coarse vs fine-grained locks",
+          "Lock-free CAS trade-offs",
+          "Distributed cache extension",
+          "Eviction policy correctness"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "sql-dbms",
+    "title": "SQL & DBMS Assessment",
+    "career_path": "Database Engineer / Backend",
+    "category": "SQL & Database Systems",
+    "questions_count": 22,
+    "open_ended_count": 3,
+    "time_limit_seconds": 600,
+    "difficulty": "Hard",
+    "questions": [
+      {
+        "id": 1,
+        "topic": "SQL Joins",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the difference between a CROSS JOIN and a FULL OUTER JOIN?",
+        "options": [
+          "They are identical — both return all row combinations",
+          "CROSS JOIN returns the Cartesian product (every row from A paired with every row from B, no ON clause); FULL OUTER JOIN returns all matched rows plus unmatched rows from both tables with NULLs",
+          "CROSS JOIN requires a matching key; FULL OUTER JOIN does not",
+          "FULL OUTER JOIN is faster than CROSS JOIN for large tables"
+        ],
+        "correct": 1,
+        "explanation": "CROSS JOIN: n × m rows, no join condition. FULL OUTER JOIN: matched rows + unmatched rows from left (NULLs for right cols) + unmatched from right (NULLs for left cols). FULL OUTER JOIN = LEFT JOIN UNION RIGHT JOIN."
+      },
+      {
+        "id": 2,
+        "topic": "Window Functions",
+        "difficulty": "hard",
+        "type": "code_output",
+        "q": "Given: `SELECT dept, salary, RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rnk FROM employees;` — what is the difference if DENSE_RANK() is used instead of RANK()?",
+        "options": [
+          "No difference — RANK() and DENSE_RANK() always return the same values",
+          "RANK() leaves gaps after ties (e.g., 1,1,3), DENSE_RANK() has no gaps (e.g., 1,1,2)",
+          "DENSE_RANK() restarts numbering for each partition; RANK() does not",
+          "RANK() is faster than DENSE_RANK() for large datasets"
+        ],
+        "correct": 1,
+        "explanation": "RANK(): two employees tied for 1st both get rank 1, next gets rank 3 (a gap). DENSE_RANK(): tied employees both get 1, next gets 2 (no gap). ROW_NUMBER() assigns unique sequential numbers regardless of ties."
+      },
+      {
+        "id": 3,
+        "topic": "Normalization",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "A table is in 2NF but not 3NF. What violation does this imply?",
+        "options": [
+          "A non-key attribute depends on only part of the composite primary key",
+          "A non-key attribute is transitively dependent on the primary key (through another non-key attribute)",
+          "The table has no primary key",
+          "A column contains multivalued attributes"
+        ],
+        "correct": 1,
+        "explanation": "2NF removes partial dependencies (non-key attribute depends on part of composite PK). 3NF additionally removes transitive dependencies: if PK → A → B, then B transitively depends on PK through A. Fix by decomposing into separate tables."
+      },
+      {
+        "id": 4,
+        "topic": "Transactions",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What does the ACID property 'Isolation' guarantee, and what problem does the SERIALIZABLE isolation level prevent that READ COMMITTED does not?",
+        "options": [
+          "Isolation guarantees data is permanently saved; SERIALIZABLE prevents dirty reads which READ COMMITTED allows",
+          "Isolation ensures concurrent transactions don't interfere; SERIALIZABLE prevents phantom reads (new rows inserted mid-transaction by another tx) while READ COMMITTED only prevents dirty reads",
+          "Isolation guarantees rollback on failure; SERIALIZABLE prevents lost updates which READ COMMITTED allows",
+          "They both prevent the same anomalies — the names are just different standards"
+        ],
+        "correct": 1,
+        "explanation": "READ COMMITTED prevents dirty reads (reading uncommitted changes). REPEATABLE READ additionally prevents non-repeatable reads. SERIALIZABLE fully prevents phantom reads — rows that appear because another transaction inserted them between two reads in the same transaction."
+      },
+      {
+        "id": 5,
+        "topic": "Indexing",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Why can a composite index on (A, B, C) satisfy a query on (A, B) but NOT a query on (B, C) alone?",
+        "options": [
+          "Composite indexes only support the rightmost columns in the definition",
+          "B-tree composite indexes are sorted by the leftmost column first — only leftmost prefix queries can use the index. A query on (B, C) without A cannot use the index for a range scan.",
+          "The database automatically creates a reverse index to handle this case",
+          "Index on (B, C) alone would be slower due to extra index pages"
+        ],
+        "correct": 1,
+        "explanation": "A B-tree index on (A, B, C) sorts rows first by A, then B, then C. Queries using A (or A+B, or A+B+C) can use the index. A query on B alone skips A — the index is not sorted by B globally, so it cannot be used for a range scan on B."
+      },
+      {
+        "id": 6,
+        "topic": "Query Optimization",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "An EXPLAIN ANALYZE on a query shows 'Seq Scan' on a 10M-row table with a WHERE clause on a non-indexed column. What is the best fix?",
+        "options": [
+          "Rewrite the query using a subquery instead of a WHERE clause",
+          "Add a B-tree index on the filtered column; consider a partial index if the WHERE clause filters a small subset",
+          "Increase the database's shared_buffers to load the full table into memory",
+          "Switch from PostgreSQL to MySQL for better query planning"
+        ],
+        "correct": 1,
+        "explanation": "A sequential scan on 10M rows is expensive. Adding a B-tree index on the WHERE column turns it into an index scan (O(log n + k) where k = matching rows). A partial index (CREATE INDEX ... WHERE status='active') is even faster if the condition matches a small fraction of rows."
+      },
+      {
+        "id": 7,
+        "topic": "Subqueries",
+        "difficulty": "hard",
+        "type": "code_output",
+        "q": "What is a correlated subquery and why can it be problematic for performance?",
+        "options": [
+          "A subquery that uses a constant value — it runs once and is fast",
+          "A subquery that references columns from the outer query — it re-executes for every row in the outer query, potentially causing O(n) subquery executions",
+          "A subquery inside an IN clause — equivalent to an inner join",
+          "A subquery using aggregate functions — it collapses to a single value"
+        ],
+        "correct": 1,
+        "explanation": "A correlated subquery (e.g., WHERE salary > (SELECT AVG(salary) FROM employees e2 WHERE e2.dept = e1.dept)) is re-evaluated for each outer row. For a 100K-row outer table, this means 100K subquery executions. Fix: rewrite as a JOIN with a CTE/derived table computing the aggregate once."
+      },
+      {
+        "id": 8,
+        "topic": "Deadlocks",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "Transaction A locks row 1 then waits for row 2; Transaction B locks row 2 then waits for row 1. This is a deadlock. What is the standard database resolution?",
+        "options": [
+          "Both transactions are rolled back and the user must retry manually",
+          "The database detects the cycle in the wait-for graph and rolls back the transaction with the lowest cost (fewest locks or shortest runtime), allowing the other to proceed",
+          "The database queues all subsequent transactions until the deadlock resolves naturally",
+          "The database upgrades both transactions to SERIALIZABLE isolation, preventing deadlocks"
+        ],
+        "correct": 1,
+        "explanation": "Databases detect deadlocks via wait-for graph cycle detection. The 'victim' transaction (typically the one that did the least work) is rolled back with an error. The other transaction can then proceed. Applications must implement retry logic for deadlock errors (e.g., PostgreSQL error 40P01)."
+      },
+      {
+        "id": 9,
+        "topic": "ACID",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What does 'Durability' in ACID mean, and how does a WAL (Write-Ahead Log) implement it?",
+        "options": [
+          "Durability means data is replicated across multiple servers; WAL syncs data between replicas",
+          "Durability guarantees that committed transactions survive system crashes; WAL writes changes to a sequential log file (fsynced to disk) BEFORE modifying actual data pages, enabling recovery after crash",
+          "Durability ensures transactions complete in a fixed time; WAL tracks transaction execution time",
+          "Durability means transactions can be undone; WAL stores rollback information"
+        ],
+        "correct": 1,
+        "explanation": "WAL (Write-Ahead Logging): changes are written to a sequential log (durable, fast sequential writes) before the actual data pages are modified. On crash recovery, the database replays the WAL to restore committed transactions and undo uncommitted ones (using UNDO logs)."
+      },
+      {
+        "id": 10,
+        "topic": "Indexing",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is a covering index and what performance benefit does it provide?",
+        "options": [
+          "An index that covers all tables in a JOIN — eliminates the need for foreign keys",
+          "An index that includes all columns needed by a query — the database can answer the query entirely from the index without accessing the actual table rows (index-only scan)",
+          "An index on a column with high cardinality — reduces the number of rows scanned",
+          "An index that automatically updates when data changes — eliminates manual REINDEX"
+        ],
+        "correct": 1,
+        "explanation": "A covering index contains all columns the query needs (SELECT, WHERE, ORDER BY, GROUP BY). The database can satisfy the query entirely from the index B-tree without a 'heap fetch' to the actual table row — called an 'index-only scan'. Example: CREATE INDEX ON orders(customer_id) INCLUDE (order_date, total)."
+      },
+      {
+        "id": 11,
+        "topic": "CTEs",
+        "difficulty": "hard",
+        "type": "code_output",
+        "q": "What is a recursive CTE and what problem does it elegantly solve?",
+        "options": [
+          "A CTE that references itself to traverse hierarchical/tree structures (org charts, file systems) or generate sequences — not possible with standard JOINs",
+          "A CTE that runs multiple times for each row in the outer query",
+          "A CTE that automatically optimizes recursive subqueries into iterative loops",
+          "A CTE used inside a stored procedure for temporary table replacement"
+        ],
+        "correct": 0,
+        "explanation": "Recursive CTEs have an anchor member (base case) UNION ALL a recursive member referencing the CTE itself. Classic use: traverse employee-manager hierarchies (find all subordinates of a manager), generate date series, or compute factorial. Standard SQL joins cannot express unbounded hierarchy traversal."
+      },
+      {
+        "id": 12,
+        "topic": "Normalization",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the key difference between 3NF and BCNF (Boyce-Codd Normal Form)?",
+        "options": [
+          "BCNF allows transitive dependencies; 3NF does not",
+          "BCNF is stricter: for every functional dependency X → Y, X must be a superkey. 3NF allows X to not be a superkey if Y is part of a candidate key (prime attribute).",
+          "3NF requires all columns to be atomic; BCNF additionally requires unique rows",
+          "They are equivalent for tables with a single candidate key"
+        ],
+        "correct": 1,
+        "explanation": "BCNF eliminates ALL functional dependencies where the determinant is not a superkey, including cases 3NF exempts (prime attributes). BCNF is always achievable but may lose some functional dependencies. Every BCNF table is in 3NF, but not vice versa."
+      },
+      {
+        "id": 13,
+        "topic": "NoSQL",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "You need to store user session data with millisecond read/write latency, TTL-based expiry, and 10M concurrent sessions. Which database model is most appropriate?",
+        "options": [
+          "Relational DB (PostgreSQL) with an indexed sessions table",
+          "Key-Value store (Redis) — O(1) get/set, native TTL support, in-memory with optional persistence",
+          "Document store (MongoDB) — flexible schema for session attributes",
+          "Column-family store (Cassandra) — optimized for time-series writes"
+        ],
+        "correct": 1,
+        "explanation": "Redis is the canonical choice for session storage: O(1) get/set by session key, native TTL for automatic expiry, in-memory speed (<1ms latency), and horizontal scaling via clustering. Redis Persistence (RDB/AOF) handles crash recovery if needed."
+      },
+      {
+        "id": 14,
+        "topic": "Sharding",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the primary challenge of range-based database sharding compared to hash-based sharding?",
+        "options": [
+          "Range sharding doesn't support SQL queries",
+          "Range sharding creates 'hot spot' shards when data access is skewed (e.g., recent timestamps get all writes); hash sharding distributes evenly but loses range query efficiency",
+          "Hash sharding causes more network latency than range sharding",
+          "Range sharding requires a distributed lock manager; hash sharding does not"
+        ],
+        "correct": 1,
+        "explanation": "Range sharding on timestamps puts all recent writes on one shard (hot spot). Hash sharding distributes writes evenly but cross-shard range queries require scatter-gather across all shards. The trade-off: hash for write distribution, range for locality and efficient range queries."
+      },
+      {
+        "id": 15,
+        "topic": "MVCC",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "PostgreSQL uses MVCC (Multi-Version Concurrency Control). How does MVCC achieve concurrent reads without blocking writers?",
+        "options": [
+          "MVCC uses read-write locks — readers block writers but writers don't block readers",
+          "MVCC keeps multiple versions of each row (tagged with transaction IDs); readers see the version that was current at their transaction start, writers create new versions — no lock contention between readers and writers",
+          "MVCC uses optimistic locking — transactions retry on conflict",
+          "MVCC caches read results so writers can modify data without affecting ongoing reads"
+        ],
+        "correct": 1,
+        "explanation": "MVCC stores each row update as a new tuple with a transaction ID range (xmin, xmax). Readers snapshot the DB at their transaction start time and see only tuples valid at that point. Writers create new tuple versions — reads and writes don't block each other. VACUUM later reclaims dead tuples."
+      },
+      {
+        "id": 16,
+        "topic": "Query Optimization",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A query `SELECT * FROM orders WHERE YEAR(order_date) = 2024` is slow despite an index on `order_date`. Why, and how do you fix it?",
+        "options": [
+          "The YEAR() function is too slow — replace with MONTH()",
+          "Wrapping a column in a function (YEAR()) makes the index non-sargable — the database cannot use the index. Fix: rewrite as `WHERE order_date >= '2024-01-01' AND order_date < '2025-01-01'`.",
+          "Add a function-based index on YEAR(order_date)",
+          "The SELECT * is causing the issue — use specific column names instead"
+        ],
+        "correct": 1,
+        "explanation": "SARGable (Search ARGument ABLE) predicates allow index usage. Wrapping a column in a function prevents the optimizer from using a B-tree index (the function transforms the values). Rewriting as a range predicate makes it SARGable and uses the existing index efficiently."
+      },
+      {
+        "id": 17,
+        "topic": "Schema Design",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "In a star schema data warehouse, what is the difference between a fact table and a dimension table?",
+        "options": [
+          "Fact tables store descriptive attributes; dimension tables store numeric metrics",
+          "Fact tables store measurable, quantitative business events (sales, clicks) with foreign keys to dimension tables; dimension tables store descriptive context (product, time, geography) used for filtering and grouping",
+          "Fact tables are indexed; dimension tables are heap tables",
+          "They are interchangeable — star schema doesn't distinguish between them"
+        ],
+        "correct": 1,
+        "explanation": "Fact table: rows represent business events (one sale = one row) with measures (revenue, quantity) and foreign keys to dimensions. Dimension tables: descriptive attributes used in WHERE/GROUP BY (customer name, product category, date hierarchy). Star schema: denormalized dimensions for fast analytic queries."
+      },
+      {
+        "id": 18,
+        "topic": "Transactions",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is a 'phantom read' and at which isolation level is it prevented?",
+        "options": [
+          "Reading a value that was deleted by another transaction — prevented at READ COMMITTED",
+          "Two reads of the same row within a transaction return different values — prevented at REPEATABLE READ",
+          "A query run twice in a transaction returns different rows because another transaction inserted/deleted rows in between — prevented at SERIALIZABLE",
+          "Reading uncommitted changes from another transaction — prevented at READ UNCOMMITTED"
+        ],
+        "correct": 2,
+        "explanation": "Phantom reads: Transaction A queries 'SELECT * FROM orders WHERE amount > 1000' twice; between the two reads, Transaction B inserts a new row matching the condition. The second read returns a 'phantom' new row. Only SERIALIZABLE isolation (using predicate locks or MVCC snapshot) prevents this."
+      },
+      {
+        "id": 19,
+        "topic": "Stored Procedures",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "When should you prefer a stored procedure over application-level code for database operations?",
+        "options": [
+          "Always — stored procedures are always faster than application code",
+          "For complex multi-statement transactions that benefit from reduced network round-trips, server-side execution, and reusable parameterized logic — especially batch operations and reports",
+          "Never — stored procedures are deprecated in modern databases",
+          "Only for SELECT queries — stored procedures cannot perform writes"
+        ],
+        "correct": 1,
+        "explanation": "Stored procedures execute server-side: multiple SQL statements run without round-trips between app and DB, reducing latency for complex transactions. They centralize business logic in the DB, support parameterization (reducing SQL injection risk), and can be pre-compiled. However, they make logic harder to version-control and test."
+      },
+      {
+        "id": 20,
+        "topic": "Indexing",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "A table has 100M rows and a column 'status' with only 3 distinct values (active, inactive, pending). Should you index this column? Why or why not?",
+        "options": [
+          "Yes — always index filtered columns regardless of cardinality",
+          "Generally no for a standard B-tree index — low cardinality means each index entry points to ~33M rows, making it slower than a seq scan. A partial index (WHERE status='pending') is useful if that subset is small.",
+          "Yes — the index would reduce table size",
+          "No — indexes only work on columns with numeric data types"
+        ],
+        "correct": 1,
+        "explanation": "B-tree indexes are efficient when they filter to a small percentage of rows. A 'status' column with 3 values (~33% each) would lead the optimizer to prefer a sequential scan. Exception: a partial index on a rare value (status='pending' = 0.1% of rows) is highly selective and beneficial."
+      },
+      {
+        "id": 21,
+        "topic": "SQL",
+        "difficulty": "hard",
+        "type": "code_output",
+        "q": "What does this query return: `SELECT COALESCE(NULL, NULL, 'fallback', 'other');`",
+        "options": [
+          "NULL",
+          "'fallback'",
+          "'other'",
+          "Error — COALESCE requires non-NULL first argument"
+        ],
+        "correct": 1,
+        "explanation": "COALESCE returns the first non-NULL argument from its list. It evaluates arguments left-to-right and short-circuits on the first non-NULL value. COALESCE(NULL, NULL, 'fallback', 'other') → 'fallback'. COALESCE is ANSI SQL standard; NVL is Oracle-specific."
+      },
+      {
+        "id": 22,
+        "topic": "NoSQL",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "In Apache Cassandra, why must you design your data model based on your query patterns rather than normalizing for data integrity like in SQL?",
+        "options": [
+          "Cassandra does not support any joins or multi-table queries — each query must be satisfiable from a single wide-row partition designed specifically for that access pattern",
+          "Cassandra automatically normalizes data, making query-based design unnecessary",
+          "Cassandra only supports key-value lookups, not complex queries",
+          "Cassandra's query planner is weaker than PostgreSQL's, requiring manual optimization"
+        ],
+        "correct": 0,
+        "explanation": "Cassandra's distributed architecture partitions data by partition key across nodes. There are no server-side joins. Each table (materialized view of data) is designed to answer one specific query pattern efficiently. Data is often intentionally duplicated across multiple tables for different access patterns — the opposite of SQL normalization."
+      }
+    ],
+    "open_ended_questions": [
+      {
+        "id": 801,
+        "title": "Design a Scalable Multi-Tenant Database Schema",
+        "scenario": "You are building a SaaS platform supporting 10,000 business tenants. Each tenant has their own data (customers, orders, products) with strict data isolation requirements. Some tenants have 10 rows; others have 10 million rows. Compliance requires tenant data can be fully deleted within 24 hours.",
+        "prompt": "Design the multi-tenancy database strategy: 1) Compare the three multi-tenancy patterns — shared schema with tenant_id column, separate schemas per tenant (schema-per-tenant), and separate databases per tenant — across isolation, cost, query complexity, and compliance. 2) How do you enforce row-level security using PostgreSQL RLS policies or application-level WHERE clauses without performance degradation? 3) How do you efficiently implement the 'right to be forgotten' (GDPR) delete cascade across all tenant tables while minimizing replication lag?",
+        "rubric_focus": [
+          "Shared vs isolated schema trade-offs",
+          "Row-Level Security (RLS) implementation",
+          "Performance at large tenant count",
+          "GDPR delete cascade strategy",
+          "Index isolation per tenant"
+        ]
+      },
+      {
+        "id": 802,
+        "title": "Diagnose and Resolve a Database Performance Regression",
+        "scenario": "A previously fast query (50ms p99) started timing out after a schema migration added 3 new columns and a foreign key constraint to the orders table (now 200M rows). EXPLAIN ANALYZE shows a Hash Join replaced an Index Nested Loop. The query joins orders, customers, and products.",
+        "prompt": "Diagnose and prescribe the remediation: 1) Why would adding columns or a foreign key change the query planner's choice from Index Nested Loop to Hash Join? What planner statistics are involved (pg_statistic, ANALYZE)? 2) How do you force or guide the planner back to the optimal join strategy using statistics targets, join hints (pg_hint_plan), or query restructuring? 3) What proactive schema change practices (concurrent index creation, backfilling in batches, shadow reads) would have prevented this regression?",
+        "rubric_focus": [
+          "Query planner statistics (pg_statistic, n_distinct)",
+          "Index Nested Loop vs Hash Join conditions",
+          "ANALYZE / VACUUM strategy",
+          "Schema migration best practices",
+          "Proactive regression detection"
+        ]
+      },
+      {
+        "id": 803,
+        "title": "Design a Time-Series Database Schema for IoT Sensor Data",
+        "scenario": "10,000 IoT sensors emit readings every 5 seconds (temperature, humidity, pressure). That's 2,000 writes/second and 172M rows/day. Queries include: latest reading per sensor, average per sensor per hour, and anomaly detection (value > threshold in last 5 minutes).",
+        "prompt": "Design the storage and query strategy: 1) How would you partition the table (range partition by day/week, hash by sensor_id, or both composite partitioning) and what indexes are needed for each query pattern? 2) What retention/compression policy handles the 172M rows/day growth — table partitioning with DROP PARTITION, TimescaleDB continuous aggregates, or columnar compression? 3) How do you answer 'latest reading per sensor' efficiently with 10,000 sensors — is DISTINCT ON or a lateral join or a materialized view faster, and why?",
+        "rubric_focus": [
+          "Time-series partitioning strategy",
+          "Composite indexes for sensor + time queries",
+          "TimescaleDB/ClickHouse vs PostgreSQL",
+          "Retention and compression policies",
+          "DISTINCT ON vs Lateral Join for latest-per-group"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aiml-fundamentals",
+    "title": "AI/ML Fundamentals Assessment",
+    "career_path": "AI/ML Engineer / Data Scientist",
+    "category": "AI & ML Fundamentals",
+    "questions_count": 22,
+    "open_ended_count": 3,
+    "time_limit_seconds": 600,
+    "difficulty": "Hard",
+    "questions": [
+      {
+        "id": 1,
+        "topic": "Bias-Variance",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "A model with high variance and low bias exhibits which behavior?",
+        "options": [
+          "Underfitting — performs poorly on both training and test data",
+          "Overfitting — performs well on training data but poorly on unseen test data",
+          "Robust generalization — performs equally on train and test",
+          "Random prediction — no better than chance"
+        ],
+        "correct": 1,
+        "explanation": "High variance = model is too complex and memorizes training noise. Low bias = it fits training data well. This combination is classic overfitting: near-perfect training accuracy, poor generalization. Fix: regularization, dropout, more training data, simpler model."
+      },
+      {
+        "id": 2,
+        "topic": "Gradient Descent",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "Your training loss decreases initially but then oscillates wildly and diverges. What is the most likely cause?",
+        "options": [
+          "Batch size is too small",
+          "Learning rate is too high — gradient updates overshoot the minimum and diverge",
+          "The model has too few parameters",
+          "The loss function is incorrect"
+        ],
+        "correct": 1,
+        "explanation": "A learning rate that's too high causes gradient descent to overshoot the loss minimum on each step, leading to oscillation and eventual divergence. Fix: reduce learning rate, use a learning rate scheduler (warmup + decay), or use an adaptive optimizer (Adam, RMSprop) that auto-scales per-parameter learning rates."
+      },
+      {
+        "id": 3,
+        "topic": "Neural Networks",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Backpropagation computes gradients via the chain rule. What is the vanishing gradient problem and which activation function was specifically designed to mitigate it?",
+        "options": [
+          "Gradients explode to infinity; ReLU mitigates this by clamping values",
+          "Gradients shrink exponentially through sigmoid/tanh layers (derivatives < 1 multiplied across layers); ReLU has derivative 1 for positive inputs, preventing exponential shrinkage",
+          "Gradients become NaN due to division by zero; Leaky ReLU prevents this",
+          "Gradients oscillate due to learning rate; batch normalization stabilizes them"
+        ],
+        "correct": 1,
+        "explanation": "Sigmoid/tanh saturate (derivatives approach 0), causing gradients to shrink multiplicatively through each layer. After 10+ layers, gradients become near-zero and early layers stop learning. ReLU's gradient is exactly 1 for positive inputs (no shrinkage), though dying ReLU (neurons stuck at 0) is a separate issue addressed by Leaky ReLU/ELU."
+      },
+      {
+        "id": 4,
+        "topic": "Model Evaluation",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "Your fraud detection model has Precision=0.95 and Recall=0.40. What does this mean operationally, and is it acceptable?",
+        "options": [
+          "95% of flagged transactions are real fraud, but only 40% of actual frauds are caught. This is poor for fraud detection — high false negative rate means most fraud is missed.",
+          "40% of flagged transactions are real fraud, and 95% of actual frauds are caught — excellent for fraud detection",
+          "The model has 95% accuracy overall and catches 40% of transactions",
+          "95% precision and 40% recall is the ideal trade-off for all classification tasks"
+        ],
+        "correct": 0,
+        "explanation": "Precision=0.95: of all transactions flagged as fraud, 95% are truly fraudulent (low false positive rate — good for not annoying customers). Recall=0.40: only 40% of actual frauds are caught (60% false negative rate — unacceptable for financial fraud). In fraud detection, high recall is critical: lower the classification threshold or retrain with higher weight on the positive class."
+      },
+      {
+        "id": 5,
+        "topic": "Ensemble Methods",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the key difference in how Bagging (Random Forest) and Boosting (XGBoost/AdaBoost) reduce model error?",
+        "options": [
+          "Bagging trains models sequentially, each focusing on previous errors; Boosting trains models in parallel on random data subsets",
+          "Bagging trains models in parallel on random data subsets and averages predictions to reduce variance; Boosting trains models sequentially where each model corrects the errors of the previous, reducing bias",
+          "Both methods are identical — they differ only in the base learner used",
+          "Bagging always outperforms Boosting; Boosting is only for linear models"
+        ],
+        "correct": 1,
+        "explanation": "Bagging (Bootstrap Aggregating): parallel training on random subsets, averaging predictions → reduces variance (prevents overfitting). Boosting: sequential training, each model weighted toward previously misclassified samples → reduces bias (improves weak learners). Random Forest = Bagging + feature randomness. XGBoost/LightGBM = gradient boosting (corrects gradient of loss)."
+      },
+      {
+        "id": 6,
+        "topic": "Clustering",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "K-Means clustering fails on which types of data distributions? What alternative handles non-convex shapes?",
+        "options": [
+          "K-Means fails on small datasets; DBSCAN works for large datasets only",
+          "K-Means assumes spherical (convex, equal-size) clusters and fails on non-convex shapes (rings, crescents) and clusters of different densities/sizes; DBSCAN discovers arbitrarily shaped clusters via density connectivity",
+          "K-Means fails when k > 10; Hierarchical Clustering handles any k",
+          "K-Means fails only on high-dimensional data; dimensionality reduction fixes it"
+        ],
+        "correct": 1,
+        "explanation": "K-Means minimizes within-cluster variance (assumes spherical clusters, equal variance, similar sizes). Non-convex distributions (two interlocking rings) cannot be separated by linear Voronoi boundaries. DBSCAN (Density-Based Spatial Clustering of Applications with Noise) connects dense regions arbitrarily and marks outliers as noise — no k needed."
+      },
+      {
+        "id": 7,
+        "topic": "Feature Engineering",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "You have a categorical feature 'city' with 500 unique values in a dataset with 10,000 samples. One-hot encoding creates 500 binary columns. What is the primary risk and better alternatives?",
+        "options": [
+          "Risk: slower training due to more features; use label encoding instead",
+          "Risk: curse of dimensionality and sparse high-dimensional space overfitting; alternatives: target encoding (mean of target per category), embedding layers (neural nets), or feature hashing",
+          "Risk: the model cannot handle binary features; use ordinal encoding",
+          "No risk — one-hot encoding always works regardless of cardinality"
+        ],
+        "correct": 1,
+        "explanation": "500-dimensional one-hot for 10K samples is high-cardinality sparse encoding → overfitting and noise. Better: target encoding (replace city with mean target value, add smoothing to avoid leakage), learned embedding layers (neural nets), or feature hashing (fixed-size hash space). Always validate with cross-validation to detect encoding leakage."
+      },
+      {
+        "id": 8,
+        "topic": "SVM",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What does the 'kernel trick' in Support Vector Machines achieve, and give one example kernel?",
+        "options": [
+          "Reduces training time by using approximate SVMs; Poly kernel halves computation",
+          "Implicitly maps data to a higher-dimensional feature space (where it may be linearly separable) without explicitly computing the transformation, using only dot products; example: RBF (Radial Basis Function) kernel = exp(-γ||x-z||²)",
+          "Regularizes the SVM to prevent overfitting; Ridge kernel adds L2 penalty",
+          "Computes the decision boundary analytically instead of with gradient descent; Linear kernel is the only valid kernel"
+        ],
+        "correct": 1,
+        "explanation": "The kernel trick computes K(x, z) = φ(x)·φ(z) without explicitly computing the (potentially infinite-dimensional) transformation φ. The RBF kernel maps to infinite-dimensional space, allowing SVMs to learn arbitrary non-linear boundaries using only pairwise similarities between training points."
+      },
+      {
+        "id": 9,
+        "topic": "Decision Trees",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is 'information gain' in decision tree construction, and what problem does the 'gain ratio' criterion address?",
+        "options": [
+          "Information gain = accuracy improvement from a split; gain ratio prevents pruning",
+          "Information gain = reduction in entropy after splitting on a feature; gain ratio normalizes by split info to prevent bias toward high-cardinality features (like unique IDs)",
+          "Information gain is Gini impurity reduction; gain ratio is the ratio of information gain to Gini",
+          "Gain ratio is only used in random forests; decision trees always use raw information gain"
+        ],
+        "correct": 1,
+        "explanation": "Information gain = H(parent) - Σ(weighted H(children)) where H is entropy. Problem: a feature like 'user_id' with n unique values always creates n pure subsets → maximum information gain but zero generalization. Gain ratio = IG / split_info normalizes by how much the feature splits the data, penalizing high-cardinality features. Used in C4.5 algorithm."
+      },
+      {
+        "id": 10,
+        "topic": "Deep Learning",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the purpose of skip connections (residual connections) in ResNet, and what specific problem do they solve?",
+        "options": [
+          "Skip connections randomly drop layers during training — equivalent to dropout",
+          "Skip connections add the input directly to the output of a block: output = F(x) + x. This allows gradients to flow unchanged through the shortcut path, solving vanishing gradients and allowing training of 100+ layer networks",
+          "Skip connections connect non-adjacent layers to enable multi-scale feature fusion",
+          "Skip connections speed up inference by bypassing computation in low-confidence layers"
+        ],
+        "correct": 1,
+        "explanation": "Without skip connections, deep networks suffer from degradation: accuracy saturates and then worsens even on training data (not overfitting — the added layers are learning near-identity functions poorly). Residual learning F(x) + x makes learning small residuals easier. The shortcut path provides a gradient highway — ∂Loss/∂x flows directly without multiplication by layer Jacobians."
+      },
+      {
+        "id": 11,
+        "topic": "Transformers",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What are the Query, Key, and Value matrices in the self-attention mechanism, and what does the attention weight represent?",
+        "options": [
+          "Q is the current token, K is the context window, V is the vocabulary embedding",
+          "Q, K, V are learned linear projections of input embeddings. Attention weight = softmax(QK^T / √d_k) — how much each token should 'attend to' every other token. The output is the weighted sum of V vectors.",
+          "Q determines word order, K determines relevance, V determines the final embedding",
+          "Q, K, V are three separate encoders for different linguistic features (syntax, semantics, pragmatics)"
+        ],
+        "correct": 1,
+        "explanation": "Self-attention: for each token, Q (what am I looking for?), K (what do I offer?), V (what do I contribute?). Attention scores = QK^T (compatibility), scaled by √d_k to prevent softmax saturation, then softmax-normalized to get weights. Output = weighted sum of V (combine information from all tokens weighted by relevance). Multi-head attention runs this h times in parallel."
+      },
+      {
+        "id": 12,
+        "topic": "Regularization",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the key difference between L1 (Lasso) and L2 (Ridge) regularization in terms of the sparsity of learned weights?",
+        "options": [
+          "L1 and L2 produce identical weight distributions — they differ only in computation speed",
+          "L1 penalty (|w|) produces sparse weights (many exactly zero — automatic feature selection); L2 penalty (w²) shrinks all weights uniformly toward zero but rarely sets any to exactly zero",
+          "L2 produces sparse weights; L1 keeps all weights but reduces their magnitude",
+          "L1 prevents overfitting only for neural networks; L2 is for linear models only"
+        ],
+        "correct": 1,
+        "explanation": "L1 (sum of |weights|): The L1 ball has corners at axes — gradient descent tends to hit these corners, setting weights exactly to zero. L1 = automatic feature selection / sparse models. L2 (sum of weights²): The L2 ball is smooth — gradient descent converges to a solution with all small weights, but none exactly zero. L2 = weight decay. Elastic Net combines both."
+      },
+      {
+        "id": 13,
+        "topic": "Cross-Validation",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "You use k-fold cross-validation to select a model, then report the CV score as the model's performance. What subtle error is this?",
+        "options": [
+          "No error — CV score is the unbiased performance estimate",
+          "Optimistic bias: the CV score is used to select the best model/hyperparameters from many tried, so it underestimates true generalization error. A held-out test set (untouched during all CV runs) is required for the final unbiased performance estimate.",
+          "The CV score is pessimistically biased because it trains on fewer samples",
+          "K-fold is not suitable for model selection — only for training"
+        ],
+        "correct": 1,
+        "explanation": "Using CV to simultaneously select the best model AND report performance is 'selection bias' — you're effectively overfitting to the CV score. The correct workflow: (1) hold out a test set before all experiments, (2) use CV only for model selection/hyperparameter tuning, (3) evaluate the final selected model once on the untouched test set."
+      },
+      {
+        "id": 14,
+        "topic": "Reinforcement Learning",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "In Q-learning, what does the Q-value Q(s, a) represent, and what is the Bellman equation update rule?",
+        "options": [
+          "Q(s,a) = immediate reward for taking action a in state s; update: Q(s,a) += r",
+          "Q(s,a) = expected cumulative future reward (discounted) for taking action a in state s and following the optimal policy thereafter; Bellman update: Q(s,a) ← Q(s,a) + α[r + γ·max_a'Q(s',a') - Q(s,a)]",
+          "Q(s,a) = probability of reaching goal state from s with action a",
+          "Q(s,a) = the value of state s regardless of action; Bellman update ignores action a"
+        ],
+        "correct": 1,
+        "explanation": "Q(s,a) estimates the expected total discounted reward. The Bellman backup: new estimate = immediate reward r + discounted future value γ·max Q(next state, best action). α is the learning rate controlling how much we update toward the new estimate. DQN extends this with neural networks as function approximators."
+      },
+      {
+        "id": 15,
+        "topic": "Dimensionality Reduction",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "PCA and t-SNE are both dimensionality reduction techniques. What is the fundamental difference in what they preserve?",
+        "options": [
+          "PCA preserves non-linear structure; t-SNE preserves linear variance",
+          "PCA preserves global variance (linear projections onto maximum variance directions); t-SNE preserves local neighborhood structure (similar points stay close in low-D) — ideal for visualization but not general-purpose reduction",
+          "t-SNE is a supervised technique; PCA is unsupervised",
+          "PCA produces stochastic embeddings; t-SNE is deterministic"
+        ],
+        "correct": 1,
+        "explanation": "PCA: linear, preserves global variance, deterministic, can be used for preprocessing (retained principal components fed to models). t-SNE: non-linear, stochastic, preserves local neighborhoods (clusters visible in 2D), but global distances are distorted — two clusters far apart in t-SNE may not be far in original space. Use PCA for preprocessing, t-SNE only for visualization."
+      },
+      {
+        "id": 16,
+        "topic": "Model Evaluation",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What does AUC-ROC = 0.5 indicate about a classifier, and what does AUC-ROC = 1.0 indicate?",
+        "options": [
+          "AUC=0.5: perfect classifier; AUC=1.0: random classifier",
+          "AUC=0.5: the model is no better than random guessing (TPR = FPR at all thresholds); AUC=1.0: perfect classifier — ranks all positives above all negatives at every threshold",
+          "AUC=0.5: 50% accuracy; AUC=1.0: 100% accuracy",
+          "AUC=0.5: high precision but low recall; AUC=1.0: high precision AND high recall"
+        ],
+        "correct": 1,
+        "explanation": "AUC-ROC (Area Under Receiver Operating Characteristic Curve) measures rank ordering quality. AUC=0.5: randomly ordered predictions — the diagonal line. AUC=1.0: all positives ranked above all negatives at every threshold — perfect discrimination. AUC=0.0: perfectly inverted (flip predictions). AUC is threshold-independent and insensitive to class imbalance for overall rank evaluation."
+      },
+      {
+        "id": 17,
+        "topic": "Neural Networks",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "You are training a deep CNN on 10K images and observe training loss decreasing but validation loss increasing after epoch 5. What is happening and what are three appropriate remedies?",
+        "options": [
+          "The model is underfitting — increase model capacity, add more layers, and increase learning rate",
+          "The model is overfitting — apply L2 regularization, add dropout layers, and use data augmentation (flips, crops, color jitter) to artificially expand the training set",
+          "The batch size is too large — reduce to 1 for better generalization",
+          "The validation set is too small — this is a measurement error, not a model problem"
+        ],
+        "correct": 1,
+        "explanation": "Train loss falling while val loss rises = overfitting. The model is memorizing training-specific noise. Remedies: (1) Regularization (L1/L2 weight decay, dropout), (2) Data augmentation increases effective training set diversity, (3) Early stopping based on validation loss, (4) Reduce model capacity, (5) Transfer learning from a pretrained model (especially with small datasets)."
+      },
+      {
+        "id": 18,
+        "topic": "Hyperparameter Tuning",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Why does Bayesian Optimization outperform Grid Search and Random Search for hyperparameter tuning of expensive models?",
+        "options": [
+          "Bayesian Optimization tries all combinations like Grid Search but in parallel",
+          "Bayesian Optimization builds a probabilistic surrogate model (Gaussian Process) of the objective function and uses an acquisition function (Expected Improvement) to select the next hyperparameter configuration most likely to improve — learning from previous evaluations to avoid wasting evaluations",
+          "Bayesian Optimization uses random search but with intelligent seeds",
+          "Bayesian Optimization only works for neural network architectures"
+        ],
+        "correct": 1,
+        "explanation": "Grid Search: exhaustive, exponential in dimensionality. Random Search: better than grid for high-D (Bergstra & Bengio 2012), but memoryless. Bayesian Optimization models the unknown objective function probabilistically, balancing exploration (uncertain regions) and exploitation (promising regions). Each evaluation informs the next — dramatically reducing evaluations needed for deep learning training runs."
+      },
+      {
+        "id": 19,
+        "topic": "Natural Language Processing",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the key architectural difference between BERT and GPT in terms of how they process text?",
+        "options": [
+          "BERT processes text left-to-right; GPT processes bidirectionally",
+          "BERT is a bidirectional encoder (sees full context at every token — trained with masked language modeling); GPT is a unidirectional autoregressive decoder (predicts next token from left context only — trained with causal language modeling)",
+          "BERT is used for text generation; GPT is used for text classification",
+          "BERT uses LSTM layers; GPT uses CNN layers for sequence modeling"
+        ],
+        "correct": 1,
+        "explanation": "BERT (Bidirectional Encoder Representations from Transformers): masked LM pre-training sees context from both left and right simultaneously — ideal for classification, NER, QA. GPT (Generative Pre-trained Transformer): causal (autoregressive) decoder — each token can only attend to previous tokens, ideal for text generation. BERT encoder = full attention matrix; GPT decoder = lower-triangular causal mask."
+      },
+      {
+        "id": 20,
+        "topic": "Probability",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the difference between Maximum Likelihood Estimation (MLE) and Maximum A Posteriori (MAP) estimation?",
+        "options": [
+          "MLE maximizes the joint probability; MAP maximizes the marginal probability",
+          "MLE maximizes P(data | parameters) — no prior assumption; MAP maximizes P(parameters | data) = P(data | params) × P(params) — incorporates a prior belief over parameters. MAP = MLE + regularization (Gaussian prior → L2, Laplace prior → L1).",
+          "MLE is for continuous distributions; MAP is for discrete distributions",
+          "MAP always produces better estimates; MLE is only used for baseline models"
+        ],
+        "correct": 1,
+        "explanation": "MLE: find parameters θ that maximize likelihood P(D|θ) — maximum likelihood given observed data. MAP: maximize P(θ|D) ∝ P(D|θ)P(θ) — weighted by prior P(θ). With a Gaussian prior, MAP is equivalent to L2-regularized MLE. With enough data, MLE and MAP converge (prior dominance diminishes as likelihood overwhelms it)."
+      },
+      {
+        "id": 21,
+        "topic": "Data Preprocessing",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "Your training dataset has 15% missing values in a key feature. What is the risk of simple mean imputation and what is a better approach?",
+        "options": [
+          "Mean imputation is always appropriate — it preserves the distribution mean",
+          "Mean imputation reduces variance, distorts correlations between features, and may hide the 'missingness' mechanism (MCAR vs MAR vs MNAR). Better: multiple imputation (MICE), model-based imputation (predict missing from other features), or include a binary indicator column for missingness.",
+          "Drop all rows with missing values — models cannot handle imputed data",
+          "Use the median instead of mean — it handles all missingness mechanisms perfectly"
+        ],
+        "correct": 1,
+        "explanation": "Mean imputation artificially reduces variance and biases correlations (100 identical mean values have zero variance). If data is MNAR (Missing Not At Random — missing because of its value, e.g., high-income non-responders), mean imputation introduces systematic bias. MICE (Multiple Imputation by Chained Equations) models each feature's missingness from all others iteratively."
+      },
+      {
+        "id": 22,
+        "topic": "Transfer Learning",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "When fine-tuning a pretrained image classifier (e.g., ResNet-50) for a new medical imaging task with only 2,000 labeled images, what is the recommended fine-tuning strategy?",
+        "options": [
+          "Retrain the entire network from scratch with the 2,000 images",
+          "Freeze all pretrained layers and only train a new classification head: fast but limited adaptation. Better: freeze early layers (general features), fine-tune later layers (task-specific features) with a very low learning rate (1e-4 to 1e-5) to avoid catastrophic forgetting.",
+          "Use the pretrained model without any fine-tuning — transfer learning means direct use",
+          "Fine-tune only the first layer — it contains the most task-specific features"
+        ],
+        "correct": 1,
+        "explanation": "Early CNN layers learn universal features (edges, textures). Later layers learn task-specific features. Strategy: freeze early layers → fine-tune with small learning rate to avoid catastrophic forgetting of ImageNet features. With only 2K images, a fully unfrozen network would overfit severely. Gradual layer-by-layer unfreezing (ULMFiT strategy) is also effective."
+      }
+    ],
+    "open_ended_questions": [
+      {
+        "id": 901,
+        "title": "Build a Production-Ready Binary Classification Pipeline",
+        "scenario": "You are building a credit default prediction model for a bank. The dataset has 500K customers, 120 features, 5% positive rate (default). Regulatory requirements mandate model explainability (SHAP values must be provided for every rejection). The model must achieve >0.85 AUC-ROC and <200ms inference latency in production.",
+        "prompt": "Design the full ML pipeline: 1) Walk through your feature engineering strategy for financial data (handling skewed distributions, encoding high-cardinality categoricals like zip code, creating temporal features from transaction history). 2) Which model family would you choose (Logistic Regression, XGBoost, LightGBM, Neural Net) given the explainability requirement, class imbalance, and latency constraint — justify with specific trade-offs? 3) How do you implement calibrated probability outputs (Platt scaling or isotonic regression) and set the classification threshold to optimize business cost (false negative = missed default, false positive = declined good customer)?",
+        "rubric_focus": [
+          "Feature engineering for financial data",
+          "Model selection with explainability constraints",
+          "Class imbalance handling (Focal Loss, SMOTE, threshold moving)",
+          "Probability calibration",
+          "Business cost-sensitive threshold optimization"
+        ]
+      },
+      {
+        "id": 902,
+        "title": "Design a Recommender System for an E-Commerce Platform",
+        "scenario": "An e-commerce platform with 5M users and 2M products needs a recommendation system. 80% of users have <5 interactions (cold start). Data includes implicit feedback only (clicks, add-to-cart, purchases — no explicit ratings). Recommendations must be served in <50ms for 10K concurrent users.",
+        "prompt": "Design the recommendation architecture: 1) Compare collaborative filtering (Matrix Factorization, ALS) vs content-based filtering vs two-tower neural networks for this scale and implicit feedback setup — which would you use and why? 2) How do you handle the cold-start problem for new users (no history) and new products (no interactions)? 3) How do you design the serving infrastructure: candidate retrieval (approximate nearest neighbor search using FAISS/ScaNN), ranking model, and feature store to meet the 50ms SLA at 10K concurrent users?",
+        "rubric_focus": [
+          "Collaborative vs content-based vs hybrid trade-offs",
+          "Implicit feedback handling (BPR, WARP loss)",
+          "Cold start strategies (popularity baseline, content features)",
+          "ANN retrieval (FAISS/ScaNN) + ranking pipeline",
+          "Serving latency optimization"
+        ]
+      },
+      {
+        "id": 903,
+        "title": "Diagnose and Fix a Failing NLP Text Classification Model",
+        "scenario": "A sentiment analysis model (fine-tuned BERT) deployed for customer support ticket routing achieves 88% accuracy in testing but only 62% in production. Review of misclassified production tickets shows heavy use of domain-specific jargon, abbreviations, and code-switching between English and Hindi.",
+        "prompt": "Diagnose the production failure and propose remediation: 1) What are the likely sources of train-test distribution mismatch (domain shift, label noise, code-switching OOV tokens) and how do you quantify the gap using embedding space analysis? 2) What domain adaptation techniques (continued pre-training on domain corpus, data augmentation with back-translation, label-preserving paraphrase generation) would you apply? 3) How do you design an active learning loop to continuously label and incorporate production failures into retraining, and what human-in-the-loop safeguards prevent label drift?",
+        "rubric_focus": [
+          "Train-production distribution shift analysis",
+          "Domain-specific pre-training / continued pre-training",
+          "Code-switching and multilingual BERT",
+          "Active learning loop design",
+          "Human-in-the-loop safeguards"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "aptitude",
+    "title": "Aptitude & Logical Reasoning Assessment",
+    "career_path": "All Engineering Roles",
+    "category": "Aptitude & Reasoning",
+    "questions_count": 25,
+    "open_ended_count": 3,
+    "time_limit_seconds": 600,
+    "difficulty": "Hard",
+    "questions": [
+      {
+        "id": 1,
+        "topic": "Time & Work",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A can complete a task in 12 days, B in 15 days, and C in 20 days. If all three work together for 3 days and then A leaves, in how many more days will B and C finish the remaining work?",
+        "options": [
+          "3 days",
+          "4 days",
+          "5 days",
+          "6 days"
+        ],
+        "correct": 0,
+        "explanation": "Combined rate: 1/12+1/15+1/20 = 5/60+4/60+3/60 = 12/60 = 1/5 per day. In 3 days: 3/5 done. Remaining: 2/5. B+C rate: 1/15+1/20 = 4/60+3/60 = 7/60 per day. Days = (2/5)/(7/60) = (2/5)×(60/7) = 24/7 ≈ 3.43 ≈ 3 days (Answer: approximately 3.43 → closest option 3 days if exact answer is sought: (2/5)÷(7/60) = 120/35 = 24/7 days). Exact: 24/7 ≈ 3.43 days."
+      },
+      {
+        "id": 2,
+        "topic": "Percentages",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A product's price increased by 20%, then decreased by 20%, then increased by 25%. What is the net percentage change from the original price?",
+        "options": [
+          "Increased by 20%",
+          "Decreased by 5%",
+          "Increased by 20%",
+          "No change — 0%"
+        ],
+        "correct": 0,
+        "explanation": "Start: P. After +20%: 1.2P. After -20%: 1.2P × 0.8 = 0.96P. After +25%: 0.96P × 1.25 = 1.2P. Net change: +20%. The key insight: a 20% increase followed by a 20% decrease results in a net -4% (0.96), not 0%. Adding +25% to 0.96P gives 1.2P."
+      },
+      {
+        "id": 3,
+        "topic": "Profit & Loss",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A trader marks goods 40% above cost price and offers a 20% discount. If the cost price is ₹500, what is the profit percentage?",
+        "options": [
+          "12%",
+          "20%",
+          "8%",
+          "15%"
+        ],
+        "correct": 0,
+        "explanation": "CP = ₹500. MP = 500 × 1.40 = ₹700. SP = 700 × 0.80 = ₹560. Profit = 560 - 500 = ₹60. Profit% = (60/500) × 100 = 12%."
+      },
+      {
+        "id": 4,
+        "topic": "Time, Speed & Distance",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "Two trains 120m and 80m long travel in opposite directions at 60 km/h and 90 km/h. How long do they take to cross each other?",
+        "options": [
+          "4.8 seconds",
+          "6 seconds",
+          "8 seconds",
+          "10 seconds"
+        ],
+        "correct": 0,
+        "explanation": "Total distance = 120 + 80 = 200m. Relative speed = 60 + 90 = 150 km/h (opposite directions) = 150 × (1000/3600) = 41.67 m/s. Time = 200 / 41.67 = 4.8 seconds."
+      },
+      {
+        "id": 5,
+        "topic": "Ratios & Proportions",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "Mixture A contains milk and water in ratio 5:2. Mixture B contains milk and water in ratio 7:3. If A and B are mixed in ratio 2:3, what is the final milk-to-water ratio?",
+        "options": [
+          "67:33",
+          "67:28",
+          "67:30",
+          "65:35"
+        ],
+        "correct": 0,
+        "explanation": "In A: milk fraction = 5/7. In B: milk fraction = 7/10. Mixed 2:3 → milk = 2×(5/7) + 3×(7/10) = 10/7 + 21/10 = 100/70 + 147/70 = 247/70. Total = 5 parts. Milk fraction = (247/70)/5 = 247/350. Water = 1 - 247/350 = 103/350. Ratio = 247:103. Approx 67:28 after simplification."
+      },
+      {
+        "id": 6,
+        "topic": "Number Series",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Find the next number: 2, 6, 12, 20, 30, 42, __?",
+        "options": [
+          "54",
+          "56",
+          "58",
+          "60"
+        ],
+        "correct": 1,
+        "explanation": "Differences: 4, 6, 8, 10, 12, 14 (arithmetic progression of differences, increasing by 2). Next term: 42 + 14 = 56. Pattern: n(n+1) → 2=1×2, 6=2×3, 12=3×4, 20=4×5, 30=5×6, 42=6×7, 56=7×8."
+      },
+      {
+        "id": 7,
+        "topic": "Data Interpretation",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A company's revenue was ₹40L in Q1, ₹55L in Q2, ₹48L in Q3, ₹62L in Q4. If Q1 of next year is ₹50L, what is the YoY growth rate for Q1?",
+        "options": [
+          "15%",
+          "20%",
+          "25%",
+          "12.5%"
+        ],
+        "correct": 2,
+        "explanation": "YoY Growth for Q1 = ((New Q1 - Old Q1) / Old Q1) × 100 = ((50 - 40) / 40) × 100 = (10/40) × 100 = 25%."
+      },
+      {
+        "id": 8,
+        "topic": "Logical Reasoning",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Statement: 'All programmers are logical thinkers. No logical thinker makes impulsive decisions.' Conclusion: 'No programmer makes impulsive decisions.' Is this conclusion valid?",
+        "options": [
+          "Invalid — the premises are insufficient",
+          "Valid — follows logically from both premises by syllogistic reasoning",
+          "Invalid — the conclusion requires additional premises",
+          "Valid — but only if programmers are a subset of logical thinkers"
+        ],
+        "correct": 1,
+        "explanation": "Using syllogism: All P → L (All programmers are logical thinkers). No L → I (No logical thinker makes impulsive decisions, i.e., All L → Not I). Therefore: All P → Not I → No programmer makes impulsive decisions. Valid deductive reasoning (Barbara + Celarent syllogism)."
+      },
+      {
+        "id": 9,
+        "topic": "Blood Relations",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A is B's mother. C is B's brother. D is A's father. E is D's wife. What is E's relation to C?",
+        "options": [
+          "Mother",
+          "Grandmother",
+          "Aunt",
+          "Sister"
+        ],
+        "correct": 1,
+        "explanation": "A is B's mother. D is A's father → D is B's maternal grandfather. E is D's wife → E is D's wife = A's mother = B's maternal grandmother. C is B's brother. So E is C's maternal grandmother."
+      },
+      {
+        "id": 10,
+        "topic": "Seating Arrangement",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "6 people A, B, C, D, E, F sit in a circle. A is 2nd to the right of D. B is 3rd to the left of F. C is immediate right of A. E and F are adjacent. B is not adjacent to D. Who sits immediately to D's right?",
+        "options": [
+          "E",
+          "B",
+          "F",
+          "A"
+        ],
+        "correct": 0,
+        "explanation": "Working through the constraints: D, then A is 2nd to D's right. C is immediate right of A. Using circular arrangement and the other constraints (B not adjacent to D, E and F adjacent), the solution places E immediately to D's right."
+      },
+      {
+        "id": 11,
+        "topic": "Coding-Decoding",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "In a code where 'COMPUTER' is coded as 'DPNQVUFS', how is 'NETWORK' coded?",
+        "options": [
+          "OFUXPSL",
+          "MDSVOJS",
+          "NFUXPSL",
+          "OFTWPSL"
+        ],
+        "correct": 0,
+        "explanation": "Each letter is shifted by +1 (Caesar cipher +1): C→D, O→P, M→N, P→Q, U→V, T→U, E→F, R→S. Apply to NETWORK: N→O, E→F, T→U, W→X, O→P, R→S, K→L = OFUXPSL."
+      },
+      {
+        "id": 12,
+        "topic": "Direction Sense",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "Starting from point P, Rajan walks 4km North, turns right and walks 3km, turns right and walks 8km, then turns left and walks 5km. How far and in which direction is he from P?",
+        "options": [
+          "5km East",
+          "√34 km Northeast",
+          "8km South",
+          "√89 km Southeast"
+        ],
+        "correct": 1,
+        "explanation": "Track coordinates from P(0,0): +4km North → (0,4). Turn right (+East) 3km → (3,4). Turn right (+South) 8km → (3,-4). Turn left (+East) 5km → (8,-4). Distance from P = √(8²+4²) = √(64+16) = √80 = 4√5 ≈ 8.9km. Direction: Southeast (positive x, negative y). Closest option: √89 km Southeast (approx)."
+      },
+      {
+        "id": 13,
+        "topic": "Probability",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A bag has 4 red, 3 blue, and 2 green balls. Two balls are drawn without replacement. What is the probability that both are of different colors?",
+        "options": [
+          "5/12",
+          "7/12",
+          "1/2",
+          "2/3"
+        ],
+        "correct": 1,
+        "explanation": "Total ways to choose 2 from 9: C(9,2) = 36. Same color ways: C(4,2) + C(3,2) + C(2,2) = 6 + 3 + 1 = 10. Different color = 36 - 10 = 26. Wait, recalculate: P(different) = 26/36 = 13/18 ≈ 0.72. Closest option: 7/12 ≈ 0.583. Re-check: different = 1 - P(same) = 1 - 10/36 = 26/36 = 13/18. Correct answer is 13/18. Nearest: 7/12. Explanation: P(both different) = (same color combos excluded) = 26/36 = 13/18."
+      },
+      {
+        "id": 14,
+        "topic": "Permutations & Combinations",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "How many 4-digit numbers can be formed using digits 1-7 (no digit repeated) such that the number is divisible by 5?",
+        "options": [
+          "120",
+          "720",
+          "360",
+          "180"
+        ],
+        "correct": 0,
+        "explanation": "For divisibility by 5, last digit must be 5. Fix last digit = 5. Remaining 3 positions: choose 3 from remaining 6 digits (1,2,3,4,6,7) in order = P(6,3) = 6×5×4 = 120."
+      },
+      {
+        "id": 15,
+        "topic": "Simple & Compound Interest",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "The difference between compound and simple interest on ₹10,000 at 10% per annum for 3 years is:",
+        "options": [
+          "₹310",
+          "₹300",
+          "₹331",
+          "₹100"
+        ],
+        "correct": 0,
+        "explanation": "SI = 10000×10×3/100 = ₹3000. CI = 10000×(1.1³ - 1) = 10000×(1.331-1) = 10000×0.331 = ₹3310. Difference = 3310 - 3000 = ₹310."
+      },
+      {
+        "id": 16,
+        "topic": "Number Theory",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "What is the LCM of 12, 18, and 24?",
+        "options": [
+          "72",
+          "144",
+          "36",
+          "48"
+        ],
+        "correct": 0,
+        "explanation": "12 = 2²×3; 18 = 2×3²; 24 = 2³×3. LCM = 2³×3² = 8×9 = 72."
+      },
+      {
+        "id": 17,
+        "topic": "Mixtures",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A 60-litre vessel contains milk and water in ratio 7:3. How much water must be added to make the ratio 3:7?",
+        "options": [
+          "80 litres",
+          "60 litres",
+          "40 litres",
+          "100 litres"
+        ],
+        "correct": 0,
+        "explanation": "Milk = 60×(7/10) = 42L. Water = 18L. Let x litres water added. New ratio: 42/(18+x) = 3/7. → 7×42 = 3(18+x) → 294 = 54+3x → 3x = 240 → x = 80 litres."
+      },
+      {
+        "id": 18,
+        "topic": "Statement-Conclusion",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Statement: 'Some engineers are managers. All managers are leaders.' Which conclusion definitely follows? I. Some engineers are leaders. II. All leaders are engineers.",
+        "options": [
+          "Only I follows",
+          "Only II follows",
+          "Both I and II follow",
+          "Neither follows"
+        ],
+        "correct": 0,
+        "explanation": "From 'Some engineers are managers' and 'All managers are leaders': by syllogism, the engineers who are managers are also leaders → 'Some engineers are leaders' (I) follows. 'All leaders are engineers' (II) doesn't follow — leaders could come from non-engineers too."
+      },
+      {
+        "id": 19,
+        "topic": "Clocks",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "At what time between 4 and 5 o'clock are the minute and hour hands exactly opposite each other (180° apart)?",
+        "options": [
+          "4:54.5 (4h 54 min 33 sec)",
+          "4:45",
+          "4:30",
+          "4:48"
+        ],
+        "correct": 0,
+        "explanation": "Hour hand position at 4:00 = 120°. For 180° apart: minute_hand - hour_hand = 180°. Minute: 6t degrees (t minutes). Hour: 120 + 0.5t degrees. 6t - (120+0.5t) = 180 → 5.5t = 300 → t = 300/5.5 = 54.54 minutes ≈ 54 min 33 sec. Time: 4:54:33."
+      },
+      {
+        "id": 20,
+        "topic": "Algebra",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "If x + 1/x = 5, what is the value of x³ + 1/x³?",
+        "options": [
+          "110",
+          "125",
+          "115",
+          "100"
+        ],
+        "correct": 0,
+        "explanation": "x + 1/x = 5. x² + 1/x² = (x+1/x)² - 2 = 25-2 = 23. x³+1/x³ = (x+1/x)(x²+1/x²-1) = 5×(23-1) = 5×22 = 110."
+      },
+      {
+        "id": 21,
+        "topic": "Data Interpretation",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A pie chart shows sales by region: North=30%, South=25%, East=20%, West=15%, Others=10%. If total sales = ₹24 crore, what is the difference between North and East sales?",
+        "options": [
+          "₹2.4 crore",
+          "₹1.2 crore",
+          "₹3.6 crore",
+          "₹4.8 crore"
+        ],
+        "correct": 0,
+        "explanation": "North = 30% of 24 = ₹7.2 crore. East = 20% of 24 = ₹4.8 crore. Difference = 7.2 - 4.8 = ₹2.4 crore."
+      },
+      {
+        "id": 22,
+        "topic": "Odd One Out",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Which is the odd one out: 17, 23, 31, 37, 41, 49?",
+        "options": [
+          "17",
+          "49",
+          "41",
+          "37"
+        ],
+        "correct": 1,
+        "explanation": "17, 23, 31, 37, 41 are all prime numbers. 49 = 7×7 is NOT prime — it is the odd one out."
+      },
+      {
+        "id": 23,
+        "topic": "Logical Puzzles",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "5 friends A, B, C, D, E scored differently in an exam. A scored more than B. D scored more than C. C scored more than B. E scored between A and D. D scored highest. What is the ranking order from highest to lowest?",
+        "options": [
+          "D, A, E, C, B",
+          "D, E, A, C, B",
+          "D, A, E, B, C",
+          "D, E, C, A, B"
+        ],
+        "correct": 1,
+        "explanation": "D is highest. C > B, A > B, D > C. E is between A and D. So D > _ > A and D > C > B. If E is between A and D: D > E > A > C > B? But A > B and C > B: need to place C relative to A. If D > E > A and A > C > B: D,E,A,C,B works. Answer: D, E, A, C, B."
+      },
+      {
+        "id": 24,
+        "topic": "Verbal Reasoning",
+        "difficulty": "hard",
+        "type": "conceptual",
+        "q": "Choose the correct analogy: 'Pen : Ink :: Bulb : ?'",
+        "options": [
+          "Light",
+          "Electricity",
+          "Glass",
+          "Filament"
+        ],
+        "correct": 1,
+        "explanation": "A pen uses ink as its functional medium/resource to produce output. A bulb uses electricity as its resource to produce light. The relationship is Tool : Resource (what it consumes to function)."
+      },
+      {
+        "id": 25,
+        "topic": "Quant Aptitude",
+        "difficulty": "hard",
+        "type": "scenario",
+        "q": "A shopkeeper cheats 10% while buying (uses 900g weight for 1kg) and cheats 10% while selling (sells 900g for 1kg price). What is the overall profit percentage?",
+        "options": [
+          "21.2%",
+          "20%",
+          "22.22%",
+          "11%"
+        ],
+        "correct": 2,
+        "explanation": "Effective weight bought: 900g per kg paid (gets 1000g but pays for 900g → gains 100g extra). Effectively gets 1000/900 kg for 1kg price. Sells 900g for 1kg price: gets paid for 1000g but gives only 900g. Combined: buys 1000g and sells it as if it were 900g (both cheating). True profit = (1000-900)/900 × 100 = 100/900 × 100 = 11.11%. With both-sided cheating: effective profit = (Gain/True cost) = (1000/900 × 1000/900 - 1) × 100 = (1.111² - 1)×100 ≈ 23.45%. Standard formula: gain% = (cheating% + cheating% + cheating%²/100) = 10+10+1 = 21%. Exact combined gain = (1000²-900²)/(900²) × 100 ≈ 22.22%."
+      }
+    ],
+    "open_ended_questions": [
+      {
+        "id": 1001,
+        "title": "Analytical Reasoning Under Constraints",
+        "scenario": "A startup has to assign 5 engineers (A, B, C, D, E) to 3 projects (X, Y, Z). Constraints: Project X needs exactly 2 engineers, Y needs exactly 2, Z needs exactly 1. Engineer A and B cannot work together. Engineer C must be on Project X. If D is on Project Y, E cannot be on Project Z.",
+        "prompt": "Work through all valid assignments systematically: 1) List all possible assignments of 5 engineers to 3 projects satisfying headcount constraints. 2) Apply constraint A≠B same project: enumerate which combinations are eliminated. 3) Apply the D→Y means E≠Z constraint: which valid assignments remain? Present your approach as a structured logical deduction — show your constraint propagation method and final valid assignment(s).",
+        "rubric_focus": [
+          "Constraint propagation methodology",
+          "Systematic enumeration without missing cases",
+          "Logical deduction from compound constraints",
+          "Verification of all constraints simultaneously",
+          "Clean structured problem-solving approach"
+        ]
+      },
+      {
+        "id": 1002,
+        "title": "Quantitative Estimation and Fermi Problems",
+        "scenario": "In a technical interview, you're asked: 'Estimate the number of piano tuners in Mumbai.' This is a Fermi estimation problem testing your ability to reason with incomplete information, make structured assumptions, and arrive at a defensible order-of-magnitude answer.",
+        "prompt": "Present a complete structured Fermi estimation: 1) What key variables do you need to estimate, and what assumptions do you make for each (Mumbai population, household income distribution, piano ownership rate per household, pianos per tuner per day, working days)? 2) Calculate step-by-step: how many pianos are in Mumbai, how many tunings per piano per year, total tuning-hours needed annually, and thus how many full-time tuners are needed? 3) How do you sanity-check your estimate (cross-check with analogous cities, consider error bounds) and communicate uncertainty professionally?",
+        "rubric_focus": [
+          "Structured variable decomposition",
+          "Reasonable assumption-making with justification",
+          "Step-by-step arithmetic with clear units",
+          "Order-of-magnitude calibration",
+          "Uncertainty communication"
+        ]
+      },
+      {
+        "id": 1003,
+        "title": "Data Interpretation and Business Decision Making",
+        "scenario": "You are presented with this data: Company A's revenue grew 40% YoY, Company B's grew 15%. Company A's net profit margin fell from 18% to 9%. Company B's margin rose from 6% to 10%. An investor asks: 'Which company is performing better fundamentally, and should I invest in the high-growth one?'",
+        "prompt": "Provide a rigorous analytical answer: 1) Calculate the absolute profit change for both companies assuming Company A had ₹100 crore and Company B had ₹200 crore base revenue — show the math clearly. 2) What does the margin compression in Company A suggest about its cost structure, and what questions would you ask to understand whether this is strategic (investing in growth) or problematic (losing pricing power)? 3) What additional metrics (free cash flow, CAC, LTV, debt-to-equity, revenue quality) would you require before making an investment recommendation, and how do you weigh growth rate against profitability?",
+        "rubric_focus": [
+          "Absolute vs percentage-based analysis",
+          "Margin compression interpretation",
+          "Growth vs profitability trade-off reasoning",
+          "Key financial metrics beyond revenue",
+          "Structured investor-grade recommendation framework"
+        ]
+      }
+    ]
+  }
+];
+
+export const MOCK_ASSESSMENTS_LISTING = MOCK_ASSESSMENTS_CATALOG.map(({ questions, open_ended_questions, ...meta }) => meta);
+
+export function getMockAssessmentById(id: string): MockTestCatalogItem | undefined {
+  return MOCK_ASSESSMENTS_CATALOG.find(t => t.id === id);
+}

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { supabase } from '@/lib/supabase'
+import { MOCK_ASSESSMENTS_LISTING, getMockAssessmentById } from '@/data/mockAssessmentData'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 
@@ -528,9 +529,61 @@ api.interceptors.response.use(
     // ── Assessments Endpoints ─────────────────────────────────────────────────
     if (url.includes('/api/assessments')) {
       const currentUid = localStorage.getItem('cp_active_uid') || 'unknown_user'
+      const assessmentHistoryKey = `cp_assessment_history_${currentUid}`
+
+      // 1. Session start: POST /api/assessments/start-session
+      if (url.includes('/start-session') && method === 'post') {
+        const body = JSON.parse(error.config?.data || '{}')
+        return Promise.resolve({
+          data: {
+            session_id: 'sess_' + Math.random().toString(36).substring(2, 10),
+            test_id: body.test_id || 'dsa',
+            time_limit_seconds: 600,
+            start_time: new Date().toISOString(),
+            expires_at: new Date(Date.now() + 600000).toISOString(),
+          }
+        })
+      }
+
+      // 2. Submission: POST /api/assessments/submit
       if (url.includes('/submit') && method === 'post') {
         const body = JSON.parse(error.config?.data || '{}')
         const scoreVal = Number(body.score || 0)
+        const mcqScoreVal = Number(body.mcq_score ?? scoreVal)
+
+        // Evaluate open-ended questions if present
+        const openEndedAnswers = body.open_ended_answers || []
+        let openEndedScore: number | undefined = undefined
+        const evaluations = openEndedAnswers.map((item: any) => {
+          const ans = (item.answer || '').trim()
+          const len = ans.length
+          const correctness = len > 50 ? Math.min(20, 12 + Math.floor(len / 40)) : 10
+          const reasoning = len > 60 ? Math.min(20, 13 + Math.floor(len / 50)) : 10
+          const tech = len > 70 ? Math.min(20, 14 + Math.floor(len / 60)) : 10
+          const relevance = len > 40 ? 18 : 12
+          const completeness = len > 80 ? 19 : 14
+          const total = correctness + reasoning + tech + relevance + completeness
+          return {
+            question_id: item.question_id,
+            question_title: item.question,
+            correctness,
+            reasoning,
+            technical_understanding: tech,
+            relevance,
+            completeness,
+            score: total,
+            feedback: 'Solid analytical breakdown. Well structured trade-off considerations and algorithmic awareness.'
+          }
+        })
+
+        if (evaluations.length > 0) {
+          const sum = evaluations.reduce((acc: number, e: any) => acc + e.score, 0)
+          openEndedScore = Math.round(sum / evaluations.length)
+        }
+
+        const compositeScore = openEndedScore !== undefined
+          ? Math.round(0.70 * mcqScoreVal + 0.30 * openEndedScore)
+          : mcqScoreVal
 
         // Update stored score
         const storageKey = `cp_user_score_${currentUid}`
@@ -539,54 +592,84 @@ api.interceptors.response.use(
         let currScore = raw ? JSON.parse(raw) : { total_score: 0, skills_score: 0, assessments_score: 0, max_scores: {} }
 
         const prevTotal = currScore.total_score || 0
-        const addedAssessments = Math.min(10, Math.round((scoreVal / 100) * 10))
+        const addedAssessments = Math.min(10, Math.round((compositeScore / 100) * 10))
         currScore.assessments_score = addedAssessments
         currScore.total_score = Math.min(100, Math.round((currScore.skills_score || 0) + (currScore.projects_score || 0) + (currScore.interviews_score || 0) + (currScore.resume_score || 0) + addedAssessments + (currScore.certificates_score || 0)))
         currScore.confidence_level = 'Verified Data Precision'
 
-        // Compute real delta instead of hardcoded 8.0
         const realDelta = Math.round((currScore.total_score - prevTotal) * 10) / 10
         const history = JSON.parse(localStorage.getItem(historyKey) || '[]')
         history.push({
           timestamp: new Date().toISOString(),
           total_score: currScore.total_score,
           delta: realDelta,
-          reason: `Completed ${body.test_title || 'Mock Test'} (${scoreVal}%)`
+          reason: `Completed ${body.test_title || 'Mock Test'} (${compositeScore}%)`
         })
         localStorage.setItem(storageKey, JSON.stringify(currScore))
         localStorage.setItem(historyKey, JSON.stringify(history))
 
+        // Save into assessments history
+        const savedAssessments = JSON.parse(localStorage.getItem(assessmentHistoryKey) || '[]')
+        const assessmentRecord = {
+          id: 'rec_' + Date.now(),
+          test_id: body.test_id,
+          test_title: body.test_title,
+          career_path: body.career_path || 'Software Engineering',
+          score: compositeScore,
+          mcq_score: mcqScoreVal,
+          open_ended_score: openEndedScore,
+          correct_count: body.correct_count,
+          total_questions: body.total_questions,
+          time_taken: body.time_taken,
+          timestamp: new Date().toISOString(),
+        }
+        savedAssessments.unshift(assessmentRecord)
+        localStorage.setItem(assessmentHistoryKey, JSON.stringify(savedAssessments))
+
         return Promise.resolve({
           data: {
             success: true,
-            score: scoreVal,
+            score: compositeScore,
+            mcq_score: mcqScoreVal,
+            open_ended_score: openEndedScore,
             readiness_score: currScore.total_score,
+            correct_count: body.correct_count,
+            incorrect_count: body.incorrect_count,
+            total_questions: body.total_questions,
+            time_taken: body.time_taken,
+            topic_breakdown: body.topic_breakdown,
+            difficulty_breakdown: body.difficulty_breakdown,
+            open_ended_evaluations: evaluations,
             message: 'Assessment recorded and Career Readiness Score recalculated.'
           }
         })
       }
 
+      // 3. Assessment history: GET /api/assessments/history
+      if (url.includes('/history')) {
+        const savedAssessments = JSON.parse(localStorage.getItem(assessmentHistoryKey) || '[]')
+        return Promise.resolve({
+          data: {
+            uid: currentUid,
+            assessments: savedAssessments
+          }
+        })
+      }
+
+      // 4. Single test with questions: GET /api/assessments/tests/:testId
+      const testMatch = url.match(/\/api\/assessments\/tests\/([^/?#]+)/)
+      if (testMatch && testMatch[1]) {
+        const testId = testMatch[1]
+        const testObj = getMockAssessmentById(testId)
+        if (testObj) {
+          return Promise.resolve({ data: testObj })
+        }
+      }
+
+      // 5. Tests catalog listing: GET /api/assessments/tests
       return Promise.resolve({
         data: {
-          tests: [
-            {
-              id: 'dsa',
-              title: 'Data Structures & Algorithms Core Assessment',
-              category: 'Algorithms',
-              questions_count: 5,
-              time_limit: '20 mins',
-              difficulty: 'Hard',
-              questions: [
-                {
-                  id: 1,
-                  q: 'Which data structure offers average O(1) time complexity for lookup, insert, and delete operations?',
-                  options: ['Binary Search Tree', 'Hash Table / Map', 'Linked List', 'Max Heap'],
-                  correct: 1,
-                  explanation: 'Hash tables leverage a hash function to map keys to bucket indices, yielding O(1) average time complexity.'
-                }
-              ]
-            }
-          ]
+          tests: MOCK_ASSESSMENTS_LISTING
         }
       })
     }

@@ -403,7 +403,7 @@ class SkillAddRequest(BaseModel):
 
 
 class OpenEndedAnswerSubmission(BaseModel):
-    question_id: int = Field(..., ge=1, le=50)
+    question_id: int = Field(..., ge=1, le=10000)
     question: str = Field(..., min_length=5, max_length=2000)
     answer: str = Field(default="", max_length=10000)
 
